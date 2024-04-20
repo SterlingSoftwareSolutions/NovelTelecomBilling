@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::resource('customers', CustomerController::class)->except(['index']);
+Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+Route::post('uploadfile', [UploadController::class, 'uploadfile'])->name('file.upload');
+
+
