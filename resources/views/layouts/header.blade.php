@@ -34,7 +34,7 @@
 
 <body>
 
-    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 ml-11" aria-label="Global">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 ml-11 " aria-label="Global">
 
         <div class="lg:flex lg:gap-x-12">
             <div class="relative">
@@ -59,7 +59,7 @@
             </div>
 
             <!-- Repeat the same pattern for other dropdowns with unique IDs -->
-            <div class="relative">
+            <div class="relative ">
                 <button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
                     aria-expanded="false" onclick="toggleDropdown('accountDropdown')">
                     Account
@@ -72,13 +72,182 @@
                 </button>
                 <div id="accountDropdown" class="dropdown-content hidden">
                     <!-- Dropdown content for Account -->
-                    <ul>
-                        <li><a href="#" class="dropdown-item">Profile</a></li>
-                        <li><a href="#" class="dropdown-item">Settings</a></li>
-                        <li><a href="#" class="dropdown-item">Logout</a></li>
+                    <ul class=" w-[200px]">
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                    Find account
+                                </button>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('accountdetails')">
+                                    Account details
+                                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <div id="accountdetails" class="dropdown-content hidden absolute left-full top-0">
+                                    <!-- Sub-dropdown content for Profile -->
+                                    <ul class=" w-[150px]">
+                                        <li><a href="#" class="dropdown-item ">Sub Profile 1</a></li>
+                                        <li><a href="#" class="dropdown-item">Sub Profile 2</a></li>
+                                        <li><a href="#" class="dropdown-item">Sub Profile 3</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('billingdetails')">
+                                    Billing
+                                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <div id="billingdetails" class="dropdown-content hidden absolute left-full top-0">
+                                    <!-- Sub-dropdown content for Profile -->
+                                    <ul class=" w-[150px]">
+                                        <li><a href="#" class="dropdown-item ">Billing Profile 1</a></li>
+                                        <li><a href="#" class="dropdown-item">Billing Profile 2</a></li>
+                                        <li><a href="#" class="dropdown-item">Billing Profile 3</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                    Notes
+                                </button>
+
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                    Popup Note
+                                </button>
+
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                    Receipt
+                                </button>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('financialdetails')">
+                                 Fanancial Transactions
+                                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <div id="financialdetails" class="dropdown-content hidden absolute left-full top-0">
+                                    <!-- Sub-dropdown content for Profile -->
+                                    <ul class=" w-[150px]">
+                                        <li><a href="#" class="dropdown-item ">Fanancial Profile 1</a></li>
+                                        <li><a href="#" class="dropdown-item">Fanancial Profile 2</a></li>
+                                        <li><a href="#" class="dropdown-item">Fanancial Profile 3</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                    Miscellaneous Charges
+                                </button>
+
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                    Discounting
+                                </button>
+
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                    Charge Overrides                           </button>
+
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                   Plan Overrides
+                                </button>
+
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                  View Wholesale Tariff File
+                                </button>
+
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                 New Account
+                                </button>
+
+                            </div>
+                        </li>
+                      
                     </ul>
+
                 </div>
             </div>
+
 
             <!-- Repeat the same pattern for other dropdowns -->
             <!-- Service Dropdown -->
@@ -150,7 +319,7 @@
             <div class="relative">
                 <button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
                     aria-expanded="false" onclick="toggleDropdown('WindowsDropdown')">
-                      Windows
+                    Windows
                     <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
                         aria-hidden="true">
                         <path fill-rule="evenodd"
@@ -167,12 +336,15 @@
                     </ul>
                 </div>
             </div>
-            
+
 
             <!-- Repeat for other items -->
         </div>
     </nav>
 
+
+
+    {{-- dropdown --}}
     <script>
         // Function to toggle dropdown visibility
         function toggleDropdown(dropdownId) {
@@ -180,9 +352,9 @@
             const allDropdowns = document.querySelectorAll('.dropdown-content');
 
             // Close all dropdowns except the one that was clicked
-            allDropdowns.forEach((dropdown) => {
-                if (dropdown.id !== dropdownId) {
-                    dropdown.classList.add('hidden');
+            allDropdowns.forEach((dropdownElement) => {
+                if (dropdownElement.id !== dropdownId && !dropdownElement.classList.contains('hidden')) {
+                    dropdownElement.classList.add('hidden');
                 }
             });
 
@@ -190,6 +362,30 @@
             dropdown.classList.toggle('hidden');
         }
     </script>
+
+
+
+    {{-- subdropdown --}}
+    <script>
+        let currentSubDropdown = null;
+
+        function toggleSubDropdown(id) {
+            const subDropdown = document.getElementById(id);
+
+            // Close the current sub-dropdown if it exists and is not the same as the one being clicked
+            if (currentSubDropdown && currentSubDropdown !== subDropdown) {
+                currentSubDropdown.classList.add('hidden');
+            }
+
+            // Toggle the visibility of the clicked sub-dropdown
+            subDropdown.classList.toggle('hidden');
+
+            // Update the current sub-dropdown
+            currentSubDropdown = subDropdown;
+        }
+    </script>
+
+
 
 </body>
 

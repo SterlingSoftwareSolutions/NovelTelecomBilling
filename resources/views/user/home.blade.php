@@ -265,19 +265,19 @@
             <section class=" dark:bg-gray-900 p-3 sm:p-5 w-6/12 border ">
                 <div class=" border  ">
                     <!-- Start coding here -->
-                    <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg  h-72 overflow-y-auto">
+                    <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg   overflow-y-auto">
                         <div
-                            class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 mt-2">
-                            <div class="w-full md:w-1/2"></div>
+                            class="flex flex-col md:flex-row items-center overflow-auto justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 mt-2 mr-7">
+                          
                             <div
-                                class="flex shadow-md border-dashed flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 w-full b">
-                                <div class="flex items-center w-full">
+                                class="flex items-start  shadow-lg flex-col md:flex-row space-y-2 md:space-y-0   w-full ">
+                              
                                     <button id="notesButton"
                                         class="w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-non tab-button"
                                         type="button" onclick="selectTab(this)">
                                         Notes
                                     </button>
-                                </div>
+                                
                                 <button id="billsButton" data-dropdown-toggle="actionsDropdown"
                                     class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
                                     type="button" onclick="selectTab(this)">
