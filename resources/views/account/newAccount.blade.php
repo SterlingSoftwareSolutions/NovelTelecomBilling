@@ -8,6 +8,12 @@
     <!-- Include flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>Account</title>
+    <style>
+        .tab-button.selected {
+            text-decoration: underline;
+            color: red
+        }
+    </style>
 </head>
 
 <body>
@@ -26,17 +32,17 @@
 
 
                             <button id="subscribesButton"
-                                class="w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-non tab-button"
+                                class="w-auto flex items-center justify-center tab-button py-2 px-4 text-sm font-medium text-gray-900 focus:outline-non tab-button selected"
                                 type="button" onclick="toggleFormVisibility('subscribeForm')">
                                 Subscribes
                             </button>
                             <button id="addressButton" data-dropdown-toggle="actionsDropdown"
-                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button tab-button"
                                 type="button"onclick="toggleFormVisibility('addressForm')">
                                 Address
                             </button>
                             <button id="phonesButton" data-dropdown-toggle="actionsDropdown"
-                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button tab-button"
                                 type="button" onclick="toggleFormVisibility('phonesForm')">
                                 Phones
                             </button>
@@ -71,23 +77,23 @@
                                 <input type="text" name="Medium"
                                     class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                             </div>
-                            <div class="flex flex-col w-7/12 ">
-                                <label for="">Type</label>
-                                <select name="" id=""
-                                    class="w-full p-2 border border-gray-800 rounded-lg ">
-                                    <option value="">Individual</option>
-                                    <option value="">Corporate</option>
+                            <div class="flex flex-col w-7/12">
+                                <label for="typeSelect">Type</label>
+                                <select name="typeSelect" id="typeSelect" onchange="toggleFields()"
+                                    class="w-full p-2 border border-gray-800 rounded-lg">
+                                    <option value="Individual">Individual</option>
+                                    <option value="Corporate">Corporate</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="flex flex-row gap-4 md:gap-8  m-5  ">
                             <div class="w-7/12">
-                                <label for=""> First Name</label>
+                                <label for="">Key</label>
                                 <input type="text" name="Medium"
                                     class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                             </div>
-                            <div class="flex flex-col w-7/12">
+                            <div class="flex flex-col w-7/12" id="keyandtitle">
                                 <label for="">Title</label>
                                 <select name="" id=""
                                     class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
@@ -103,26 +109,73 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-row gap-4 md:gap-8 m-5">
-                            <div class="w-7/12">
-                                <label for="">Key</label>
-                                <input type="text" name="Medium"
-                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                            </div>
+                        <div id="businessUnitDiv" class="flex flex-row gap-4 md:gap-8 m-5" style="display: none;">
                             <div class="flex flex-col w-7/12">
                                 <label for="">Business Unit</label>
                                 <select name="" id=""
                                     class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <option value="">None</option>
-                                    <option value="">Mr</option>
-                                    <option value="">Mrs</option>
-                                    <option value="">Miss</option>
-                                    <option value="">Ms</option>
-                                    <option value="">Dr</option>
+                                    <option value=""></option>
                                 </select>
+                            </div>
+
+                            <div class="w-7/12">
+                                <label for="">Name</label>
+                                <input type="text" name="Medium"
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                             </div>
                         </div>
 
+                        <div class="flex flex-row gap-4 md:gap-8  m-5  " id="tradingname">
+                            <div class="w-7/12">
+                                <label for=""> Trading Name</label>
+                                <input type="text" name="Medium"
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row gap-4 md:gap-8  m-5  " id="acnandabn">
+
+                            <div class="flex flex-col w-7/12">
+                                <label for="">ACN</label>
+                                <select name="" id=""
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+
+                            <div class="w-7/12">
+                                <label for="">ABN</label>
+                                <input type="text" name="Medium"
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row gap-4 md:gap-8  m-5  " id="emailandquestion">
+
+                            <div class="flex flex-col w-7/12">
+                                <label for="">Email</label>
+                                <select name="" id=""
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+
+                            <div class="w-7/12">
+                                <label for="">Question</label>
+                                <input type="text" name="Medium"
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row gap-4 md:gap-8  m-5  " id="answers">
+                            <div class="w-7/12">
+                                <label for="">Answer</label>
+                                <input type="text" name="Medium"
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            </div>
+                        </div>
+
+                        <div class=" text-red-700" id="titlecoparate">Primary Contact Details</div>
 
                         <div class="flex flex-row gap-4 md:gap-8 m-5">
                             <div class="w-7/12">
@@ -130,11 +183,23 @@
                                 <input type="text" name="Medium"
                                     class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                             </div>
+
+                            <div class="w-7/12">
+                                <label for=""> First Name</label>
+                                <input type="text" name="Medium"
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            </div>
+                        </div>
+
+
+                        <div class="flex flex-row gap-4 md:gap-8 m-5">
+
                             <div class="w-7/12">
                                 <label for="">Last Name</label>
                                 <input type="text" name="Medium"
                                     class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                             </div>
+
                         </div>
 
 
@@ -214,7 +279,7 @@
 
                         </div>
                         <div id="novelteleventTable" class="overflow-x-auto  mt-5">
-                            <label for="" class="m-5">Answer</label>
+                            <label for="" class="m-5">Identification</label>
                             <table
                                 class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
 
@@ -385,17 +450,12 @@
                                     <tr>
                                         <th>Type</th>
                                         <th>Address</th>
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Credit Card</td>
                                     </tr>
-
-
-
                                 </tbody>
                             </table>
                             <div class="w-7/12 ">
@@ -546,24 +606,64 @@
                             </div>
                         </div>
                         <button type="submit"
-                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
-                        <span class="mx-auto border-1 bg-green-">Save</span>
-                    </button>
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            <span class="mx-auto border-1 bg-green-">Save</span>
+                        </button>
 
                     </form>
 
                     {{-- Billing Form  --}}
                     <form action="" id="billingForm" class="flex flex-col font-boogaloo text-[20px] hidden"
                         enctype="multipart/form-data">
-                        <div class="flex flex-row gap-4 md:gap-8 m-5">
-
-                            <div class="flex flex-col w-7/12 ">
+                        <div class="flex flex-row gap-4 md:gap-8 m-5 p-4 border border-1 border-black rounded-lg">
+                            <div class="flex flex-col w-7/12">
                                 <label for="">Payment Type</label>
-                                <select name="" id=""
-                                    class="w-full p-2 border border-gray-800 rounded-lg ">
-                                    <option value=""></option>
-                                    <option value=""></option>
+                                <select name="paymentType" id="paymentType" class="w-full p-2 border border-gray-800 rounded-lg">
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Remittance">Remittance</option>
                                 </select>
+                                <div id="chequeFields" style="display: none;">
+                                    <div class="w-7/12">
+                                        <label for="">Account</label>
+                                        <input type="text" name="Medium" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                    <div class="w-7/12">
+                                        <label for="">Account Name</label>
+                                        <input type="text" name="Medium" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                    <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                        <div class="w-7/12">
+                                            <label for="">B.S.B</label>
+                                            <input type="text" name="Medium" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        </div>
+                                        <div class="flex flex-row gap-4 md:gap-8 m-5 ">
+                                            <div class="w-7/12">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="vue-checkbox" type="checkbox" value=""
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="vue-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subscribes
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="creditCardFields" style="display: none;">
+                                    <div class="w-7/12">
+                                        <label for="">Credit Card Num</label>
+                                        <input type="text" name="Medium" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                    <div class="w-7/12">
+                                        <label for="">Credit Holder Name</label>
+                                        <input type="text" name="Medium" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                    <div class="w-7/12">
+                                        <label for="">Expire Date(mm/yy)</label>
+                                        <input type="text" name="Medium" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -870,9 +970,9 @@
                         </div>
 
                         <button type="submit"
-                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
-                        <span class="mx-auto border-1 bg-green-">Save</span>
-                    </button>
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            <span class="mx-auto border-1 bg-green-">Save</span>
+                        </button>
 
                     </form>
 
@@ -904,101 +1004,90 @@
 
                                 </tbody>
                             </table>
-                          
+
                         </div>
                         <form action="" id="contactForm"class="flex flex-col font-boogaloo text-[20px] hidden"
-                        enctype="multipart/form-data">
-                        <div class="flex flex-row gap-4 md:gap-8 m-5">
-                            <div class="w-11/12">
-                                <label for="">Contact Login/Password</label>
-                                <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                    <div class="w-10/12">
-                                        <label for="">Login Code</label>
-                                        <input type="text" name="Medium"
-                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            enctype="multipart/form-data">
+                            <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                <div class="w-11/12">
+                                    <label for="">Contact Login/Password</label>
+                                    <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                        <div class="w-10/12">
+                                            <label for="">Login Code</label>
+                                            <input type="text" name="Medium"
+                                                class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        </div>
+
+                                    </div>
+                                    <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                        <div class="w-10/12">
+                                            <label for="">Password</label>
+                                            <input type="text" name="Medium"
+                                                class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        </div>
+
                                     </div>
 
                                 </div>
-                                <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                    <div class="w-10/12">
-                                        <label for="">Password</label>
-                                        <input type="text" name="Medium"
-                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+
+
+                                <div class="w-7/12 mt-64">
+                                    <div class=" flex col-2">
+                                        <button type="submit"
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                            <span class="mx-auto border-1 bg-green-">Add New</span>
+                                        </button>
+                                        <button type="submit"
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                            <span class="mx-auto border-1 ">Add Random</span>
+                                        </button>
+                                        <button type="submit"
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                            <span class="mx-auto border-1 ">Delete</span>
+                                        </button>
                                     </div>
-
                                 </div>
-                                
+
                             </div>
-                            
+                            <div id="novelteleventTable" class="overflow-x-auto  mt-5">
+                                <label for="" class="m-5">Additinol information</label>
+                                <table
+                                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
 
-                            <div class="w-7/12 mt-64">
-                                <div class=" flex col-2">
-                                    <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
-                                        <span class="mx-auto border-1 bg-green-">Add New</span>
-                                    </button>
-                                    <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
-                                        <span class="mx-auto border-1 ">Add Random</span>
-                                    </button>
-                                    <button type="submit"
-                                    class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
-                                    <span class="mx-auto border-1 ">Delete</span>
-                                </button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div id="novelteleventTable" class="overflow-x-auto  mt-5">
-                            <label for="" class="m-5">Additinol information</label>
-                            <table
-                                class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
-
-                                <!-- Table content for Notes -->
-                                <thead
-                                    class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Value</th>
+                                    <!-- Table content for Notes -->
+                                    <thead
+                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Value</th>
 
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Credit Card</td>
-                                    </tr>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Credit Card</td>
+                                        </tr>
 
 
 
-                                </tbody>
-                            </table>
-                          
-                        </div><button type="submit"
-                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
-                        <span class="mx-auto border-1 bg-green-">Save</span>
-                    </button>
+                                    </tbody>
+                                </table>
 
-                    </form>
+                            </div><button type="submit"
+                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                <span class="mx-auto border-1 bg-green-">Save</span>
+                            </button>
+
+                        </form>
 
 
 
                 </div>
             </div>
         </section>
-        {{-- form navigation script --}}
-        <script>
-            function toggleFormVisibility(formId) {
-                var forms = document.querySelectorAll('form'); // Get all forms
-                forms.forEach(function(form) { // Iterate through each form
-                    form.classList.add("hidden"); // Hide all forms
-                });
 
-                var form = document.getElementById(formId); // Get the form to toggle
-                form.classList.remove("hidden"); // Show the form associated with the clicked button
-            }
-        </script>
-        {{-- onload script --}}
+        {{-- navigate and button select --}}
         <script>
             window.onload = function() {
                 var currentForm = localStorage.getItem("currentForm");
@@ -1015,7 +1104,19 @@
                     // If no form is in local storage, display the subscribe form by default
                     var subscribeForm = document.getElementById("subscribeForm");
                     subscribeForm.style.display = "block";
+                    var subscribeButton = document.getElementById("subscribesButton");
+                    subscribeButton.classList.add('selected');
                 }
+
+                var buttons = document.querySelectorAll('.tab-button');
+                buttons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        buttons.forEach(function(btn) {
+                            btn.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    });
+                });
             };
 
             function toggleFormVisibility(formId) {
@@ -1030,12 +1131,61 @@
                 });
             }
         </script>
+        <script>
+            function toggleFields() {
+                var typeSelect = document.getElementById("typeSelect");
+                var businessUnitDiv = document.getElementById("businessUnitDiv");
+                var tradingname = document.getElementById("tradingname")
+                var acnandabn = document.getElementById("acnandabn")
+                var answers = document.getElementById("answers")
+                var emailandquestion = document.getElementById("emailandquestion")
+                var keyandtitle = document.getElementById("keyandtitle")
+                var titlecoparate = document.getElementById("titlecoparate")
+
+                if (typeSelect.value === "Corporate") {
+                    businessUnitDiv.style.display = "flex";
+                    tradingname.style.display = "flex";
+                    acnandabn.style.display = "flex";
+                    answers.style.display = "flex";
+                    emailandquestion.style.display = "flex";
+                    keyandtitle.style.display = "none";
+                    titlecoparate.style.display = "flex";
+                } else {
+                    businessUnitDiv.style.display = "none";
+                    tradingname.style.display = "none";
+                    acnandabn.style.display = "none";
+                    answers.style.display = "none";
+                    emailandquestion.style.display = "none";
+                    keyandtitle.style.display = "flex";
+                    titlecoparate.style.display = "none";
+                }
+            }
+        </script>
 
 
+        
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const paymentTypeSelect = document.getElementById("paymentType");
+        const chequeFields = document.getElementById("chequeFields");
+        const creditCardFields = document.getElementById("creditCardFields");
 
+        paymentTypeSelect.addEventListener("change", function() {
+            const selectedPaymentType = paymentTypeSelect.value;
 
+            // Hide all field sets initially
+            chequeFields.style.display = "none";
+            creditCardFields.style.display = "none";
 
-
+            // Show the selected field set
+            if (selectedPaymentType === "Cheque") {
+                chequeFields.style.display = "block";
+            } else if (selectedPaymentType === "Credit Card") {
+                creditCardFields.style.display = "block";
+            }
+        });
+    });
+</script>
     </div>
 </body>
 
