@@ -233,14 +233,15 @@
                             </div>
                         </li>
                         <li class="">
-                            <div class="relative ">
+                            <div class="relative">
                                 <button type="button"
-                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
-                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
-                                 New Account
+                                        class="flex items-center gap-x-1 text-sm leading-6 text-gray-900"
+                                        aria-expanded="false"
+                                        onclick="window.location='{{ route("account.newaccount")}}'">
+                                    New Account
                                 </button>
-
                             </div>
+                            
                         </li>
                       
                     </ul>
