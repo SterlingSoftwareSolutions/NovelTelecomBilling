@@ -5,6 +5,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,12 +30,16 @@ Route::get('customers', [CustomerController::class, 'index'])->name('customers.i
 Route::post('uploadfile', [UploadController::class, 'uploadfile'])->name('file.upload');
 
 //auth routes
-Route::get('/login',[AuthController::class,'login_index'])->name('login');
-Route::get('/register',[AuthController::class,'register_index'])->name('register');
-
+// Authentication Routes
+Route::get('/login', [AuthController::class, 'login_index'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::get('/register', [AuthController::class, 'register_index'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+Route::post('/', [AuthController::class, 'logout'])->name('logout');
 
 //user route
-Route::get('/home',[HomeController::class,'home'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth');
+
 
 //account route
 Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount');
