@@ -37,6 +37,6 @@ Route::get('/register',[AuthController::class,'register_index'])->name('register
 Route::get('/home',[HomeController::class,'home'])->name('home');
 
 //account route
-Route::get('/account',[AccountController::class, 'account_index'])->name('account');
+Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount');
 
 

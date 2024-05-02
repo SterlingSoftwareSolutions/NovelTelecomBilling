@@ -8,6 +8,12 @@
     <!-- Include flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>Account</title>
+    <style>
+        .tab-button.selected {
+            text-decoration: underline;
+            color: red
+        }
+    </style>
 </head>
 
 <body>
@@ -26,17 +32,17 @@
 
 
                             <button id="subscribesButton"
-                                class="w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-non tab-button"
+                                class="w-auto flex items-center justify-center tab-button py-2 px-4 text-sm font-medium text-gray-900 focus:outline-non tab-button selected"
                                 type="button" onclick="toggleFormVisibility('subscribeForm')">
                                 Subscribes
                             </button>
                             <button id="addressButton" data-dropdown-toggle="actionsDropdown"
-                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button tab-button"
                                 type="button"onclick="toggleFormVisibility('addressForm')">
                                 Address
                             </button>
                             <button id="phonesButton" data-dropdown-toggle="actionsDropdown"
-                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button tab-button"
                                 type="button" onclick="toggleFormVisibility('phonesForm')">
                                 Phones
                             </button>
@@ -546,9 +552,9 @@
                             </div>
                         </div>
                         <button type="submit"
-                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
-                        <span class="mx-auto border-1 bg-green-">Save</span>
-                    </button>
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            <span class="mx-auto border-1 bg-green-">Save</span>
+                        </button>
 
                     </form>
 
@@ -870,9 +876,9 @@
                         </div>
 
                         <button type="submit"
-                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
-                        <span class="mx-auto border-1 bg-green-">Save</span>
-                    </button>
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            <span class="mx-auto border-1 bg-green-">Save</span>
+                        </button>
 
                     </form>
 
@@ -904,101 +910,90 @@
 
                                 </tbody>
                             </table>
-                          
+
                         </div>
                         <form action="" id="contactForm"class="flex flex-col font-boogaloo text-[20px] hidden"
-                        enctype="multipart/form-data">
-                        <div class="flex flex-row gap-4 md:gap-8 m-5">
-                            <div class="w-11/12">
-                                <label for="">Contact Login/Password</label>
-                                <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                    <div class="w-10/12">
-                                        <label for="">Login Code</label>
-                                        <input type="text" name="Medium"
-                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            enctype="multipart/form-data">
+                            <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                <div class="w-11/12">
+                                    <label for="">Contact Login/Password</label>
+                                    <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                        <div class="w-10/12">
+                                            <label for="">Login Code</label>
+                                            <input type="text" name="Medium"
+                                                class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        </div>
+
+                                    </div>
+                                    <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                        <div class="w-10/12">
+                                            <label for="">Password</label>
+                                            <input type="text" name="Medium"
+                                                class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        </div>
+
                                     </div>
 
                                 </div>
-                                <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                    <div class="w-10/12">
-                                        <label for="">Password</label>
-                                        <input type="text" name="Medium"
-                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+
+
+                                <div class="w-7/12 mt-64">
+                                    <div class=" flex col-2">
+                                        <button type="submit"
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                            <span class="mx-auto border-1 bg-green-">Add New</span>
+                                        </button>
+                                        <button type="submit"
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                            <span class="mx-auto border-1 ">Add Random</span>
+                                        </button>
+                                        <button type="submit"
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                            <span class="mx-auto border-1 ">Delete</span>
+                                        </button>
                                     </div>
-
                                 </div>
-                                
+
                             </div>
-                            
+                            <div id="novelteleventTable" class="overflow-x-auto  mt-5">
+                                <label for="" class="m-5">Additinol information</label>
+                                <table
+                                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
 
-                            <div class="w-7/12 mt-64">
-                                <div class=" flex col-2">
-                                    <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
-                                        <span class="mx-auto border-1 bg-green-">Add New</span>
-                                    </button>
-                                    <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
-                                        <span class="mx-auto border-1 ">Add Random</span>
-                                    </button>
-                                    <button type="submit"
-                                    class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
-                                    <span class="mx-auto border-1 ">Delete</span>
-                                </button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div id="novelteleventTable" class="overflow-x-auto  mt-5">
-                            <label for="" class="m-5">Additinol information</label>
-                            <table
-                                class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
-
-                                <!-- Table content for Notes -->
-                                <thead
-                                    class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Value</th>
+                                    <!-- Table content for Notes -->
+                                    <thead
+                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Value</th>
 
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Credit Card</td>
-                                    </tr>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Credit Card</td>
+                                        </tr>
 
 
 
-                                </tbody>
-                            </table>
-                          
-                        </div><button type="submit"
-                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
-                        <span class="mx-auto border-1 bg-green-">Save</span>
-                    </button>
+                                    </tbody>
+                                </table>
 
-                    </form>
+                            </div><button type="submit"
+                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                <span class="mx-auto border-1 bg-green-">Save</span>
+                            </button>
+
+                        </form>
 
 
 
                 </div>
             </div>
         </section>
-        {{-- form navigation script --}}
-        <script>
-            function toggleFormVisibility(formId) {
-                var forms = document.querySelectorAll('form'); // Get all forms
-                forms.forEach(function(form) { // Iterate through each form
-                    form.classList.add("hidden"); // Hide all forms
-                });
-
-                var form = document.getElementById(formId); // Get the form to toggle
-                form.classList.remove("hidden"); // Show the form associated with the clicked button
-            }
-        </script>
-        {{-- onload script --}}
+    
+        {{-- navigate and button select --}}
         <script>
             window.onload = function() {
                 var currentForm = localStorage.getItem("currentForm");
@@ -1015,7 +1010,19 @@
                     // If no form is in local storage, display the subscribe form by default
                     var subscribeForm = document.getElementById("subscribeForm");
                     subscribeForm.style.display = "block";
+                    var subscribeButton = document.getElementById("subscribesButton");
+                    subscribeButton.classList.add('selected');
                 }
+
+                var buttons = document.querySelectorAll('.tab-button');
+                buttons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        buttons.forEach(function(btn) {
+                            btn.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    });
+                });
             };
 
             function toggleFormVisibility(formId) {

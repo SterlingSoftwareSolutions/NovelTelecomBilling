@@ -152,33 +152,33 @@
                     <div class=" bg-green-500   text-white text-lg ">
                         <!-- Account number -->
                         {{-- search box --}}
-                      
-                            <div class="flex-auto flex flex-col  h-12 ">
-                                <div class="flex flex-col items-center  relative">
-                                    <div class="w-full svelte-1l8159u -mt-1">
-                                        <div class="pt-2 relative mx-auto text-gray-600  ">
-                                            <span class=" text-white">Account Number</span>
-                                            <input
-                                                class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                                                type="search" name="search" placeholder="Search">
-                                            <button type="submit" class="">
-                                                <svg class="text-gray-600 h-4 w-4 fill-current"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                    id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
-                                                    style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
-                                                    width="512px" height="512px">
-                                                    <path
-                                                        d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                                                </svg>
-                                            </button>
-                                        </div>
+
+                        <div class="flex-auto flex flex-col  h-12 ">
+                            <div class="flex flex-col items-center  relative">
+                                <div class="w-full svelte-1l8159u -mt-1">
+                                    <div class="pt-2 relative mx-auto text-gray-600  ">
+                                        <span class=" text-white">Account Number</span>
+                                        <input
+                                            class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                                            type="search" name="search" placeholder="Search">
+                                        <button type="submit" class="">
+                                            <svg class="text-gray-600 h-4 w-4 fill-current"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
+                                                x="0px" y="0px" viewBox="0 0 56.966 56.966"
+                                                style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
+                                                width="512px" height="512px">
+                                                <path
+                                                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
-
                             </div>
 
-                        
+                        </div>
+
+
 
 
                     </div>
@@ -268,16 +268,16 @@
                     <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg   overflow-y-auto">
                         <div
                             class="flex flex-col md:flex-row items-center overflow-auto justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 mt-2 mr-7">
-                          
+
                             <div
                                 class="flex items-start  shadow-lg flex-col md:flex-row space-y-2 md:space-y-0   w-full ">
-                              
-                                    <button id="notesButton"
-                                        class="w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-non tab-button"
-                                        type="button" onclick="selectTab(this)">
-                                        Notes
-                                    </button>
-                                
+
+                                <button id="notesButton"
+                                    class="w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-non tab-button"
+                                    type="button" onclick="selectTab(this)">
+                                    Notes
+                                </button>
+
                                 <button id="billsButton" data-dropdown-toggle="actionsDropdown"
                                     class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
                                     type="button" onclick="selectTab(this)">
@@ -851,7 +851,7 @@
 
                                     <div class="w-full svelte-1l8159u -mt-1">
                                         <div class="pt-2 relative mx-auto text-gray-600  ">
-                                            
+
                                             <input
                                                 class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                                                 type="search" name="search" placeholder="Search">
@@ -860,8 +860,8 @@
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                                                     id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
-                                                    style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
-                                                    width="512px" height="512px">
+                                                    style="enable-background:new 0 0 56.966 56.966;"
+                                                    xml:space="preserve" width="512px" height="512px">
                                                     <path
                                                         d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
                                                 </svg>
