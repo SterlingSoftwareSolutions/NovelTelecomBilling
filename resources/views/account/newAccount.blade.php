@@ -68,7 +68,7 @@
 
                     </div>
                     {{-- subcribe form --}}
-                    <form id="subscribeForm" method="post" class="flex flex-col font-boogaloo text-[20px] hidden"
+                    <form id="subscribeForm" method="post" class=" flex-col font-medium text-[15px] hidden"
                         enctype="multipart/form-data">
 
                         <div class="flex flex-row gap-4 md:gap-8 m-5">
@@ -175,7 +175,7 @@
                             </div>
                         </div>
 
-                        <div class=" text-red-700" id="titlecoparate">Primary Contact Details</div>
+                        <div class=" text-red-700 ml-5" id="titlecoparate">Primary Contact Details</div>
 
                         <div class="flex flex-row gap-4 md:gap-8 m-5">
                             <div class="w-7/12">
@@ -312,13 +312,13 @@
 
 
                         <button type="submit"
-                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                             <span class="mx-auto border-1 bg-green-">Save</span>
                         </button>
                     </form>
 
                     {{-- address form --}}
-                    <form id="addressForm" method="post" class="flex flex-col font-boogaloo text-[20px] hidden"
+                    <form id="addressForm" method="post" class="flex flex-col font-medium text-[15px] hidden"
                         enctype="multipart/form-data">
                         <div class="flex flex-row gap-4 md:gap-8 m-5">
                             <div class="w-7/12">
@@ -424,11 +424,11 @@
                             <div class="w-7/12 mt-48">
                                 <div class=" flex col-2">
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                         <span class="mx-auto border-1 bg-green-">Add</span>
                                     </button>
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                         <span class="mx-auto border-1 ">Clear</span>
                                     </button>
                                 </div>
@@ -461,26 +461,26 @@
                             <div class="w-7/12 ">
                                 <div class=" flex col-2">
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                         <span class="mx-auto border-1 bg-green-">History</span>
                                     </button>
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                         <span class="mx-auto border-1 ">Delete</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <button type="submit"
-                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                             <span class="mx-auto border-1 bg-green-">Save</span>
                         </button>
                     </form>
 
                     {{-- Phones Form --}}
-                    <form action="" id="phonesForm" class="flex flex-col font-boogaloo text-[20px] hidden"
+                    <form action="" id="phonesForm" class="flex flex-col font-medium text-[15px] hidden"
                         enctype="multipart/form-data">
-                        <label for="">Phone Details</label>
+                        <label class="ml-5" for="">Phone Details</label>
                         <div class="flex flex-row gap-4 md:gap-8 m-5">
                             <div class="w-7/12">
                                 <label for="">Area Code</label>
@@ -556,11 +556,11 @@
                             <div class="w-7/12 mt-48">
                                 <div class=" flex col-2">
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                         <span class="mx-auto border-1 bg-green-">Add</span>
                                     </button>
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                         <span class="mx-auto border-1 ">Clear</span>
                                     </button>
                                 </div>
@@ -595,25 +595,25 @@
                             <div class="w-7/12 ">
                                 <div class=" flex col-2">
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                         <span class="mx-auto border-1 bg-green-">History</span>
                                     </button>
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                         <span class="mx-auto border-1 ">Delete</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <button type="submit"
-                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                             <span class="mx-auto border-1 bg-green-">Save</span>
                         </button>
 
                     </form>
 
                     {{-- Billing Form  --}}
-                    <form action="" id="billingForm" class="flex flex-col font-boogaloo text-[20px] hidden"
+                    <form action="" id="billingForm" class="flex flex-col font-medium text-[15px] hidden"
                         enctype="multipart/form-data">
                         <div class="flex flex-row gap-4 md:gap-8 m-5 p-4 border border-1 border-black rounded-lg">
                             <div class="flex flex-col w-7/12">
@@ -838,13 +838,13 @@
 
                         </div>
                         <button type="submit"
-                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                             <span class="mx-auto border-1 bg-green-">Save</span>
                         </button>
                     </form>
 
                     {{-- contact Form --}}
-                    <form action="" id="contactForm"class="flex flex-col font-boogaloo text-[20px] hidden"
+                    <form action="" id="contactForm"class="flex flex-col font-medium text-[15px] hidden"
                         enctype="multipart/form-data">
                         <div class="flex flex-row gap-4 md:gap-8 m-5">
                             <div class="w-11/12">
@@ -878,11 +878,11 @@
                             <div class="w-7/12 mt-64">
                                 <div class=" flex col-2">
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                         <span class="mx-auto border-1 bg-green-">New</span>
                                     </button>
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                         <span class="mx-auto border-1 ">Search</span>
                                     </button>
                                 </div>
@@ -924,11 +924,11 @@
                             <div class="w-7/12 mt-20 ">
                                 <div class=" flex col-2">
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                         <span class="mx-auto border-1 bg-green-">Add</span>
                                     </button>
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                         <span class="mx-auto border-1 ">Clear</span>
                                     </button>
                                 </div>
@@ -962,7 +962,7 @@
                             <div class="w-7/12 ">
                                 <div class=" flex col-2">
                                     <button type="submit"
-                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                        class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                         <span class="mx-auto border-1 ">Delete</span>
                                     </button>
                                 </div>
@@ -970,14 +970,14 @@
                         </div>
 
                         <button type="submit"
-                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                             <span class="mx-auto border-1 bg-green-">Save</span>
                         </button>
 
                     </form>
 
                     {{-- add Info --}}
-                    <form action="" id="addinfoForm"class="flex flex-col font-boogaloo text-[20px] hidden"
+                    <form action="" id="addinfoForm"class="flex flex-col font-medium text-[15px] hidden"
                         enctype="multipart/form-data">
 
                         <div id="novelteleventTable" class="overflow-x-auto  mt-5">
@@ -1006,7 +1006,7 @@
                             </table>
 
                         </div>
-                        <form action="" id="contactForm"class="flex flex-col font-boogaloo text-[20px] hidden"
+                        <form action="" id="contactForm"class="flex flex-col font-medium text-[15px] hidden"
                             enctype="multipart/form-data">
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-11/12">
@@ -1034,15 +1034,15 @@
                                 <div class="w-7/12 mt-64">
                                     <div class=" flex col-2">
                                         <button type="submit"
-                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add New</span>
                                         </button>
                                         <button type="submit"
-                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Add Random</span>
                                         </button>
                                         <button type="submit"
-                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-red-900 mt-5">
+                                            class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Delete</span>
                                         </button>
                                     </div>
@@ -1075,7 +1075,7 @@
                                 </table>
 
                             </div><button type="submit"
-                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-black text-center bg-green-600 mt-5">
+                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                 <span class="mx-auto border-1 bg-green-">Save</span>
                             </button>
 
@@ -1163,7 +1163,7 @@
         </script>
 
 
-        
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const paymentTypeSelect = document.getElementById("paymentType");
