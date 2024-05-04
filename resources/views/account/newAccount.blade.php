@@ -27,23 +27,36 @@
                     <div
                         class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 mt-2">
 
-                        <div class="flex shadow-md border-1 border-green-600 flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 w-full b">
-                            <button id="subscribesButton" class="w-auto flex items-center justify-center tab-button py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none tab-button selected" type="button" onclick="toggleFormVisibility('subscribeForm')">
+                        <div
+                            class="flex shadow-md border-1 border-green-600 flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 w-full b">
+                            <button id="subscribesButton"
+                                class="w-auto flex items-center justify-center tab-button py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none tab-button selected"
+                                type="button" onclick="toggleFormVisibility('subscribeForm')">
                                 Subscribes
                             </button>
-                            <button id="addressButton" class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button" type="button" onclick="toggleFormVisibility('addressForm')">
+                            <button id="addressButton"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                type="button" onclick="toggleFormVisibility('addressForm')">
                                 Address
                             </button>
-                            <button id="phonesButton" class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button" type="button" onclick="toggleFormVisibility('phonesForm')">
+                            <button id="phonesButton"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                type="button" onclick="toggleFormVisibility('phonesForm')">
                                 Phones
                             </button>
-                            <button id="billingButton" class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button" type="button" onclick="toggleFormVisibility('billingForm')">
+                            <button id="billingButton"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                type="button" onclick="toggleFormVisibility('billingForm')">
                                 Billing/Payment
                             </button>
-                            <button id="contactButton" class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button" type="button" onclick="toggleFormVisibility('contactForm')">
+                            <button id="contactButton"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                type="button" onclick="toggleFormVisibility('contactForm')">
                                 Contact
                             </button>
-                            <button id="addInfoButton" class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button" type="button" onclick="toggleFormVisibility('addinfoForm')">
+                            <button id="addInfoButton"
+                                class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
+                                type="button" onclick="toggleFormVisibility('addinfoForm')">
                                 Add Info
                             </button>
                         </div>
@@ -52,34 +65,39 @@
                     </div>
 
 
-                    <form id="mainform" method="" action="{{route('account.newaccount')}}">
+                    <form id="mainform" method="post" action="{{ route('account.store') }}">
                         {{-- subscribe form --}}
+                        @csrf
                         <div id="subscribeForm" class="flex-col font-medium text-15px">
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Contact Code</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="contact_code"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="contactCodeError" class="text-red-500 hidden">Please fill in the contact
+                                        code.</span>
                                 </div>
                                 <div class="flex flex-col w-7/12">
                                     <label for="typeSelect">Type</label>
                                     <select name="typeSelect" id="typeSelect" onchange="toggleFields()"
                                         class="w-full p-2 border border-gray-800 rounded-lg">
+                                        <option value="">Select Type</option>
                                         <option value="Individual">Individual</option>
                                         <option value="Corporate">Corporate</option>
                                     </select>
+                                    <span id="typeSelectError" class="text-red-500 hidden">Please choose a Type.</span>
                                 </div>
                             </div>
 
                             <div class="flex flex-row gap-4 md:gap-8  m-5  ">
                                 <div class="w-7/12">
                                     <label for="">Key</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="key"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                                 <div class="flex flex-col w-7/12" id="keyandtitle">
                                     <label for="">Title</label>
-                                    <select name="" id=""
+                                    <select name="title" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         <option value="">None</option>
                                         <option value="">Mr</option>
@@ -96,23 +114,27 @@
                             <div id="businessUnitDiv" class="flex flex-row gap-4 md:gap-8 m-5" style="display: none;">
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Business Unit</label>
-                                    <select name="" id=""
+                                    <input name="business_unit" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value=""></option>
-                                    </select>
+                                    <span id="businessuniterror" class="text-red-500 hidden">Please fill business
+                                        unit</span>
+
+                                    </input>
                                 </div>
 
                                 <div class="w-7/12">
                                     <label for="">Name</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="name"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="nameerror" class="text-red-500 hidden">Please fill business unit</span>
+
                                 </div>
                             </div>
 
                             <div class="flex flex-row gap-4 md:gap-8  m-5  " id="tradingname">
                                 <div class="w-7/12">
                                     <label for=""> Trading Name</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="trading_name"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                             </div>
@@ -121,16 +143,19 @@
 
                                 <div class="flex flex-col w-7/12">
                                     <label for="">ACN</label>
-                                    <select name="" id=""
+                                    <input name="acn" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value=""></option>
-                                    </select>
+                                    <span id="acnerror" class="text-red-500 hidden">Please fill business unit</span>
+
+                                    </input>
                                 </div>
 
                                 <div class="w-7/12">
                                     <label for="">ABN</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="abn"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="abnerror" class="text-red-500 hidden">Please fill business unit</span>
+
                                 </div>
                             </div>
 
@@ -138,7 +163,7 @@
 
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Email</label>
-                                    <select name="" id=""
+                                    <select name="email" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         <option value=""></option>
                                     </select>
@@ -146,7 +171,7 @@
 
                                 <div class="w-7/12">
                                     <label for="">Question</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="question"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                             </div>
@@ -154,7 +179,7 @@
                             <div class="flex flex-row gap-4 md:gap-8  m-5  " id="answers">
                                 <div class="w-7/12">
                                     <label for="">Answer</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="answer"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                             </div>
@@ -164,14 +189,17 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Initials</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="initials"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
 
                                 <div class="w-7/12">
                                     <label for=""> First Name</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="first_name"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="firstnameerror" class="text-red-500 hidden">Please fill business
+                                        unit</span>
+
                                 </div>
                             </div>
 
@@ -180,8 +208,11 @@
 
                                 <div class="w-7/12">
                                     <label for="">Last Name</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="last_name"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="lastnameerror" class="text-red-500 hidden">Please fill business
+                                        unit</span>
+
                                 </div>
 
                             </div>
@@ -190,27 +221,35 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Trading Name</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="trading_name"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
-                                <div class="flex flex-col w-7/12">
-                                    <label for="">Gender</label>
-                                    <select name="" id=""
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value="">Unknown</option>
-                                        <option value="">Male</option>
-                                        <option value="">Female</option>
 
+
+
+                                <div class="flex flex-col w-7/12">
+                                    <label for="gender">Gender</label>
+                                    <select name="gender" id="gender"
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        <option value="">Selcet a gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
                                     </select>
+                                    <span id="gendererror" class="text-red-500 hidden">Please choose a gender </span>
+
                                 </div>
                             </div>
 
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
-                                    <label for="">Date Of Birth</label>
+                                    <label for="datepicker">Date Of Birth</label>
                                     <!-- Date Picker Input -->
                                     <input type="text" id="datepicker" placeholder="Select Date"
+                                        name="date_of_birth"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="dateOfBirthError" class="text-red-500 hidden">Please select a date of
+                                        birth</span>
+
                                     <!-- Include flatpickr JavaScript -->
                                     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
                                     <!-- Initialize flatpickr -->
@@ -224,7 +263,7 @@
 
                                 <div class="w-7/12">
                                     <label for="">Salutation</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="salutation"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                             </div>
@@ -233,12 +272,12 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Employee No.</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="employee_no"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Email</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="email"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                             </div>
@@ -247,7 +286,7 @@
 
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Question</label>
-                                    <select name="" id=""
+                                    <select name="question_2" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         <option value="">None</option>
                                         <option value="">MULTI SITE CUSTOMER</option>
@@ -256,7 +295,7 @@
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Answer</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="answer_2"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
 
@@ -295,23 +334,148 @@
                             </div>
 
 
-                            <button type="submit"
+                            <button id="nextButton" type="button"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
-                                <span class="mx-auto border-1 bg-green-">Save</span>
+                                <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
-                        
+
+
+                        <script>
+                            // Function to validate the current form
+                            function validateForm() {
+                                var isValid = true;
+
+                                // Perform validation for each field
+                                var contactCode = document.getElementsByName("contact_code")[0].value;
+                                if (!contactCode) {
+                                    document.getElementById("contactCodeError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("contactCodeError").classList.add("hidden");
+                                }
+
+
+                                var name = document.getElementsByName("name")[0].value;
+                                if (!name) {
+                                    document.getElementById("nameerror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("nameerror").classList.add("hidden");
+                                }
+                                var name = document.getElementsByName("name")[0].value;
+                                if (!name) {
+                                    document.getElementById("nameerror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("nameerror").classList.add("hidden");
+                                }
+                                var acn = document.getElementsByName("acn")[0].value;
+                                if (!acn) {
+                                    document.getElementById("acnerror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("acnerror").classList.add("hidden");
+                                }
+                                var abn = document.getElementsByName("abn")[0].value;
+                                if (!abn) {
+                                    document.getElementById("abnerror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("abnerror").classList.add("hidden");
+                                }
+                                var first_name = document.getElementsByName("first_name")[0].value;
+                                if (!abn) {
+                                    document.getElementById("firstnameerror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("firstnameerror").classList.add("hidden");
+                                }
+                                var last_name = document.getElementsByName("last_name")[0].value;
+                                if (!abn) {
+                                    document.getElementById("lastnameerror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("lastnameerror").classList.add("hidden");
+                                }
+                                // Validation for Type
+                                var typeSelect = document.getElementById("typeSelect").value;
+                                if (!typeSelect) {
+                                    document.getElementById("typeSelectError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("typeSelectError").classList.add("hidden");
+                                }
+                                // Validation for Type
+                                var gender1 = document.getElementById("gender").value;
+                                if (!gender1) {
+                                    document.getElementById("gendererror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("gendererror").classList.add("hidden");
+                                }
+
+                                // Perform validation for Date of Birth
+                                var dateOfBirth = document.getElementsByName("date_of_birth")[0].value;
+                                if (!dateOfBirth) {
+                                    document.getElementById("dateOfBirthError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("dateOfBirthError").classList.add("hidden");
+                                }
+
+
+                                // Add more validations for other fields...
+
+                                return isValid;
+                            }
+
+                            // Function to enable/disable tabs based on form validity
+                            function toggleTabs() {
+                                var nextButton = document.getElementById("nextButton");
+                                var otherTabs = document.querySelectorAll(".tab-button:not(#subscribesButton)");
+
+                                // Disable all other tabs if the form is not valid
+                                if (!validateForm()) {
+                                    otherTabs.forEach(function(tab) {
+                                        tab.disabled = true;
+                                    });
+                                } else {
+                                    // Enable all other tabs if the form is valid
+                                    otherTabs.forEach(function(tab) {
+                                        tab.disabled = false;
+                                    });
+                                }
+
+                                
+                            }
+
+                            // Attach event listener to the Next button
+                            document.getElementById("nextButton").addEventListener("click", function() {
+                                // When Next button is clicked, validate the form and toggle tabs
+                                if (validateForm()) {
+                                    toggleTabs(); // Enable/disable tabs based on form validity
+
+                                    // Move to the next tab programmatically (if needed)
+                                    // For example:
+                                    toggleFormVisibility('addressForm'); // Show the next tab (Address)
+                                }
+                            });
+                        </script>
+
+
+
                         {{-- address form --}}
                         <div id="addressForm" class="flex flex-col font-medium text-15px">
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Address1</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="address1"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Address2</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="address2"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
 
@@ -320,12 +484,12 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Post Code</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="post_code"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                                 <div class="flex flex-col w-7/12 ">
                                     <label for="">Suburb</label>
-                                    <select name="" id=""
+                                    <select name="suburb" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg ">
                                         <option value=""></option>
                                         <option value=""></option>
@@ -336,12 +500,12 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">State</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="state"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                                 <div class="flex flex-col w-7/12 ">
                                     <label for="">Country</label>
-                                    <select name="" id=""
+                                    <select name="country" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg ">
                                         <option value="">Australia</option>
                                         <option value="">Canada</option>
@@ -357,6 +521,7 @@
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
                                                 <input id="vue-checkbox" type="checkbox" value=""
+                                                    name="address_type"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                 <label for="vue-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Billing
@@ -406,11 +571,11 @@
 
                                 <div class="w-7/12 mt-48">
                                     <div class=" flex col-2">
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Clear</span>
                                         </button>
@@ -443,35 +608,41 @@
                                 </table>
                                 <div class="w-7/12 ">
                                     <div class=" flex col-2">
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">History</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Delete</span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit"
+                            <button type="button" id="validateAddressFormData()"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
-                                <span class="mx-auto border-1 bg-green-">Save</span>
+                                <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
-                        
+
+
+
+
+
+
+
                         {{-- Phones Form --}}
                         <div id="phonesForm" class="flex flex-col font-medium text-15px">
                             <label class="ml-5" for="">Phone Details</label>
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Area Code</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="area_code"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Phone Number</label>
-                                    <input type="text" name="Medium"
+                                    <input type="text" name="phone_number"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 </div>
                             </div>
@@ -484,6 +655,7 @@
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
                                                 <input id="vue-checkbox" type="checkbox" value=""
+                                                    name="phone_type"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                 <label for="vue-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Home
@@ -537,11 +709,11 @@
 
                                 <div class="w-7/12 mt-48">
                                     <div class=" flex col-2">
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Clear</span>
                                         </button>
@@ -576,23 +748,23 @@
                                 </table>
                                 <div class="w-7/12 ">
                                     <div class=" flex col-2">
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">History</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Delete</span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit"
+                            <button type="button"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
-                                <span class="mx-auto border-1 bg-green-">Save</span>
+                                <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
-                        
+
                         {{-- Billing Form --}}
                         <div id="billingForm" class="flex flex-col font-medium text-15px">
                             <div class="flex flex-row gap-4 md:gap-8 m-5 p-4 border border-1 border-black rounded-lg">
@@ -607,18 +779,18 @@
                                     <div id="chequeFields" style="display: none;">
                                         <div class="w-7/12">
                                             <label for="">Account</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="account"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
                                         <div class="w-7/12">
                                             <label for="">Account Name</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="account_name"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
                                         <div class="flex flex-row gap-4 md:gap-8 m-5">
                                             <div class="w-7/12">
                                                 <label for="">B.S.B</label>
-                                                <input type="text" name="Medium"
+                                                <input type="text" name="bsb"
                                                     class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                             </div>
                                             <div class="flex flex-row gap-4 md:gap-8 m-5 ">
@@ -637,17 +809,17 @@
                                     <div id="creditCardFields" style="display: none;">
                                         <div class="w-7/12">
                                             <label for="">Credit Card Num</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="credit_card_number"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
                                         <div class="w-7/12">
                                             <label for="">Credit Holder Name</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="credit_holde_name"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
                                         <div class="w-7/12">
                                             <label for="">Expire Date(mm/yy)</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="exp_date"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
                                     </div>
@@ -727,7 +899,7 @@
                                         </li>
                                         <div class="w-FULL">
                                             <label for="">Ext ID</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="ext_id"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
                                     </ul>
@@ -791,6 +963,7 @@
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                         <div class="flex items-center ps-3">
                                             <input id="vue-checkbox" type="checkbox" value=""
+                                                name="provide_email_bill"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="vue-checkbox"
                                                 class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
@@ -802,6 +975,7 @@
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                         <div class="flex items-center ps-3">
                                             <input id="react-checkbox" type="checkbox" value=""
+                                                name="provide_paper_bill"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="react-checkbox"
                                                 class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
@@ -813,6 +987,7 @@
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                         <div class="flex items-center ps-3">
                                             <input id="react-checkbox" type="checkbox" value=""
+                                                name="provide_excel_bill"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="react-checkbox"
                                                 class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
@@ -824,12 +999,12 @@
                                 </ul>
 
                             </div>
-                            <button type="submit"
+                            <button type="button"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
-                                <span class="mx-auto border-1 bg-green-">Save</span>
+                                <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
-                        
+
                         {{-- contact Form --}}
                         <div id="contactForm" class="flex flex-col font-medium text-15px">
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
@@ -838,7 +1013,7 @@
                                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                                         <div class="w-10/12">
                                             <label for="">Contact Code</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="contact_code2"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
 
@@ -846,7 +1021,7 @@
                                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                                         <div class="w-10/12">
                                             <label for="">Contact Type</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="contact_type"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
 
@@ -854,7 +1029,7 @@
                                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                                         <div class="w-10/12">
                                             <label for="">Name</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="name1"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
 
@@ -863,11 +1038,11 @@
 
                                 <div class="w-7/12 mt-64">
                                     <div class=" flex col-2">
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">New</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Search</span>
                                         </button>
@@ -909,11 +1084,11 @@
 
                                 <div class="w-7/12 mt-20 ">
                                     <div class=" flex col-2">
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Clear</span>
                                         </button>
@@ -947,7 +1122,7 @@
                                 </table>
                                 <div class="w-7/12 ">
                                     <div class=" flex col-2">
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Delete</span>
                                         </button>
@@ -955,12 +1130,12 @@
                                 </div>
                             </div>
 
-                            <button type="submit"
+                            <button type="button"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
-                                <span class="mx-auto border-1 bg-green-">Save</span>
+                                <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
-                        
+
                         {{-- add Info --}}
                         <div id="addinfoForm" class="flex flex-col font-medium text-15px">
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
@@ -997,7 +1172,7 @@
                                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                                         <div class="w-10/12">
                                             <label for="">Login Code</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="login_code"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
 
@@ -1005,7 +1180,7 @@
                                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                                         <div class="w-10/12">
                                             <label for="">Password</label>
-                                            <input type="text" name="Medium"
+                                            <input type="text" name="password"
                                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                         </div>
 
@@ -1016,15 +1191,15 @@
 
                                 <div class="w-7/12 mt-64">
                                     <div class=" flex col-2">
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add New</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Add Random</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Delete</span>
                                         </button>
@@ -1062,7 +1237,7 @@
                                 <span class="mx-auto border-1 bg-green-">Save</span>
                             </button>
                         </div>
-                        
+
                     </form>
 
                 </div>
@@ -1075,21 +1250,21 @@
                 forms.forEach(function(form) {
                     form.style.display = 'none';
                 });
-        
+
                 // Show the selected form
                 var selectedForm = document.getElementById(formId);
                 if (selectedForm) {
                     selectedForm.style.display = 'flex';
                 }
             }
-        
+
             // Call toggleFormVisibility with 'subscribeForm' ID when the page loads
             window.onload = function() {
                 toggleFormVisibility('subscribeForm');
             };
         </script>
-        
-        
+
+
         {{-- navigate and button select --}}
         {{-- <script>
             window.onload = function () {
@@ -1110,7 +1285,7 @@
                     var subscribeButton = document.getElementById("subscribesButton");
                     subscribeButton.classList.add('selected');
                 }
-        
+
                 var buttons = document.querySelectorAll('.tab-button');
                 buttons.forEach(function (button) {
                     button.addEventListener('click', function () {
@@ -1121,7 +1296,7 @@
                     });
                 });
             };
-        
+
             function toggleFormVisibility(formId) {
                 var forms = document.querySelectorAll('form'); // Get all forms
                 forms.forEach(function (form) { // Iterate through each form

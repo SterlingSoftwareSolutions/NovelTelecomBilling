@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Account;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,10 @@ return new class extends Migration
     {
         Schema::create('billing', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignId('contact_code')->constrained('account', 'contact_code')->onDelete('cascade');
+            $table->string('email_bill')->nullable();
+            $table->string('paper_bill')->nullable();
+            $table->string('excel_bill')->nullable();
             $table->timestamps();
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Account;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,8 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('account', function (Blueprint $table) {
-            $table->id();
-            $table->string('contact_code')->nullable();
+            // Define contact_code as big integer that auto-increments and is the primary key
+            $table->bigIncrements('contact_code');
+
+            // Define foreign key reference
+            $table->foreignIdFor(Account::class);
+
+            // Other columns
             $table->enum('type', ['corporate', 'individual'])->default('individual');
             $table->string('key')->nullable();
             $table->string('business_name')->nullable();
