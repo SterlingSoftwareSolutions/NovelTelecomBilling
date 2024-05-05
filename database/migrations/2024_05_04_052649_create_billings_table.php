@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('billings', function (Blueprint $table) {
             $table->id();
-            $table->string('contact_code')->nullable();
-            $table->string('contact_type')->nullable();
-            $table->string('name')->nullable();
-            $table->string('contact_usage')->nullable();
+            $table->foreignId('contact_code')->onDelete('cascade');
+            $table->string('email_bill')->nullable();
+            $table->string('paper_bill')->nullable();
+            $table->string('excel_bill')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('billings');
     }
 };

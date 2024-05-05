@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Phone extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'contact_code',
+        'area_code',
+        'phone_number',
+        'phone_type',
+    ];
+
+public function account()
+{
+    return $this->belongsTo(Account::class, 'contact_code'); // Define the inverse relationship with Account
+
+}
 }
