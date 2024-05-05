@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Billing extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'contact_code',
+        'email_bill',
+        'paper_bill',
+        'excel_bill',
+    ];
 
 public function account()
 {

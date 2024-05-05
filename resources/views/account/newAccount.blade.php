@@ -447,7 +447,7 @@
                                     });
                                 }
 
-                                
+
                             }
 
                             // Attach event listener to the Next button
@@ -467,52 +467,56 @@
 
                         {{-- address form --}}
                         <div id="addressForm" class="flex flex-col font-medium text-15px">
+                            <!-- Address fields -->
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Address1</label>
-                                    <input type="text" name="address1"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <input type="text" name="address1" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="address1Error" class="text-red-500 hidden">Please enter Address1.</span>
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Address2</label>
-                                    <input type="text" name="address2"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <input type="text" name="address2" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="address2Error" class="text-red-500 hidden">Please enter Address2.</span>
                                 </div>
-
                             </div>
 
+                            <!-- Postcode and Suburb -->
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Post Code</label>
-                                    <input type="text" name="post_code"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <input type="text" name="post_code" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="postCodeError" class="text-red-500 hidden">Please enter Post Code.</span>
                                 </div>
-                                <div class="flex flex-col w-7/12 ">
+                                <div class="flex flex-col w-7/12">
                                     <label for="">Suburb</label>
-                                    <select name="suburb" id=""
-                                        class="w-full p-2 border border-gray-800 rounded-lg ">
+                                    <select name="suburb" class="w-full p-2 border border-gray-800 rounded-lg">
                                         <option value=""></option>
-                                        <option value=""></option>
+                                        <!-- Populate options dynamically if needed -->
                                     </select>
+                                    <span id="suburbError" class="text-red-500 hidden">Please select a Suburb.</span>
                                 </div>
                             </div>
 
+                            <!-- State and Country -->
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">State</label>
-                                    <input type="text" name="state"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <input type="text" name="state" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="stateError" class="text-red-500 hidden">Please enter State.</span>
                                 </div>
-                                <div class="flex flex-col w-7/12 ">
+                                <div class="flex flex-col w-7/12">
                                     <label for="">Country</label>
-                                    <select name="country" id=""
-                                        class="w-full p-2 border border-gray-800 rounded-lg ">
+                                    <select name="country" class="w-full p-2 border border-gray-800 rounded-lg">
                                         <option value="">Australia</option>
                                         <option value="">Canada</option>
+                                        <!-- Add more options if needed -->
                                     </select>
+                                    <span id="countryError" class="text-red-500 hidden">Please select a Country.</span>
                                 </div>
                             </div>
 
+                            <!-- Address Type checkboxes -->
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-11/12">
                                     <label for="">Address Type</label>
@@ -619,13 +623,103 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="validateAddressFormData()"
-                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
+                            <button type="button" onclick="validateAddressForms()" class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                 <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
 
 
+                        <script>
+                            // Function to validate the current form
+                            function validateAddressForms() {
+                                var isValid = true;
+
+                                // Perform validation for each field
+                                var address1 = document.getElementsByName("address1")[0].value;
+                                if (!address1) {
+                                    document.getElementById("address1Error").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("address1Error").classList.add("hidden");
+                                }
+
+                                var address2 = document.getElementsByName("address2")[0].value;
+                                if (!address2) {
+                                    document.getElementById("address2Error").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("address2Error").classList.add("hidden");
+                                }
+
+                                var postCode = document.getElementsByName("post_code")[0].value;
+                                if (!postCode) {
+                                    document.getElementById("postCodeError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("postCodeError").classList.add("hidden");
+                                }
+
+                                var suburb = document.getElementsByName("suburb")[0].value;
+                                if (!suburb) {
+                                    document.getElementById("suburbError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("suburbError").classList.add("hidden");
+                                }
+
+                                var state = document.getElementsByName("state")[0].value;
+                                if (!state) {
+                                    document.getElementById("stateError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("stateError").classList.add("hidden");
+                                }
+
+                                var country = document.getElementsByName("country")[0].value;
+                                if (!country) {
+                                    document.getElementById("countryError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("countryError").classList.add("hidden");
+                                }
+
+                                // Perform validation for Address Type checkboxes
+                                var addressTypeCheckboxes = document.querySelectorAll("input[name='address_type']");
+                                var addressTypeChecked = false;
+                                addressTypeCheckboxes.forEach(function(checkbox) {
+                                    if (checkbox.checked) {
+                                        addressTypeChecked = true;
+                                    }
+                                });
+                                if (!addressTypeChecked) {
+                                    document.getElementById("addressTypeError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("addressTypeError").classList.add("hidden");
+                                }
+
+                                // Add more validations for other fields...
+
+                                return isValid;
+                            }
+
+                            // Function to enable/disable tabs based on form validity
+                            function toggleTabs() {
+                                // Add your tab toggling logic here if needed
+                            }
+
+                            // Attach event listener to the Next button
+                            document.getElementById("validateAddressFormData()").addEventListener("click", function() {
+                                // When Next button is clicked, validate the form and toggle tabs
+                                if (validateAddressForm()) {
+                                    toggleTabs(); // Enable/disable tabs based on form validity
+
+                                    // Move to the next tab programmatically (if needed)
+                                    // For example:
+                                    // toggleFormVisibility('nextForm'); // Show the next tab
+                                }
+                            });
+                        </script>
 
 
 

@@ -5,9 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Billing extends Model
+class Contact extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'contact_code',
+        'contact_code1',
+        'contact_type',
+        'name',
+        'contact_usage',
+    ];
 
 public function account()
 {
