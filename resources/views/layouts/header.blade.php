@@ -165,7 +165,7 @@
                                 <button type="button"
                                     class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
                                     aria-expanded="false" onclick="toggleSubDropdown('financialdetails')">
-                                 Fanancial Transactions
+                                    Fanancial Transactions
                                     <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20"
                                         fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd"
@@ -208,7 +208,7 @@
                                 <button type="button"
                                     class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
                                     aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
-                                    Charge Overrides                           </button>
+                                    Charge Overrides </button>
 
                             </div>
                         </li>
@@ -217,7 +217,7 @@
                                 <button type="button"
                                     class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
                                     aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
-                                   Plan Overrides
+                                    Plan Overrides
                                 </button>
 
                             </div>
@@ -227,7 +227,7 @@
                                 <button type="button"
                                     class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
                                     aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
-                                  View Wholesale Tariff File
+                                    View Wholesale Tariff File
                                 </button>
 
                             </div>
@@ -235,15 +235,15 @@
                         <li class="">
                             <div class="relative">
                                 <button type="button"
-                                        class="flex items-center gap-x-1 text-sm leading-6 text-gray-900"
-                                        aria-expanded="false"
-                                        onclick="window.location='{{ route("account.newaccount")}}'">
+                                    class="flex items-center gap-x-1 text-sm leading-6 text-gray-900"
+                                    aria-expanded="false"
+                                    onclick="window.location='{{ route('account.newaccount') }}'">
                                     New Account
                                 </button>
                             </div>
-                            
+
                         </li>
-                      
+
                     </ul>
 
                 </div>
@@ -265,10 +265,31 @@
                 </button>
                 <div id="serviceDropdown" class="dropdown-content hidden">
                     <!-- Dropdown content for Service -->
-                    <ul>
-                        <li><a href="#" class="dropdown-item">Option 1</a></li>
-                        <li><a href="#" class="dropdown-item">Option 2</a></li>
-                        <li><a href="#" class="dropdown-item">Option 3</a></li>
+                    <ul class=" w-[200px]">
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                    Find Service
+                                </button>
+
+                            </div>
+                        </li>
+
+                        <li class="">
+                            <div class="relative ">
+                                <button type="button"
+                                    class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
+                                    aria-expanded="false" onclick="window.location='{{ route('service_newservice') }}'">
+                                    New Service
+                                </button>
+
+                            </div>
+                        </li>
+                       
+
+
                     </ul>
                 </div>
             </div>
