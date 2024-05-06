@@ -42,8 +42,8 @@ Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('
 
 
 //account route
-Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount');
+Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount')->middleware('auth');
 
-Route::post ('/account',[AccountController::class, 'store'])->name('account.store');
+Route::post ('/account',[AccountController::class, 'store'])->name('account.store')->middleware('auth');
 
 
