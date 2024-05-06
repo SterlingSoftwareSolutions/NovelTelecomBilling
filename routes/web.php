@@ -5,6 +5,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -44,4 +45,7 @@ Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('
 //account route
 Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount');
 
+
+//service route
+Route::get('/service',[ServiceController::class, 'service_index'])->name('service_newservice');
 
