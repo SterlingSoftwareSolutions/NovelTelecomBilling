@@ -18,7 +18,7 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-            // dd($request);
+            dd($request);
         // Validate the incoming request data
         // $validatedAccountData  = $request->validate([
         //     'contact_code' => 'required|numeric',
@@ -100,7 +100,8 @@ class AccountController extends Controller
             'suburb' => $request->suburb,
             'state' => $request->state,
             'country' => $request->country,
-            'address_type' => $request->country,
+            'address_type' => json_encode($request->input('addresstype')),
+
         ];
         $address = Address::create($addressData);
 
@@ -117,9 +118,10 @@ class AccountController extends Controller
         $billingData  = [
             'contact_code' =>$request->contact_code,
             'paymentType' => $request->paymentType,
-            'provide_paper_bill' => $request->provide_paper_bill,
-            'provide_email_bill' => $request->provide_email_bill,
-            'provide_excel_bill' => $request->provide_excel_bill,
+            'bill_types' => json_encode($request->input('bill_types')), // Modified here
+            // 'provide_paper_bill' => $request->provide_paper_bill,
+            // 'provide_email_bill' => $request->provide_email_bill,
+            // 'provide_excel_bill' => $request->provide_excel_bill,
         ];
         $billing = Billing::create($billingData );
 

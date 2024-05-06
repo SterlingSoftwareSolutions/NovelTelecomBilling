@@ -8,16 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Billing extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'contact_code',
-        'email_bill',
-        'paper_bill',
-        'excel_bill',
+        'bill_types', // Update fillable attributes to include bill_types
     ];
 
-public function account()
-{
-    return $this->belongsTo(Account::class, 'contact_code'); // Define the inverse relationship with Account
+    // Define an accessor to decode the JSON data when accessing the bill_types attribute
+    public function getBillTypesAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 
-}
+    // Define a mutator to encode the bill_types data into JSON before saving
+    public function setBillTypesAttribute($value)
+    {
+        $this->attributes['bill_types'] = json_encode($value);
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'contact_code'); // Define the inverse relationship with Account
+    }
 }

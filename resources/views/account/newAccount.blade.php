@@ -356,48 +356,14 @@
                                 }
 
 
-                                var name = document.getElementsByName("name")[0].value;
-                                if (!name) {
-                                    document.getElementById("nameerror").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("nameerror").classList.add("hidden");
-                                }
-                                var name = document.getElementsByName("name")[0].value;
-                                if (!name) {
-                                    document.getElementById("nameerror").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("nameerror").classList.add("hidden");
-                                }
-                                var acn = document.getElementsByName("acn")[0].value;
-                                if (!acn) {
-                                    document.getElementById("acnerror").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("acnerror").classList.add("hidden");
-                                }
-                                var abn = document.getElementsByName("abn")[0].value;
-                                if (!abn) {
-                                    document.getElementById("abnerror").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("abnerror").classList.add("hidden");
-                                }
-                                var first_name = document.getElementsByName("first_name")[0].value;
-                                if (!abn) {
-                                    document.getElementById("firstnameerror").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("firstnameerror").classList.add("hidden");
-                                }
-                                var last_name = document.getElementsByName("last_name")[0].value;
-                                if (!abn) {
-                                    document.getElementById("lastnameerror").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("lastnameerror").classList.add("hidden");
-                                }
+
+                                // var name = document.getElementsByName("name")[0].value;
+                                // if (!name) {
+                                //     document.getElementById("nameerror").classList.remove("hidden");
+                                //     isValid = false;
+                                // } else {
+                                //     document.getElementById("nameerror").classList.add("hidden");
+                                // }
                                 // Validation for Type
                                 var typeSelect = document.getElementById("typeSelect").value;
                                 if (!typeSelect) {
@@ -406,6 +372,50 @@
                                 } else {
                                     document.getElementById("typeSelectError").classList.add("hidden");
                                 }
+                                if (typeSelect == "Corporate") {
+                                    var acn = document.getElementsByName("acn")[0].value;
+                                    if (!acn) {
+                                        document.getElementById("acnerror").classList.remove("hidden");
+                                        isValid = false;
+                                    } else {
+                                        document.getElementById("acnerror").classList.add("hidden");
+                                    }
+
+                                    var abn = document.getElementsByName("abn")[0].value;
+                                    if (!abn) {
+                                        document.getElementById("abnerror").classList.remove("hidden");
+                                        isValid = false;
+                                    } else {
+                                        document.getElementById("abnerror").classList.add("hidden");
+                                    }
+
+                                    var name = document.getElementsByName("name")[0].value;
+                                    if (!name) {
+                                        document.getElementById("nameerror").classList.remove("hidden");
+                                        isValid = false;
+                                    } else {
+                                        document.getElementById("nameerror").classList.add("hidden");
+                                    }
+                                } else {
+                                    isValid = true;
+                                }
+                                var first_name = document.getElementsByName("first_name")[0].value;
+                                if (!first_name) {
+                                    document.getElementById("firstnameerror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("firstnameerror").classList.add("hidden");
+                                }
+                                var last_name = document.getElementsByName("last_name")[0].value;
+                                if (!last_name) {
+                                    document.getElementById("lastnameerror").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("lastnameerror").classList.add("hidden");
+                                }
+
+
+
                                 // Validation for Type
                                 var gender1 = document.getElementById("gender").value;
                                 if (!gender1) {
@@ -471,12 +481,14 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Address1</label>
-                                    <input type="text" name="address1" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <input type="text" name="address1"
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="address1Error" class="text-red-500 hidden">Please enter Address1.</span>
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Address2</label>
-                                    <input type="text" name="address2" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <input type="text" name="address2"
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="address2Error" class="text-red-500 hidden">Please enter Address2.</span>
                                 </div>
                             </div>
@@ -485,15 +497,15 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Post Code</label>
-                                    <input type="text" name="post_code" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="postCodeError" class="text-red-500 hidden">Please enter Post Code.</span>
+                                    <input type="text" name="post_code"
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="postCodeError" class="text-red-500 hidden">Please enter Post
+                                        Code.</span>
                                 </div>
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Suburb</label>
-                                    <select name="suburb" class="w-full p-2 border border-gray-800 rounded-lg">
-                                        <option value=""></option>
-                                        <!-- Populate options dynamically if needed -->
-                                    </select>
+                                    <input name="suburb" class="w-full p-2 border border-gray-800 rounded-lg">
+
                                     <span id="suburbError" class="text-red-500 hidden">Please select a Suburb.</span>
                                 </div>
                             </div>
@@ -502,39 +514,40 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">State</label>
-                                    <input type="text" name="state" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <input type="text" name="state"
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="stateError" class="text-red-500 hidden">Please enter State.</span>
                                 </div>
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Country</label>
-                                    <select name="country" class="w-full p-2 border border-gray-800 rounded-lg">
-                                        <option value="">Australia</option>
-                                        <option value="">Canada</option>
-                                        <!-- Add more options if needed -->
-                                    </select>
-                                    <span id="countryError" class="text-red-500 hidden">Please select a Country.</span>
+                                    <input name="country" class="w-full p-2 border border-gray-800 rounded-lg">
+                                    <span id="countryError" class="text-red-500 hidden">Please select a
+                                        Country.</span>
                                 </div>
                             </div>
 
                             <!-- Address Type checkboxes -->
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-11/12">
-                                    <label for="">Address Type</label>
+                                    <label for="address_type">Address Type</label>
+                                    <span id="addressTypeError" class="text-red-500 hidden">Please select an Address
+                                        Type.</span>
                                     <ul
                                         class="w-48 text-sm font-medium text-gray-900 bg-white  dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value=""
-                                                    name="address_type"
+                                                <input id="vue-checkbox" type="checkbox" value="Billing Address"
+                                                    name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                <label for="vue-checkbox"
+                                                <label for="vue-checkbox" id="vue"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Billing
                                                     Address</label>
                                             </div>
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value=""
+                                                <input id="react-checkbox" type="checkbox" value="Delivery Address"
+                                                    name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                 <label for="react-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delivery
@@ -543,7 +556,8 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="angular-checkbox" type="checkbox" value=""
+                                                <input id="angular-checkbox" type="checkbox" value="IPND Address"
+                                                    name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                 <label for="angular-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">IPND
@@ -552,7 +566,8 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value=""
+                                                <input id="laravel-checkbox" type="checkbox" value="Service Address"
+                                                    name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                 <label for="laravel-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Service
@@ -561,7 +576,8 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value=""
+                                                <input id="laravel-checkbox" type="checkbox" value="Street Address"
+                                                    name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                 <label for="laravel-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Street
@@ -623,7 +639,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" onclick="validateAddressForms()" class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
+                            <button type="button" id="next_button2" onclick="validateAddressForms()"
+                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                 <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
@@ -683,14 +700,9 @@
                                     document.getElementById("countryError").classList.add("hidden");
                                 }
 
-                                // Perform validation for Address Type checkboxes
-                                var addressTypeCheckboxes = document.querySelectorAll("input[name='address_type']");
-                                var addressTypeChecked = false;
-                                addressTypeCheckboxes.forEach(function(checkbox) {
-                                    if (checkbox.checked) {
-                                        addressTypeChecked = true;
-                                    }
-                                });
+
+                                var addressTypeChecked = isAnyCheckboxChecked();
+                                console.log(addressTypeChecked);
                                 if (!addressTypeChecked) {
                                     document.getElementById("addressTypeError").classList.remove("hidden");
                                     isValid = false;
@@ -703,20 +715,47 @@
                                 return isValid;
                             }
 
+                            function isAnyCheckboxChecked() {
+                                // Get all checkbox elements
+                                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="addresstype[]"]');
+
+                                // Check if at least one checkbox is checked
+                                for (let checkbox of checkboxes) {
+                                    if (checkbox.checked) {
+                                        return true; // Return true immediately if a checkbox is found to be checked
+                                    }
+                                }
+                                return false; // Return false if no checkboxes are checked
+                            }
                             // Function to enable/disable tabs based on form validity
-                            function toggleTabs() {
+                            function toggleTabs2() {
+                                var nextButton = document.getElementById("next_button2");
+                                var otherTabs = document.querySelectorAll(".tab-button:not(#addressButton)");
+
+                                // Disable all other tabs if the form is not valid
+                                if (!validateAddressForms()) {
+                                    otherTabs.forEach(function(tab) {
+                                        tab.disabled = true;
+                                    });
+                                } else {
+                                    // Enable all other tabs if the form is valid
+                                    otherTabs.forEach(function(tab) {
+                                        tab.disabled = false;
+                                    });
+                                }
                                 // Add your tab toggling logic here if needed
                             }
 
                             // Attach event listener to the Next button
-                            document.getElementById("validateAddressFormData()").addEventListener("click", function() {
+                            document.getElementById("next_button2").addEventListener("click", function() {
                                 // When Next button is clicked, validate the form and toggle tabs
-                                if (validateAddressForm()) {
-                                    toggleTabs(); // Enable/disable tabs based on form validity
+                                if (validateAddressForms()) {
+                                    console.log("phonesForm");
+                                    toggleTabs2(); // Enable/disable tabs based on form validity
 
                                     // Move to the next tab programmatically (if needed)
                                     // For example:
-                                    // toggleFormVisibility('nextForm'); // Show the next tab
+                                    toggleFormVisibility('phonesForm'); // Show the next tab
                                 }
                             });
                         </script>
@@ -733,11 +772,16 @@
                                     <label for="">Area Code</label>
                                     <input type="text" name="area_code"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="area_code_error" class="text-red-500 hidden">Please Enter Area
+                                        Code</span>
+
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Phone Number</label>
                                     <input type="text" name="phone_number"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <span id="phone_number_error" class="text-red-500 hidden">Please Enter Phone
+                                        Number</span>
                                 </div>
                             </div>
 
@@ -853,11 +897,75 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button"
+                            <button type="button" id="next_button_3" onclick="validateContactForms()"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                 <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
+
+
+                        <script>
+                            // Function to validate the current form
+                            function validateContactForms() {
+                                var isValid = true;
+
+                                // Perform validation for each field
+                                var areaCode = document.getElementsByName("area_code")[0].value;
+                                if (!areaCode) {
+                                    document.getElementById("area_code_error").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("area_code_error").classList.add("hidden");
+                                }
+
+                                var phoneNumber = document.getElementsByName("phone_number")[0].value;
+                                if (!phoneNumber) {
+                                    document.getElementById("phone_number_error").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("phone_number_error").classList.add("hidden");
+                                }
+
+
+
+
+                                return isValid;
+                            }
+
+                            // Function to enable/disable tabs based on form validity
+                            function toggleTabs3() {
+                                var nextButton = document.getElementById("next_button_3");
+                                var otherTabs = document.querySelectorAll(".tab-button:not(#billingButton)");
+
+                                // Disable all other tabs if the form is not valid
+                                if (!validateContactForms()) {
+                                    otherTabs.forEach(function(tab) {
+                                        tab.disabled = true;
+                                    });
+                                } else {
+                                    // Enable all other tabs if the form is valid
+                                    otherTabs.forEach(function(tab) {
+                                        tab.disabled = false;
+                                    });
+                                }
+                                // Add your tab toggling logic here if needed
+                            }
+
+                            // Attach event listener to the Next button
+                            document.getElementById("next_button_3").addEventListener("click", function() {
+                                // When Next button is clicked, validate the form and toggle tabs
+                                if (validateContactForms()) {
+                                    toggleTabs3(); // Enable/disable tabs based on form validity
+
+                                    // Move to the next tab programmatically (if needed)
+                                    // For example:
+                                    toggleFormVisibility('billingForm'); // Show the next tab
+                                }
+                            });
+                        </script>
+
+
+
 
                         {{-- Billing Form --}}
                         <div id="billingForm" class="flex flex-col font-medium text-15px">
@@ -1051,53 +1159,108 @@
                             </div>
 
                             <div class="w-7/12 m-5 ">
+                                <span id="billTypeError" class="text-red-500 hidden">Please select a Bill</span>
 
                                 <ul
-                                    class="w-48 h-44 text-sm font-medium text-gray-900 bg-white  dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
+                                    class="w-48 h-44 text-sm font-medium text-gray-900 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                         <div class="flex items-center ps-3">
-                                            <input id="vue-checkbox" type="checkbox" value=""
-                                                name="provide_email_bill"
+                                            <input id="paper-bill-checkbox" type="checkbox" value="Paper Bill"
+                                                name="bill_types[]"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="vue-checkbox"
+                                            <label for="paper-bill-checkbox"
                                                 class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
-                                                Email Bill
-
-                                            </label>
+                                                Paper Bill</label>
                                         </div>
                                     </li>
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                         <div class="flex items-center ps-3">
-                                            <input id="react-checkbox" type="checkbox" value=""
-                                                name="provide_paper_bill"
+                                            <input id="email-bill-checkbox" type="checkbox" value="Email Bill"
+                                                name="bill_types[]"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="react-checkbox"
+                                            <label for="email-bill-checkbox"
                                                 class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
-                                                Paper Bill
-
-                                            </label>
+                                                Email Bill</label>
                                         </div>
                                     </li>
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                         <div class="flex items-center ps-3">
-                                            <input id="react-checkbox" type="checkbox" value=""
-                                                name="provide_excel_bill"
+                                            <input id="excel-bill-checkbox" type="checkbox" value="Excel Bill"
+                                                name="bill_types[]"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="react-checkbox"
+                                            <label for="excel-bill-checkbox"
                                                 class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
-                                                Excel Bill
-
-                                            </label>
+                                                Excel Bill</label>
                                         </div>
                                     </li>
                                 </ul>
-
                             </div>
-                            <button type="button"
+
+                            <button type="button" id="next_button_4"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                 <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
+
+
+                        <script>
+                            function isAnyBillCheckboxChecked() {
+                                // Get all checkbox elements
+                                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="bill_types[]"]');
+
+                                // Check if at least one checkbox is checked
+                                for (let checkbox of checkboxes) {
+                                    if (checkbox.checked) {
+                                        return true; // Return true immediately if a checkbox is found to be checked
+                                    }
+                                }
+                                return false; // Return false if no checkboxes are checked
+                            }
+                        </script>
+                        <script>
+                            // Function to validate the billing form
+                            function validateBillingForm() {
+                                var isValid = true;
+
+                                // Perform validation for each field in the billing form
+                                // You can add specific validation logic here for other fields if needed
+
+                                // Check if at least one bill type checkbox is checked
+                                if (!isAnyBillCheckboxChecked()) {
+                                    document.getElementById("billTypeError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("billTypeError").classList.add("hidden");
+                                }
+
+                                return isValid;
+                            }
+
+                            // Function to check if any bill type checkbox is checked
+                            function isAnyBillCheckboxChecked() {
+                                // Get all bill type checkboxes
+                                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="bill_types[]"]');
+
+                                // Check if at least one checkbox is checked
+                                for (let checkbox of checkboxes) {
+                                    if (checkbox.checked) {
+                                        return true; // Return true immediately if a checkbox is found to be checked
+                                    }
+                                }
+                                return false; // Return false if no checkboxes are checked
+                            }
+
+                            // Attach event listener to the Next button in the billing form
+                            document.getElementById("next_button_4").addEventListener("click", function() {
+                                // When Next button in the billing form is clicked
+                                if (validateBillingForm()) {
+                                    // If the billing form is valid, change to the contact form
+                                    toggleFormVisibility('contactForm');
+                                }
+                            });
+                        </script>
+
+
 
                         {{-- contact Form --}}
                         <div id="contactForm" class="flex flex-col font-medium text-15px">
@@ -1224,11 +1387,35 @@
                                 </div>
                             </div>
 
-                            <button type="button"
+                            <button type="button" id="next_button_5"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                 <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
+
+
+                        <script>
+                            // Function to toggle the visibility of forms
+                            function toggleFormVisibility(formId) {
+                                // Hide all forms first
+                                var forms = document.querySelectorAll('.form');
+                                forms.forEach(function(form) {
+                                    form.style.display = 'none';
+                                });
+
+                                // Show the specified form
+                                var formToShow = document.getElementById(formId);
+                                if (formToShow) {
+                                    formToShow.style.display = 'block';
+                                }
+                            }
+
+                            // Attach an event listener to the Next button on the billing page
+                            document.getElementById("next_button_5").addEventListener("click", function() {
+                                // Navigate to the contact form
+                                toggleFormVisibility('addinfoForm');
+                            });
+                        </script>
 
                         {{-- add Info --}}
                         <div id="addinfoForm" class="flex flex-col font-medium text-15px">

@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('billings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('contact_code')->onDelete('cascade');
-            $table->string('email_bill')->nullable();
-            $table->string('paper_bill')->nullable();
-            $table->string('excel_bill')->nullable();
+            $table->json('bill_types')->nullable(); // Change this line
             $table->timestamps();
         });
     }
