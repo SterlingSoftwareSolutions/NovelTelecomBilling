@@ -56,7 +56,7 @@
                             </button>
                             <button id="addInfoButton"
                                 class="w-full flex items-center justify-center py-2 px-4 text-sm font-medium tab-button"
-                                type="button" onclick="toggleFormVisibility('addinfoForm')">
+                                type="button" onclick="toggleFormVisibility('addinfoForm'), SaveButtonDisable()">
                                 Add Info
                             </button>
                         </div>
@@ -492,20 +492,23 @@
                                     });
                                 }
 
-
                             }
 
                             // Attach event listener to the Next button
                             document.getElementById("nextButton").addEventListener("click", function() {
-                                // When Next button is clicked, validate the form and toggle tabs
-                                if (validateForm()) {
-                                    toggleTabs(); // Enable/disable tabs based on form validity
+                            // When Next button is clicked, validate the form and toggle tabs
+                            if (validateForm()) {
+                                toggleTabs(); // Enable/disable tabs based on form validity
 
-                                    // Move to the next tab programmatically (if needed)
-                                    // For example:
-                                    toggleFormVisibility('addressForm'); // Show the next tab (Address)
-                                }
-                            });
+                                // Move to the next tab programmatically (if needed)
+                                // For example:
+                                toggleFormVisibility('addressForm'); // Show the next tab (Address)
+
+                                // Add style to the "Address" button
+                                document.getElementById("addressButton").classList.add("selected");
+                                document.getElementById("subscribesButton").classList.remove("selected");
+                            }
+                        });
                         </script>
 
 
@@ -791,6 +794,9 @@
                                     // Move to the next tab programmatically (if needed)
                                     // For example:
                                     toggleFormVisibility('phonesForm'); // Show the next tab
+
+                                document.getElementById("phonesButton").classList.add("selected");
+                                document.getElementById("addressButton").classList.remove("selected");
                                 }
                             });
 
@@ -950,7 +956,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="next_button_3" onclick="validateContactForms()"
+                            <button type="button" id="next_button_3"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                 <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
@@ -1013,6 +1019,9 @@
                                     // Move to the next tab programmatically (if needed)
                                     // For example:
                                     toggleFormVisibility('billingForm'); // Show the next tab
+
+                                document.getElementById("billingButton").classList.add("selected");
+                                document.getElementById("phonesButton").classList.remove("selected");
                                 }
                             });
                         </script>
@@ -1309,6 +1318,9 @@
                                 if (validateBillingForm()) {
                                     // If the billing form is valid, change to the contact form
                                     toggleFormVisibility('contactForm');
+
+                                    document.getElementById("contactButton").classList.add("selected");
+                                document.getElementById("billingButton").classList.remove("selected");
                                 }
                             });
                         </script>
@@ -1454,19 +1466,35 @@
                                 var forms = document.querySelectorAll('.form');
                                 forms.forEach(function(form) {
                                     form.style.display = 'none';
+                                    console.log("SaveBtn.disabled = false");
                                 });
 
                                 // Show the specified form
                                 var formToShow = document.getElementById(formId);
                                 if (formToShow) {
                                     formToShow.style.display = 'block';
+
                                 }
+                                SaveButtonDisable()
+
+                                var SaveBtn = document.getElementById("save_button");
+                                    if(validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()){
+                                        SaveBtn.disabled = false;
+                                        console.log("SaveBtn.disabled = false");
+                                    }
+                                    else{
+                                        SaveBtn.disabled = true;
+                                        console.log("SaveBtn.disabled = true");
+                                    }
                             }
 
                             // Attach an event listener to the Next button on the billing page
                             document.getElementById("next_button_5").addEventListener("click", function() {
                                 // Navigate to the contact form
                                 toggleFormVisibility('addinfoForm');
+
+                                document.getElementById("addInfoButton").classList.add("selected");
+                                document.getElementById("contactButton").classList.remove("selected");
                             });
                         </script>
 
@@ -1566,12 +1594,25 @@
                                     </tbody>
                                 </table>
 
-                            </div><button type="submit"
-                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
+                            </div>
+                            <button type="submit" id="save_button"
+                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5" disabled>
                                 <span class="mx-auto border-1 bg-green-">Save</span>
                             </button>
                         </div>
-
+                        <script>
+                            function SaveButtonDisable(){
+                                var SaveBtn = document.getElementById("save_button");
+                                    if(validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()){
+                                        SaveBtn.disabled = false;
+                                        console.log("SaveBtn.disabled = false");
+                                    }
+                                    else{
+                                        SaveBtn.disabled = true;
+                                        console.log("SaveBtn.disabled = true");
+                                    }
+                            }
+                        </script>
                     </form>
 
                 </div>
@@ -1590,6 +1631,16 @@
                 if (selectedForm) {
                     selectedForm.style.display = 'flex';
                 }
+
+                var buttons = document.querySelectorAll('.tab-button');
+                buttons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        buttons.forEach(function (btn) {
+                            btn.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    });
+                });
             }
 
             // Call toggleFormVisibility with 'subscribeForm' ID when the page loads
@@ -1681,6 +1732,8 @@
                 const paymentTypeSelect = document.getElementById("paymentType");
                 const chequeFields = document.getElementById("chequeFields");
                 const creditCardFields = document.getElementById("creditCardFields");
+                const SaveBtn = document.getElementById("save_button");
+                 SaveBtn.disabled = true;
 
                 paymentTypeSelect.addEventListener("change", function() {
                     const selectedPaymentType = paymentTypeSelect.value;
