@@ -72,7 +72,7 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Contact Code</label>
-                                    <input type="text" name="contact_code"
+                                    <input type="text" name="contact_code" oninput="validateContactCode(this)"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="contactCodeError" class="text-red-500 hidden">Please fill in the contact
                                         code.</span>
@@ -184,7 +184,7 @@
                                 </div>
                             </div>
 
-                            <div class=" text-red-700 ml-5" id="titlecoparate">Primary Contact Details</div>
+                            <div class=" text-black font-bold ml-5" id="titlecoparate">Primary Contact Details</div>
 
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
@@ -256,9 +256,46 @@
                                     <script>
                                         flatpickr("#datepicker", {
                                             // Options
-                                            dateFormat: "Y-m-d", // Date format
+                                            dateFormat: "Y-m-d",
+                                            maxDate: new Date().fp_incr(-18 * 365) // Date format
                                         });
+
+
+                                        function validateDOB() {
+                                            var dobInput = document.getElementById("datepicker");
+                                            var dobValue = dobInput.value;
+                                            var errorSpan = document.getElementById("dateOfBirthError");
+                                            var isValid = true; // Ensure this local variable exists to manage state
+
+                                            // Check if the date input is empty
+                                            if (!dobValue) {
+                                                errorSpan.textContent = "Please select a date of birth.";
+                                                errorSpan.classList.remove("hidden");
+                                                isValid = false;
+                                                return isValid; // Return isValid status
+                                            }
+
+                                            // Check age requirement
+                                            var dob = new Date(dobValue);
+                                            var today = new Date();
+                                            var age = today.getFullYear() - dob.getFullYear();
+                                            var m = today.getMonth() - dob.getMonth();
+                                            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                                                age--;
+                                            }
+
+                                            if (age < 18) {
+                                                errorSpan.textContent = "You must be at least 18 years old.";
+                                                errorSpan.classList.remove("hidden");
+                                                isValid = false;
+                                            } else {
+                                                errorSpan.classList.add("hidden");
+                                            }
+                                            return isValid; // Return isValid status
+                                        }
                                     </script>
+
+
                                 </div>
 
                                 <div class="w-7/12">
@@ -357,13 +394,9 @@
 
 
 
-                                // var name = document.getElementsByName("name")[0].value;
-                                // if (!name) {
-                                //     document.getElementById("nameerror").classList.remove("hidden");
-                                //     isValid = false;
-                                // } else {
-                                //     document.getElementById("nameerror").classList.add("hidden");
-                                // }
+
+
+
                                 // Validation for Type
                                 var typeSelect = document.getElementById("typeSelect").value;
                                 if (!typeSelect) {
@@ -434,7 +467,9 @@
                                     document.getElementById("dateOfBirthError").classList.add("hidden");
                                 }
 
-
+                                if (!validateDOB()) { // Use if the function returns false
+                                    isValid = false;
+                                }
                                 // Add more validations for other fields...
 
                                 return isValid;
@@ -497,7 +532,7 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Post Code</label>
-                                    <input type="text" name="post_code"
+                                    <input type="text" name="post_code" oninput="validateNumericInput(this)"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="postCodeError" class="text-red-500 hidden">Please enter Post
                                         Code.</span>
@@ -758,6 +793,24 @@
                                     toggleFormVisibility('phonesForm'); // Show the next tab
                                 }
                             });
+
+
+                            function validateContactCode(input) {
+                                // Remove any non-numeric characters
+                                input.value = input.value.replace(/[^0-9]/g, '');
+
+                                // Check if input is empty
+                                if (!input.value) {
+                                    document.getElementById("contactCodeError").classList.remove("hidden");
+                                } else {
+                                    document.getElementById("contactCodeError").classList.add("hidden");
+                                }
+                            }
+
+                            function validateNumericInput(input) {
+                                // Replace non-digit characters with an empty string
+                                input.value = input.value.replace(/\D/g, '');
+                            }
                         </script>
 
 
@@ -770,7 +823,7 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Area Code</label>
-                                    <input type="text" name="area_code"
+                                    <input type="text" name="area_code" oninput="validateNumericInput(this)"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="area_code_error" class="text-red-500 hidden">Please Enter Area
                                         Code</span>
@@ -778,7 +831,7 @@
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Phone Number</label>
-                                    <input type="text" name="phone_number"
+                                    <input type="text" name="phone_number" oninput="validateNumericInput(this)"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="phone_number_error" class="text-red-500 hidden">Please Enter Phone
                                         Number</span>
