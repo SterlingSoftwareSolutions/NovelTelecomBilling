@@ -18,7 +18,7 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-            dd($request);
+            // dd($request);
         // Validate the incoming request data
         // $validatedAccountData  = $request->validate([
         //     'contact_code' => 'required|numeric',
