@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function home(){
-        return view ('user.home');
+        $account=null;
+        return view ('user.home',compact('account'));
     }
     
 }

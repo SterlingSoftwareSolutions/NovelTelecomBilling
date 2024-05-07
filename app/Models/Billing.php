@@ -30,4 +30,8 @@ class Billing extends Model
     {
         return $this->belongsTo(Account::class, 'contact_code'); // Define the inverse relationship with Account
     }
+    public static function getBillDetails($contactCode)
+    {
+        return static::where('contact_code', $contactCode)->first();
+    }
 }
