@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 
@@ -40,8 +40,6 @@ Route::post('/', [AuthController::class, 'logout'])->name('logout');
 
 //user route
 Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth');
-
-
 //account route
 Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount')->middleware('auth');
 
