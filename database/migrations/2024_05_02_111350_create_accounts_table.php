@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             // Define contact_code as big integer that auto-increments and is the primary key
-            $table->bigIncrements('contact_code');
+            $table->id();
 
             // Other columns
             $table->string('typeSelect');

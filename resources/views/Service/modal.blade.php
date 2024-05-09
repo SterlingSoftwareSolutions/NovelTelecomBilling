@@ -57,6 +57,7 @@
                             <select name="" id=""
                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 <option value="">Connected(Open)</option>
+                                <option value="">Disconnected</option>
 
                             </select>
                         </div>
@@ -104,7 +105,8 @@
                             <label for="">Parent</label>
                             <select name="" id=""
                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                <option value=""></option>
+                                <option value="">not selectd</option>
+                                <option value="">selectd</option>
                             </select>
                         </div>
                     </div>
@@ -136,24 +138,16 @@
 
                     <div class="flex flex-row gap-4 md:gap-8  m-5  " id="acnandabn">
 
-                        <div class="flex flex-col w-7/12">
-                            <label for="">Dealer</label>
-                            <select name="" id=""
-                                class="w-full p-2  border border-gray-800 rounded-lg opacity-60">
-                                <option value=""></option>
-                            </select>
-                        </div>
-
                         <div class="w-7/12">
-                            <label for=""></label>
+                            <label for="">Dealer</label>
                             <input type="text" name="Medium"
-                                class="w-full p-2 border mt-6  border-gray-800 rounded-lg opacity-60">
+                                class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                         </div>
                     </div>
 
                     <div class="flex flex-row gap-4 md:gap-8  m-5  " id="emailandquestion">
                         <div class="w-7/12">
-                            <label for="">Cost Centr</label>
+                            <label for="">Cost Centre</label>
                             <input type="text" name="Medium"
                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                         </div>

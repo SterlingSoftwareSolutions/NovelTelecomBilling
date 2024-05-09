@@ -18,11 +18,11 @@ class AccountsImport implements ToModel,WithHeadingRow
     public function model(array $row)
     {
         // dd($row);
-        $existingAccount = Account::where('contact_code', $row['contact_code'])->exists();
+        $existingAccount = Account::where('id', $row['contact_code'])->exists();
         // dd($existingAccount);
         if(!$existingAccount){
             $accountData = [
-                'contact_code'  => $row['contact_code'],
+                'id'  => $row['contact_code'],
                 'typeSelect'    => $row['typeselect'],
                 'key'           => $row['key'],
                 'title'         => $row['title'],

@@ -58,7 +58,7 @@
                                         @foreach ($service->serviceoptions as $serviceoption)
                                             <li><a href="#" class="leading-6 pl-9 text-justify open-modal"
                                                 data-target="#formModal"
-                                                data-service="{{ $serviceoption->service_names }}">Service Option</a>
+                                                data-service="{{ $service->service_name }}">{{ $serviceoption->service_names }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
