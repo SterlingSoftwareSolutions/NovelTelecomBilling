@@ -24,12 +24,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 });
+Route::get('/upload', function () {
+    return view ('welcome');
+});
 
 
 
 Route::resource('customers', CustomerController::class)->except(['index']);
 Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
-Route::post('uploadfile', [UploadController::class, 'uploadfile'])->name('file.upload');
+Route::post('uploadfile', [UploadController::class, 'excelupload'])->name('file.upload');
 
 //auth routes
 // Authentication Routes

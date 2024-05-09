@@ -18,7 +18,6 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-
         // Validate the incoming request data
         $validatedAccountData  = $request->validate([
             'contact_code' => 'required|numeric',
@@ -154,11 +153,13 @@ class AccountController extends Controller
                 return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone'));
             } else {
                 $account = null;
-                return view('user.home', compact('account'));
+                $errorMessage = 'Account not found';
+                return view('user.home', compact('account','errorMessage'));
             }
         } catch (Exception $e) {
             $account = null;
-            return view('user.home', compact('account'));
+            $errorMessage = $e->getMessage();
+            return view('user.home', compact('account','errorMessage'));
         }
     }
 }
