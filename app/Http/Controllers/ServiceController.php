@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
+use App\Models\ServiceOption;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
     public function service_index(){
-        return view('Service.newservice');
+       
+        $services=Service::all();
+        $serviceoptions=ServiceOption::all();
+        return view('Service.newservice',compact('services','serviceoptions'));
+        
     }
 }
