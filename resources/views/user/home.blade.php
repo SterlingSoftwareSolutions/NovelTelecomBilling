@@ -284,7 +284,12 @@
                                             <td>--</td>
                                         </tr>
                                     </tbody>
-                                    
+                                    @elseif(isset($errorMessage))
+                                    <div class="flex justify-center items-center h-full max-h-full my-28">
+                                        <div class="font-bold p-3">{{ $errorMessage }}</div>
+                                    </div>
+                                                                      
+            
                                     @endif
                                 </table>
                             </div>
