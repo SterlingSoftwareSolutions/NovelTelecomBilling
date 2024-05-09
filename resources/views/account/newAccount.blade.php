@@ -496,19 +496,19 @@
 
                             // Attach event listener to the Next button
                             document.getElementById("nextButton").addEventListener("click", function() {
-                            // When Next button is clicked, validate the form and toggle tabs
-                            if (validateForm()) {
-                                toggleTabs(); // Enable/disable tabs based on form validity
+                                // When Next button is clicked, validate the form and toggle tabs
+                                if (validateForm()) {
+                                    toggleTabs(); // Enable/disable tabs based on form validity
 
-                                // Move to the next tab programmatically (if needed)
-                                // For example:
-                                toggleFormVisibility('addressForm'); // Show the next tab (Address)
+                                    // Move to the next tab programmatically (if needed)
+                                    // For example:
+                                    toggleFormVisibility('addressForm'); // Show the next tab (Address)
 
-                                // Add style to the "Address" button
-                                document.getElementById("addressButton").classList.add("selected");
-                                document.getElementById("subscribesButton").classList.remove("selected");
-                            }
-                        });
+                                    // Add style to the "Address" button
+                                    document.getElementById("addressButton").classList.add("selected");
+                                    document.getElementById("subscribesButton").classList.remove("selected");
+                                }
+                            });
                         </script>
 
 
@@ -520,13 +520,13 @@
                                 <div class="w-7/12">
                                     <label for="">Address1</label>
                                     <input type="text" name="address1"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60 address-input">
                                     <span id="address1Error" class="text-red-500 hidden">Please enter Address1.</span>
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Address2</label>
                                     <input type="text" name="address2"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60 ">
                                     <span id="address2Error" class="text-red-500 hidden">Please enter Address2.</span>
                                 </div>
                             </div>
@@ -572,21 +572,23 @@
                                         Type.</span>
                                     <ul
                                         class="w-48 text-sm font-medium text-gray-900 bg-white  dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
+
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
                                                 <input id="vue-checkbox" type="checkbox" value="Billing Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="vue-checkbox" id="vue"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Billing
                                                     Address</label>
+
                                             </div>
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
                                                 <input id="react-checkbox" type="checkbox" value="Delivery Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="react-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delivery
                                                     Address</label>
@@ -596,7 +598,7 @@
                                             <div class="flex items-center ps-3">
                                                 <input id="angular-checkbox" type="checkbox" value="IPND Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="angular-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">IPND
                                                     Address</label>
@@ -606,7 +608,7 @@
                                             <div class="flex items-center ps-3">
                                                 <input id="laravel-checkbox" type="checkbox" value="Service Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="laravel-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Service
                                                     Address</label>
@@ -616,7 +618,7 @@
                                             <div class="flex items-center ps-3">
                                                 <input id="laravel-checkbox" type="checkbox" value="Street Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="laravel-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Street
                                                     Address</label>
@@ -629,7 +631,7 @@
 
                                 <div class="w-7/12 mt-48">
                                     <div class=" flex col-2">
-                                        <button type="button"
+                                        <button type="button" id="addAddressButton"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add</span>
                                         </button>
@@ -658,10 +660,8 @@
                                             <th>Address</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Credit Card</td>
-                                        </tr>
+                                    <tbody id="addressesBody">
+
                                     </tbody>
                                 </table>
                                 <div class="w-7/12 ">
@@ -682,6 +682,26 @@
                                 <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
                         </div>
+
+
+                        <script>
+                             document.getElementById('addAddressButton').addEventListener('click', function() {
+                                const checkboxes = document.querySelectorAll('.address-checkbox');            //check box
+                                const inputs = document.querySelectorAll('.address-input');                    // address  input field
+                                const tbody = document.getElementById('addressesBody');                      // rendring place
+
+
+                                checkboxes.forEach((checkbox, index) => {
+
+                                    if (checkbox.checked && inputs[index].value.trim() !== '') {
+                                        console.log("---------------" + checkbox.value);
+                                        const row = document.createElement('tr');
+                                        row.innerHTML = `<td>${checkbox.value}</td><td>${inputs[index].value}</td>`;
+                                        tbody.appendChild(row);
+                                    }
+                                });
+                            });
+                        </script>
 
 
                         <script>
@@ -795,8 +815,8 @@
                                     // For example:
                                     toggleFormVisibility('phonesForm'); // Show the next tab
 
-                                document.getElementById("phonesButton").classList.add("selected");
-                                document.getElementById("addressButton").classList.remove("selected");
+                                    document.getElementById("phonesButton").classList.add("selected");
+                                    document.getElementById("addressButton").classList.remove("selected");
                                 }
                             });
 
@@ -817,6 +837,8 @@
                                 // Replace non-digit characters with an empty string
                                 input.value = input.value.replace(/\D/g, '');
                             }
+
+
                         </script>
 
 
@@ -1020,8 +1042,8 @@
                                     // For example:
                                     toggleFormVisibility('billingForm'); // Show the next tab
 
-                                document.getElementById("billingButton").classList.add("selected");
-                                document.getElementById("phonesButton").classList.remove("selected");
+                                    document.getElementById("billingButton").classList.add("selected");
+                                    document.getElementById("phonesButton").classList.remove("selected");
                                 }
                             });
                         </script>
@@ -1320,7 +1342,7 @@
                                     toggleFormVisibility('contactForm');
 
                                     document.getElementById("contactButton").classList.add("selected");
-                                document.getElementById("billingButton").classList.remove("selected");
+                                    document.getElementById("billingButton").classList.remove("selected");
                                 }
                             });
                         </script>
@@ -1478,14 +1500,13 @@
                                 SaveButtonDisable()
 
                                 var SaveBtn = document.getElementById("save_button");
-                                    if(validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()){
-                                        SaveBtn.disabled = false;
-                                        console.log("SaveBtn.disabled = false");
-                                    }
-                                    else{
-                                        SaveBtn.disabled = true;
-                                        console.log("SaveBtn.disabled = true");
-                                    }
+                                if (validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()) {
+                                    SaveBtn.disabled = false;
+                                    console.log("SaveBtn.disabled = false");
+                                } else {
+                                    SaveBtn.disabled = true;
+                                    console.log("SaveBtn.disabled = true");
+                                }
                             }
 
                             // Attach an event listener to the Next button on the billing page
@@ -1596,21 +1617,21 @@
 
                             </div>
                             <button type="submit" id="save_button"
-                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5" disabled>
+                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5"
+                                disabled>
                                 <span class="mx-auto border-1 bg-green-">Save</span>
                             </button>
                         </div>
                         <script>
-                            function SaveButtonDisable(){
+                            function SaveButtonDisable() {
                                 var SaveBtn = document.getElementById("save_button");
-                                    if(validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()){
-                                        SaveBtn.disabled = false;
-                                        console.log("SaveBtn.disabled = false");
-                                    }
-                                    else{
-                                        SaveBtn.disabled = true;
-                                        console.log("SaveBtn.disabled = true");
-                                    }
+                                if (validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()) {
+                                    SaveBtn.disabled = false;
+                                    console.log("SaveBtn.disabled = false");
+                                } else {
+                                    SaveBtn.disabled = true;
+                                    console.log("SaveBtn.disabled = true");
+                                }
                             }
                         </script>
                     </form>
@@ -1633,9 +1654,9 @@
                 }
 
                 var buttons = document.querySelectorAll('.tab-button');
-                buttons.forEach(function (button) {
-                    button.addEventListener('click', function () {
-                        buttons.forEach(function (btn) {
+                buttons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        buttons.forEach(function(btn) {
                             btn.classList.remove('selected');
                         });
                         this.classList.add('selected');
@@ -1733,7 +1754,7 @@
                 const chequeFields = document.getElementById("chequeFields");
                 const creditCardFields = document.getElementById("creditCardFields");
                 const SaveBtn = document.getElementById("save_button");
-                 SaveBtn.disabled = true;
+                SaveBtn.disabled = true;
 
                 paymentTypeSelect.addEventListener("change", function() {
                     const selectedPaymentType = paymentTypeSelect.value;
