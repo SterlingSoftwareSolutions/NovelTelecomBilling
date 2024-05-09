@@ -57,7 +57,8 @@
                                     <ul>
                                         @foreach ($service->serviceoptions as $serviceoption)
                                             <li><a href="#" class="leading-6 pl-9 text-justify open-modal"
-                                                    data-target="#formModal">{{ $serviceoption->service_names }}</a>
+                                                data-target="#formModal"
+                                                data-service="{{ $serviceoption->service_names }}">Service Option</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -158,29 +159,39 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/ui"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const openModalButtons = document.querySelectorAll('.open-modal');
-            const formModal = document.getElementById('formModal');
-            const form = document.getElementById('mainForm');
-            openModalButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const modalId = button.dataset.target;
-                    const modal = document.querySelector(modalId);
+       document.addEventListener('DOMContentLoaded', function() {
+    const openModalButtons = document.querySelectorAll('.open-modal');
+    const formModal = document.getElementById('formModal');
+    const form = document.getElementById('mainForm');
 
-                    modal.classList.remove('hidden');
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modalId = button.dataset.target;
+            const modal = document.querySelector(modalId);
 
-                    // Update form action based on modal
-                    form.action = '#' + modalId.slice(1);
-                });
-            });
-            // Close modal when the close button or overlay is clicked
-            formModal.addEventListener('click', (event) => {
-                if (event.target.classList.contains('modal-close') || !event.target.closest(
-                        '.modal-content')) {
-                    formModal.classList.add('hidden');
-                }
-            });
+            // Get the service name from the data attribute
+            const serviceName = button.dataset.service;
+
+            // Pass the service name to the modal or do any other processing
+            // For now, let's update the select option with the service name
+            const typeSelect = modal.querySelector('#typeSelect');
+            const option = document.createElement('option');
+            option.value = serviceName;
+            option.textContent = serviceName;
+            typeSelect.innerHTML = ''; // Clear previous options
+            typeSelect.appendChild(option);
+
+            modal.classList.remove('hidden');
+            form.action = '#' + modalId.slice(1);
         });
+    });
+
+    formModal.addEventListener('click', (event) => {
+        if (event.target.classList.contains('modal-close') || !event.target.closest('.modal-content')) {
+            formModal.classList.add('hidden');
+        }
+    });
+});
     </script>
 
 

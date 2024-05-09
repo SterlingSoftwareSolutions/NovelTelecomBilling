@@ -29,7 +29,7 @@
                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                         <div class="flex flex-col w-7/12">
                             <label for="typeSelect">Network</label>
-                            <select name="typeSelect" id="typeSelect" onchange="toggleFields()"
+                            <select name="typeSelect" id="" onchange="toggleFields()"
                                 class="w-full p-2 border border-gray-800 rounded-lg">
                                 <option value="Individual">Optus</option>
 
