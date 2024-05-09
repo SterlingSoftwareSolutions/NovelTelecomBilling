@@ -519,14 +519,14 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Address1</label>
-                                    <input type="text" name="address1"
+                                    <input type="text" name="address1" id="Address1"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60 address-input">
                                     <span id="address1Error" class="text-red-500 hidden">Please enter Address1.</span>
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Address2</label>
-                                    <input type="text" name="address2"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60 ">
+                                    <input type="text" name="address2" id="Address2"
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60 address-input ">
                                     <span id="address2Error" class="text-red-500 hidden">Please enter Address2.</span>
                                 </div>
                             </div>
@@ -536,13 +536,15 @@
                                 <div class="w-7/12">
                                     <label for="">Post Code</label>
                                     <input type="text" name="post_code" oninput="validateNumericInput(this)"
+                                        id="PostCode"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="postCodeError" class="text-red-500 hidden">Please enter Post
                                         Code.</span>
                                 </div>
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Suburb</label>
-                                    <input name="suburb" class="w-full p-2 border border-gray-800 rounded-lg">
+                                    <input name="suburb" class="w-full p-2 border border-gray-800 rounded-lg"
+                                        id="Suburb">
 
                                     <span id="suburbError" class="text-red-500 hidden">Please select a Suburb.</span>
                                 </div>
@@ -552,13 +554,14 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">State</label>
-                                    <input type="text" name="state"
+                                    <input type="text" name="state" id="State"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="stateError" class="text-red-500 hidden">Please enter State.</span>
                                 </div>
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Country</label>
-                                    <input name="country" class="w-full p-2 border border-gray-800 rounded-lg">
+                                    <input name="country" id="Country"
+                                        class="w-full p-2 border border-gray-800 rounded-lg">
                                     <span id="countryError" class="text-red-500 hidden">Please select a
                                         Country.</span>
                                 </div>
@@ -575,7 +578,7 @@
 
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value="Billing Address"
+                                                <input id="billing_address" type="checkbox" value="Billing Address"
                                                     name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="vue-checkbox" id="vue"
@@ -586,7 +589,7 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value="Delivery Address"
+                                                <input id="delivery_address" type="checkbox" value="Delivery Address"
                                                     name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="react-checkbox"
@@ -596,7 +599,7 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="angular-checkbox" type="checkbox" value="IPND Address"
+                                                <input id="IPND_address" type="checkbox" value="IPND Address"
                                                     name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="angular-checkbox"
@@ -606,7 +609,7 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="Service Address"
+                                                <input id="service_address" type="checkbox" value="Service Address"
                                                     name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="laravel-checkbox"
@@ -616,7 +619,7 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                             <div class="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="Street Address"
+                                                <input id="street_address" type="checkbox" value="Street Address"
                                                     name="addresstype[]"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 address-checkbox">
                                                 <label for="laravel-checkbox"
@@ -631,10 +634,66 @@
 
                                 <div class="w-7/12 mt-48">
                                     <div class=" flex col-2">
-                                        <button type="button" id="addAddressButton"
+                                        <button type="button" id="addAddressButton" onclick="validateAddressForms()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add</span>
                                         </button>
+
+
+                                        <script>
+                                            function saveAddress() {
+                                                // Create an object to hold the address data
+                                                var addressData = {
+                                                    address1: document.getElementsByName("address1")[0].value,
+                                                    address2: document.getElementsByName("address2")[0].value,
+                                                    postCode: document.getElementsByName("post_code")[0].value,
+                                                    suburb: document.getElementsByName("suburb")[0].value,
+                                                    state: document.getElementsByName("state")[0].value,
+                                                    country: document.getElementsByName("country")[0].value,
+                                                    addressTypes: []
+                                                };
+
+                                                // Get checkboxes for address types
+                                                var checkboxes = document.querySelectorAll("input[name='addresstype[]']:checked");
+                                                checkboxes.forEach(function(checkbox) {
+                                                    addressData.addressTypes.push(checkbox.value);
+                                                });
+                                                // Address1.value = null;
+                                                // Address2.value = null;
+                                                // PostCode.value = null;
+                                                // Suburb.value = null;
+                                                // State.value = null;
+                                                // Country.value = null;
+                                                // Example of what to do with the addressData object
+                                                //console.log(addressData); // You can replace this line to store the data elsewhere
+
+                                                // Optional: Clear form or give feedback
+                                                // alert("Address saved!");
+                                                // Clear the form here if necessary, or redirect, etc.
+                                            }
+
+                                            fetch('/account', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                    },
+                                                    body: JSON.stringify(addressData),
+                                                })
+                                                .then(response => {
+                                                    if (!response.ok) {
+                                                        throw new Error('Network response was not ok');
+                                                    }
+                                                    // Optionally handle successful response
+                                                    console.log('Address data saved successfully');
+                                                    // Clear the form or provide feedback to the user
+                                                })
+                                                .catch(error => {
+                                                    console.error('There was a problem with the fetch operation:', error);
+                                                    // Handle errors or provide feedback to the user
+                                                });
+                                        </script>
+
+
                                         <button type="button"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Clear</span>
@@ -649,6 +708,7 @@
 
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Addresses Entered</label>
+                                <span id="addressError" class="text-red-500 hidden">Add at least one address.</span>
                                 <table
                                     class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
 
@@ -677,7 +737,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="next_button2" onclick="validateAddressForms()"
+                            <button type="button" id="next_button2" onclick="ValidateAddressBody()"
                                 class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                 <span class="mx-auto border-1 bg-green-">Next</span>
                             </button>
@@ -685,27 +745,77 @@
 
 
                         <script>
-                             document.getElementById('addAddressButton').addEventListener('click', function() {
-                                const checkboxes = document.querySelectorAll('.address-checkbox');            //check box
-                                const inputs = document.querySelectorAll('.address-input');                    // address  input field
-                                const tbody = document.getElementById('addressesBody');                      // rendring place
+                            var addressData = null;
 
+                            document.getElementById('addAddressButton').addEventListener('click', function() {
+                                // Validate the form fields before proceeding
+                                if (validateAddressForms()) {
+                                    // If validation passes, populate addressData object
+                                    addressData = {
+                                        address1: document.getElementsByName("address1")[0].value,
+                                        address2: document.getElementsByName("address2")[0].value,
+                                        postCode: document.getElementsByName("post_code")[0].value,
+                                        suburb: document.getElementsByName("suburb")[0].value,
+                                        state: document.getElementsByName("state")[0].value,
+                                        country: document.getElementsByName("country")[0].value,
+                                        addressTypes: []
+                                    };
 
-                                checkboxes.forEach((checkbox, index) => {
+                                    // Get checkboxes for address types
+                                    var checkboxes = document.querySelectorAll("input[name='addresstype[]']:checked");
+                                    checkboxes.forEach(function(checkbox) {
+                                        addressData.addressTypes.push(checkbox.value);
+                                    });
 
-                                    if (checkbox.checked && inputs[index].value.trim() !== '') {
-                                        console.log("---------------" + checkbox.value);
-                                        const row = document.createElement('tr');
-                                        row.innerHTML = `<td>${checkbox.value}</td><td>${inputs[index].value}</td>`;
-                                        tbody.appendChild(row);
+                                    // Call function to render address body
+                                    renderAddressBody();
+                                }
+                            });
+
+                            // Function to render the address body
+                            function renderAddressBody() {
+                                const checkboxes = document.querySelectorAll('.address-checkbox'); // Checkbox elements
+                                const inputs = document.querySelectorAll('.address-input'); // Input fields
+                                const tbody = document.getElementById('addressesBody'); // Table body
+
+                                let inputIndex = 0; // Index to cycle through input fields
+                                let existingTypes = new Set();
+
+                                // Collect existing address types
+                                tbody.querySelectorAll('tr').forEach(row => {
+                                    existingTypes.add(row.cells[0].textContent.trim());
+                                });
+
+                                const checks = [];
+
+                                checkboxes.forEach((checkbox) => {
+                                    if (checkbox.checked) {
+                                        const addressInput = inputs[inputIndex]; // Get the corresponding input field
+
+                                        if (addressInput && addressInput.value.trim() !== '') {
+                                            if (!existingTypes.has(checkbox.value)) {
+                                                // If address type not already added, create and append row
+                                                const row = document.createElement('tr');
+                                                row.innerHTML =
+                                                    `<td>${checkbox.value}</td><td>${addressData.address1},${addressData.address2},${addressData.postCode},${addressData.suburb},${addressData.state},${addressData.country}</td>`;
+                                                tbody.appendChild(row);
+                                                existingTypes.add(checkbox.value);
+                                            } else {
+                                                checks.push(checkbox.value); // Track already added types
+                                            }
+                                            inputIndex = (inputIndex + 1) % inputs.length; // Cycle through inputs
+                                        }
+                                        checkbox.checked = false; // Uncheck the checkbox
                                     }
                                 });
-                            });
-                        </script>
 
+                                if (checks.length > 0) {
+                                    // Alert if already added types
+                                    alert(`A ${checks.join(', ')} is already added. You cannot add it again.`);
+                                }
+                            }
 
-                        <script>
-                            // Function to validate the current form
+                            // Function to validate the form fields
                             function validateAddressForms() {
                                 var isValid = true;
 
@@ -716,6 +826,14 @@
                                     isValid = false;
                                 } else {
                                     document.getElementById("address1Error").classList.add("hidden");
+                                }
+
+                                var address2 = document.getElementsByName("address2")[0].value;
+                                if (!address2) {
+                                    document.getElementById("address2Error").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("address2Error").classList.add("hidden");
                                 }
 
                                 var address2 = document.getElementsByName("address2")[0].value;
@@ -768,46 +886,60 @@
                                     document.getElementById("addressTypeError").classList.add("hidden");
                                 }
 
-                                // Add more validations for other fields...
+                                // Add validations for other fields...
 
                                 return isValid;
                             }
 
+                            // Function to check if any checkbox is checked
                             function isAnyCheckboxChecked() {
-                                // Get all checkbox elements
                                 const checkboxes = document.querySelectorAll('input[type="checkbox"][name="addresstype[]"]');
-
-                                // Check if at least one checkbox is checked
                                 for (let checkbox of checkboxes) {
                                     if (checkbox.checked) {
-                                        return true; // Return true immediately if a checkbox is found to be checked
+                                        return true;
                                     }
                                 }
-                                return false; // Return false if no checkboxes are checked
+                                return false;
                             }
+
+                            function ValidateAddressBody() {
+                                var isValid = true;
+
+                                if (addressData === null) {
+                                    document.getElementById("addressError").classList.remove("hidden");
+                                    isValid = false;
+                                } else {
+                                    document.getElementById("addressError").classList.add("hidden");
+                                }
+                                return isValid;
+                            }
+
                             // Function to enable/disable tabs based on form validity
                             function toggleTabs2() {
                                 var nextButton = document.getElementById("next_button2");
                                 var otherTabs = document.querySelectorAll(".tab-button:not(#addressButton)");
 
                                 // Disable all other tabs if the form is not valid
-                                if (!validateAddressForms()) {
+                                if (!ValidateAddressBody()) {
                                     otherTabs.forEach(function(tab) {
                                         tab.disabled = true;
                                     });
+                                    nextButton.disabled = true; // Disable the Next button if form is not valid
                                 } else {
                                     // Enable all other tabs if the form is valid
                                     otherTabs.forEach(function(tab) {
                                         tab.disabled = false;
                                     });
+                                    nextButton.disabled = false; // Enable the Next button if form is valid
                                 }
                                 // Add your tab toggling logic here if needed
                             }
 
+
                             // Attach event listener to the Next button
                             document.getElementById("next_button2").addEventListener("click", function() {
                                 // When Next button is clicked, validate the form and toggle tabs
-                                if (validateAddressForms()) {
+                                if (ValidateAddressBody()) {
                                     console.log("phonesForm");
                                     toggleTabs2(); // Enable/disable tabs based on form validity
 
@@ -819,7 +951,6 @@
                                     document.getElementById("addressButton").classList.remove("selected");
                                 }
                             });
-
 
                             function validateContactCode(input) {
                                 // Remove any non-numeric characters
@@ -837,9 +968,8 @@
                                 // Replace non-digit characters with an empty string
                                 input.value = input.value.replace(/\D/g, '');
                             }
-
-
                         </script>
+
 
 
 
@@ -1497,10 +1627,10 @@
                                     formToShow.style.display = 'block';
 
                                 }
-                                SaveButtonDisable()
+                                SaveButtonDisable();
 
                                 var SaveBtn = document.getElementById("save_button");
-                                if (validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()) {
+                                if (validateForm() && ValidateAddressBody() && validateBillingForm() && validateContactForms()) {
                                     SaveBtn.disabled = false;
                                     console.log("SaveBtn.disabled = false");
                                 } else {
@@ -1625,7 +1755,7 @@
                         <script>
                             function SaveButtonDisable() {
                                 var SaveBtn = document.getElementById("save_button");
-                                if (validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()) {
+                                if (validateForm() && ValidateAddressBody() && validateBillingForm() && validateContactForms()) {
                                     SaveBtn.disabled = false;
                                     console.log("SaveBtn.disabled = false");
                                 } else {

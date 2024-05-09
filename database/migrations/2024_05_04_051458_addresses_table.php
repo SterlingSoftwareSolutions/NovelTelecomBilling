@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('suburb')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
-            $table->string('address_type')->nullable();
-
+            // $table->string('address_type')->nullable();
+            $table->json('address_type')->nullable();
             // Timestamps
             $table->timestamps();
         });
