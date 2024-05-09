@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Include flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 </head>
 
 <body>
@@ -110,74 +111,26 @@
 
                     <div class="flex flex-row gap-4 md:gap-8  m-5  " id="acnandabn">
 
-                        <div class="flex flex-col w-4/12">
+                        <div class="flex flex-col w-6/12">
                             <label for="">Package</label>
-                            <select name="" id=""
-                                class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                <option value=""></option>
-                            </select>
-                        </div>
-
-                        <div class="w-4/12">
-                            <label for="">Package option</label>
-                            <input type="text" name="Medium"
-                                class="w-full p-2  border border-gray-800 rounded-lg opacity-60">
-                        </div>
-
-                        <div class="relative w-7/12 ">
-                            <button type="button"
-                                class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
-                                aria-expanded="false" onclick=" togglenew();">
-                                Package
-                                <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                {{-- toggleDropdown('packagedropdown'); --}}
-                            </button>
-                            <!-- Hidden input field to store the dataArray -->
                             <div id="packageNames">
-                                <!-- Package names will be dynamically inserted here -->
-                            </div>
-                            
-                            
-                            
-
-                           
-                            <div id="packagedropdown" class="dropdown-content hidden">
-                                <!-- Dropdown content for Account -->
-                                <ul class=" w-[200px]">
-                                    <li>
-                                        <div class="relative ">
-                                            <button type="button"
-                                                class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900"
-                                                aria-expanded="false" onclick="toggleSubDropdown('packageoption')">
-                                                Account details
-                                                <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20"
-                                                    fill="currentColor" aria-hidden="true">
-                                                    <path fill-rule="evenodd"
-                                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                            </button>
-                                            <div id="packageoption"
-                                                class="dropdown-content hidden absolute left-32 top-0 flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                                                <!-- Sub-dropdown content for Profile -->
-                                                <ul class=" w-[150px]">
-                                                    <li><a href="#" class="dropdown-item ">Sub Profile 1</a>
-                                                    </li>
-                                                    <li><a href="#" class="dropdown-item">Sub Profile 2</a></li>
-                                                    <li><a href="#" class="dropdown-item">Sub Profile 3</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-
+                                <select name="" id="" onclick="togglenew();"
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <option value=""selected disabled>-- Select Package --</option>
+                                </select>
                             </div>
                         </div>
+
+                        <div class="w-6/12">
+                            <label for="">Package option</label>
+                            <div id="packageOption">
+                                <select name="" id=""
+                                    class="w-full p-2  border border-gray-800 rounded-lg opacity-60">
+                                    <option value="" selected disabled>-- Select Package Option --</option>
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
 
 
@@ -292,74 +245,94 @@
         }
     </script>
 
-<script>
-    function togglenew() {
-        console.log("hello");
-        // Use AJAX to call the Laravel route
-        fetch('/packages')
-        fetch('/packages')
-    .then(response => response.json())
-    .then(data => {
-        // Assign the data array to a variable
-        var dataArray = data;
-        console.log(dataArray); // Check the data in the console
-
-        // Select the div element by its ID
-        var divContainer = document.getElementById('packageNames');
-
-        // Loop through the dataArray and create a label element for each package name
-        dataArray.forEach(package => {
-            var label = document.createElement('label');
-            label.textContent = package.package_name; // Set the text content of the label
-            divContainer.appendChild(label); // Append the label to the div container
-        });
-    })
-    .catch(error => console.error('Error:', error));
-
-    }
-</script>
-
-
-    {{-- dropdown --}}
     {{-- <script>
-        // Function to toggle dropdown visibility
-        function toggleDropdown(dropdownId) {
-            const dropdown = document.getElementById(dropdownId);
-            const allDropdowns = document.querySelectorAll('.dropdown-content');
+        function togglenew() {
+            console.log("hello");
+            // Use AJAX to call the Laravel route
+            fetch('/packages')
+                .then(response => response.json())
+                .then(data => {
+                    // Assign the data array to a variable
+                    var dataArray = data;
+                    console.log(dataArray); // Check the data in the console
 
-            // Close all dropdowns except the one that was clicked
-            allDropdowns.forEach((dropdownElement) => {
-                if (dropdownElement.id !== dropdownId && !dropdownElement.classList.contains('hidden')) {
-                    dropdownElement.classList.add('hidden');
-                }
-            });
+                    // Select the div element by its ID
+                    var divContainer = document.getElementById('packageNames');
 
-            // Toggle the visibility of the clicked dropdown
-            dropdown.classList.toggle('hidden');
+                    // Clear the contents of the divContainer before appending new labels
+                    divContainer.innerHTML = '';
+
+                    // Create a select element
+                    var select = document.createElement('select');
+                    select.classList.add('w-full', 'p-2', 'border', 'border-gray-800', 'rounded-lg',
+                                    'opacity-60');
+                    // Loop through the dataArray and create an <option> element for each package
+                    dataArray.forEach(package => {
+                        var option = document.createElement('option'); // Create an <option> element
+                        option.textContent = package
+                            .package_name; // Set the text content of the option to the package name
+                        option.value = package.id; // Set the value of the option to the package id
+                        select.appendChild(option); // Append the <option> element to the <select> element
+                    });
+
+                    // Append the <select> element to the div container
+                    var divContainer = document.getElementById('packageNames');
+                    divContainer.appendChild(select);
+
+                    // Add event listener to the select element
+                    select.addEventListener('change', function() {
+                        var selectedPackageId = this.value; // Get the selected package ID
+                        // Call a function passing the selected package ID
+                        callRoute(selectedPackageId);
+                    });
+
+                    // Function to call route with the selected package ID
+                    function callRoute(packageId) {
+                        // Make an AJAX request to the route using the selected package ID
+                        console.log(packageId);
+                        fetch('/package-option?package_id=' + packageId)
+                            .then(response => response.json()) // Parse the JSON response
+                            .then(data => {
+                                var optionArray = data;
+                                console.log(optionArray); // Log the response data in the console
+
+                                var divContainer = document.getElementById('packageOption');
+
+                                // Clear the contents of the divContainer before appending new options
+                                divContainer.innerHTML = '';
+
+                                // Create a select element
+                                var select = document.createElement('select');
+                                select.setAttribute('name', 'package_option');
+                                select.setAttribute('id', 'package_option');
+                                select.classList.add('w-full', 'p-2', 'border', 'border-gray-800', 'rounded-lg',
+                                    'opacity-60');
+
+                                optionArray.forEach(package => {
+                                    var option = document.createElement(
+                                    'option'); // Create an <option> element
+                                    option.textContent = package
+                                    .package_options; // Set the text content of the option to the package option
+                                    option.value = package
+                                    .id; // Set the value of the option to the package id
+                                    select.appendChild(
+                                    option); // Append the <option> element to the <select> element
+                                });
+
+                                // Append the <select> element to the div container
+                                divContainer.appendChild(select);
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    }
+
+                })
+                .catch(error => console.error('Error:', error));
+
         }
     </script> --}}
-
-    {{-- subdropdown --}}
-    {{-- <script>
-        let currentSubDropdown = null;
-
-        function toggleSubDropdown(id) {
-            const subDropdown = document.getElementById(id);
-
-            // Close the current sub-dropdown if it exists and is not the same as the one being clicked
-            if (currentSubDropdown && currentSubDropdown !== subDropdown) {
-                currentSubDropdown.classList.add('hidden');
-            }
-
-            // Toggle the visibility of the clicked sub-dropdown
-            subDropdown.classList.toggle('hidden');
-
-            // Update the current sub-dropdown
-            currentSubDropdown = subDropdown;
-        }
-    </script> --}}
-
-
+    <script src="{{ asset('../js/model.js') }}"></script>
 </body>
 
 </html>

@@ -43,27 +43,29 @@
 
                     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
                         rel="stylesheet" />
-                        <div class="w-full">
-                            @foreach ($services as $service)
-                                <div class="transition border border-1">
-                                    <!-- header -->
-                                    <div class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-14 font-bold">
-                                        <i class="fas fa-plus icon"></i>
-                                        <h3>{{ $service->service_name }}</h3>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="accordion-content height px-5 pt-0 overflow-hidden max-h-0">
-                                        <ul>
-                                            @foreach ($service->serviceoptions as $serviceoption)
-                                                <li><a href="#" class="leading-6 pl-9 text-justify open-modal"
-                                                       data-target="#formModal">{{ $serviceoption->service_names }}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
+                    <div class="w-full">
+                        @foreach ($services as $service)
+                            <div class="transition border border-1">
+                                <!-- header -->
+                                <div
+                                    class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-14 font-bold">
+                                    <i class="fas fa-plus icon"></i>
+                                    <h3>{{ $service->service_name }}</h3>
                                 </div>
-                            @endforeach
-                        </div>
-                        
+                                <!-- Content -->
+                                <div class="accordion-content height px-5 pt-0 overflow-hidden max-h-0">
+                                    <ul>
+                                        @foreach ($service->serviceoptions as $serviceoption)
+                                            <li><a href="#" class="leading-6 pl-9 text-justify open-modal"
+                                                    data-target="#formModal">{{ $serviceoption->service_names }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
                     <div class="w-7/12   justify-end">
                         <div class=" flex col-2">
                             <button type="submit"

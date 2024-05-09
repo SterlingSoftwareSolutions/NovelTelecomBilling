@@ -52,3 +52,5 @@ Route::get('/search', [AccountController::class, 'search'])->name('account.searc
 //service route
 Route::get('/service',[ServiceController::class, 'service_index'])->name('service_newservice');
 Route::get('/packages', [PackageController::class, 'getPackages']);
+
+Route::get('/package-option', [PackageController::class, 'getPackageOption']);

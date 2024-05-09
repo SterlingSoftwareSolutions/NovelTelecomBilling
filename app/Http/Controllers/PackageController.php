@@ -35,5 +35,15 @@ class PackageController extends Controller
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
+
+    public function getPackageOption(Request $request){
+        
+        $package_id = $request->input('package_id');
+
+        $packageOptions = PackageOption::where('package_id', $package_id)->get();
+
+        return response()->json($packageOptions->all());
+        // return response()->json($request);
+    }
    
 }

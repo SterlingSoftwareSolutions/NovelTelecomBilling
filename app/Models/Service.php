@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
 
-    
+
     protected $fillable = [
         'service_id',
         'service_name',
@@ -24,7 +24,4 @@ class Service extends Model
     {
         return $this->hasMany(Package::class, 'service_id');
     }
-
-
-   
 }
