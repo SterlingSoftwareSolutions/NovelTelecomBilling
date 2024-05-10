@@ -5,6 +5,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ManualNoteController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,10 @@ Route::get('/account',[AccountController::class, 'account_index'])->name('accoun
 Route::post ('/account',[AccountController::class, 'store'])->name('account.store')->middleware('auth');
 Route::post('/search', [AccountController::class, 'search'])->name('account.search');
 Route::get('/search', [AccountController::class, 'search'])->name('account.search');
+
+//Note route
+Route::post('/notestore', [ManualNoteController::class, 'store'])->name('note.store');
+
 
 
 //service route
