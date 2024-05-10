@@ -152,7 +152,7 @@ class AccountController extends Controller
     {
         try {
             $account_number = $request->search;
-            $account = Account::where('id', $account_number)->first();
+            $account = Account::where('contact_code', $account_number)->first();
 
             if ($account) {
                 $address = Address::getAddressDetails($account->contact_code);

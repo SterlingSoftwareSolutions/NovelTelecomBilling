@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
 
             // Other columns
+            $table->string('contact_code');
             $table->string('typeSelect');
             $table->string('key')->nullable();
             $table->string('title')->nullable();
