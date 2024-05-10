@@ -445,7 +445,6 @@ function saveNote() {
         return response.json();
     })
     .then(data => {
-        console.log('Response Body (JSON):', JSON.stringify(data));
         console.log('Note saved successfully:', data);
         // Optionally: Do something with the response, like updating UI
     })
@@ -454,6 +453,14 @@ function saveNote() {
         // Optionally: Display an error message to the user
     });
 }
+
+
+
+ 
+
+
+
+
 closeModal();
 
 </script>

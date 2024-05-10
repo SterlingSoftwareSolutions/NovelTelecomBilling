@@ -54,6 +54,7 @@ Route::get('/search', [AccountController::class, 'search'])->name('account.searc
 
 //Note route
 Route::post('/notestore', [ManualNoteController::class, 'store'])->name('note.store');
+Route::get('/notestore', [ManualNoteController::class, 'store'])->name('note.store');
 
 
 

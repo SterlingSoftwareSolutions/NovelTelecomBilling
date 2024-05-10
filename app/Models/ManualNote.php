@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ManualNote extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'creater',
+        'note',
+        'user_id',
+    ];
 }
