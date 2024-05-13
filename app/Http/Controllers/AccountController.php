@@ -151,14 +151,14 @@ class AccountController extends Controller
                 $contact = Contact::getContactDetails($account->contact_code);
                 $phone = Phone::getPhoneDetails($account->contact_code);
                 // dd ($address);
-                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone'));
+                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone','account_number'));
             } else {
                 $account = null;
-                return view('user.home', compact('account'));
+                return view('user.home', compact('account','account_number'));
             }
         } catch (Exception $e) {
             $account = null;
-            return view('user.home', compact('account'));
+            return view('user.home', compact('account','account_number'));
         }
     }
 }
