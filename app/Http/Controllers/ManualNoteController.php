@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ManualNote;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManualNoteController extends Controller
 {
@@ -13,15 +14,17 @@ class ManualNoteController extends Controller
     public function store( Request $request){
 
         $data = [
-            'creater' => 'develop',
+            'creater' =>  $request->input('accountId'),
             'note' => $request->input('note'),
-            'user_id' => 1,
+            'user_id' => Auth::check(),
         ];
 
         // Store data in the ManualNote model
-        ManualNote::create($data);
+        $note = ManualNote::create($data);
+
         return response()->json([
-            $request
+            'creater' => $note->creater, // Return the creater value
+            'message' => 'Note saved successfully', // Optionally, you can send a message
         ]);
     //     $validatedData = $request->validate([
     //         'note' => 'required|string', // Adjust validation rules as needed
@@ -38,11 +41,18 @@ class ManualNoteController extends Controller
 
     }
 
+    public function index(Request $request)
+    {
+        // Get the account ID from the request
+        $accId = $request->input('accId');
 
-    public function index(){
+        // Call the model function to get notes by account ID
+        $notes = ManualNote::getNotesByAccountId($accId);
 
-        $notes = ManualNote::all();
-
-        return response()-> json($notes);
+        return response()->json($notes);
     }
+
+
+
+
 }

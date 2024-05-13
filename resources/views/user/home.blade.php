@@ -359,16 +359,40 @@
                                         <th>Creator</th>
                                     </tr>
                                 </thead>
+                                @if ($account != null)
+
+
                                 <tbody id="notesTableBody">
+                                    @foreach ($notes as $note)
+                                        <tr>
+                                            <td>{{ $note->id }}</td>
+                                            <td>{{ $note->creater }}</td>
+                                            <td>{{ $note->note }}</td>
+                                            <td>{{ $note->created_at }}</td>
+                                            {{-- <td>Updated At: {{ $note->updated_at }}</td> --}}
+                                        </tr>
+                                    @endforeach
+
                                     {{-- <tr>
                                         <td>Note 1</td>
                                         <td>Value 1</td>
                                         <td>Creator 1</td>
                                         <td>Creator 1</td>
                                     </tr> --}}
-
-
                                 </tbody>
+
+                                  <!-- Button to Open the Modal -->
+                            <button
+                                class="flex w-24 h-10 items-center justify-center rounded-lg bg-green-500 text-white mt-5"
+                                onclick="openModal('{{ $account->id }}')">
+
+                                <h1 class="text-center">Add Note  </h1>
+                            </button>
+
+
+
+
+                                @endif
                             </table>
 
                             <script>
@@ -392,12 +416,6 @@
                                 }
                             </script>
 
-                            <!-- Button to Open the Modal -->
-                            <button
-                                class="flex w-24 h-10 items-center justify-center rounded-lg bg-green-500 text-white mt-5"
-                                onclick="openModal()">
-                                <h1 class="text-center">Add Note</h1>
-                            </button>
 
 
 
@@ -408,8 +426,7 @@
                                 <div class="bg-white p-5 rounded-lg w-1/3" onclick="event.stopPropagation()">
                                     <!-- Prevent click inside from closing modal -->
                                     <div class="flex justify-between items-center">
-                                        <h2 class="text-lg mb-4">Add a Note</h2>
-
+                                        <h2 class="text-lg mb-4">Add a Note </h2>
                                         <button type="submit" onclick="closeModal()"
                                             class="text-gray-500 hover:text-gray-800">
                                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -422,10 +439,12 @@
 
                                     </div>
                                     <!-- Form inside the modal -->
-                                    <textarea id="noteText"
+                                    <textarea id="noteText" name="noteText"
                                         class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
                                         placeholder="Write your note here..." autofocus></textarea>
-
+                                        @if ($account != null)
+                                        <input type="text" value="{{$account->id}}" name="account" id="account" hidden>
+                                        @endif
                                     <div class="flex justify-end space-x-4 mt-4">
                                         <button onclick="saveNote()"
                                             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
@@ -440,7 +459,8 @@
                             </div>
 
                             <script>
-                                function openModal() {
+                                function openModal(account) {
+                                    console.log(account)
                                     document.getElementById('noteModal').classList.remove('hidden');
                                     document.body.style.overflow = 'hidden'; // Disable scrolling on the background
                                 }
@@ -455,9 +475,18 @@
                                 function saveNote() {
                                     console.log('Entering saveNote function');
                                     var noteText = document.getElementById('noteText').value;
+                                    var account = document.getElementById('account').value;
 
                                     console.log('Note Saved:', noteText);
 
+                                    var noteText = document.getElementById('noteText').value.trim(); // Get the text and trim whitespace
+                                    if (noteText === '') {
+                                        alert('Please write your note before saving.'); // Alert if empty
+                                        return false; // Stop the function
+                                    }
+
+
+                                    console.log(account);
 
                                     fetch('/notestore', {
                                             method: 'POST',
@@ -466,19 +495,24 @@
                                                 'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token if using Laravel CSRF protection
                                             },
                                             body: JSON.stringify({
-                                                note: noteText
+                                                note: noteText ,
+                                                accountId: account
                                             }), // Send note text in JSON format
                                         })
                                         .then(response => {
-                                            console.log('Response:', response);
+                                            // console.log('Response:', response);
                                             if (!response.ok) {
                                                 throw new Error('Failed to save note');
                                             }
                                             return response.json();
                                         })
                                         .then(data => {
-                                            console.log('Note saved successfully:', data);
-                                            getNotes();
+                                            console.log('Note saved successfully:', data.creater);
+                                            var accId = data.creater;
+                                            console.log(accId);
+                                            getNotes(accId);
+                                            closeModal();
+
                                             // Optionally: Do something with the response, like updating UI
                                         })
                                         .catch(error => {
@@ -488,31 +522,29 @@
                                 }
 
 
-                                function getNotes() {
-                                    fetch('/notes', {
-                                            method: 'GET',
-                                        })
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Failed to fetch notes');
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            // Update UI with the received notes
-                                            updateNotesTable(data);
-                                        })
-                                        .catch(error => {
-                                            console.error('Error fetching notes:', error);
-                                            // Optionally: Display an error message to the user
-                                        });
+                                function getNotes(accId) {
+                                    fetch('/notes?accId=' + accId, { // Pass the account ID as a query parameter
+                                        method: 'GET',
+                                    })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Failed to fetch notes');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        // Update UI with the received notes
+                                        updateNotesTable(data);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error fetching notes:', error);
+                                        // Optionally: Display an error message to the user
+                                    });
                                 }
 
 
-                                getNotes();
 
-
-                                closeModal();
+                                // getNotes();
                             </script>
 
                         </div>
