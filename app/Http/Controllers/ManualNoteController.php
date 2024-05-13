@@ -37,4 +37,12 @@ class ManualNoteController extends Controller
     //     }
 
     }
+
+
+    public function index(){
+
+        $notes = ManualNote::all();
+
+        return response()-> json($notes);
+    }
 }

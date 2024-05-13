@@ -189,107 +189,104 @@
                                 <table class="w-full text-sm text-left text-gray-500  border-separate">
 
                                     <!-- Table content for Notes -->
-                                    @if ($account!=null)
+                                    @if ($account != null)
+                                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full ">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Value</th>
 
-                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full ">
-                                        <tr>
-                                            <th>Item</th>
-                                            <th>Value</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Contact Code</td>
-                                            <td>{{ $account->contact_code }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Key</td>
-                                            <td>{{ $account->Key }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Business Unit</td>
-                                            <td>{{ $account->business_unit }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>{{ $account->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Trading as</td>
-                                            <td>{{ $account->trading_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Status</td>
-                                            <td>--</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Type</td>
-                                            <td>{{ $account->typeSelect }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ABN</td>
-                                            <td>{{ $account->abn }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td>{{ $account->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bill Format</td>
-                                            <td>--</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bill Option</td>
-                                            <td>{{ $bill->bill_typess }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bill Cycle</td>
-                                            <td>--</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Credit Cotrol Plan</td>
-                                            <td>--</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Billing Address</td>
-                                            <td>{{ $address->address1 }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Street Address</td>
-                                            <td>{{ $address->address1 }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Work Phone</td>
-                                            <td>{{ $phone->phone_number }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mobile Phone</td>
-                                            <td>{{ $phone->phone_number }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Primary Contact</td>
-                                            <td>{{ $phone->phone_number }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Exclude from late payments</td>
-                                            <td>--</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Exclude from Paper bill</td>
-                                            <td>--</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Usage Alert Email CC Enable</td>
-                                            <td>--</td>
-                                        </tr>
-                                    </tbody>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Contact Code</td>
+                                                <td>{{ $account->contact_code }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Key</td>
+                                                <td>{{ $account->Key }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Business Unit</td>
+                                                <td>{{ $account->business_unit }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>{{ $account->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Trading as</td>
+                                                <td>{{ $account->trading_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status</td>
+                                                <td>--</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Type</td>
+                                                <td>{{ $account->typeSelect }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ABN</td>
+                                                <td>{{ $account->abn }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email</td>
+                                                <td>{{ $account->email }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bill Format</td>
+                                                <td>--</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bill Option</td>
+                                                <td>{{ $bill->bill_typess }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bill Cycle</td>
+                                                <td>--</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Credit Cotrol Plan</td>
+                                                <td>--</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Billing Address</td>
+                                                <td>{{ $address->address1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Street Address</td>
+                                                <td>{{ $address->address1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Work Phone</td>
+                                                <td>{{ $phone->phone_number }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mobile Phone</td>
+                                                <td>{{ $phone->phone_number }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Primary Contact</td>
+                                                <td>{{ $phone->phone_number }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Exclude from late payments</td>
+                                                <td>--</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Exclude from Paper bill</td>
+                                                <td>--</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Usage Alert Email CC Enable</td>
+                                                <td>--</td>
+                                            </tr>
+                                        </tbody>
                                     @elseif(isset($errorMessage))
-                                    <div class="flex justify-center items-center h-full max-h-full my-28">
-                                        <div class="font-bold p-3">{{ $errorMessage }}</div>
-                                    </div>
-
-
+                                        <div class="flex justify-center items-center h-full max-h-full my-28">
+                                            <div class="font-bold p-3">{{ $errorMessage }}</div>
+                                        </div>
                                     @endif
                                 </table>
                             </div>
@@ -357,113 +354,166 @@
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full ">
                                     <tr>
                                         <th>Piroty</th>
+                                        <th>Note</th>
                                         <th>Date Time</th>
                                         <th>Creator</th>
-                                        <th>Note</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody id="notesTableBody">
+                                    {{-- <tr>
                                         <td>Note 1</td>
                                         <td>Value 1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Note 2</td>
-                                        <td>Value 2</td>
-                                    </tr>
+                                        <td>Creator 1</td>
+                                        <td>Creator 1</td>
+                                    </tr> --}}
+
+
                                 </tbody>
                             </table>
 
-<!-- Button to Open the Modal -->
-<button class="flex w-24 h-10 items-center justify-center rounded-lg bg-green-500 text-white mt-5" onclick="openModal()">
-    <h1 class="text-center">Add Note</h1>
-</button>
+                            <script>
+                                function updateNotesTable(notes) {
+                                    const tableBody = document.getElementById('notesTableBody');
+                                    tableBody.innerHTML = '';
+
+                                    notes.forEach(note => {
+                                        const row = document.createElement('tr');
+                                        row.innerHTML = `
+                                     <td></td>
+                                  <td>${note.note}</td>
+
+                                   <td>${note.created_at}</td>
+                                   <td></td>
+                                                    `;
+                                        tableBody.appendChild(row);
+                                    });
+
+                                    document.getElementById('notesTable').classList.remove('hidden');
+                                }
+                            </script>
+
+                            <!-- Button to Open the Modal -->
+                            <button
+                                class="flex w-24 h-10 items-center justify-center rounded-lg bg-green-500 text-white mt-5"
+                                onclick="openModal()">
+                                <h1 class="text-center">Add Note</h1>
+                            </button>
 
 
 
-<!-- The Modal -->
-<div id="noteModal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50" onclick="closeModal(event)">
-    <div class="bg-white p-5 rounded-lg w-1/3" onclick="event.stopPropagation()"> <!-- Prevent click inside from closing modal -->
-        <div class="flex justify-between items-center">
-            <h2 class="text-lg mb-4">Add a Note</h2>
+                            <!-- The Modal -->
+                            <div id="noteModal"
+                                class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50"
+                                onclick="closeModal(event)">
+                                <div class="bg-white p-5 rounded-lg w-1/3" onclick="event.stopPropagation()">
+                                    <!-- Prevent click inside from closing modal -->
+                                    <div class="flex justify-between items-center">
+                                        <h2 class="text-lg mb-4">Add a Note</h2>
 
-                <button  type="submit" onclick="closeModal()" class="text-gray-500 hover:text-gray-800" >
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-
-
-        </div>
-        <!-- Form inside the modal -->
-        <textarea id="noteText" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500" placeholder="Write your note here..." autofocus></textarea>
-
-        <div class="flex justify-end space-x-4 mt-4">
-            <button onclick="saveNote()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
-                Save
-            </button>
-            <button onclick="closeModal()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
-                Cancel
-            </button>
-        </div>
-    </div>
-</div>
-
-<script>
-function openModal() {
-    document.getElementById('noteModal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';  // Disable scrolling on the background
-}
-
-function closeModal(event) {
-    if (!event || event.target === document.getElementById('noteModal')) {
-        document.getElementById('noteModal').classList.add('hidden');
-        document.body.style.overflow = 'auto';  // Re-enable scrolling
-    }
-}
-
-function saveNote() {
-    console.log('Entering saveNote function');
-    var noteText = document.getElementById('noteText').value;
-
-    console.log('Note Saved:', noteText);
+                                        <button type="submit" onclick="closeModal()"
+                                            class="text-gray-500 hover:text-gray-800">
+                                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
 
 
-    fetch('/notestore', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token if using Laravel CSRF protection
-        },
-        body: JSON.stringify({ note: noteText }), // Send note text in JSON format
-    })
-    .then(response => {
-        console.log('Response:' , response);
-        if (!response.ok) {
-            throw new Error('Failed to save note');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Note saved successfully:', data);
-        // Optionally: Do something with the response, like updating UI
-    })
-    .catch(error => {
-        console.error('Error saving note:', error);
-        // Optionally: Display an error message to the user
-    });
-}
+                                    </div>
+                                    <!-- Form inside the modal -->
+                                    <textarea id="noteText"
+                                        class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
+                                        placeholder="Write your note here..." autofocus></textarea>
+
+                                    <div class="flex justify-end space-x-4 mt-4">
+                                        <button onclick="saveNote()"
+                                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                                            Save
+                                        </button>
+                                        <button onclick="closeModal()"
+                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                function openModal() {
+                                    document.getElementById('noteModal').classList.remove('hidden');
+                                    document.body.style.overflow = 'hidden'; // Disable scrolling on the background
+                                }
+
+                                function closeModal(event) {
+                                    if (!event || event.target === document.getElementById('noteModal')) {
+                                        document.getElementById('noteModal').classList.add('hidden');
+                                        document.body.style.overflow = 'auto'; // Re-enable scrolling
+                                    }
+                                }
+
+                                function saveNote() {
+                                    console.log('Entering saveNote function');
+                                    var noteText = document.getElementById('noteText').value;
+
+                                    console.log('Note Saved:', noteText);
 
 
+                                    fetch('/notestore', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token if using Laravel CSRF protection
+                                            },
+                                            body: JSON.stringify({
+                                                note: noteText
+                                            }), // Send note text in JSON format
+                                        })
+                                        .then(response => {
+                                            console.log('Response:', response);
+                                            if (!response.ok) {
+                                                throw new Error('Failed to save note');
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(data => {
+                                            console.log('Note saved successfully:', data);
+                                            getNotes();
+                                            // Optionally: Do something with the response, like updating UI
+                                        })
+                                        .catch(error => {
+                                            console.error('Error saving note:', error);
+                                            // Optionally: Display an error message to the user
+                                        });
+                                }
 
- 
+
+                                function getNotes() {
+                                    fetch('/notes', {
+                                            method: 'GET',
+                                        })
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Failed to fetch notes');
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(data => {
+                                            // Update UI with the received notes
+                                            updateNotesTable(data);
+                                        })
+                                        .catch(error => {
+                                            console.error('Error fetching notes:', error);
+                                            // Optionally: Display an error message to the user
+                                        });
+                                }
 
 
+                                getNotes();
 
 
-closeModal();
-
-</script>
+                                closeModal();
+                            </script>
 
                         </div>
 
