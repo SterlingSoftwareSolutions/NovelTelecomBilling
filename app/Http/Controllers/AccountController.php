@@ -106,10 +106,10 @@ class AccountController extends Controller
                 'country' => $request->countrys[$i],
                 'address_type' => $request->addresstypes[$i],
             ];
-        
+
             $address = Address::create($addressData);
         }
-        
+
 
         // Create the Phone record
         for ($i = 0; $i < count($request->area_codes); $i++) {
@@ -119,21 +119,23 @@ class AccountController extends Controller
                 'phone_number' => $request->phone_numbers[$i],
                 'phone_type' => $request->phone_types[$i],
             ];
-        
+
             $phone = Phone::create($phoneData);
         }
-        
+
 
         // Create the Billing record
-        $billingData  = [
-            'contact_code' => $request->contact_code,
-            'paymentType' => $request->paymentType,
-            'bill_types' => json_encode($request->input('bill_types')), // Modified here
-            // 'provide_paper_bill' => $request->provide_paper_bill,
-            // 'provide_email_bill' => $request->provide_email_bill,
-            // 'provide_excel_bill' => $request->provide_excel_bill,
-        ];
-        $billing = Billing::create($billingData);
+        for ($i = 0; $i < count($request->area_codes); $i++) {
+            $billingData  = [
+                'contact_code' => $request->contact_code,
+                'paymentType' => $request->paymentType,
+                'bill_types' =>$request->bill_types[$i], // Modified here
+                // 'provide_paper_bill' => $request->provide_paper_bill,
+                // 'provide_email_bill' => $request->provide_email_bill,
+                // 'provide_excel_bill' => $request->provide_excel_bill,
+            ];
+            $billing = Billing::create($billingData);
+        }
 
         // Create the Contact record
         $contactData = [
