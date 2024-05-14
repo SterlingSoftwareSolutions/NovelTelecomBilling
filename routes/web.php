@@ -63,3 +63,4 @@ Route::get('/service',[ServiceController::class, 'service_index'])->name('servic
 Route::get('/packages', [PackageController::class, 'getPackages']);
 
 Route::get('/package-option', [PackageController::class, 'getPackageOption']);
+Route::post('/save-account-service', [PackageController::class, 'storeAccountService']);

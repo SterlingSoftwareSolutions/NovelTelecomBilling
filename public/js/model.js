@@ -16,6 +16,8 @@ function togglenew() {
 
             // Create a select element
             var select = document.createElement('select');
+            select.setAttribute('name', 'package_id');
+            select.setAttribute('id', 'package_id');
             select.classList.add('w-full', 'p-2', 'border', 'border-gray-800', 'rounded-lg',
                             'opacity-60');
             // Loop through the dataArray and create an <option> element for each package
@@ -55,8 +57,8 @@ function togglenew() {
 
                         // Create a select element
                         var select = document.createElement('select');
-                        select.setAttribute('name', 'package_option');
-                        select.setAttribute('id', 'package_option');
+                        select.setAttribute('name', 'packageoption_id');
+                        select.setAttribute('id', 'packageoption_id');
                         select.classList.add('w-full', 'p-2', 'border', 'border-gray-800', 'rounded-lg',
                             'opacity-60');
 

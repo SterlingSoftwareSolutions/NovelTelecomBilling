@@ -57,8 +57,8 @@
                                     <ul>
                                         @foreach ($service->serviceoptions as $serviceoption)
                                             <li><a href="#" class="leading-6 pl-9 text-justify open-modal"
-                                                data-target="#formModal"
-                                                data-service="{{ $service->service_name }}">{{ $serviceoption->service_names }}</a>
+                                                    data-target="#formModal"
+                                                    data-service="{{ $service->service_name }}">{{ $serviceoption->service_names }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -138,7 +138,7 @@
     <script>
         function toggleFormVisibility(formId) {
             // Hide all forms
-            var forms = document.querySelectorAll('form > div');
+            var forms = document.querySelectorAll('form > form');
             forms.forEach(function(form) {
                 form.style.display = 'none';
             });
@@ -155,43 +155,44 @@
             toggleFormVisibility('subscribeForm');
         };
     </script>
-
-
+    
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/ui"></script>
+
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
-    const openModalButtons = document.querySelectorAll('.open-modal');
-    const formModal = document.getElementById('formModal');
-    const form = document.getElementById('mainForm');
+        document.addEventListener('DOMContentLoaded', function() {
+            const openModalButtons = document.querySelectorAll('.open-modal');
+            const formModal = document.getElementById('formModal');
+            const form = document.getElementById('mainForm');
 
-    openModalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const modalId = button.dataset.target;
-            const modal = document.querySelector(modalId);
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modalId = button.dataset.target;
+                    const modal = document.querySelector(modalId);
 
-            // Get the service name from the data attribute
-            const serviceName = button.dataset.service;
+                    // Get the service name from the data attribute
+                    const serviceName = button.dataset.service;
 
-            // Pass the service name to the modal or do any other processing
-            // For now, let's update the select option with the service name
-            const typeSelect = modal.querySelector('#typeSelect');
-            const option = document.createElement('option');
-            option.value = serviceName;
-            option.textContent = serviceName;
-            typeSelect.innerHTML = ''; // Clear previous options
-            typeSelect.appendChild(option);
+                    // Pass the service name to the modal or do any other processing
+                    // For now, let's update the select option with the service name
+                    const typeSelect = modal.querySelector('#typeSelect');
+                    const option = document.createElement('option');
+                    option.value = serviceName;
+                    option.textContent = serviceName;
+                    typeSelect.innerHTML = ''; // Clear previous options
+                    typeSelect.appendChild(option);
 
-            modal.classList.remove('hidden');
-            form.action = '#' + modalId.slice(1);
+                    modal.classList.remove('hidden');
+                    form.action = '#' + modalId.slice(1);
+                });
+            });
+
+            formModal.addEventListener('click', (event) => {
+                if (event.target.classList.contains('modal-close') || !event.target.closest(
+                        '.modal-content')) {
+                    formModal.classList.add('hidden');
+                }
+            });
         });
-    });
-
-    formModal.addEventListener('click', (event) => {
-        if (event.target.classList.contains('modal-close') || !event.target.closest('.modal-content')) {
-            formModal.classList.add('hidden');
-        }
-    });
-});
     </script>
 
 

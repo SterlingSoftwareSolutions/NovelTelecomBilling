@@ -11,6 +11,7 @@ use App\Models\Phone;
 use Exception;
 use Illuminate\Http\Request;
 
+
 class AccountController extends Controller
 {
     public function account_index(Request $request)
@@ -160,16 +161,18 @@ class AccountController extends Controller
                 $bill = Billing::getBillDetails($account->contact_code);
                 $contact = Contact::getContactDetails($account->contact_code);
                 $phone = Phone::getPhoneDetails($account->contact_code);
+
                 $notes = ManualNote::getNotesByAccountId($account->id);
-                // dd($notes);
-                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone','notes'));
+              
+                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone','account_number','notes));
+
             } else {
                 $account = null;
-                return view('user.home', compact('account'));
+                return view('user.home', compact('account','account_number'));
             }
         } catch (Exception $e) {
             $account = null;
-            return view('user.home', compact('account'));
+            return view('user.home', compact('account','account_number'));
         }
     }
 }
