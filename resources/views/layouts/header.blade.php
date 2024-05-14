@@ -399,7 +399,7 @@
             const dropdown = document.getElementById(dropdownId);
             const allDropdowns = document.querySelectorAll('.dropdown-content');
 
-            // Close all dropdowns except the one that was clicked
+            // Hide all open dropdowns except the one being clicked
             allDropdowns.forEach((dropdownElement) => {
                 if (dropdownElement.id !== dropdownId && !dropdownElement.classList.contains('hidden')) {
                     dropdownElement.classList.add('hidden');
@@ -408,6 +408,11 @@
 
             // Toggle the visibility of the clicked dropdown
             dropdown.classList.toggle('hidden');
+
+            // Hide the clicked dropdown when mouse leaves
+            dropdown.addEventListener('mouseleave', () => {
+                dropdown.classList.add('hidden');
+            });
         }
     </script>
 
