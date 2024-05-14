@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\Address;
 use App\Models\Billing;
 use App\Models\Contact;
+use App\Models\ManualNote;
 use App\Models\Phone;
 use Exception;
 use Illuminate\Http\Request;
@@ -20,52 +21,52 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-            // dd($request);
+        // dd($request);
         // Validate the incoming request data
-        // $validatedAccountData  = $request->validate([
-        //     'contact_code' => 'required|numeric',
-        //     'typeSelect' => 'required|numeric',
-        //     'key' => 'nullable|numeric',
-        //     'title' => 'nullable|numeric',
-        //     'business_unit' => 'required|string|max:255',
-        //     'name' => 'required|string|max:255',
-        //     'trading_name' => 'nullable|string|max:255',
-        //     'acn' => 'required|string|max:255',
-        //     'abn' => 'required|string|max:255',
-        //     'email' => 'nullable|email|max:255',
-        //     'question' => 'nullable|string|max:255',
-        //     'answer' => 'nullable|string|max:255',
-        //     'initials' => 'nullable|string|max:255',
-        //     'first_name' => 'required|string|max:255',
-        //     'last_name' => 'required|string|max:255',
-        //     'gender' => 'required|string|max:255',
-        //     'date_of_birth' => 'required|date',
-        //     'salutation' => 'nullable|string|max:255',
-        //     'employee_no' => 'nullable|string|max:255',
-        //     'question_2' => 'nullable|string|max:255',
-        //     'answer_2' => 'nullable|string|max:255',
+        $validatedAccountData  = $request->validate([
+            //     'contact_code' => 'required|numeric',
+            //     'typeSelect' => 'required|numeric',
+            //     'key' => 'nullable|numeric',
+            //     'title' => 'nullable|numeric',
+            //     'business_unit' => 'required|string|max:255',
+            //     'name' => 'required|string|max:255',
+            //     'trading_name' => 'nullable|string|max:255',
+            //     'acn' => 'required|string|max:255',
+            //     'abn' => 'required|string|max:255',
+            //     'email' => 'nullable|email|max:255',
+            //     'question' => 'nullable|string|max:255',
+            //     'answer' => 'nullable|string|max:255',
+            //     'initials' => 'nullable|string|max:255',
+            //     'first_name' => 'required|string|max:255',
+            //     'last_name' => 'required|string|max:255',
+            //     'gender' => 'required|string|max:255',
+            //     'date_of_birth' => 'required|date',
+            //     'salutation' => 'nullable|string|max:255',
+            //     'employee_no' => 'nullable|string|max:255',
+            //     'question_2' => 'nullable|string|max:255',
+            //     'answer_2' => 'nullable|string|max:255',
 
-        //     'address1' => 'required|string|max:255',
-        //     'address2' => 'required|string|max:255',
-        //     'post_code' => 'required|numeric|max:255',
-        //     'suburb' => 'required|string|max:255',
-        //     'state' => 'required|string|max:255',
-        //     'country' => 'required|string|max:255',
-        //     'address_type' => 'required|string|max:255',
+            //     'address1' => 'required|string|max:255',
+            //     'address2' => 'required|string|max:255',
+            //     'post_code' => 'required|numeric|max:255',
+            //     'suburb' => 'required|string|max:255',
+            //     'state' => 'required|string|max:255',
+            //     'country' => 'required|string|max:255',
+            //     'address_type' => 'required|string|max:255',
 
-        //     'area_code' => 'required|string|max:255',
-        //     'phone_number' => 'required|string|max:255',
-        //     'phone_type' => 'required|string|max:255',
+            //     'area_code' => 'required|string|max:255',
+            //     'phone_number' => 'required|string|max:255',
+            //     'phone_type' => 'required|string|max:255',
 
-        //     'paymentType' => 'nullable|string|max:255',
-        //     'provide_paper_bill' => 'required|string|max:255',
-        //     'provide_email_bill' => 'required|string|max:255',
-        //     'provide_excel_bill' => 'required|string|max:255',
+            //     'paymentType' => 'nullable|string|max:255',
+            //     'provide_paper_bill' => 'required|string|max:255',
+            //     'provide_email_bill' => 'required|string|max:255',
+            //     'provide_excel_bill' => 'required|string|max:255',
 
-        //     'contact_code2' => 'required|string|max:255',
-        //     'contact_type' => 'required|string|max:255',
-        //     'name1' => 'required|string|max:255',
-        // ]);
+            //     'contact_code2' => 'required|string|max:255',
+            //     'contact_type' => 'required|string|max:255',
+            //     'name1' => 'required|string|max:255',
+        ]);
 
         // Create the Account record
         $accountData = [
@@ -144,16 +145,27 @@ class AccountController extends Controller
     {
         try {
             $account_number = $request->search;
+
+            // Check if there is an existing 'account_number' session variable and clear it
+            if (session()->has('account_number')) {
+                session()->forget('account_number');
+            }
+
+            // Set the new account number in the session
+            session(['account_number' => $account_number]);
+
             $account = Account::where('contact_code', $account_number)->first();
 
             if ($account) {
                 $address = Address::getAddressDetails($account->contact_code);
                 $bill = Billing::getBillDetails($account->contact_code);
-                // dd($bill->bill_types);
                 $contact = Contact::getContactDetails($account->contact_code);
                 $phone = Phone::getPhoneDetails($account->contact_code);
-                // dd ($address);
-                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone','account_number'));
+
+                $notes = ManualNote::getNotesByAccountId($account->id);
+              
+                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone','account_number','notes));
+
             } else {
                 $account = null;
                 return view('user.home', compact('account','account_number'));
