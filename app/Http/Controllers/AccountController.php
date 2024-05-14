@@ -163,8 +163,8 @@ class AccountController extends Controller
                 $phone = Phone::getPhoneDetails($account->contact_code);
 
                 $notes = ManualNote::getNotesByAccountId($account->id);
-              
-                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone','account_number','notes));
+
+                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone','account_number','notes'));
 
             } else {
                 $account = null;
