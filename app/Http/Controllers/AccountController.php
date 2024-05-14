@@ -6,11 +6,10 @@ use App\Models\Account;
 use App\Models\Address;
 use App\Models\Billing;
 use App\Models\Contact;
-use App\Models\Note;
 use App\Models\Phone;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 class AccountController extends Controller
 {
@@ -21,6 +20,7 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
+            // dd($request);
         // Validate the incoming request data
         // $validatedAccountData  = $request->validate([
         //     'contact_code' => 'required|numeric',
@@ -68,84 +68,76 @@ class AccountController extends Controller
         // ]);
 
         // Create the Account record
-        try{
-            $accountData = [
-                'id' => $request->contact_code,
-                'typeSelect' => $request->typeSelect,
-                'key' => $request->key,
-                'title' => $request->title,
-                'business_unit' => 'Novel Telecom',
-                'name' => $request->name,
-                'trading_name' => $request->trading_name,
-                'acn' => $request->acn,
-                'abn' => $request->abn,
-                'email' => $request->email,
-                'question' => $request->question,
-                'answer' => $request->answer,
-                'initials' => $request->initials,
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'gender' => $request->gender,
-                'date_of_birth' => $request->date_of_birth,
-                'salutation' => $request->salutation,
-                'employee_no' => $request->employee_no,
-                'question_2' => $request->question_2,
-                'answer_2' => $request->answer_2,
-            ];
-            $account = Account::create($accountData);
-    
-            // Create the Address record
-            $addressData  = [
-                'contact_code' => $request->contact_code,
-                'address1' => $request->address1,
-                'address2' => $request->address2,
-                'post_code' => $request->post_code,
-                'suburb' => $request->suburb,
-                'state' => $request->state,
-                'country' => $request->country,
-                'address_type' => json_encode($request->input('addresstype')),
-    
-            ];
-            $address = Address::create($addressData);
-    
-            // Create the Phone record
-            $phoneData  = [
-                'contact_code' => $request->contact_code,
-                'area_code' => $request->area_code,
-                'phone_number' => $request->phone_number,
-                'name1' => $request->name1,
-            ];
-            $phone = Phone::create($phoneData);
-    
-            // Create the Billing record
-            $billingData  = [
-                'contact_code' => $request->contact_code,
-                'paymentType' => $request->paymentType,
-                'bill_types' => json_encode($request->input('bill_types')), // Modified here
-                // 'provide_paper_bill' => $request->provide_paper_bill,
-                // 'provide_email_bill' => $request->provide_email_bill,
-                // 'provide_excel_bill' => $request->provide_excel_bill,
-            ];
-            $billing = Billing::create($billingData);
-    
-            // Create the Contact record
-            $contactData = [
-                'contact_code' => $request->contact_code,
-                'contact_code2' => $request->contact_code2,
-                'contact_type' => $request->contact_type,
-                'contact_code2' => $request->contact_code2,
-            ];
-            $contact = Contact::create($contactData);
-    
-            // Redirect the user after successful creation
-            $content = "new user add function";
-    
-            Note::setNote($content);
-            return view('account.newAccount')->with('success', 'Account created successfully!');
-        }catch(Exception $e){
-            return view('account.newAccount')->with('error', 'Failed to create note: ' . $e->getMessage());
-        }
+        $accountData = [
+            'contact_code' => $request->contact_code,
+            'typeSelect' => $request->typeSelect,
+            'key' => $request->key,
+            'title' => $request->title,
+            'business_unit' => 'Novel Telecom',
+            'name' => $request->name,
+            'trading_name' => $request->trading_name,
+            'acn' => $request->acn,
+            'abn' => $request->abn,
+            'email' => $request->email,
+            'question' => $request->question,
+            'answer' => $request->answer,
+            'initials' => $request->initials,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'gender' => $request->gender,
+            'date_of_birth' => $request->date_of_birth,
+            'salutation' => $request->salutation,
+            'employee_no' => $request->employee_no,
+            'question_2' => $request->question_2,
+            'answer_2' => $request->answer_2,
+        ];
+        $account = Account::create($accountData);
 
+        // Create the Address record
+        $addressData  = [
+            'contact_code' => $request->contact_code,
+            'address1' => $request->address1,
+            'address2' => $request->address2,
+            'post_code' => $request->post_code,
+            'suburb' => $request->suburb,
+            'state' => $request->state,
+            'country' => $request->country,
+            'address_type' => json_encode($request->input('addresstype')),
+
+        ];
+        $address = Address::create($addressData);
+
+        // Create the Phone record
+        $phoneData  = [
+            'contact_code' => $request->contact_code,
+            'area_code' => $request->area_code,
+            'phone_number' => $request->phone_number,
+            'name1' => $request->name1,
+        ];
+        $phone = Phone::create($phoneData);
+
+        // Create the Billing record
+        $billingData  = [
+            'contact_code' => $request->contact_code,
+            'paymentType' => $request->paymentType,
+            'bill_types' => json_encode($request->input('bill_types')), // Modified here
+            // 'provide_paper_bill' => $request->provide_paper_bill,
+            // 'provide_email_bill' => $request->provide_email_bill,
+            // 'provide_excel_bill' => $request->provide_excel_bill,
+        ];
+        $billing = Billing::create($billingData);
+
+        // Create the Contact record
+        $contactData = [
+            'contact_code' => $request->contact_code,
+            'contact_code2' => $request->contact_code2,
+            'contact_type' => $request->contact_type,
+            'contact_code2' => $request->contact_code2,
+        ];
+        $contact = Contact::create($contactData);
+
+        // Redirect the user after successful creation
+        return view('account.newAccount')->with('success', 'Account created successfully!');
     }
 
     public function search(Request $request)
@@ -161,18 +153,14 @@ class AccountController extends Controller
                 $contact = Contact::getContactDetails($account->contact_code);
                 $phone = Phone::getPhoneDetails($account->contact_code);
                 // dd ($address);
-                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone'));
+                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone','account_number'));
             } else {
                 $account = null;
-                $errorMessage = 'Account not found';
-                return view('user.home', compact('account','errorMessage'));
+                return view('user.home', compact('account','account_number'));
             }
         } catch (Exception $e) {
             $account = null;
-            $errorMessage = $e->getMessage();
-            return view('user.home', compact('account','errorMessage'));
+            return view('user.home', compact('account','account_number'));
         }
-
-
     }
 }

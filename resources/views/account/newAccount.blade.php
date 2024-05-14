@@ -20,10 +20,10 @@
     @include('layouts.layout')
 
     <div class=" flex justify-center items-center h-screen">
-        <section class="dark:bg-gray-900 w-[1000px]  ">
+        <section class=" w-[1000px]  ">
             <div class="border">
                 <!-- Start coding here -->
-                <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg  h-full  overflow-y-auto">
+                <div class="bg-white  relative shadow-md sm:rounded-lg  h-full  overflow-y-auto">
                     <div
                         class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 mt-2">
 
@@ -341,11 +341,11 @@
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Identification</label>
                                 <table
-                                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
+                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
                                     <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Event Description</th>
                                             <th>Event Date</th>
@@ -496,19 +496,19 @@
 
                             // Attach event listener to the Next button
                             document.getElementById("nextButton").addEventListener("click", function() {
-                            // When Next button is clicked, validate the form and toggle tabs
-                            if (validateForm()) {
-                                toggleTabs(); // Enable/disable tabs based on form validity
+                                // When Next button is clicked, validate the form and toggle tabs
+                                if (validateForm()) {
+                                    toggleTabs(); // Enable/disable tabs based on form validity
 
-                                // Move to the next tab programmatically (if needed)
-                                // For example:
-                                toggleFormVisibility('addressForm'); // Show the next tab (Address)
+                                    // Move to the next tab programmatically (if needed)
+                                    // For example:
+                                    toggleFormVisibility('addressForm'); // Show the next tab (Address)
 
-                                // Add style to the "Address" button
-                                document.getElementById("addressButton").classList.add("selected");
-                                document.getElementById("subscribesButton").classList.remove("selected");
-                            }
-                        });
+                                    // Add style to the "Address" button
+                                    document.getElementById("addressButton").classList.add("selected");
+                                    document.getElementById("subscribesButton").classList.remove("selected");
+                                }
+                            });
                         </script>
 
 
@@ -571,54 +571,54 @@
                                     <span id="addressTypeError" class="text-red-500 hidden">Please select an Address
                                         Type.</span>
                                     <ul
-                                        class="w-48 text-sm font-medium text-gray-900 bg-white  dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        class="w-48 text-sm font-medium text-gray-900 bg-white     w- p-2 border border-gray-800 rounded-lg">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="vue-checkbox" type="checkbox" value="Billing Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="vue-checkbox" id="vue"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Billing
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Billing
                                                     Address</label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="react-checkbox" type="checkbox" value="Delivery Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="react-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delivery
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Delivery
                                                     Address</label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="angular-checkbox" type="checkbox" value="IPND Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="angular-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">IPND
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">IPND
                                                     Address</label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="laravel-checkbox" type="checkbox" value="Service Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="laravel-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Service
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Service
                                                     Address</label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="laravel-checkbox" type="checkbox" value="Street Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="laravel-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Street
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Street
                                                     Address</label>
                                             </div>
                                         </li>
@@ -648,11 +648,11 @@
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Addresses Entered</label>
                                 <table
-                                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
+                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
                                     <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Type</th>
                                             <th>Address</th>
@@ -795,8 +795,8 @@
                                     // For example:
                                     toggleFormVisibility('phonesForm'); // Show the next tab
 
-                                document.getElementById("phonesButton").classList.add("selected");
-                                document.getElementById("addressButton").classList.remove("selected");
+                                    document.getElementById("phonesButton").classList.add("selected");
+                                    document.getElementById("addressButton").classList.remove("selected");
                                 }
                             });
 
@@ -829,7 +829,7 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Area Code</label>
-                                    <input type="text" name="area_code" oninput="validateNumericInput(this)"
+                                    <input type="text" name="area_code"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="area_code_error" class="text-red-500 hidden">Please Enter Area
                                         Code</span>
@@ -837,7 +837,7 @@
                                 </div>
                                 <div class="w-7/12">
                                     <label for="">Phone Number</label>
-                                    <input type="text" name="phone_number" oninput="validateNumericInput(this)"
+                                    <input type="text" name="phone_number"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="phone_number_error" class="text-red-500 hidden">Please Enter Phone
                                         Number</span>
@@ -848,54 +848,54 @@
                                 <div class="w-11/12">
                                     <label for="">Phone Type</label>
                                     <ul
-                                        class="w-48 text-sm font-medium text-gray-900 bg-white  dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        class="w-48 text-sm font-medium text-gray-900 bg-white     w- p-2 border border-gray-800 rounded-lg">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value=""
+                                                <input id="vue-checkbox" type="checkbox" value="home-phone"
                                                     name="phone_type"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="phone-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="vue-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Home
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Home
                                                     Phone
                                                 </label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                <input id="react-checkbox" type="checkbox" value="mobile-phone"
+                                                    class="phone-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="react-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mobile
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Mobile
                                                     Phone
                                                 </label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                <input id="angular-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                <input id="angular-checkbox" type="checkbox" value="primary-phone"
+                                                    class="phone-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="angular-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Primary
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Primary
                                                     Fax
                                                 </label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                <input id="laravel-checkbox" type="checkbox" value="work-phone"
+                                                    class="phone-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="laravel-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Work
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Work
                                                     Phone
                                                 </label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                <input id="laravel-checkbox" type="checkbox" value="street-address"
+                                                    class="phone-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="laravel-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Street
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Street
                                                     Address</label>
                                             </div>
                                         </li>
@@ -906,11 +906,11 @@
 
                                 <div class="w-7/12 mt-48">
                                     <div class=" flex col-2">
-                                        <button type="button"
+                                        <button type="button" onclick="addPhoneNumber()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add</span>
                                         </button>
-                                        <button type="button"
+                                        <button type="button" onclick="clearFields()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Clear</span>
                                         </button>
@@ -918,30 +918,93 @@
                                 </div>
 
                             </div>
-
+                            <script>
+                                function addPhoneNumber() {
+                                    const areaCode = document.querySelector('input[name="area_code"]').value;
+                                    const phoneNumber = document.querySelector('input[name="phone_number"]').value;
+                                    const selectedPhoneTypes = document.querySelectorAll('.phone-type-checkbox:checked');
+                            
+                                    if (!areaCode || !phoneNumber || selectedPhoneTypes.length === 0) {
+                                        alert('Please enter all required fields and select at least one phone type.');
+                                        return;
+                                    }
+                            
+                                    const data = Array.from(selectedPhoneTypes).map(checkbox => [areaCode, phoneNumber, checkbox.value]);
+                            
+                                    const tbody = document.getElementById('table-body');
+                            
+                                    // Check if any of the selected phone types already exist in the table
+                                    const existingPhoneTypes = Array.from(tbody.querySelectorAll('input[name="phone_types[]"]')).map(input => input.value);
+                                    const selectedPhoneTypeValues = Array.from(selectedPhoneTypes).map(checkbox => checkbox.value);
+                                    const duplicates = selectedPhoneTypeValues.filter(value => existingPhoneTypes.includes(value));
+                            
+                                    if (duplicates.length > 0) {
+                                        alert('One or more selected phone types already exist in the table. Please remove them before adding new ones.');
+                                        return;
+                                    }
+                            
+                                    const existingData = [];
+                                    const existingRows = tbody.querySelectorAll('tr');
+                                    existingRows.forEach(row => {
+                                        const rowData = [];
+                                        const cells = row.querySelectorAll('td input');
+                                        cells.forEach(cell => {
+                                            rowData.push(cell.value);
+                                        });
+                                        existingData.push(rowData);
+                                    });
+                            
+                                    const newData = existingData.concat(Array.from(selectedPhoneTypes).map(checkbox => [areaCode, phoneNumber, checkbox.value]));
+                            
+                                    tbody.innerHTML = ''; // Clear existing rows
+                            
+                                    newData.forEach(arr => {
+                                        const tr = document.createElement('tr');
+                                        arr.forEach((val, index) => {
+                                            const td = document.createElement('td');
+                                            const input = document.createElement('input');
+                                            input.setAttribute('type', 'text');
+                                            input.setAttribute('value', val);
+                                            input.setAttribute('readonly', 'readonly');
+                                            input.setAttribute('name',
+                                                `${index === 0 ? 'area_codes' : index === 1 ? 'phone_numbers' : 'phone_types'}[]`
+                                            );
+                                            td.appendChild(input);
+                                            tr.appendChild(td);
+                                        });
+                                        tbody.appendChild(tr);
+                                    });
+                                    console.log(newData);
+                                }
+                                function deletePhoneNumber() {
+                                    const tbody = document.getElementById('table-body');
+                                    const rows = tbody.querySelectorAll('tr');
+                                    if (rows.length > 0) {
+                                        tbody.removeChild(rows[rows.length - 1]);
+                                    }
+                                }
+                                function clearFields() {
+                                    document.querySelector('input[name="area_code"]').value = '';
+                                    document.querySelector('input[name="phone_number"]').value = '';
+                                    document.querySelectorAll('.phone-type-checkbox:checked').forEach(checkbox => checkbox.checked = false);
+                                }
+                            </script>
+                            
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Phone Entered</label>
                                 <table
-                                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
+                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
                                     <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
-                                            <th>Type</th>
+                                            <th>Area code</th>
                                             <th>Phone</th>
-
-
+                                            <th>Phone Type</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Credit Card</td>
-                                        </tr>
-
-
-
-                                    </tbody>
+                                    <tbody id="table-body"></tbody>
                                 </table>
                                 <div class="w-7/12 ">
                                     <div class=" flex col-2">
@@ -949,7 +1012,7 @@
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">History</span>
                                         </button>
-                                        <button type="button"
+                                        <button type="button" onclick="deletePhoneNumber() "
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Delete</span>
                                         </button>
@@ -966,28 +1029,33 @@
                         <script>
                             // Function to validate the current form
                             function validateContactForms() {
-                                var isValid = true;
+                                var isValid = false;
 
-                                // Perform validation for each field
-                                var areaCode = document.getElementsByName("area_code")[0].value;
-                                if (!areaCode) {
-                                    document.getElementById("area_code_error").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("area_code_error").classList.add("hidden");
+                                // // Perform validation for each field
+                                // var areaCode = document.getElementsByName("area_code")[0].value;
+                                // if (!areaCode) {
+                                //     document.getElementById("area_code_error").classList.remove("hidden");
+                                //     isValid = false;
+                                // } else {
+                                //     document.getElementById("area_code_error").classList.add("hidden");
+                                // }
+
+                                // var phoneNumber = document.getElementsByName("phone_number")[0].value;
+                                // if (!phoneNumber) {
+                                //     document.getElementById("phone_number_error").classList.remove("hidden");
+                                //     isValid = false;
+                                // } else {
+                                //     document.getElementById("phone_number_error").classList.add("hidden");
+                                // }
+
+                                const tbody = document.getElementById('table-body');
+                                const rows = tbody.querySelectorAll('tr');
+                                if (rows.length > 0) {
+                                    var isValid = true;
                                 }
-
-                                var phoneNumber = document.getElementsByName("phone_number")[0].value;
-                                if (!phoneNumber) {
-                                    document.getElementById("phone_number_error").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("phone_number_error").classList.add("hidden");
+                                else{
+                                    alert('Pleass add phone details')
                                 }
-
-
-
-
                                 return isValid;
                             }
 
@@ -1020,8 +1088,8 @@
                                     // For example:
                                     toggleFormVisibility('billingForm'); // Show the next tab
 
-                                document.getElementById("billingButton").classList.add("selected");
-                                document.getElementById("phonesButton").classList.remove("selected");
+                                    document.getElementById("billingButton").classList.add("selected");
+                                    document.getElementById("phonesButton").classList.remove("selected");
                                 }
                             });
                         </script>
@@ -1061,9 +1129,9 @@
                                                 <div class="w-7/12">
                                                     <div class="flex items-center ps-3">
                                                         <input id="vue-checkbox" type="checkbox" value=""
-                                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                         <label for="vue-checkbox"
-                                                            class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subscribes
+                                                            class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Subscribes
                                                         </label>
                                                     </div>
                                                 </div>
@@ -1094,23 +1162,23 @@
                                 <div class="w-7/12">
                                     <label for="">Account Payment Method</label>
                                     <ul
-                                        class="w-48 h-44 text-sm font-medium text-gray-900 bg-white  dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        class="w-48 h-44 text-sm font-medium text-gray-900 bg-white     w- p-2 border border-gray-800 rounded-lg">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="vue-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="vue-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Use
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Use
                                                     as Default Method
                                                 </label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="react-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="react-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delivery
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Delivery
                                                     Address</label>
                                             </div>
                                         </li>
@@ -1140,23 +1208,23 @@
                                 <div class="w-7/12 ">
                                     <label for="">Protection</label>
                                     <ul
-                                        class="w-48 h-44 text-sm font-medium text-gray-900 bg-white  dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        class="w-48 h-44 text-sm font-medium text-gray-900 bg-white     w- p-2 border border-gray-800 rounded-lg">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="vue-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="vue-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Protect
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Protect
                                                     Payment Method
                                                 </label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="react-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="react-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mark
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Mark
                                                     as Eported
                                                 </label>
                                             </div>
@@ -1224,34 +1292,34 @@
                                 <span id="billTypeError" class="text-red-500 hidden">Please select a Bill</span>
 
                                 <ul
-                                    class="w-48 h-44 text-sm font-medium text-gray-900 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
-                                    <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                    class="w-48 h-44 text-sm font-medium text-gray-900 bg-white    w- p-2 border border-gray-800 rounded-lg">
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                         <div class="flex items-center ps-3">
                                             <input id="paper-bill-checkbox" type="checkbox" value="Paper Bill"
                                                 name="bill_types[]"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                             <label for="paper-bill-checkbox"
-                                                class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
+                                                class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Provide
                                                 Paper Bill</label>
                                         </div>
                                     </li>
-                                    <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                         <div class="flex items-center ps-3">
                                             <input id="email-bill-checkbox" type="checkbox" value="Email Bill"
                                                 name="bill_types[]"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                             <label for="email-bill-checkbox"
-                                                class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
+                                                class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Provide
                                                 Email Bill</label>
                                         </div>
                                     </li>
-                                    <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                         <div class="flex items-center ps-3">
                                             <input id="excel-bill-checkbox" type="checkbox" value="Excel Bill"
                                                 name="bill_types[]"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                             <label for="excel-bill-checkbox"
-                                                class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide
+                                                class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Provide
                                                 Excel Bill</label>
                                         </div>
                                     </li>
@@ -1320,7 +1388,7 @@
                                     toggleFormVisibility('contactForm');
 
                                     document.getElementById("contactButton").classList.add("selected");
-                                document.getElementById("billingButton").classList.remove("selected");
+                                    document.getElementById("billingButton").classList.remove("selected");
                                 }
                             });
                         </script>
@@ -1377,23 +1445,23 @@
                                 <div class="w-11/12 m-5">
                                     <label for="">Contact Usage</label>
                                     <ul
-                                        class="w-48 text-xl font-medium text-gray-900 bg-white  dark:bg-gray-700 dark:border-gray-600 dark:text-white w- p-2 border border-gray-800 rounded-lg">
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        class="w-48 text-xl font-medium text-gray-900 bg-white     w- p-2 border border-gray-800 rounded-lg">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="vue-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="vue-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Authorised
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Authorised
                                                     Representative
                                                 </label>
                                             </div>
                                         </li>
-                                        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
                                                 <input id="react-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="react-checkbox"
-                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Connection
+                                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Connection
                                                     User
                                                 </label>
                                             </div>
@@ -1421,11 +1489,11 @@
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Phone Entered</label>
                                 <table
-                                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
+                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
                                     <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Type</th>
                                             <th>Contact</th>
@@ -1478,14 +1546,13 @@
                                 SaveButtonDisable()
 
                                 var SaveBtn = document.getElementById("save_button");
-                                    if(validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()){
-                                        SaveBtn.disabled = false;
-                                        console.log("SaveBtn.disabled = false");
-                                    }
-                                    else{
-                                        SaveBtn.disabled = true;
-                                        console.log("SaveBtn.disabled = true");
-                                    }
+                                if (validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()) {
+                                    SaveBtn.disabled = false;
+                                    console.log("SaveBtn.disabled = false");
+                                } else {
+                                    SaveBtn.disabled = true;
+                                    console.log("SaveBtn.disabled = true");
+                                }
                             }
 
                             // Attach an event listener to the Next button on the billing page
@@ -1503,11 +1570,11 @@
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Additinol information</label>
                                 <table
-                                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
+                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
                                     <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Name</th>
                                             <th>Value</th>
@@ -1572,11 +1639,11 @@
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Additinol information</label>
                                 <table
-                                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
+                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
                                     <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Name</th>
                                             <th>Value</th>
@@ -1596,21 +1663,21 @@
 
                             </div>
                             <button type="submit" id="save_button"
-                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5" disabled>
+                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5"
+                                disabled>
                                 <span class="mx-auto border-1 bg-green-">Save</span>
                             </button>
                         </div>
                         <script>
-                            function SaveButtonDisable(){
+                            function SaveButtonDisable() {
                                 var SaveBtn = document.getElementById("save_button");
-                                    if(validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()){
-                                        SaveBtn.disabled = false;
-                                        console.log("SaveBtn.disabled = false");
-                                    }
-                                    else{
-                                        SaveBtn.disabled = true;
-                                        console.log("SaveBtn.disabled = true");
-                                    }
+                                if (validateForm() && validateAddressForms() && validateBillingForm() && validateContactForms()) {
+                                    SaveBtn.disabled = false;
+                                    console.log("SaveBtn.disabled = false");
+                                } else {
+                                    SaveBtn.disabled = true;
+                                    console.log("SaveBtn.disabled = true");
+                                }
                             }
                         </script>
                     </form>
@@ -1633,9 +1700,9 @@
                 }
 
                 var buttons = document.querySelectorAll('.tab-button');
-                buttons.forEach(function (button) {
-                    button.addEventListener('click', function () {
-                        buttons.forEach(function (btn) {
+                buttons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        buttons.forEach(function(btn) {
                             btn.classList.remove('selected');
                         });
                         this.classList.add('selected');
@@ -1733,7 +1800,7 @@
                 const chequeFields = document.getElementById("chequeFields");
                 const creditCardFields = document.getElementById("creditCardFields");
                 const SaveBtn = document.getElementById("save_button");
-                 SaveBtn.disabled = true;
+                SaveBtn.disabled = true;
 
                 paymentTypeSelect.addEventListener("change", function() {
                     const selectedPaymentType = paymentTypeSelect.value;
