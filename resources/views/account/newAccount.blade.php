@@ -698,7 +698,7 @@
                                             input.setAttribute('value', val);
                                             input.setAttribute('readonly', 'readonly');
                                             input.setAttribute('name',
-                                                `${index === 0 ? 'address1' : index === 1 ? 'address2' : index === 2 ? 'post_code' : index === 3 ? 'suburb' : index === 4 ? 'state' : index === 5 ? 'country' : 'addresstype'}[]`
+                                                `${index === 0 ? 'address1s' : index === 1 ? 'address2s' : index === 2 ? 'post_codes' : index === 3 ? 'suburbs' : index === 4 ? 'states' : index === 5 ? 'countrys' : 'addresstypes'}[]`
                                             );
                                             td.appendChild(input);
                                             tr.appendChild(td);

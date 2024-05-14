@@ -95,27 +95,34 @@ class AccountController extends Controller
         $account = Account::create($accountData);
 
         // Create the Address record
-        $addressData  = [
-            'contact_code' => $request->contact_code,
-            'address1' => $request->address1,
-            'address2' => $request->address2,
-            'post_code' => $request->post_code,
-            'suburb' => $request->suburb,
-            'state' => $request->state,
-            'country' => $request->country,
-            'address_type' => json_encode($request->input('addresstype')),
-
-        ];
-        $address = Address::create($addressData);
+        for ($i = 0; $i < count($request->address2s); $i++) {
+            $addressData = [
+                'contact_code' => $request->contact_code,
+                'address1' => $request->address1s[$i],
+                'address2' => $request->address2s[$i],
+                'post_code' => $request->post_codes[$i],
+                'suburb' => $request->suburbs[$i],
+                'state' => $request->states[$i],
+                'country' => $request->countrys[$i],
+                'address_type' => $request->addresstypes[$i],
+            ];
+        
+            $address = Address::create($addressData);
+        }
+        
 
         // Create the Phone record
-        $phoneData  = [
-            'contact_code' => $request->contact_code,
-            'area_code' => $request->area_code,
-            'phone_number' => $request->phone_number,
-            'name1' => $request->name1,
-        ];
-        $phone = Phone::create($phoneData);
+        for ($i = 0; $i < count($request->area_codes); $i++) {
+            $phoneData = [
+                'contact_code' => $request->contact_code,
+                'area_code' => $request->area_codes[$i],
+                'phone_number' => $request->phone_numbers[$i],
+                'phone_type' => $request->phone_types[$i],
+            ];
+        
+            $phone = Phone::create($phoneData);
+        }
+        
 
         // Create the Billing record
         $billingData  = [
