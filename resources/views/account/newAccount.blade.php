@@ -340,12 +340,10 @@
                             </div>
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Identification</label>
-                                <table
-                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
+                                <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Event Description</th>
                                             <th>Event Date</th>
@@ -535,7 +533,7 @@
                             <div class="flex flex-row gap-4 md:gap-8 m-5">
                                 <div class="w-7/12">
                                     <label for="">Post Code</label>
-                                    <input type="text" name="post_code" oninput="validateNumericInput(this)"
+                                    <input type="text" name="post_code"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <span id="postCodeError" class="text-red-500 hidden">Please enter Post
                                         Code.</span>
@@ -576,7 +574,7 @@
                                             <div class="flex items-center ps-3">
                                                 <input id="vue-checkbox" type="checkbox" value="Billing Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
+                                                    class="address-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="vue-checkbox" id="vue"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Billing
                                                     Address</label>
@@ -586,7 +584,7 @@
                                             <div class="flex items-center ps-3">
                                                 <input id="react-checkbox" type="checkbox" value="Delivery Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
+                                                    class="address-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="react-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Delivery
                                                     Address</label>
@@ -596,7 +594,7 @@
                                             <div class="flex items-center ps-3">
                                                 <input id="angular-checkbox" type="checkbox" value="IPND Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
+                                                    class="address-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="angular-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">IPND
                                                     Address</label>
@@ -606,7 +604,7 @@
                                             <div class="flex items-center ps-3">
                                                 <input id="laravel-checkbox" type="checkbox" value="Service Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
+                                                    class="address-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="laravel-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Service
                                                     Address</label>
@@ -616,7 +614,7 @@
                                             <div class="flex items-center ps-3">
                                                 <input id="laravel-checkbox" type="checkbox" value="Street Address"
                                                     name="addresstype[]"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
+                                                    class="address-type-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="laravel-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Street
                                                     Address</label>
@@ -629,11 +627,11 @@
 
                                 <div class="w-7/12 mt-48">
                                     <div class=" flex col-2">
-                                        <button type="button"
+                                        <button type="button" onclick="addAddress()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add</span>
                                         </button>
-                                        <button type="button"
+                                        <button type="button" onclick="clearAddressFields()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Clear</span>
                                         </button>
@@ -641,27 +639,113 @@
                                 </div>
 
                             </div>
+                            <script>
+                                function addAddress() {
+                                    // console.log('hello');
+                                    const address1 = document.querySelector('input[name="address1"]').value;
+                                    const address2 = document.querySelector('input[name="address2"]').value;
+                                    const postcode = document.querySelector('input[name="post_code"]').value;
+                                    const suburb = document.querySelector('input[name="suburb"]').value;
+                                    const state = document.querySelector('input[name="state"]').value;
+                                    const country = document.querySelector('input[name="country"]').value;
+                                    const selectAddressType = document.querySelectorAll('.address-type-checkbox:checked');
 
+
+                                    if (!address1 || !address2 || !postcode || !suburb || !state || !country || selectAddressType.length === 0) {
+                                        alert('Please enter all required fields and select at least one address type.');
+                                        return;
+                                    }
+                                    const data = Array.from(selectAddressType).map(checkbox => [address1, address2, postcode, suburb, state,
+                                        country, checkbox.value
+                                    ]);
+                                    console.log(data);
+                                    const tbody = document.getElementById('address-body');
+
+                                    // Check if any of the selected address types already exist in the table
+                                    const existingAddressTypes = Array.from(tbody.querySelectorAll('input[name="addresstype[]"]')).map(input =>
+                                        input.value);
+                                    const selectedAddressTypeValues = Array.from(selectAddressType).map(checkbox => checkbox.value);
+                                    const duplicates = selectedAddressTypeValues.filter(value => existingAddressTypes.includes(value));
+
+                                    if (duplicates.length > 0) {
+                                        alert(
+                                            'One or more selected address types already exist in the table. Please remove them before adding new ones.'
+                                            );
+                                        return;
+                                    }
+
+                                    const existingData = [];
+                                    const existingRows = tbody.querySelectorAll('tr');
+                                    existingRows.forEach(row => {
+                                        const rowData = [];
+                                        const cells = row.querySelectorAll('td input');
+                                        cells.forEach(cell => {
+                                            rowData.push(cell.value);
+                                        });
+                                        existingData.push(rowData);
+                                    });
+
+                                    const newData = existingData.concat(data);
+
+                                    tbody.innerHTML = ''; // Clear existing rows
+
+                                    newData.forEach(arr => {
+                                        const tr = document.createElement('tr');
+                                        arr.forEach((val, index) => {
+                                            const td = document.createElement('td');
+                                            const input = document.createElement('input');
+                                            input.setAttribute('type', 'text');
+                                            input.setAttribute('value', val);
+                                            input.setAttribute('readonly', 'readonly');
+                                            input.setAttribute('name',
+                                                `${index === 0 ? 'address1' : index === 1 ? 'address2' : index === 2 ? 'post_code' : index === 3 ? 'suburb' : index === 4 ? 'state' : index === 5 ? 'country' : 'addresstype'}[]`
+                                            );
+                                            td.appendChild(input);
+                                            tr.appendChild(td);
+                                        });
+                                        tbody.appendChild(tr);
+                                    });
+                                    console.log(newData);
+                                }
+
+                                function deleteAddress() {
+                                    const tbody = document.getElementById('address-body');
+                                    const rows = tbody.querySelectorAll('tr');
+                                    if (rows.length > 0) {
+                                        tbody.removeChild(rows[rows.length - 1]);
+                                    }
+                                }
+
+                                function clearAddressFields() {
+                                    document.querySelector('input[name="address1"]').value = '';
+                                    document.querySelector('input[name="address2"]').value = '';
+                                    document.querySelector('input[name="post_code"]').value = '';
+                                    document.querySelector('input[name="suburb"]').value = '';
+                                    document.querySelector('input[name="state"]').value = '';
+                                    document.querySelector('input[name="country"]').value = '';
+                                    document.querySelectorAll('.address-type-checkbox:checked').forEach(checkbox => checkbox.checked = false);
+                                }
+                            </script>
 
 
 
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Addresses Entered</label>
-                                <table
-                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
+                                <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
+                                            <th>Address 01</th>
+                                            <th>Address 02</th>
+                                            <th>Post Code</th>
+                                            <th>Suburb</th>
+                                            <th>State</th>
+                                            <th>Contry</th>
                                             <th>Type</th>
-                                            <th>Address</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Credit Card</td>
-                                        </tr>
+                                    <tbody id="address-body">
                                     </tbody>
                                 </table>
                                 <div class="w-7/12 ">
@@ -670,7 +754,7 @@
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">History</span>
                                         </button>
-                                        <button type="button"
+                                        <button type="button" onclick="deleteAddress()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Delete</span>
                                         </button>
@@ -687,69 +771,14 @@
                         <script>
                             // Function to validate the current form
                             function validateAddressForms() {
-                                var isValid = true;
-
-                                // Perform validation for each field
-                                var address1 = document.getElementsByName("address1")[0].value;
-                                if (!address1) {
-                                    document.getElementById("address1Error").classList.remove("hidden");
-                                    isValid = false;
+                                var isValid = false;
+                                const tbody = document.getElementById('address-body');
+                                const rows = tbody.querySelectorAll('tr');
+                                if (rows.length > 0) {
+                                    var isValid = true;
                                 } else {
-                                    document.getElementById("address1Error").classList.add("hidden");
+                                    alert('Pleass add Address details')
                                 }
-
-                                var address2 = document.getElementsByName("address2")[0].value;
-                                if (!address2) {
-                                    document.getElementById("address2Error").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("address2Error").classList.add("hidden");
-                                }
-
-                                var postCode = document.getElementsByName("post_code")[0].value;
-                                if (!postCode) {
-                                    document.getElementById("postCodeError").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("postCodeError").classList.add("hidden");
-                                }
-
-                                var suburb = document.getElementsByName("suburb")[0].value;
-                                if (!suburb) {
-                                    document.getElementById("suburbError").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("suburbError").classList.add("hidden");
-                                }
-
-                                var state = document.getElementsByName("state")[0].value;
-                                if (!state) {
-                                    document.getElementById("stateError").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("stateError").classList.add("hidden");
-                                }
-
-                                var country = document.getElementsByName("country")[0].value;
-                                if (!country) {
-                                    document.getElementById("countryError").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("countryError").classList.add("hidden");
-                                }
-
-
-                                var addressTypeChecked = isAnyCheckboxChecked();
-                                console.log(addressTypeChecked);
-                                if (!addressTypeChecked) {
-                                    document.getElementById("addressTypeError").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("addressTypeError").classList.add("hidden");
-                                }
-
-                                // Add more validations for other fields...
-
                                 return isValid;
                             }
 
@@ -923,26 +952,29 @@
                                     const areaCode = document.querySelector('input[name="area_code"]').value;
                                     const phoneNumber = document.querySelector('input[name="phone_number"]').value;
                                     const selectedPhoneTypes = document.querySelectorAll('.phone-type-checkbox:checked');
-                            
+
                                     if (!areaCode || !phoneNumber || selectedPhoneTypes.length === 0) {
                                         alert('Please enter all required fields and select at least one phone type.');
                                         return;
                                     }
-                            
+
                                     const data = Array.from(selectedPhoneTypes).map(checkbox => [areaCode, phoneNumber, checkbox.value]);
-                            
+
                                     const tbody = document.getElementById('table-body');
-                            
+
                                     // Check if any of the selected phone types already exist in the table
-                                    const existingPhoneTypes = Array.from(tbody.querySelectorAll('input[name="phone_types[]"]')).map(input => input.value);
+                                    const existingPhoneTypes = Array.from(tbody.querySelectorAll('input[name="phone_types[]"]')).map(input => input
+                                        .value);
                                     const selectedPhoneTypeValues = Array.from(selectedPhoneTypes).map(checkbox => checkbox.value);
                                     const duplicates = selectedPhoneTypeValues.filter(value => existingPhoneTypes.includes(value));
-                            
+
                                     if (duplicates.length > 0) {
-                                        alert('One or more selected phone types already exist in the table. Please remove them before adding new ones.');
+                                        alert(
+                                            'One or more selected phone types already exist in the table. Please remove them before adding new ones.'
+                                            );
                                         return;
                                     }
-                            
+
                                     const existingData = [];
                                     const existingRows = tbody.querySelectorAll('tr');
                                     existingRows.forEach(row => {
@@ -953,11 +985,13 @@
                                         });
                                         existingData.push(rowData);
                                     });
-                            
-                                    const newData = existingData.concat(Array.from(selectedPhoneTypes).map(checkbox => [areaCode, phoneNumber, checkbox.value]));
-                            
+
+                                    const newData = existingData.concat(Array.from(selectedPhoneTypes).map(checkbox => [areaCode, phoneNumber,
+                                        checkbox.value
+                                    ]));
+
                                     tbody.innerHTML = ''; // Clear existing rows
-                            
+
                                     newData.forEach(arr => {
                                         const tr = document.createElement('tr');
                                         arr.forEach((val, index) => {
@@ -976,6 +1010,7 @@
                                     });
                                     console.log(newData);
                                 }
+
                                 function deletePhoneNumber() {
                                     const tbody = document.getElementById('table-body');
                                     const rows = tbody.querySelectorAll('tr');
@@ -983,21 +1018,20 @@
                                         tbody.removeChild(rows[rows.length - 1]);
                                     }
                                 }
+
                                 function clearFields() {
                                     document.querySelector('input[name="area_code"]').value = '';
                                     document.querySelector('input[name="phone_number"]').value = '';
                                     document.querySelectorAll('.phone-type-checkbox:checked').forEach(checkbox => checkbox.checked = false);
                                 }
                             </script>
-                            
+
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Phone Entered</label>
-                                <table
-                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
+                                <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Area code</th>
                                             <th>Phone</th>
@@ -1030,30 +1064,11 @@
                             // Function to validate the current form
                             function validateContactForms() {
                                 var isValid = false;
-
-                                // // Perform validation for each field
-                                // var areaCode = document.getElementsByName("area_code")[0].value;
-                                // if (!areaCode) {
-                                //     document.getElementById("area_code_error").classList.remove("hidden");
-                                //     isValid = false;
-                                // } else {
-                                //     document.getElementById("area_code_error").classList.add("hidden");
-                                // }
-
-                                // var phoneNumber = document.getElementsByName("phone_number")[0].value;
-                                // if (!phoneNumber) {
-                                //     document.getElementById("phone_number_error").classList.remove("hidden");
-                                //     isValid = false;
-                                // } else {
-                                //     document.getElementById("phone_number_error").classList.add("hidden");
-                                // }
-
                                 const tbody = document.getElementById('table-body');
                                 const rows = tbody.querySelectorAll('tr');
                                 if (rows.length > 0) {
                                     var isValid = true;
-                                }
-                                else{
+                                } else {
                                     alert('Pleass add phone details')
                                 }
                                 return isValid;
@@ -1488,12 +1503,10 @@
                             </div>
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Phone Entered</label>
-                                <table
-                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
+                                <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Type</th>
                                             <th>Contact</th>
@@ -1569,12 +1582,10 @@
                         <div id="addinfoForm" class="flex flex-col font-medium text-15px">
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Additinol information</label>
-                                <table
-                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
+                                <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Name</th>
                                             <th>Value</th>
@@ -1638,12 +1649,10 @@
                             </div>
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Additinol information</label>
-                                <table
-                                    class="w-full text-sm text-left text-gray-500  border-separate m-5">
+                                <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
 
                                     <!-- Table content for Notes -->
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
                                             <th>Name</th>
                                             <th>Value</th>
