@@ -749,7 +749,9 @@
                     rel="stylesheet" />
 
                 <div class=" grid place-items-center">
-
+                    @if ($account != null)
+                    @foreach ($accountservice as $accountservice )
+                        
                     <div class="borde w-full">
 
                         <div class="transition border border-1">
@@ -757,52 +759,19 @@
                             <div
                                 class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
                                 <i class="fas fa-plus icon"></i>
-                                <h3>IP Express</h3>
+                                <h3>{{ $accountservice->service_id }}</h3>
                             </div>
                             <!-- Content -->
                             <div class="accordion-content heigh px-5 pt-0 overflow-hidden max-h-0">
                                 <p class="leading-6 font-light pl-9 text-justify">
-                                    0387741140
+                                    {{ $accountservice->phonenumber }}
                                 </p>
 
                             </div>
                         </div>
-
-                        <div class="transition border border-1">
-                            <!-- header -->
-                            <div
-                                class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
-                                <i class="fas fa-plus icon"></i>
-                                <h3>IP Express</h3>
-                            </div>
-                            <!-- Content -->
-                            <div class="accordion-content heigh px-5 pt-0 overflow-hidden max-h-0">
-                                <p class="leading-6 font-light pl-9 text-justify">
-                                    0387741140
-                                </p>
-
-                            </div>
-                        </div>
-
-                        <div class="transition border border-1">
-                            <!-- header -->
-                            <div
-                                class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
-                                <i class="fas fa-plus icon"></i>
-                                <h3>SuperLoop</h3>
-                            </div>
-                            <!-- Content -->
-                            <div class="accordion-content heigh px-5 pt-0 overflow-hidden max-h-0">
-                                <p class="leading-6 font-light pl-9 text-justify">
-                                    0387741140
-                                </p>
-
-                            </div>
-                        </div>
-
-
                     </div>
-
+                    @endforeach
+                    @endif
                 </div>
             </section>
             <section class="  p-3 sm:p-5 w-4/12 border ">

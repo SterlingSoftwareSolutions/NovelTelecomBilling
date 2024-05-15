@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\AccountService;
 use App\Models\Address;
 use App\Models\Billing;
 use App\Models\Contact;
@@ -159,6 +160,7 @@ class AccountController extends Controller
         else {
             return redirect()->back();
         }
+
     }
 
     public function search(Request $request)
@@ -166,25 +168,30 @@ class AccountController extends Controller
         try {
             $account_number = $request->search;
 
+
+
+            $account = Account::where('contact_code', $account_number)->first();
             // Check if there is an existing 'account_number' session variable and clear it
             if (session()->has('account_number')) {
                 session()->forget('account_number');
             }
 
             // Set the new account number in the session
-            session(['account_number' => $account_number]);
-
-            $account = Account::where('contact_code', $account_number)->first();
-
+            session(['account_number' => $account->id]);
             if ($account) {
                 $address = Address::getAddressDetails($account->contact_code);
                 $bill = Billing::getBillDetails($account->contact_code);
                 $contact = Contact::getContactDetails($account->contact_code);
                 $phone = Phone::getPhoneDetails($account->contact_code);
 
+                $accountservice=AccountService::getData($account->id);
+                // dd($accountservice);
+
+
                 $notes = ManualNote::getNotesByAccountId($account->id);
 
-                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone', 'account_number', 'notes'));
+                return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone', 'account_number', 'notes','accountservice'));
+
             } else {
                 $account = null;
                 return view('user.home', compact('account', 'account_number'));
