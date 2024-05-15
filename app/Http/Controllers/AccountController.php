@@ -134,8 +134,11 @@ class AccountController extends Controller
                 // 'provide_email_bill' => $request->provide_email_bill,
                 // 'provide_excel_bill' => $request->provide_excel_bill,
             ];
+            // dd($billingData);
             $billing = Billing::create($billingData);
         }
+
+
 
         // Create the Contact record
         $contactData = [
