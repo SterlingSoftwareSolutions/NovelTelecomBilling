@@ -107,10 +107,10 @@ class AccountController extends Controller
                 'country' => $request->countrys[$i],
                 'address_type' => $request->addresstypes[$i],
             ];
-        
+
             $address = Address::create($addressData);
         }
-        
+
 
         // Create the Phone record
         for ($i = 0; $i < count($request->area_codes); $i++) {
@@ -120,17 +120,17 @@ class AccountController extends Controller
                 'phone_number' => $request->phone_numbers[$i],
                 'phone_type' => $request->phone_types[$i],
             ];
-        
+
             $phone = Phone::create($phoneData);
         }
-        
+
 
         // Create the Billing record
         for($i=0;$i<count($request->bill_types);$i++){
             $billingData  = [
                 'contact_code' => $request->contact_code,
                 'paymentType' => $request->paymentType,
-                'bill_types' => $request->bill_types[$i], 
+                'bill_types' => $request->bill_types[$i],
             ];
             $billing = Billing::create($billingData);
         }
@@ -149,6 +149,7 @@ class AccountController extends Controller
 
     public function search(Request $request)
     {
+
         try {
             $account_number = $request->search;
 
@@ -172,6 +173,7 @@ class AccountController extends Controller
                 // dd($accountservice);
 
                 $notes = ManualNote::getNotesByAccountId($account->id);
+                dd($request);
 
                 return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone', 'account_number', 'notes','accountservice'));
             } else {
