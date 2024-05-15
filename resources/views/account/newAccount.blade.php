@@ -1516,24 +1516,25 @@
                                 if (!contact_code2 || !contact_type || !name1 || selectContactUsage.length === 0) {
                                     alert('Please enter all required fields and select at least one Contact Usage type.');
                                     return;
-                                }
-                                const data = Array.from(selectContactUsage).map(checkbox => [contact_code2, contact_type, name1,checkbox.value
-                                ]);
-                                console.log(data);
-                                const tbody = document.getElementById('contact-body');
+                                    }
 
-                                // Check if any of the selected address types already exist in the table
-                                const existingContactUsage = Array.from(tbody.querySelectorAll('input[name="contactUsage[]"]')).map(input =>
-                                    input.value);
-                                const selectedContactUsageValues = Array.from(selectContactUsage).map(checkbox => checkbox.value);
-                                const duplicates = selectedContactUsageValues.filter(value => existingContactUsage.includes(value));
+                                    const selectedContactUsageValues = Array.from(selectContactUsage).map(checkbox => checkbox.value);
 
-                                if (duplicates.length > 0) {
-                                    alert(
-                                        'One or more selected address types already exist in the table. Please remove them before adding new ones.'
-                                        );
-                                    return;
-                                }
+                                    // Check for duplicates in contact usage types
+                                    const tbody = document.getElementById('contact-body');
+                                    const existingContactUsage = Array.from(tbody.querySelectorAll('input[name="contactUsages[]"]')).map(input => input.value);
+
+                                    // Check for duplicates in selected contact usages
+                                    const duplicates = selectedContactUsageValues.filter(value => existingContactUsage.includes(value));
+
+                                    if (duplicates.length > 0) {
+                                        alert('One or more selected contact usage types already exist in the table. Please remove them before adding new ones.');
+                                        return;
+                                    }
+
+                                    // Build new data with contact information and usage types
+                                    const data = Array.from(selectContactUsage).map(checkbox => [contact_code2, contact_type, name1, checkbox.value]);
+
 
                                 const existingData = [];
                                 const existingRows = tbody.querySelectorAll('tr');
