@@ -13,10 +13,11 @@
 
 <body>
     <div class="h-screen   items-center justify-center">
-        <form class="modal-container hidden fixed w-full h-full top-0 left-0 flex" id="formModal" action="/save-account-service" method="post" enctype="multipart/form-data">
+        <form class="modal-container hidden fixed w-full h-full top-0 left-0 flex" id="formModal"
+            action="/save-account-service" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50 "></div>
-        
+
             <div class="modal-content bg-white mx-auto rounded shadow-lg z-50 overflow-y-auto">
                 <button class="modal-close absolute bg-red-900 top-0 right-0 mt-4 mr-4" onclick="closeModal()">
                     <svg class="h-6 w-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -25,7 +26,7 @@
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-        
+
                 <div id="subscribeForm" class="flex-col font-medium text-15px">
                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                         <div class="flex flex-col w-7/12">
@@ -33,25 +34,40 @@
                             <select name="network" id="" onchange="toggleFields()"
                                 class="w-full p-2 border border-gray-800 rounded-lg">
                                 <option value="optus">Optus</option>
-                                <option value="BBB">Optus</option>
+                                <option value="BBB">Optsssus</option>
                             </select>
                         </div>
-        
-                        <div class="flex flex-col w-7/12">
+                        <div class="flex flex-col w-7/12 hidden">
                             <label for="">Service Type</label>
-                            <select name="typeSelect" id="typeSelect" onchange="toggleFields()"
-                                class="w-full p-2 border border-gray-800 rounded-lg">
+                            <select name="service_id" id="typeSelect" onchange="toggleFields()"
+                                class="w-full p-2 border border-gray-800 rounded-lg ">
+                                <option value=""></option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col w-7/12 ">
+                            <label for="serviceNameSelect">Service Name</label>
+                            <select name="service_name" id="serviceNameSelect" onchange="toggleFields()"
+                                class="w-full p-2 border border-gray-800 rounded-lg" disabled>
                                 <option value=""></option>
                             </select>
                         </div>
                     </div>
-        
+
                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                         <div class="w-7/12">
                             <label for="">Phone Number</label>
                             <input type="text" name="phonenumber"
                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                         </div>
+
+                        <div class="w-7/12 hidden">
+                            <label for="serviceOptionInput">Service Option ID</label>
+                            <input type="text" id="serviceOptionInput" name="serviceoption_id"
+                                   class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                        </div>
+                    
+
                         <div class="flex flex-col w-7/12" id="keyandtitle">
                             <label for="">Status</label>
                             <select name="status" id=""
@@ -61,8 +77,8 @@
                             </select>
                         </div>
                     </div>
-        
-                    <div id="businessUnitDiv" class="flex flex-row gap-4 md:gap-8 m-5" style="display: none;">
+
+                    <div id="businessUnitDiv" class="flex flex-row gap-4 md:gap-8 m-5">
                         <div class="flex flex-col w-7/12">
                             <label for="">Service Narrative</label>
                             <select name="service_narrative" id=""
@@ -72,7 +88,7 @@
                             </select>
                         </div>
                     </div>
-        
+
                     <div class="flex flex-row gap-4 md:gap-8 m-5">
                         <div class="w-7/12">
                             <label for="">Date Of Birth</label>
@@ -89,14 +105,14 @@
                                 });
                             </script>
                         </div>
-        
+
                         <div class="w-7/12">
                             <label for="">Password</label>
                             <input type="text" name="password"
                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                         </div>
                     </div>
-        
+
                     <div class="flex flex-row gap-4 md:gap-8 m-5" id="tradingname">
                         <div class="flex flex-col w-7/12">
                             <label for="">Parent</label>
@@ -107,17 +123,18 @@
                             </select>
                         </div>
                     </div>
-        
+
                     <div class="flex flex-row gap-4 md:gap-8 m-5" id="acnandabn">
                         <div class="flex flex-col w-6/12">
                             <label for="">Package</label>
                             <div id="packageNames">
-                                <select name="package_id" id="" onclick="togglenew();" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                <select name="package_id" id="" onclick="togglenew();"
+                                    class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                     <option value="" selected disabled>-- Select Package --</option>
                                 </select>
                             </div>
                         </div>
-        
+
                         <div class="w-6/12">
                             <label for="">Package option</label>
                             <div id="packageOption">
@@ -128,7 +145,7 @@
                             </div>
                         </div>
                     </div>
-        
+
                     <div class="flex flex-row gap-4 md:gap-8 m-5" id="acnandabn">
                         <div class="w-7/12">
                             <label for="">Dealer</label>
@@ -136,7 +153,7 @@
                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                         </div>
                     </div>
-        
+
                     <div class="flex flex-row gap-4 md:gap-8 m-5" id="emailandquestion">
                         <div class="w-7/12">
                             <label for="">Cost Centre</label>
@@ -144,12 +161,13 @@
                                 class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                         </div>
                     </div>
-        
+
                     <div id="novelteleventTable" class="overflow-x-auto mt-5">
                         <label for="" class="m-5">Attributes</label>
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate m-5">
                             <!-- Table content for Notes -->
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
+                            <thead
+                                class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full dark:bg-gray-700 dark:text-gray-600">
                                 <tr>
                                     <th>Attributes</th>
                                     <th>Values</th>
@@ -168,7 +186,7 @@
                             </tbody>
                         </table>
                     </div>
-        
+
                     <div class="flex flex-row gap-4 md:gap-8 m-5" id="emailandquestion">
                         <div class="w-7/12">
                             <button type="submit"
@@ -180,7 +198,7 @@
                 </div>
             </div>
         </form>
-        
+
     </div>
     <script>
         function closeModal() {
@@ -223,42 +241,42 @@
                 .catch(error => console.error('Error fetching packages:', error));
         }
     </script>
-   <script>
-    function sendData() {
-        // Get form data
-        const formData = new FormData(document.getElementById('formModal'));
+    <script>
+        function sendData() {
+            // Get form data
+            const formData = new FormData(document.getElementById('formModal'));
 
-        // Send form data to the server using fetch API
-        fetch('/save-account-service', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Handle successful response
-            console.log(data); // You can do something with the response data if needed
-            // Close the modal or display a success message
-            closeModal();
-        })
-        .catch(error => {
-            // Handle error
-            console.error('Error sending data:', error);
-            // Display error message to the user
-            // You can handle errors based on specific HTTP status codes if needed
-        });
-    }
+            // Send form data to the server using fetch API
+            fetch('/save-account-service', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle successful response
+                    console.log(data); // You can do something with the response data if needed
+                    // Close the modal or display a success message
+                    closeModal();
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error sending data:', error);
+                    // Display error message to the user
+                    // You can handle errors based on specific HTTP status codes if needed
+                });
+        }
 
-    // Example function to close the modal
-    function closeModal() {
-        document.getElementById('formModal').classList.add('hidden');
-    }
-</script>
-    
+        // Example function to close the modal
+        function closeModal() {
+            document.getElementById('formModal').classList.add('hidden');
+        }
+    </script>
+
 
     <script src="{{ asset('../js/model.js') }}"></script>
 </body>

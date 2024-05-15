@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accountservices', function (Blueprint $table) {
+        Schema::create('account_services', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('contact_code');
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('package_id');
+            $table->unsignedBigInteger('serviceoption_id');
             $table->unsignedBigInteger('packageoption_id');
             $table->string('network');
-            $table->string('service_type');
             $table->string('phonenumber');
             $table->string('status');
             $table->string('dob');
@@ -26,12 +26,13 @@ return new class extends Migration
             $table->string('parent');
             $table->string('dealer');
             $table->string('costcentre');
-
+            $table->string('service_narrative');
             $table->foreign('contact_code')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
+            $table->foreign('serviceoption_id')->references('id')->on('service_options')->onDelete('cascade');
             $table->foreign('packageoption_id')->references('id')->on('package_options')->onDelete('cascade');
-            
+            $table->timestamps();
         });
     }
 
@@ -40,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accountservices');
+        Schema::dropIfExists('account_services');
     }
 };

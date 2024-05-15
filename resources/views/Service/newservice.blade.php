@@ -56,9 +56,14 @@
                                 <div class="accordion-content height px-5 pt-0 overflow-hidden max-h-0">
                                     <ul>
                                         @foreach ($service->serviceoptions as $serviceoption)
-                                            <li><a href="#" class="leading-6 pl-9 text-justify open-modal"
-                                                    data-target="#formModal"
-                                                    data-service="{{ $service->service_name }}">{{ $serviceoption->service_names }}</a>
+                                            <li>
+                                                <a href="#" class="leading-6 pl-9 text-justify open-modal"
+                                                    data-target="#formModal" data-service="{{ $service->id }}"
+                                                    data-service-name="{{ $serviceoption->service_names }}"
+                                                    data-service-option="{{ $serviceoption->service_id }}"
+                                                    onclick="updateServiceOption(this)">
+                                                    {{ $serviceoption->service_names }}
+                                                </a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -155,7 +160,7 @@
             toggleFormVisibility('subscribeForm');
         };
     </script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/ui"></script>
 
     <script>
@@ -193,6 +198,30 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        function updateServiceName(element) {
+            // Prevent the default link behavior
+            event.preventDefault();
+
+            // Get the service option ID from the data attribute
+            var serviceOptionName = element.getAttribute('  data-service-name');
+
+            // Update the input field with the service option ID
+            document.getElementById('serviceOptionInput').value = serviceOptionName;
+        }
+
+        function updateServiceOption(element) {
+            // Prevent the default link behavior
+            event.preventDefault();
+
+            // Get the service option ID from the data attribute
+            var serviceOptionId = element.getAttribute('data-service-option');
+
+            // Update the input field with the service option ID
+            document.getElementById('serviceOptionInput').value = serviceOptionId;
+        }
     </script>
 
 
