@@ -70,81 +70,100 @@ class AccountController extends Controller
         ]);
 
         // Create the Account record
-        $accountData = [
-            'contact_code' => $request->contact_code,
-            'typeSelect' => $request->typeSelect,
-            'key' => $request->key,
-            'title' => $request->title,
-            'business_unit' => 'Novel Telecom',
-            'name' => $request->name,
-            'trading_name' => $request->trading_name,
-            'acn' => $request->acn,
-            'abn' => $request->abn,
-            'email' => $request->email,
-            'question' => $request->question,
-            'answer' => $request->answer,
-            'initials' => $request->initials,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'gender' => $request->gender,
-            'date_of_birth' => $request->date_of_birth,
-            'salutation' => $request->salutation,
-            'employee_no' => $request->employee_no,
-            'question_2' => $request->question_2,
-            'answer_2' => $request->answer_2,
-        ];
-        $account = Account::create($accountData);
 
-        // Create the Address record
-        for ($i = 0; $i < count($request->address2s); $i++) {
-            $addressData = [
+        $accountValidate = Account::where('contact_code', $request->contact_code)->first();
+
+
+        if ($accountValidate == null) {
+            $accountData = [
                 'contact_code' => $request->contact_code,
-                'address1' => $request->address1s[$i],
-                'address2' => $request->address2s[$i],
-                'post_code' => $request->post_codes[$i],
-                'suburb' => $request->suburbs[$i],
-                'state' => $request->states[$i],
-                'country' => $request->countrys[$i],
-                'address_type' => $request->addresstypes[$i],
+                'typeSelect' => $request->typeSelect,
+                'key' => $request->key,
+                'title' => $request->title,
+                'business_unit' => 'Novel Telecom',
+                'name' => $request->name,
+                'trading_name' => $request->trading_name,
+                'acn' => $request->acn,
+                'abn' => $request->abn,
+                'email' => $request->email,
+                'question' => $request->question,
+                'answer' => $request->answer,
+                'initials' => $request->initials,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'gender' => $request->gender,
+                'date_of_birth' => $request->date_of_birth,
+                'salutation' => $request->salutation,
+                'employee_no' => $request->employee_no,
+                'question_2' => $request->question_2,
+                'answer_2' => $request->answer_2,
             ];
 
-            $address = Address::create($addressData);
+            $account = Account::create($accountData);
+
+
+            // Create the Address record
+            for ($i = 0; $i < count($request->address2s); $i++) {
+                $addressData = [
+                    'contact_code' => $request->contact_code,
+                    'address1' => $request->address1s[$i],
+                    'address2' => $request->address2s[$i],
+                    'post_code' => $request->post_codes[$i],
+                    'suburb' => $request->suburbs[$i],
+                    'state' => $request->states[$i],
+                    'country' => $request->countrys[$i],
+                    'address_type' => $request->addresstypes[$i],
+                ];
+
+                $address = Address::create($addressData);
+            }
+
+
+            // Create the Phone record
+            for ($i = 0; $i < count($request->area_codes); $i++) {
+                $phoneData = [
+                    'contact_code' => $request->contact_code,
+                    'area_code' => $request->area_codes[$i],
+                    'phone_number' => $request->phone_numbers[$i],
+                    'phone_type' => $request->phone_types[$i],
+                ];
+
+                $phone = Phone::create($phoneData);
+            }
+
+            // Create the Billing record
+            for ($i = 0; $i < count($request->area_codes); $i++) {
+                $billingData = [
+                    'contact_code' => $request->contact_code,
+                    'paymentType' => $request->paymentType,
+                ];
+
+                if (isset($request->bill_types[$i])) {
+                    $billingData['bill_types'] = $request->bill_types[$i];
+                }
+
+                $billing = Billing::create($billingData);
+            }
+
+            // Create the Contact record
+            for ($i = 0; $i < count($request->contact_types); $i++) {
+                $contactData = [
+                    'contact_code' => $request->contact_code,
+                    'contact_code2s' => $request->contact_code2s[$i],
+                    'contact_types' => $request->contact_types[$i],
+                    'name1s' => $request->name1s[$i],
+                    'contactUsages' => $request->contactUsages[$i],
+                ];
+                $contact = Contact::create($contactData);
+            }
+
+            // Redirect the user after successful creation
+            return view('account.newAccount')->with('success', 'Account created successfully!');
+        }
+        else {
+            return redirect()->back();
         }
 
-
-        // Create the Phone record
-        for ($i = 0; $i < count($request->area_codes); $i++) {
-            $phoneData = [
-                'contact_code' => $request->contact_code,
-                'area_code' => $request->area_codes[$i],
-                'phone_number' => $request->phone_numbers[$i],
-                'phone_type' => $request->phone_types[$i],
-            ];
-
-            $phone = Phone::create($phoneData);
-        }
-
-
-        // Create the Billing record
-        for($i=0;$i<count($request->bill_types);$i++){
-            $billingData  = [
-                'contact_code' => $request->contact_code,
-                'paymentType' => $request->paymentType,
-                'bill_types' => $request->bill_types[$i],
-            ];
-            $billing = Billing::create($billingData);
-        }
-        // Create the Contact record
-        $contactData = [
-            'contact_code' => $request->contact_code,
-            'contact_code2' => $request->contact_code2,
-            'contact_type' => $request->contact_type,
-            'contact_code2' => $request->contact_code2,
-        ];
-        $contact = Contact::create($contactData);
-
-        // Redirect the user after successful creation
-        return view('account.newAccount')->with('success', 'Account created successfully!');
     }
 
     public function search(Request $request)
@@ -172,10 +191,12 @@ class AccountController extends Controller
                 $accountservice=AccountService::getData($account->id);
                 // dd($accountservice);
 
+
                 $notes = ManualNote::getNotesByAccountId($account->id);
                 dd($request);
 
                 return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone', 'account_number', 'notes','accountservice'));
+
             } else {
                 $account = null;
                 return view('user.home', compact('account', 'account_number'));
