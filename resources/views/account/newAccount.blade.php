@@ -19,8 +19,8 @@
 <body>
     @include('layouts.layout')
 
-    <div class=" flex justify-center items-center h-screen">
-        <section class=" w-[1000px]  ">
+    <div class=" flex justify-center items-center h-screen ">
+        <section class=" w-[1000px]  mt-20  ">
             <div class="border">
                 <!-- Start coding here -->
                 <div class="bg-white  relative shadow-md sm:rounded-lg  h-full  overflow-y-auto">
@@ -163,10 +163,9 @@
 
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Email</label>
-                                    <select name="email" id=""
+                                    <input name="email" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value=""></option>
-                                    </select>
+                                </input>
                                 </div>
 
                                 <div class="w-7/12">
