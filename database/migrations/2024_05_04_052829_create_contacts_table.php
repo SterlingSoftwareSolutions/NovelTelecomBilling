@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('contact_code')->onDelete('cascade');
-            $table->string('contact_code1')->nullable();
-            $table->string('contact_type')->nullable();
-            $table->string('name')->nullable();
-            $table->string('contact_usage')->nullable();
+            $table->string('contact_code2s')->nullable();
+            $table->string('contact_types')->nullable();
+            $table->string('name1s')->nullable();
+            $table->string('contactUsages')->nullable();
             $table->timestamps();
         });
     }

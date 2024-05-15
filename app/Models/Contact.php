@@ -10,10 +10,10 @@ class Contact extends Model
     use HasFactory;
     protected $fillable = [
         'contact_code',
-        'contact_code1',
-        'contact_type',
-        'name',
-        'contact_usage',
+        'contact_code2s',
+        'contact_types',
+        'name1s',
+        'contactUsages',
     ];
 
 public function account()

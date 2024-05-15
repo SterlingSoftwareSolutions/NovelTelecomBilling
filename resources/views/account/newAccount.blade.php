@@ -662,7 +662,7 @@
                                     const tbody = document.getElementById('address-body');
 
                                     // Check if any of the selected address types already exist in the table
-                                    const existingAddressTypes = Array.from(tbody.querySelectorAll('input[name="addresstype[]"]')).map(input =>
+                                    const existingAddressTypes = Array.from(tbody.querySelectorAll('input[name="addresstypes[]"]')).map(input =>
                                         input.value);
                                     const selectedAddressTypeValues = Array.from(selectAddressType).map(checkbox => checkbox.value);
                                     const duplicates = selectedAddressTypeValues.filter(value => existingAddressTypes.includes(value));
@@ -1560,7 +1560,7 @@
                                         input.setAttribute('value', val);
                                         input.setAttribute('readonly', 'readonly');
                                         input.setAttribute('name',
-                                            `${index === 0 ? 'contact_code2s' : index === 1 ? 'contact_types' : index === 2 ? 'name1'  : 'contactUsages'}[]`
+                                            `${index === 0 ? 'contact_code2s' : index === 1 ? 'contact_types' : index === 2 ? 'name1s'  : 'contactUsages'}[]`
                                         );
                                         td.appendChild(input);
                                         tr.appendChild(td);
@@ -1582,9 +1582,6 @@
                                 document.querySelector('input[name="contact_code2"]').value = '';
                                 document.querySelector('input[name="contact_type"]').value = '';
                                 document.querySelector('input[name="name1"]').value = '';
-                                // document.querySelector('input[name="suburb"]').value = '';
-                                // document.querySelector('input[name="state"]').value = '';
-                                // document.querySelector('input[name="country"]').value = '';
                                 document.querySelectorAll('.contact-usage-checkbox:checked').forEach(checkbox => checkbox.checked = false);
                             }
                         </script>

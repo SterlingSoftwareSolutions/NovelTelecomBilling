@@ -43,24 +43,31 @@ Route::get('/register', [AuthController::class, 'register_index'])->name('regist
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 Route::post('/', [AuthController::class, 'logout'])->name('logout');
 
+
 //user route
-Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth');
-//account route
-Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount')->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
+});
 
-Route::post ('/account',[AccountController::class, 'store'])->name('account.store')->middleware('auth');
-Route::post('/search', [AccountController::class, 'search'])->name('account.search');
-Route::get('/search', [AccountController::class, 'search'])->name('account.search');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/account-save', [AccountController::class, 'store'])->name('account.store');
+    Route::post('/search', [AccountController::class, 'search'])->name('account.search');
+    Route::get('/search', [AccountController::class, 'search'])->name('account.search');
+    Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount');
+});
 
-//Note route
-Route::post('/notestore', [ManualNoteController::class, 'store'])->name('note.store');
-Route::get('/notes', [ManualNoteController::class, 'index'])->name('note.index');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/notestore', [ManualNoteController::class, 'store'])->name('note.store');
+    Route::get('/notes', [ManualNoteController::class, 'index'])->name('note.index');
+});
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/packages', [PackageController::class, 'getPackages']);
+    Route::get('/package-option', [PackageController::class, 'getPackageOption']);
+    Route::post('/save-account-service', [PackageController::class, 'storeAccountService']);
+});
 
 //service route
-Route::get('/service',[ServiceController::class, 'service_index'])->name('service_newservice');
-Route::get('/packages', [PackageController::class, 'getPackages']);
-
-Route::get('/package-option', [PackageController::class, 'getPackageOption']);
-Route::post('/save-account-service', [PackageController::class, 'storeAccountService']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/service',[ServiceController::class, 'service_index'])->name('service_newservice');
+});
