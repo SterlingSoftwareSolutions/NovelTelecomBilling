@@ -1595,8 +1595,10 @@
                                     <!-- Table content for Notes -->
                                     <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
-                                            <th>Type</th>
+                                            <th>contact code</th>
                                             <th>Contact</th>
+                                            <th>name</th>
+                                            <th>usage</th>
 
 
                                         </tr>
