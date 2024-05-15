@@ -662,7 +662,7 @@
                                     const tbody = document.getElementById('address-body');
 
                                     // Check if any of the selected address types already exist in the table
-                                    const existingAddressTypes = Array.from(tbody.querySelectorAll('input[name="addresstype[]"]')).map(input =>
+                                    const existingAddressTypes = Array.from(tbody.querySelectorAll('input[name="addresstypes[]"]')).map(input =>
                                         input.value);
                                     const selectedAddressTypeValues = Array.from(selectAddressType).map(checkbox => checkbox.value);
                                     const duplicates = selectedAddressTypeValues.filter(value => existingAddressTypes.includes(value));
@@ -1463,8 +1463,8 @@
                                         class="w-48 text-xl font-medium text-gray-900 bg-white     w- p-2 border border-gray-800 rounded-lg">
                                         <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
+                                                 <input id="vue-checkbox" type="checkbox" value="Authorised Representative" name="contactUsage[]"
+                                                    class="contact-usage-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="vue-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Authorised
                                                     Representative
@@ -1473,8 +1473,8 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value=""
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
+                                                <input id="react-checkbox" type="checkbox" value="Connection User" name="contactUsage[]"
+                                                    class="contact-usage-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="react-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Connection
                                                     User
@@ -1489,11 +1489,11 @@
 
                                 <div class="w-7/12 mt-20 ">
                                     <div class=" flex col-2">
-                                        <button type="button"
+                                        <button type="button" onclick="addContact()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
                                             <span class="mx-auto border-1 bg-green-">Add</span>
                                         </button>
-                                        <button type="button"
+                                        <button type="button" onclick="clearCOnatctFields()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Clear</span>
                                         </button>
@@ -1501,6 +1501,91 @@
                                 </div>
 
                             </div>
+                           <script>
+                            function addContact() {
+                                // console.log('hello');
+                                const contact_code2 = document.querySelector('input[name="contact_code2"]').value;
+                                const contact_type = document.querySelector('input[name="contact_type"]').value;
+                                const name1 = document.querySelector('input[name="name1"]').value;
+                                // const suburb = document.querySelector('input[name="suburb"]').value;
+                                // const state = document.querySelector('input[name="state"]').value;
+                                // const country = document.querySelector('input[name="country"]').value;
+                                const selectContactUsage = document.querySelectorAll('.contact-usage-checkbox:checked');
+
+
+                                if (!contact_code2 || !contact_type || !name1 || selectContactUsage.length === 0) {
+                                    alert('Please enter all required fields and select at least one Contact Usage type.');
+                                    return;
+                                    }
+
+                                    const selectedContactUsageValues = Array.from(selectContactUsage).map(checkbox => checkbox.value);
+
+                                    // Check for duplicates in contact usage types
+                                    const tbody = document.getElementById('contact-body');
+                                    const existingContactUsage = Array.from(tbody.querySelectorAll('input[name="contactUsages[]"]')).map(input => input.value);
+
+                                    // Check for duplicates in selected contact usages
+                                    const duplicates = selectedContactUsageValues.filter(value => existingContactUsage.includes(value));
+
+                                    if (duplicates.length > 0) {
+                                        alert('One or more selected contact usage types already exist in the table. Please remove them before adding new ones.');
+                                        return;
+                                    }
+
+                                    // Build new data with contact information and usage types
+                                    const data = Array.from(selectContactUsage).map(checkbox => [contact_code2, contact_type, name1, checkbox.value]);
+
+
+                                const existingData = [];
+                                const existingRows = tbody.querySelectorAll('tr');
+                                existingRows.forEach(row => {
+                                    const rowData = [];
+                                    const cells = row.querySelectorAll('td input');
+                                    cells.forEach(cell => {
+                                        rowData.push(cell.value);
+                                    });
+                                    existingData.push(rowData);
+                                });
+
+                                const newData = existingData.concat(data);
+
+                                tbody.innerHTML = ''; // Clear existing rows
+
+                                newData.forEach(arr => {
+                                    const tr = document.createElement('tr');
+                                    arr.forEach((val, index) => {
+                                        const td = document.createElement('td');
+                                        const input = document.createElement('input');
+                                        input.setAttribute('type', 'text');
+                                        input.setAttribute('value', val);
+                                        input.setAttribute('readonly', 'readonly');
+                                        input.setAttribute('name',
+                                            `${index === 0 ? 'contact_code2s' : index === 1 ? 'contact_types' : index === 2 ? 'name1s'  : 'contactUsages'}[]`
+                                        );
+                                        td.appendChild(input);
+                                        tr.appendChild(td);
+                                    });
+                                    tbody.appendChild(tr);
+                                });
+                                console.log(newData);
+                            }
+
+                            function deleteContact() {
+                                const tbody = document.getElementById('contact-body');
+                                const rows = tbody.querySelectorAll('tr');
+                                if (rows.length > 0) {
+                                    tbody.removeChild(rows[rows.length - 1]);
+                                }
+                            }
+
+                            function clearCOnatctFields() {
+                                document.querySelector('input[name="contact_code2"]').value = '';
+                                document.querySelector('input[name="contact_type"]').value = '';
+                                document.querySelector('input[name="name1"]').value = '';
+                                document.querySelectorAll('.contact-usage-checkbox:checked').forEach(checkbox => checkbox.checked = false);
+                            }
+                        </script>
+
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Phone Entered</label>
                                 <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
@@ -1508,11 +1593,14 @@
                                     <!-- Table content for Notes -->
                                     <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
                                         <tr>
-                                            <th>Type</th>
+                                            <th>contact code</th>
                                             <th>Contact</th>
+                                            <th>name</th>
+                                            <th>usage</th>
 
 
                                         </tr>
+                                        <tbody id="contact-body"></tbody>
                                     </thead>
                                     <tbody>
                                         <tr>
@@ -1525,7 +1613,7 @@
                                 </table>
                                 <div class="w-7/12 ">
                                     <div class=" flex col-2">
-                                        <button type="button"
+                                        <button type="button" onclick="deleteContact()"
                                             class="items-center p-2 bg-primaryColor flex justify-start md:w-[100px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
                                             <span class="mx-auto border-1 ">Delete</span>
                                         </button>
