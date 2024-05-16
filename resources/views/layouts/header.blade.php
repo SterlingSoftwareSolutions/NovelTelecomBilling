@@ -154,14 +154,81 @@
                                 </div>
                             </li>
                             <li class="">
-                                <div class="relative ">
-                                    <button type="button"
-                                        class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900 dropdown-item text-start w-[200px]"
-                                        aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
-                                        Notes
-                                    </button>
-
+                                <div class="relative">
+                                  <button type="button"
+                                          class="flex items-center gap-x-1 text-sm leading-6 text-gray-900 dropdown-item text-start w-52"
+                                          aria-expanded="false"
+                                          onclick="opennote()">
+                                    Notes
+                                  </button>
                                 </div>
+                              </li>
+
+                              <div id="noteModale"
+                                   class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50"
+                                   onclick="closeModale(event)">
+                                <div class="bg-white p-5 rounded-lg w-1/3" onclick="event.stopPropagation()">
+                                  <!-- Prevent click inside from closing modal -->
+                                  <div class="flex justify-between items-center">
+                                    <h2 class="text-lg mb-4">Note History</h2>
+                                    <button type="button" onclick="closeModale()"
+                                            class="text-gray-500 hover:text-gray-800">
+                                      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M6 18L18 6M6 6l12 12" />
+                                      </svg>
+                                    </button>
+                                  </div>
+                                  <!-- Form inside the modal -->
+                                  <table class="min-w-full bg-white">
+                                    <thead>
+                                      <tr>
+                                        <th class="py-2">Date Time</th>
+                                        <th class="py-2">Details</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td class="border px-4 py-2">2024-05-16 10:00</td>
+                                        <td class="border px-4 py-2">Meeting with team</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="border px-4 py-2">2024-05-17 14:00</td>
+                                        <td class="border px-4 py-2">Project deadline</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <div class="flex justify-end space-x-4 mt-4">
+                                    {{-- <button type="button" onclick="closeModale()"
+                                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                                      Save
+                                    </button> --}}
+                                    <button type="button" onclick="closeModale()"
+                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                                      Cancel
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <script>
+                                function opennote() {
+                                  document.getElementById('noteModale').classList.remove('hidden');
+                                }
+
+                                function closeModale(event) {
+                                  if (event) {
+                                    event.stopPropagation();
+                                  }
+                                  document.getElementById('noteModale').classList.add('hidden');
+                                }
+
+                                function saveNotee() {
+                                  // Implement the save functionality
+                                  closeModale();
+                                }
+                              </script>
+
                             {{-- </li>
                             <li class=""> --}}
                                 <li class="">
