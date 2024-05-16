@@ -171,15 +171,12 @@ class AccountController extends Controller
 
         try {
             $account_number = $request->search;
-
-
-
+            // dd( $request->search);
             $account = Account::where('contact_code', $account_number)->first();
             // Check if there is an existing 'account_number' session variable and clear it
             if (session()->has('account_number')) {
                 session()->forget('account_number');
             }
-
             // Set the new account number in the session
             session(['account_number' => $account->id]);
             if ($account) {
@@ -189,6 +186,8 @@ class AccountController extends Controller
                 $phone = Phone::getPhoneDetails($account->contact_code);
 
                 $accountservice=AccountService::getData($account->id);
+                // $phonenumber=AccountService::getData2($account->id);
+                // dd($accountservice);
                 // dd($accountservice);
 
 
