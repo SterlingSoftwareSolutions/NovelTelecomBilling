@@ -162,17 +162,34 @@
                                     </button>
 
                                 </div>
-                            </li>
-                            <li class="">
-                                <div class="relative ">
-                                    <button type="button"
-                                        class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900 dropdown-item text-start w-[200px]"
-                                        aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
-                                        Popup Note
-                                    </button>
+                            {{-- </li>
+                            <li class=""> --}}
+                                <li class="">
+                                    <div class="relative">
+                                      <button id="popnote" type="button"
+                                              class="flex items-center gap-x-1 text-sm leading-6 text-gray-900 dropdown-item text-start w-[200px]"
+                                              aria-expanded="false" onclick="openModal()">
+                                        Popup Notee
+                                      </button>
+                                    </div>
+                                  </li>
 
-                                </div>
-                            </li>
+                                  <script>
+                                //  function openModal() {
+                                //     // console.log(account)
+                                //     document.getElementById('noteModal').classList.remove('hidden');
+                                //     document.body.style.overflow = 'hidden'; // Disable scrolling on the background
+                                // }
+
+                                // function closeModal(event) {
+                                //     if (!event || event.target === document.getElementById('noteModal')) {
+                                //         document.getElementById('noteModal').classList.add('hidden');
+                                //         document.body.style.overflow = 'auto'; // Re-enable scrolling
+                                //     }
+                                // }
+
+                                  </script>
+
                             <li class="">
                                 <div class="relative ">
                                     <button type="button"
