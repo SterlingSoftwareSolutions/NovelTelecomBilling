@@ -35,6 +35,16 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
+        .dropdown-content-account-details{
+            position: absolute;
+            z-index: 10;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         .dropdown-item {
             display: block;
             padding: 8px 16px;
@@ -129,12 +139,16 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </button>
-                                    <div id="accountdetails" class="dropdown-content hidden absolute left-full top-0">
+                                    <div id="accountdetails" class="dropdown-content-account-details hidden absolute left-full top-0 ">
                                         <!-- Sub-dropdown content for Profile -->
-                                        <ul class=" w-[150px]">
-                                            <li><a href="#" class="dropdown-item ">Sub Profile 1</a></li>
-                                            <li><a href="#" class="dropdown-item">Sub Profile 2</a></li>
-                                            <li><a href="#" class="dropdown-item">Sub Profile 3</a></li>
+                                        <ul class=" w-[200px] ">
+                                            <li><a href="#" class="dropdown-item ">General</a></li>
+                                            <li><a href="#" class="dropdown-item">Address</a></li>
+                                            <li><a href="#" class="dropdown-item">Phone Numbers</a></li>
+                                            <li><a href="#" class="dropdown-item">Contacts</a></li>
+                                            <li><a href="#" class="dropdown-item">Contact History</a></li>
+                                            <li><a href="#" class="dropdown-item">Email Address</a></li>
+                                            <li><a href="#" class="dropdown-item">Additional Details</a></li>
                                         </ul>
                                     </div>
                                 </div>

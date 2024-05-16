@@ -13,6 +13,8 @@
             text-decoration: underline;
             color: red
         }
+
+
     </style>
 </head>
 
@@ -183,188 +185,208 @@
                                 </div>
                             </div>
 
-                            <div class=" text-black font-bold ml-5" id="titlecoparate">Primary Contact Details</div>
+                            <div id="bordercontainer" class="border-2 rounded-md border-gray-500  ">
 
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                <div class="w-7/12">
-                                    <label for="">Initials</label>
-                                    <input type="text" name="initials"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+
+
+                                <script>
+                                    document.getElementById("typeSelect").addEventListener("change", function() {
+                                        var detailsContainer = document.getElementById("bordercontainer");
+                                        if (this.value == "Corporate") {
+                                            detailsContainer.classList.add("border-2");
+                                        } else {
+                                            detailsContainer.classList.remove("border-2");
+                                        }
+                                    });
+                                </script>
+
+
+                                <div class=" text-black font-bold ml-5 mt-2" id="titlecoparate">Primary Contact Details
                                 </div>
 
-                                <div class="w-7/12">
-                                    <label for=""> First Name</label>
-                                    <input type="text" name="first_name"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="firstnameerror" class="text-red-500 hidden">Please fill business
-                                        unit</span>
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="w-7/12">
+                                        <label for="">Initials</label>
+                                        <input type="text" name="initials"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
 
-                                </div>
-                            </div>
+                                    <div class="w-7/12">
+                                        <label for=""> First Name</label>
+                                        <input type="text" name="first_name"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        <span id="firstnameerror" class="text-red-500 hidden">Please fill business
+                                            unit</span>
 
-
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-
-                                <div class="w-7/12">
-                                    <label for="">Last Name</label>
-                                    <input type="text" name="last_name"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="lastnameerror" class="text-red-500 hidden">Please fill business
-                                        unit</span>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                <div class="w-7/12">
-                                    <label for="">Trading Name</label>
-                                    <input type="text" name="trading_name"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
                                 </div>
 
 
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
 
-                                <div class="flex flex-col w-7/12">
-                                    <label for="gender">Gender</label>
-                                    <select name="gender" id="gender"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value="">Selcet a gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                    <span id="gendererror" class="text-red-500 hidden">Please choose a gender </span>
+                                    <div class="w-6/12">
+                                        <label for="">Last Name</label>
+                                        <input type="text" name="last_name"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        <span id="lastnameerror" class="text-red-500 hidden">Please fill business
+                                            unit</span>
 
-                                </div>
-                            </div>
-
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                <div class="w-7/12">
-                                    <label for="datepicker">Date Of Birth</label>
-                                    <!-- Date Picker Input -->
-                                    <input type="text" id="datepicker" placeholder="Select Date"
-                                        name="date_of_birth"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="dateOfBirthError" class="text-red-500 hidden">Please select a date of
-                                        birth</span>
-
-                                    <!-- Include flatpickr JavaScript -->
-                                    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-                                    <!-- Initialize flatpickr -->
-                                    <script>
-                                        flatpickr("#datepicker", {
-                                            // Options
-                                            dateFormat: "Y-m-d",
-                                            maxDate: new Date().fp_incr(-18 * 365) // Date format
-                                        });
-
-
-                                        // function validateDOB() {
-                                        //     var dobInput = document.getElementById("datepicker");
-                                        //     var dobValue = dobInput.value;
-                                        //     var errorSpan = document.getElementById("dateOfBirthError");
-                                        //     var isValid = true; // Ensure this local variable exists to manage state
-
-                                        //     // Check if the date input is empty
-                                        //     if (!dobValue) {
-                                        //         errorSpan.textContent = "Please select a date of birth.";
-                                        //         errorSpan.classList.remove("hidden");
-                                        //         isValid = false;
-                                        //         return isValid; // Return isValid status
-                                        //     }
-
-                                        //     // Check age requirement
-                                        //     var dob = new Date(dobValue);
-                                        //     var today = new Date();
-                                        //     var age = today.getFullYear() - dob.getFullYear();
-                                        //     var m = today.getMonth() - dob.getMonth();
-                                        //     if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-                                        //         age--;
-                                        //     }
-
-                                        //     if (age < 18) {
-                                        //         errorSpan.textContent = "You must be at least 18 years old.";
-                                        //         errorSpan.classList.remove("hidden");
-                                        //         isValid = false;
-                                        //     } else {
-                                        //         errorSpan.classList.add("hidden");
-                                        //     }
-                                        //     return isValid; // Return isValid status
-                                        // }
-                                    </script>
-
+                                    </div>
 
                                 </div>
 
-                                <div class="w-7/12">
-                                    <label for="">Salutation</label>
-                                    <input type="text" name="salutation"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                </div>
-                            </div>
+
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="w-7/12">
+                                        <label for="">Trading Name</label>
+                                        <input type="text" name="trading_name"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
 
 
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                <div class="w-7/12">
-                                    <label for="">Employee No.</label>
-                                    <input type="text" name="employee_no"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                </div>
-                                <div class="w-7/12">
-                                    <label for="">Email</label>
-                                    <input type="text" name="email"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                </div>
-                            </div>
 
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="flex flex-col w-7/12">
+                                        <label for="gender">Gender</label>
+                                        <select name="gender" id="gender"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                            <option value="">Selcet a gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                        <span id="gendererror" class="text-red-500 hidden">Please choose a gender
+                                        </span>
 
-                                <div class="flex flex-col w-7/12">
-                                    <label for="">Question</label>
-                                    <select name="question_2" id=""
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value="">None</option>
-                                        <option value="">MULTI SITE CUSTOMER</option>
-
-                                    </select>
-                                </div>
-                                <div class="w-7/12">
-                                    <label for="">Answer</label>
-                                    <input type="text" name="answer_2"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
                                 </div>
 
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="w-7/12">
+                                        <label for="datepicker">Date Of Birth</label>
+                                        <!-- Date Picker Input -->
+                                        <input type="text" id="datepicker" placeholder="Select Date"
+                                            name="date_of_birth"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        <span id="dateOfBirthError" class="text-red-500 hidden">Please select a date
+                                            of
+                                            birth</span>
 
-                            </div>
-                            <div id="novelteleventTable" class="overflow-x-auto  mt-5">
-                                <label for="" class="m-5">Identification</label>
-                                <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
+                                        <!-- Include flatpickr JavaScript -->
+                                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                                        <!-- Initialize flatpickr -->
+                                        <script>
+                                            flatpickr("#datepicker", {
+                                                // Options
+                                                dateFormat: "Y-m-d",
+                                                maxDate: new Date().fp_incr(-18 * 365) // Date format
+                                            });
 
-                                    <!-- Table content for Notes -->
-                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
-                                        <tr>
-                                            <th>Event Description</th>
-                                            <th>Event Date</th>
-                                            <th>Due Time</th>
-                                            <th>Status</th>
-                                            <th>Status Time</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Credit Card</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Driver Licence</td>
+                                            // function validateDOB() {
+                                            //     var dobInput = document.getElementById("datepicker");
+                                            //     var dobValue = dobInput.value;
+                                            //     var errorSpan = document.getElementById("dateOfBirthError");
+                                            //     var isValid = true; // Ensure this local variable exists to manage state
 
-                                        </tr>
-                                        <tr>
-                                            <td>Passport</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            //     // Check if the date input is empty
+                                            //     if (!dobValue) {
+                                            //         errorSpan.textContent = "Please select a date of birth.";
+                                            //         errorSpan.classList.remove("hidden");
+                                            //         isValid = false;
+                                            //         return isValid; // Return isValid status
+                                            //     }
+
+                                            //     // Check age requirement
+                                            //     var dob = new Date(dobValue);
+                                            //     var today = new Date();
+                                            //     var age = today.getFullYear() - dob.getFullYear();
+                                            //     var m = today.getMonth() - dob.getMonth();
+                                            //     if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                                            //         age--;
+                                            //     }
+
+                                            //     if (age < 18) {
+                                            //         errorSpan.textContent = "You must be at least 18 years old.";
+                                            //         errorSpan.classList.remove("hidden");
+                                            //         isValid = false;
+                                            //     } else {
+                                            //         errorSpan.classList.add("hidden");
+                                            //     }
+                                            //     return isValid; // Return isValid status
+                                            // }
+                                        </script>
+
+
+                                    </div>
+
+                                    <div class="w-7/12">
+                                        <label for="">Salutation</label>
+                                        <input type="text" name="salutation"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                </div>
+
+
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="w-7/12">
+                                        <label for="">Employee No.</label>
+                                        <input type="text" name="employee_no"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                    <div class="w-7/12">
+                                        <label for="">Email</label>
+                                        <input type="text" name="email"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+
+                                    <div class="flex flex-col w-7/12">
+                                        <label for="">Question</label>
+                                        <select name="question_2" id=""
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                            <option value="">None</option>
+                                            <option value="">MULTI SITE CUSTOMER</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="w-7/12">
+                                        <label for="">Answer</label>
+                                        <input type="text" name="answer_2"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+
+
+                                </div>
+                                <div id="novelteleventTable" class="overflow-x-auto  mt-5">
+                                    <label for="" class="m-5">Identification</label>
+                                    <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
+
+                                        <!-- Table content for Notes -->
+                                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
+                                            <tr>
+                                                <th>Event Description</th>
+                                                <th>Event Date</th>
+                                                <th>Due Time</th>
+                                                <th>Status</th>
+                                                <th>Status Time</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Credit Card</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Driver Licence</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Passport</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
 
@@ -403,6 +425,7 @@
                                     document.getElementById("typeSelectError").classList.add("hidden");
                                 }
                                 if (typeSelect == "Corporate") {
+
                                     var acn = document.getElementsByName("acn")[0].value;
                                     var abn = document.getElementsByName("abn")[0].value;
 
@@ -1529,13 +1552,15 @@
 
                                     if (duplicates.length > 0) {
                                         alert(
-                                            'One or more selected contact usage types already exist in the table. Please remove them before adding new ones.');
+                                            'One or more selected contact usage types already exist in the table. Please remove them before adding new ones.'
+                                            );
                                         return;
                                     }
 
                                     // Build new data with contact information and usage types
                                     const data = Array.from(selectContactUsage).map(checkbox => [contact_code2, contact_type, name1, checkbox
-                                        .value]);
+                                        .value
+                                    ]);
 
 
                                     const existingData = [];
