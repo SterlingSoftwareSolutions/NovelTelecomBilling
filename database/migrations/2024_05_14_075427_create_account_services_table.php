@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('dealer');
             $table->string('costcentre');
             $table->string('service_narrative');
+            $table->string('contract')->default('12');
             $table->foreign('contact_code')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');

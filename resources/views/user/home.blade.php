@@ -139,7 +139,6 @@
 <body>
 
     @include('layouts.layout')
-
     <div class="px-4 md:px-6 mx-auto w-full ">
 
         <div class="flex flex-wrap">
@@ -364,32 +363,32 @@
                                 @if ($account != null)
 
 
-                                <tbody id="notesTableBody">
-                                    @foreach ($notes as $note)
-                                        <tr>
-                                            <td>{{ $note->id }}</td>
-                                            <td>{{ $note->creater }}</td>
-                                            <td>{{ $note->note }}</td>
-                                            <td>{{ $note->created_at }}</td>
-                                            {{-- <td>Updated At: {{ $note->updated_at }}</td> --}}
-                                        </tr>
-                                    @endforeach
+                                    <tbody id="notesTableBody">
+                                        @foreach ($notes as $note)
+                                            <tr>
+                                                <td>{{ $note->id }}</td>
+                                                <td>{{ $note->creater }}</td>
+                                                <td>{{ $note->note }}</td>
+                                                <td>{{ $note->created_at }}</td>
+                                                {{-- <td>Updated At: {{ $note->updated_at }}</td> --}}
+                                            </tr>
+                                        @endforeach
 
-                                    {{-- <tr>
+                                        {{-- <tr>
                                         <td>Note 1</td>
                                         <td>Value 1</td>
                                         <td>Creator 1</td>
                                         <td>Creator 1</td>
                                     </tr> --}}
-                                </tbody>
+                                    </tbody>
 
-                                  <!-- Button to Open the Modal -->
-                            <button
-                                class="flex w-24 h-10 items-center justify-center rounded-lg bg-green-500 text-white mt-5"
-                                onclick="openModal('{{ $account->id }}')">
+                                    <!-- Button to Open the Modal -->
+                                    <button
+                                        class="flex w-24 h-10 items-center justify-center rounded-lg bg-green-500 text-white mt-5"
+                                        onclick="openModal('{{ $account->id }}')">
 
-                                <h1 class="text-center">Add Note  </h1>
-                            </button>
+                                        <h1 class="text-center">Add Note </h1>
+                                    </button>
 
 
 
@@ -444,9 +443,10 @@
                                     <textarea id="noteText" name="noteText"
                                         class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
                                         placeholder="Write your note here..." autofocus></textarea>
-                                        @if ($account != null)
-                                        <input type="text" value="{{$account->id}}" name="account" id="account" hidden>
-                                        @endif
+                                    @if ($account != null)
+                                        <input type="text" value="{{ $account->id }}" name="account"
+                                            id="account" hidden>
+                                    @endif
                                     <div class="flex justify-end space-x-4 mt-4">
                                         <button onclick="saveNote()"
                                             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
@@ -497,7 +497,7 @@
                                                 'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token if using Laravel CSRF protection
                                             },
                                             body: JSON.stringify({
-                                                note: noteText ,
+                                                note: noteText,
                                                 accountId: account
                                             }), // Send note text in JSON format
                                         })
@@ -526,22 +526,22 @@
 
                                 function getNotes(accId) {
                                     fetch('/notes?accId=' + accId, { // Pass the account ID as a query parameter
-                                        method: 'GET',
-                                    })
-                                    .then(response => {
-                                        if (!response.ok) {
-                                            throw new Error('Failed to fetch notes');
-                                        }
-                                        return response.json();
-                                    })
-                                    .then(data => {
-                                        // Update UI with the received notes
-                                        updateNotesTable(data);
-                                    })
-                                    .catch(error => {
-                                        console.error('Error fetching notes:', error);
-                                        // Optionally: Display an error message to the user
-                                    });
+                                            method: 'GET',
+                                        })
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Failed to fetch notes');
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(data => {
+                                            // Update UI with the received notes
+                                            updateNotesTable(data);
+                                        })
+                                        .catch(error => {
+                                            console.error('Error fetching notes:', error);
+                                            // Optionally: Display an error message to the user
+                                        });
                                 }
 
 
@@ -735,45 +735,41 @@
 
         </div>
     </div>
-    </section>
-    </div>
-
-
-    </div>
 
     <div class="px-4 md:px-6 mx-auto w-full ">
 
         <div class="flex flex-wrap">
+            {{-- side section expand --}}
             <section class=" -mt-16 border-1 border w-2/12 ">
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
                     rel="stylesheet" />
 
-                <div class=" grid place-items-center">
+                <div class="grid place-items-center">
                     @if ($account != null)
-                    @foreach ($accountservice as $accountservice )
-                        
-                    <div class="borde w-full">
-
-                        <div class="transition border border-1">
-                            <!-- header -->
-                            <div
-                                class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
-                                <i class="fas fa-plus icon"></i>
-                                <h3>{{ $accountservice->service_id }}</h3>
+                        @foreach ($accountservice as $accountservice)
+                            <div class="border w-full">
+                                <div class="transition border border-1">
+                                    <!-- Header -->
+                                    <div
+                                        class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
+                                        <i class="fas fa-plus icon"></i>
+                                        <h3>{{ $accountservice->service_id }}</h3>
+                                    </div>
+                                    <div class="accordion-content height px-5 pt-0 overflow-hidden max-h-0">
+                                        <a href="#" class="leading-6 font-light pl-9 text-justify show-details"
+                                            data-accountservice="{{ json_encode($accountservice) }}">
+                                            {{ $accountservice->phonenumber }}
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- Content -->
-                            <div class="accordion-content heigh px-5 pt-0 overflow-hidden max-h-0">
-                                <p class="leading-6 font-light pl-9 text-justify">
-                                    {{ $accountservice->phonenumber }}
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
                     @endif
                 </div>
+
             </section>
+
+            {{-- service package details 3rd div --}}
             <section class="  p-3 sm:p-5 w-4/12 border ">
                 <div class=" border  ">
                     <!-- Start coding here -->
@@ -786,12 +782,12 @@
                             <div class="flex-auto flex flex-col  h-12 ">
                                 <div class="flex flex-col  relative">
 
-                                    <div class="w-full svelte-1l8159u -mt-1">
+                                    <div class="w-full ml-2 svelte-1l8159u -mt-1">
                                         <div class="pt-2 relative mx-auto text-gray-600  ">
 
                                             <input
                                                 class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                                                type="search" name="search" placeholder="Search">
+                                                type="searchd" name="searchd" placeholder="Search">
                                             <button type="submit" class="">
                                                 <svg class="text-gray-600 h-4 w-4 fill-current"
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -818,79 +814,39 @@
                         <div class="">
 
                             <div id="" class="overflow-x-auto">
-                                <table class="w-full text-sm text-left text-gray-500  border-separate">
+
+                                <table id="details-table"
+                                    class="w-full text-sm text-left text-gray-500  border-separate">
 
                                     <!-- Table content for Notes -->
-                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full ">
-                                        <tr>
-                                            <th>Item</th>
-                                            <th>Value</th>
+                                    @if ($account != null)
+                                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full ">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Value</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Type</td>
-                                            <td>Corporate</td>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody id="details-table-body">
 
 
-                                        </tr>
-                                        <tr>
-                                            <td>Abn</td>
-                                            <td>74163388065</td>
+                                        </tbody>
+                                    @elseif(isset($errorMessage))
+                                        <div class="flex justify-center items-center h-full max-h-full my-28">
+                                            <div class="font-bold p-3">{{ $errorMessage }}</div>
+                                        </div>
+                                    @endif
 
-                                        </tr>
-                                        <tr>
-                                            <td>Bill Format</td>
-                                            <td>Novel Tel</td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>Bill Option</td>
-                                            <td>Provide Paper Bill</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Bill Cycle</td>
-                                            <td>Novel Tel</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Credit Control Plan</td>
-                                            <td>Novel Tel</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Billing Address</td>
-                                            <td>205 Lonsdale street</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Street Address</td>
-                                            <td>As Above</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Work Phone</td>
-                                            <td>0387741140</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Mobile Number</td>
-                                            <td>04158363832</td>
-
-                                        </tr>
-
-                                    </tbody>
                                 </table>
+
+
                             </div>
 
 
 
                         </div>
             </section>
-
 
             {{-- 4th div --}}
             <section class="  p-3 sm:p-5 w-6/12 border ">
@@ -1172,21 +1128,11 @@
                 </div>
             </section>
         </div>
-
-
-    </div>
-
-
-
-
     </div>
 </body>
 
-
-
-
-{{--  --}}
-<script>
+{{-- navigate notes->document  --}}
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const notesButton = document.getElementById('notesButton');
         const billsButton = document.getElementById('billsButton');
@@ -1261,10 +1207,9 @@
             DocumentTable.classList.add('hidden');
         }
     });
-</script>
+</script> --}}
 
-
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const novelteleventButton = document.getElementById('novelteleventButton');
         const noveltelesitesButton = document.getElementById('noveltelesitesButton')
@@ -1290,9 +1235,9 @@
             noveltelesitesTable.classList.add('hidden')
         }
     });
-</script>
+</script> --}}
 
-<script>
+{{-- <script>
     const accordionHeader = document.querySelectorAll(".accordion-header");
     accordionHeader.forEach((header) => {
         const accordionContent = header.parentElement.querySelector(
@@ -1333,8 +1278,9 @@
             }
         });
     });
-</script>
-<script>
+</script> --}}
+
+{{-- <script>
     function selectTab(button) {
         const buttons = document.querySelectorAll('.tab-button');
         buttons.forEach(btn => {
@@ -1342,8 +1288,105 @@
         });
         button.classList.add('selected-tab');
     }
-</script>
+</script> --}}
 
+{{-- serchbox value pass and phonenumber value pass table --}}
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const detailsTableBody = document.getElementById('details-table-body');
+        const searchInput = document.querySelector('input[name="searchd"]');
 
+        document.querySelectorAll('.show-details').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+
+                // Get the account service data from the clicked element
+                const accountService = JSON.parse(item.getAttribute(''));
+
+                // Clear the existing table body content
+                detailsTableBody.innerHTML = '';
+
+                // Populate the table with account service details
+                const fields = [{
+                        label: 'Phone Number',
+                        value: accountService.phonenumber
+                    },
+                    {
+                        label: 'Service Narrative',
+                        value: accountService.service_narrative
+                    },
+                    {
+                        label: 'Status',
+                        value: accountService.status
+                    },
+                    {
+                        label: 'Date Connected',
+                        value: accountService.created_at
+                    },
+                    {
+                        label: 'Password',
+                        value: accountService.password
+                    },
+                    {
+                        label: 'Package',
+                        value: accountService.service_id
+                    },
+                    {
+                        label: 'Charge Override',
+                        value: '--'
+                    },
+                    {
+                        label: 'Package Start',
+                        value: accountService.created_at
+                    },
+                    {
+                        label: 'Contract',
+                        value: accountService.contract
+                    },
+                    {
+                        label: 'Contract Start',
+                        value: '--'
+                    },
+                    {
+                        label: 'Contract End',
+                        value: '--'
+                    },
+                    {
+                        label: 'Service Owner',
+                        value: '--'
+                    },
+                    {
+                        label: 'Port Authority Date',
+                        value: '--'
+                    },
+                    {
+                        label: 'Order Number',
+                        value: '--'
+                    },
+                    {
+                        label: 'IPND',
+                        value: '--'
+                    }
+                ];
+
+                fields.forEach(field => {
+                    const row = document.createElement('tr');
+                    const cellItem = document.createElement('td');
+                    const cellValue = document.createElement('td');
+                    cellItem.textContent = field.label;
+                    cellValue.textContent = field.value;
+                    row.appendChild(cellItem);
+                    row.appendChild(cellValue);
+                    detailsTableBody.appendChild(row);
+                });
+
+                // Set search input value to phone number
+                searchInput.value = accountService.phonenumber;
+            });
+        });
+    });
+</script> --}}
+
+<script src="{{ asset('../js/home.js') }}"></script>
 
 </html>
