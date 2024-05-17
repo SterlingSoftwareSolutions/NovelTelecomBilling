@@ -9,6 +9,7 @@
     <div class="w-full max-w-6xl px-4">
         <h1 class="text-4xl font-bold text-center mb-10">Excel Uploader</h1>
         <div class="flex flex-wrap justify-around">
+            
             <form action="{{ route('file.upload') }}" method="post" enctype="multipart/form-data" class="mb-4 w-full md:w-1/3 px-4 ">
                 @csrf
                 <h3 class="text-lg font-bold mb-2">1. Account Excel</h3>
