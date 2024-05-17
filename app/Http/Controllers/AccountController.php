@@ -192,7 +192,7 @@ class AccountController extends Controller
 
 
                 $notes = ManualNote::getNotesByAccountId($account->id);
-                dd($request);
+                // dd($request);
 
                 return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone', 'account_number', 'notes','accountservice'));
 
