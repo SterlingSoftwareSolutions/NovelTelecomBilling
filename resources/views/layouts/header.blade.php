@@ -489,47 +489,42 @@
 
     {{-- dropdown --}}
     <script>
-        // Function to toggle dropdown visibility
         function toggleDropdown(dropdownId) {
-            const dropdown = document.getElementById(dropdownId);
-            const allDropdowns = document.querySelectorAll('.dropdown-content');
+            var dropdown = document.getElementById(dropdownId);
+            var isHidden = dropdown.classList.contains('hidden');
 
-            // Hide all open dropdowns except the one being clicked
-            allDropdowns.forEach((dropdownElement) => {
-                if (dropdownElement.id !== dropdownId && !dropdownElement.classList.contains('hidden')) {
-                    dropdownElement.classList.add('hidden');
-                }
-            });
+            // Close all dropdowns
+            var dropdowns = document.querySelectorAll('.dropdown-content, .dropdown-content-account, .dropdown-content-service');
+            dropdowns.forEach(function (dd) {
+                dd.classList.add('hidden');
+            }); 
 
-            // Toggle the visibility of the clicked dropdown
-            dropdown.classList.toggle('hidden');
-
-            // Hide the clicked dropdown when mouse leaves
-            dropdown.addEventListener('mouseleave', () => {
-                dropdown.classList.add('hidden');
-            });
-        }
-    </script>
-
-
-
-    {{-- subdropdown --}}
-    <script>
-        let currentSubDropdown = null;
-
-        function toggleSubDropdown(id) {
-            const subDropdown = document.getElementById(id);
-
-            // Close the current sub-dropdown if it exists and is not the same as the one being clicked
-            if (currentSubDropdown && currentSubDropdown !== subDropdown) {
-                currentSubDropdown.classList.add('hidden');
+            // Toggle the selected dropdown
+            if (isHidden) {
+                dropdown.classList.remove('hidden');
             }
+        }
 
-            // Toggle the visibility of the clicked sub-dropdown
-            subDropdown.classList.toggle('hidden');
+        function toggleSubDropdown(subDropdownId) {
+            var subDropdown = document.getElementById(subDropdownId);
+            var isHidden = subDropdown.classList.contains('hidden');
 
-            // Update the current sub-dropdown
-            currentSubDropdown = subDropdown;
+            // Close all sub-dropdowns
+            var subDropdowns = document.querySelectorAll('.dropdown-content');
+            subDropdowns.forEach(function (sdd) {
+                sdd.classList.add('hidden');
+            });
+
+            // Toggle the selected sub-dropdown
+            if (isHidden) {
+                subDropdown.classList.remove('hidden');
+            }
+        }
+
+        function closeModale(event) {
+            if (event.target.id === 'noteModale') {
+                document.getElementById('noteModale').classList.add('hidden');
+            }
         }
     </script>
 
