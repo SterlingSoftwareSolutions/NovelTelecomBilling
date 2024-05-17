@@ -73,12 +73,9 @@
             </button>
         </form>
 
-        <div class="flex w-full  ">
-            <div class="lg:flex lg:gap-x-12 w-6/12 ">
-
 
         {{-- home icon  --}}
-                <div class="relative  w-10 ml-6" >
+                <div class="relative  w-10 " >
                     <button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
                         aria-expanded="false" onclick="toggleDropdown('fileDropdown')">
                         File
