@@ -516,7 +516,7 @@
         // Function to toggle dropdown visibility
         function toggleDropdown(dropdownId) {
             const dropdown = document.getElementById(dropdownId);
-            const allDropdowns = document.querySelectorAll('.dropdown-content');
+            const allDropdowns = document.querySelectorAll('.dropdown-content, .dropdown-content-account, .dropdown-content-service');
 
             // Hide all open dropdowns except the one being clicked
             allDropdowns.forEach((dropdownElement) => {
@@ -533,12 +533,32 @@
                 dropdown.classList.add('hidden');
             });
         }
-    </script>
 
+        // Close all dropdowns
+        function closeAllDropdowns() {
+            const allDropdowns = document.querySelectorAll('.dropdown-content, .dropdown-content-account, .dropdown-content-service');
+            allDropdowns.forEach((dropdown) => {
+                dropdown.classList.add('hidden');
+            });
+        }
 
+        // Add event listener to close dropdowns when clicking outside
+        document.addEventListener('click', (event) => {
+            const isDropdownButton = event.target.matches('[onclick^="toggleDropdown"]');
+            if (!isDropdownButton) {
+                closeAllDropdowns();
+            }
+        });
 
-    {{-- subdropdown --}}
-    <script>
+        // Prevent dropdown from closing when clicking inside
+        const allDropdowns = document.querySelectorAll('.dropdown-content, .dropdown-content-account, .dropdown-content-service');
+        allDropdowns.forEach((dropdown) => {
+            dropdown.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        });
+
+        // Sub-dropdown script
         let currentSubDropdown = null;
 
         function toggleSubDropdown(id) {
@@ -556,6 +576,7 @@
             currentSubDropdown = subDropdown;
         }
     </script>
+
 
 
 
