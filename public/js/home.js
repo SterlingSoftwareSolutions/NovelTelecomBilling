@@ -3,6 +3,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const detailsTableBody = document.getElementById("details-table-body");
     const searchInput = document.querySelector('input[name="searchd"]');
 
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = ('0' + (d.getMonth() + 1)).slice(-2); // Adding 1 because getMonth returns zero-based month index
+        const day = ('0' + d.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
+    };
+
+
     document.querySelectorAll(".show-details").forEach((item) => {
         item.addEventListener("click", (event) => {
             event.preventDefault();
@@ -15,14 +24,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
             // Populate the table with account service details
             const fields = [
-                { label: "Phone Number", value: accountService.phonenumber },
+                { label: "Phone Number", value: accountService.phonenumber},
                 { label: "Service Narrative", value: accountService.service_narrative },
                 { label: "Status", value: accountService.status },
-                { label: "Date Connected", value: accountService.created_at },
+                { label: "Date Connected", value: formatDate(accountService.created_at)},
                 { label: "Password", value: accountService.password },
                 { label: "Package", value: accountService.service_id },
                 { label: "Charge Override", value: "--" },
-                { label: "Package Start", value: accountService.created_at },
+                { label: "Package Start", value: formatDate(accountService.created_at) },
                 { label: "Contract", value: accountService.contract },
                 { label: "Contract Start", value: "--" },
                 { label: "Contract End", value: "--" },
@@ -39,7 +48,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
                 cellItem.textContent = field.label;
 
-                // Create an input element for the value cell
+                //Create an input element for the value cell
                 const input = document.createElement("input");
                 input.type = "text";
                 input.value = field.value;
