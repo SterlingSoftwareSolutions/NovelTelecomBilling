@@ -70,7 +70,9 @@ class AccountController extends Controller
         ]);
 
         // Create the Account record
+
         $accountValidate = Account::where('contact_code', $request->contact_code)->first();
+
 
         if ($accountValidate == null) {
             $accountData = [
@@ -96,6 +98,7 @@ class AccountController extends Controller
                 'question_2' => $request->question_2,
                 'answer_2' => $request->answer_2,
             ];
+
             $account = Account::create($accountData);
 
 
@@ -165,6 +168,7 @@ class AccountController extends Controller
 
     public function search(Request $request)
     {
+
         try {
             $account_number = $request->search;
             // dd( $request->search);
@@ -189,6 +193,7 @@ class AccountController extends Controller
 
 
                 $notes = ManualNote::getNotesByAccountId($account->id);
+                // dd($request);
 
                 return view('user.home', compact('account', 'address', 'bill', 'contact', 'phone', 'account_number', 'notes','accountservice'));
 

@@ -13,14 +13,16 @@
             text-decoration: underline;
             color: red
         }
+
+
     </style>
 </head>
 
 <body>
     @include('layouts.layout')
 
-    <div class=" flex justify-center items-center h-screen">
-        <section class=" w-[1000px]  ">
+    <div class=" flex justify-center items-center h-screen ">
+        <section class=" w-[1000px]  mt-20  ">
             <div class="border">
                 <!-- Start coding here -->
                 <div class="bg-white  relative shadow-md sm:rounded-lg  h-full  overflow-y-auto">
@@ -145,7 +147,7 @@
                                     <label for="">ACN</label>
                                     <input name="acn" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="acnerror" class="text-red-500 hidden">Please fill business unit</span>
+                                    <span id="acnerror" class="text-red-500 hidden">Please fill ABN </span>
 
                                     </input>
                                 </div>
@@ -154,7 +156,7 @@
                                     <label for="">ABN</label>
                                     <input type="text" name="abn"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="abnerror" class="text-red-500 hidden">Please fill business unit</span>
+                                    <span id="abnerror" class="text-red-500 hidden">Please fill ACN</span>
 
                                 </div>
                             </div>
@@ -163,10 +165,9 @@
 
                                 <div class="flex flex-col w-7/12">
                                     <label for="">Email</label>
-                                    <select name="email" id=""
+                                    <input name="email" id=""
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value=""></option>
-                                    </select>
+                                    </input>
                                 </div>
 
                                 <div class="w-7/12">
@@ -184,188 +185,208 @@
                                 </div>
                             </div>
 
-                            <div class=" text-black font-bold ml-5" id="titlecoparate">Primary Contact Details</div>
-
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                <div class="w-7/12">
-                                    <label for="">Initials</label>
-                                    <input type="text" name="initials"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                </div>
-
-                                <div class="w-7/12">
-                                    <label for=""> First Name</label>
-                                    <input type="text" name="first_name"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="firstnameerror" class="text-red-500 hidden">Please fill business
-                                        unit</span>
-
-                                </div>
-                            </div>
-
-
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-
-                                <div class="w-7/12">
-                                    <label for="">Last Name</label>
-                                    <input type="text" name="last_name"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="lastnameerror" class="text-red-500 hidden">Please fill business
-                                        unit</span>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                <div class="w-7/12">
-                                    <label for="">Trading Name</label>
-                                    <input type="text" name="trading_name"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                </div>
+                            <div id="bordercontainer" class="border-2 rounded-md border-gray-500  ">
 
 
 
-                                <div class="flex flex-col w-7/12">
-                                    <label for="gender">Gender</label>
-                                    <select name="gender" id="gender"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value="">Selcet a gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                    <span id="gendererror" class="text-red-500 hidden">Please choose a gender </span>
-
-                                </div>
-                            </div>
-
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                <div class="w-7/12">
-                                    <label for="datepicker">Date Of Birth</label>
-                                    <!-- Date Picker Input -->
-                                    <input type="text" id="datepicker" placeholder="Select Date"
-                                        name="date_of_birth"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                    <span id="dateOfBirthError" class="text-red-500 hidden">Please select a date of
-                                        birth</span>
-
-                                    <!-- Include flatpickr JavaScript -->
-                                    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-                                    <!-- Initialize flatpickr -->
-                                    <script>
-                                        flatpickr("#datepicker", {
-                                            // Options
-                                            dateFormat: "Y-m-d",
-                                            maxDate: new Date().fp_incr(-18 * 365) // Date format
-                                        });
-
-
-                                        function validateDOB() {
-                                            var dobInput = document.getElementById("datepicker");
-                                            var dobValue = dobInput.value;
-                                            var errorSpan = document.getElementById("dateOfBirthError");
-                                            var isValid = true; // Ensure this local variable exists to manage state
-
-                                            // Check if the date input is empty
-                                            if (!dobValue) {
-                                                errorSpan.textContent = "Please select a date of birth.";
-                                                errorSpan.classList.remove("hidden");
-                                                isValid = false;
-                                                return isValid; // Return isValid status
-                                            }
-
-                                            // Check age requirement
-                                            var dob = new Date(dobValue);
-                                            var today = new Date();
-                                            var age = today.getFullYear() - dob.getFullYear();
-                                            var m = today.getMonth() - dob.getMonth();
-                                            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-                                                age--;
-                                            }
-
-                                            if (age < 18) {
-                                                errorSpan.textContent = "You must be at least 18 years old.";
-                                                errorSpan.classList.remove("hidden");
-                                                isValid = false;
-                                            } else {
-                                                errorSpan.classList.add("hidden");
-                                            }
-                                            return isValid; // Return isValid status
+                                <script>
+                                    document.getElementById("typeSelect").addEventListener("change", function() {
+                                        var detailsContainer = document.getElementById("bordercontainer");
+                                        if (this.value == "Corporate") {
+                                            detailsContainer.classList.add("border-2");
+                                        } else {
+                                            detailsContainer.classList.remove("border-2");
                                         }
-                                    </script>
+                                    });
+                                </script>
 
 
+                                <div class=" text-black font-bold ml-5 mt-2" id="titlecoparate">Primary Contact Details
                                 </div>
 
-                                <div class="w-7/12">
-                                    <label for="">Salutation</label>
-                                    <input type="text" name="salutation"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                </div>
-                            </div>
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="w-7/12">
+                                        <label for="">Initials</label>
+                                        <input type="text" name="initials"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
 
+                                    <div class="w-7/12">
+                                        <label for=""> First Name</label>
+                                        <input type="text" name="first_name"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        <span id="firstnameerror" class="text-red-500 hidden">Please fill business
+                                            unit</span>
 
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-                                <div class="w-7/12">
-                                    <label for="">Employee No.</label>
-                                    <input type="text" name="employee_no"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                </div>
-                                <div class="w-7/12">
-                                    <label for="">Email</label>
-                                    <input type="text" name="email"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                </div>
-                            </div>
-
-                            <div class="flex flex-row gap-4 md:gap-8 m-5">
-
-                                <div class="flex flex-col w-7/12">
-                                    <label for="">Question</label>
-                                    <select name="question_2" id=""
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                                        <option value="">None</option>
-                                        <option value="">MULTI SITE CUSTOMER</option>
-
-                                    </select>
-                                </div>
-                                <div class="w-7/12">
-                                    <label for="">Answer</label>
-                                    <input type="text" name="answer_2"
-                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
                                 </div>
 
 
-                            </div>
-                            <div id="novelteleventTable" class="overflow-x-auto  mt-5">
-                                <label for="" class="m-5">Identification</label>
-                                <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
 
-                                    <!-- Table content for Notes -->
-                                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
-                                        <tr>
-                                            <th>Event Description</th>
-                                            <th>Event Date</th>
-                                            <th>Due Time</th>
-                                            <th>Status</th>
-                                            <th>Status Time</th>
+                                    <div class="w-6/12">
+                                        <label for="">Last Name</label>
+                                        <input type="text" name="last_name"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        <span id="lastnameerror" class="text-red-500 hidden">Please fill business
+                                            unit</span>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Credit Card</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Driver Licence</td>
+                                    </div>
 
-                                        </tr>
-                                        <tr>
-                                            <td>Passport</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                </div>
+
+
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="w-7/12">
+                                        <label for="">Trading Name</label>
+                                        <input type="text" name="trading_name"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+
+
+
+                                    <div class="flex flex-col w-7/12">
+                                        <label for="gender">Gender</label>
+                                        <select name="gender" id="gender"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                            <option value="">Selcet a gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                        <span id="gendererror" class="text-red-500 hidden">Please choose a gender
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="w-7/12">
+                                        <label for="datepicker">Date Of Birth</label>
+                                        <!-- Date Picker Input -->
+                                        <input type="text" id="datepicker" placeholder="Select Date"
+                                            name="date_of_birth"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                        <span id="dateOfBirthError" class="text-red-500 hidden">Please select a date
+                                            of
+                                            birth</span>
+
+                                        <!-- Include flatpickr JavaScript -->
+                                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                                        <!-- Initialize flatpickr -->
+                                        <script>
+                                            flatpickr("#datepicker", {
+                                                // Options
+                                                dateFormat: "Y-m-d",
+                                                maxDate: new Date().fp_incr(-18 * 365) // Date format
+                                            });
+
+
+                                            // function validateDOB() {
+                                            //     var dobInput = document.getElementById("datepicker");
+                                            //     var dobValue = dobInput.value;
+                                            //     var errorSpan = document.getElementById("dateOfBirthError");
+                                            //     var isValid = true; // Ensure this local variable exists to manage state
+
+                                            //     // Check if the date input is empty
+                                            //     if (!dobValue) {
+                                            //         errorSpan.textContent = "Please select a date of birth.";
+                                            //         errorSpan.classList.remove("hidden");
+                                            //         isValid = false;
+                                            //         return isValid; // Return isValid status
+                                            //     }
+
+                                            //     // Check age requirement
+                                            //     var dob = new Date(dobValue);
+                                            //     var today = new Date();
+                                            //     var age = today.getFullYear() - dob.getFullYear();
+                                            //     var m = today.getMonth() - dob.getMonth();
+                                            //     if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                                            //         age--;
+                                            //     }
+
+                                            //     if (age < 18) {
+                                            //         errorSpan.textContent = "You must be at least 18 years old.";
+                                            //         errorSpan.classList.remove("hidden");
+                                            //         isValid = false;
+                                            //     } else {
+                                            //         errorSpan.classList.add("hidden");
+                                            //     }
+                                            //     return isValid; // Return isValid status
+                                            // }
+                                        </script>
+
+
+                                    </div>
+
+                                    <div class="w-7/12">
+                                        <label for="">Salutation</label>
+                                        <input type="text" name="salutation"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                </div>
+
+
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+                                    <div class="w-7/12">
+                                        <label for="">Employee No.</label>
+                                        <input type="text" name="employee_no"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                    <div class="w-7/12">
+                                        <label for="">Email</label>
+                                        <input type="text" name="email"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row gap-4 md:gap-8 m-5">
+
+                                    <div class="flex flex-col w-7/12">
+                                        <label for="">Question</label>
+                                        <select name="question_2" id=""
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                            <option value="">None</option>
+                                            <option value="">MULTI SITE CUSTOMER</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="w-7/12">
+                                        <label for="">Answer</label>
+                                        <input type="text" name="answer_2"
+                                            class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    </div>
+
+
+                                </div>
+                                <div id="novelteleventTable" class="overflow-x-auto  mt-5">
+                                    <label for="" class="m-5">Identification</label>
+                                    <table class="w-full text-sm text-left text-gray-500  border-separate m-5">
+
+                                        <!-- Table content for Notes -->
+                                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full  ">
+                                            <tr>
+                                                <th>Event Description</th>
+                                                <th>Event Date</th>
+                                                <th>Due Time</th>
+                                                <th>Status</th>
+                                                <th>Status Time</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Credit Card</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Driver Licence</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Passport</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
 
@@ -404,19 +425,18 @@
                                     document.getElementById("typeSelectError").classList.add("hidden");
                                 }
                                 if (typeSelect == "Corporate") {
-                                    var acn = document.getElementsByName("acn")[0].value;
-                                    if (!acn) {
-                                        document.getElementById("acnerror").classList.remove("hidden");
-                                        isValid = false;
-                                    } else {
-                                        document.getElementById("acnerror").classList.add("hidden");
-                                    }
 
+                                    var acn = document.getElementsByName("acn")[0].value;
                                     var abn = document.getElementsByName("abn")[0].value;
-                                    if (!abn) {
+
+                                    if (!acn && !abn) {
+                                        // Both ACN and ABN are empty
+                                        document.getElementById("acnerror").classList.remove("hidden");
                                         document.getElementById("abnerror").classList.remove("hidden");
                                         isValid = false;
                                     } else {
+                                        // At least one of ACN or ABN is filled
+                                        document.getElementById("acnerror").classList.add("hidden");
                                         document.getElementById("abnerror").classList.add("hidden");
                                     }
 
@@ -457,17 +477,17 @@
                                 }
 
                                 // Perform validation for Date of Birth
-                                var dateOfBirth = document.getElementsByName("date_of_birth")[0].value;
-                                if (!dateOfBirth) {
-                                    document.getElementById("dateOfBirthError").classList.remove("hidden");
-                                    isValid = false;
-                                } else {
-                                    document.getElementById("dateOfBirthError").classList.add("hidden");
-                                }
+                                // var dateOfBirth = document.getElementsByName("date_of_birth")[0].value;
+                                // if (!dateOfBirth) {
+                                //     document.getElementById("dateOfBirthError").classList.remove("hidden");
+                                //     isValid = false;
+                                // } else {
+                                //     document.getElementById("dateOfBirthError").classList.add("hidden");
+                                // }
 
-                                if (!validateDOB()) { // Use if the function returns false
-                                    isValid = false;
-                                }
+                                // if (!validateDOB()) { // Use if the function returns false
+                                //     isValid = false;
+                                // }
                                 // Add more validations for other fields...
 
                                 return isValid;
@@ -670,7 +690,7 @@
                                     if (duplicates.length > 0) {
                                         alert(
                                             'One or more selected address types already exist in the table. Please remove them before adding new ones.'
-                                            );
+                                        );
                                         return;
                                     }
 
@@ -971,7 +991,7 @@
                                     if (duplicates.length > 0) {
                                         alert(
                                             'One or more selected phone types already exist in the table. Please remove them before adding new ones.'
-                                            );
+                                        );
                                         return;
                                     }
 
@@ -1463,7 +1483,8 @@
                                         class="w-48 text-xl font-medium text-gray-900 bg-white     w- p-2 border border-gray-800 rounded-lg">
                                         <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                 <input id="vue-checkbox" type="checkbox" value="Authorised Representative" name="contactUsage[]"
+                                                <input id="vue-checkbox" type="checkbox"
+                                                    value="Authorised Representative" name="contactUsage[]"
                                                     class="contact-usage-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="vue-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Authorised
@@ -1473,7 +1494,8 @@
                                         </li>
                                         <li class="w-full border-b border-gray-200 rounded-t-lg ">
                                             <div class="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value="Connection User" name="contactUsage[]"
+                                                <input id="react-checkbox" type="checkbox" value="Connection User"
+                                                    name="contactUsage[]"
                                                     class="contact-usage-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500    focus:ring-2  ">
                                                 <label for="react-checkbox"
                                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 ">Connection
@@ -1501,90 +1523,95 @@
                                 </div>
 
                             </div>
-                           <script>
-                            function addContact() {
-                                // console.log('hello');
-                                const contact_code2 = document.querySelector('input[name="contact_code2"]').value;
-                                const contact_type = document.querySelector('input[name="contact_type"]').value;
-                                const name1 = document.querySelector('input[name="name1"]').value;
-                                // const suburb = document.querySelector('input[name="suburb"]').value;
-                                // const state = document.querySelector('input[name="state"]').value;
-                                // const country = document.querySelector('input[name="country"]').value;
-                                const selectContactUsage = document.querySelectorAll('.contact-usage-checkbox:checked');
+                            <script>
+                                function addContact() {
+                                    // console.log('hello');
+                                    const contact_code2 = document.querySelector('input[name="contact_code2"]').value;
+                                    const contact_type = document.querySelector('input[name="contact_type"]').value;
+                                    const name1 = document.querySelector('input[name="name1"]').value;
+                                    // const suburb = document.querySelector('input[name="suburb"]').value;
+                                    // const state = document.querySelector('input[name="state"]').value;
+                                    // const country = document.querySelector('input[name="country"]').value;
+                                    const selectContactUsage = document.querySelectorAll('.contact-usage-checkbox:checked');
 
 
-                                if (!contact_code2 || !contact_type || !name1 || selectContactUsage.length === 0) {
-                                    alert('Please enter all required fields and select at least one Contact Usage type.');
-                                    return;
+                                    if (!contact_code2 || !contact_type || !name1 || selectContactUsage.length === 0) {
+                                        alert('Please enter all required fields and select at least one Contact Usage type.');
+                                        return;
                                     }
 
                                     const selectedContactUsageValues = Array.from(selectContactUsage).map(checkbox => checkbox.value);
 
                                     // Check for duplicates in contact usage types
                                     const tbody = document.getElementById('contact-body');
-                                    const existingContactUsage = Array.from(tbody.querySelectorAll('input[name="contactUsages[]"]')).map(input => input.value);
+                                    const existingContactUsage = Array.from(tbody.querySelectorAll('input[name="contactUsages[]"]')).map(input =>
+                                        input.value);
 
                                     // Check for duplicates in selected contact usages
                                     const duplicates = selectedContactUsageValues.filter(value => existingContactUsage.includes(value));
 
                                     if (duplicates.length > 0) {
-                                        alert('One or more selected contact usage types already exist in the table. Please remove them before adding new ones.');
+                                        alert(
+                                            'One or more selected contact usage types already exist in the table. Please remove them before adding new ones.'
+                                            );
                                         return;
                                     }
 
                                     // Build new data with contact information and usage types
-                                    const data = Array.from(selectContactUsage).map(checkbox => [contact_code2, contact_type, name1, checkbox.value]);
+                                    const data = Array.from(selectContactUsage).map(checkbox => [contact_code2, contact_type, name1, checkbox
+                                        .value
+                                    ]);
 
 
-                                const existingData = [];
-                                const existingRows = tbody.querySelectorAll('tr');
-                                existingRows.forEach(row => {
-                                    const rowData = [];
-                                    const cells = row.querySelectorAll('td input');
-                                    cells.forEach(cell => {
-                                        rowData.push(cell.value);
+                                    const existingData = [];
+                                    const existingRows = tbody.querySelectorAll('tr');
+                                    existingRows.forEach(row => {
+                                        const rowData = [];
+                                        const cells = row.querySelectorAll('td input');
+                                        cells.forEach(cell => {
+                                            rowData.push(cell.value);
+                                        });
+                                        existingData.push(rowData);
                                     });
-                                    existingData.push(rowData);
-                                });
 
-                                const newData = existingData.concat(data);
+                                    const newData = existingData.concat(data);
 
-                                tbody.innerHTML = ''; // Clear existing rows
+                                    tbody.innerHTML = ''; // Clear existing rows
 
-                                newData.forEach(arr => {
-                                    const tr = document.createElement('tr');
-                                    arr.forEach((val, index) => {
-                                        const td = document.createElement('td');
-                                        const input = document.createElement('input');
-                                        input.setAttribute('type', 'text');
-                                        input.setAttribute('value', val);
-                                        input.setAttribute('readonly', 'readonly');
-                                        input.setAttribute('name',
-                                            `${index === 0 ? 'contact_code2s' : index === 1 ? 'contact_types' : index === 2 ? 'name1s'  : 'contactUsages'}[]`
-                                        );
-                                        td.appendChild(input);
-                                        tr.appendChild(td);
+                                    newData.forEach(arr => {
+                                        const tr = document.createElement('tr');
+                                        arr.forEach((val, index) => {
+                                            const td = document.createElement('td');
+                                            const input = document.createElement('input');
+                                            input.setAttribute('type', 'text');
+                                            input.setAttribute('value', val);
+                                            input.setAttribute('readonly', 'readonly');
+                                            input.setAttribute('name',
+                                                `${index === 0 ? 'contact_code2s' : index === 1 ? 'contact_types' : index === 2 ? 'name1s'  : 'contactUsages'}[]`
+                                            );
+                                            td.appendChild(input);
+                                            tr.appendChild(td);
+                                        });
+                                        tbody.appendChild(tr);
                                     });
-                                    tbody.appendChild(tr);
-                                });
-                                console.log(newData);
-                            }
-
-                            function deleteContact() {
-                                const tbody = document.getElementById('contact-body');
-                                const rows = tbody.querySelectorAll('tr');
-                                if (rows.length > 0) {
-                                    tbody.removeChild(rows[rows.length - 1]);
+                                    console.log(newData);
                                 }
-                            }
 
-                            function clearCOnatctFields() {
-                                document.querySelector('input[name="contact_code2"]').value = '';
-                                document.querySelector('input[name="contact_type"]').value = '';
-                                document.querySelector('input[name="name1"]').value = '';
-                                document.querySelectorAll('.contact-usage-checkbox:checked').forEach(checkbox => checkbox.checked = false);
-                            }
-                        </script>
+                                function deleteContact() {
+                                    const tbody = document.getElementById('contact-body');
+                                    const rows = tbody.querySelectorAll('tr');
+                                    if (rows.length > 0) {
+                                        tbody.removeChild(rows[rows.length - 1]);
+                                    }
+                                }
+
+                                function clearCOnatctFields() {
+                                    document.querySelector('input[name="contact_code2"]').value = '';
+                                    document.querySelector('input[name="contact_type"]').value = '';
+                                    document.querySelector('input[name="name1"]').value = '';
+                                    document.querySelectorAll('.contact-usage-checkbox:checked').forEach(checkbox => checkbox.checked = false);
+                                }
+                            </script>
 
                             <div id="novelteleventTable" class="overflow-x-auto  mt-5">
                                 <label for="" class="m-5">Phone Entered</label>
@@ -1600,7 +1627,7 @@
 
 
                                         </tr>
-                                        <tbody id="contact-body"></tbody>
+                                    <tbody id="contact-body"></tbody>
                                     </thead>
                                     <tbody>
                                         <tr>

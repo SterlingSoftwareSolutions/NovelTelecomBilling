@@ -141,11 +141,12 @@
     @include('layouts.layout')
     <div class="px-4 md:px-6 mx-auto w-full ">
 
-        <div class="flex flex-wrap">
+
+        <div class="flex flex-wrap ">
 
             {{-- first section --}}
-            <section class="  p-3 sm:p-5 w-6/12 border ">
-                <div class=" border  ">
+            <section class="  p-3 sm:p-5 w-6/12 border  ">
+                <div class=" border   ">
                     <!-- Start coding here -->
 
                     <div class=" bg-green-500   text-white text-lg ">
@@ -746,6 +747,7 @@
 
                 <div class="grid place-items-center">
                     @if ($account != null)
+
                         @foreach ($accountservice as $accountservice)
                             <div class="border w-full">
                                 <div class="transition border border-1">
@@ -762,7 +764,7 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+  </div>
                         @endforeach
                     @endif
                 </div>
