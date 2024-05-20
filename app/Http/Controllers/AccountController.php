@@ -182,6 +182,7 @@ class AccountController extends Controller
                 $phone = Phone::getPhoneDetails($account->contact_code);
 
                 $accountservice=AccountService::getData($account->id);
+                // dd($account->id);
                 // $phonenumber=AccountService::getData2($account->id);
                 // dd($accountservice);
                 // dd($accountservice);

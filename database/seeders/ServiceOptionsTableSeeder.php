@@ -28,7 +28,7 @@ class ServiceOptionsTableSeeder extends Seeder
                 for ($i = 1; $i <= $additionalOptionsPerService; $i++) {
                     $serviceOptions[] = [
                         'service_id' => $serviceId,
-                        'service_names' => 'Service Option ' . ($i + $additionalOptionsPerService * ($serviceId - 1)),
+                        'service_types' => 'Service Option ' . ($i + $additionalOptionsPerService * ($serviceId - 1)),
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
