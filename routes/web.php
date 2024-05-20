@@ -5,6 +5,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AccountServiceController;
 use App\Http\Controllers\ManualNoteController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ServiceController;
@@ -71,3 +72,6 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/service',[ServiceController::class, 'service_index'])->name('service_newservice');
 });
+
+
+Route::post('/update-account-service', [AccountServiceController::class, 'update'])->name('update-account-service');

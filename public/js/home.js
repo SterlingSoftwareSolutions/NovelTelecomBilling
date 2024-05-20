@@ -8,75 +8,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
             event.preventDefault();
 
             // Get the account service data from the clicked element
-            const accountService = JSON.parse(
-                item.getAttribute("data-accountservice")
-            );
+            const accountService = JSON.parse(item.getAttribute("data-accountservice"));
 
             // Clear the existing table body content
             detailsTableBody.innerHTML = "";
 
             // Populate the table with account service details
             const fields = [
-                {
-                    label: "Phone Number",
-                    value: accountService.phonenumber,
-                },
-                {
-                    label: "Service Narrative",
-                    value: accountService.service_narrative,
-                },
-                {
-                    label: "Status",
-                    value: accountService.status,
-                },
-                {
-                    label: "Date Connected",
-                    value: accountService.created_at,
-                },
-                {
-                    label: "Password",
-                    value: accountService.password,
-                },
-                {
-                    label: "Package",
-                    value: accountService.service_id,
-                },
-                {
-                    label: "Charge Override",
-                    value: "--",
-                },
-                {
-                    label: "Package Start",
-                    value: accountService.created_at,
-                },
-                {
-                    label: "Contract",
-                    value: accountService.contract,
-                },
-                {
-                    label: "Contract Start",
-                    value: "--",
-                },
-                {
-                    label: "Contract End",
-                    value: "--",
-                },
-                {
-                    label: "Service Owner",
-                    value: "--",
-                },
-                {
-                    label: "Port Authority Date",
-                    value: "--",
-                },
-                {
-                    label: "Order Number",
-                    value: "--",
-                },
-                {
-                    label: "IPND",
-                    value: "--",
-                },
+                { label: "Phone Number", value: accountService.phonenumber },
+                { label: "Service Narrative", value: accountService.service_narrative },
+                { label: "Status", value: accountService.status },
+                { label: "Date Connected", value: accountService.created_at },
+                { label: "Password", value: accountService.password },
+                { label: "Package", value: accountService.service_id },
+                { label: "Charge Override", value: "--" },
+                { label: "Package Start", value: accountService.created_at },
+                { label: "Contract", value: accountService.contract },
+                { label: "Contract Start", value: "--" },
+                { label: "Contract End", value: "--" },
+                { label: "Service Owner", value: "--" },
+                { label: "Port Authority Date", value: "--" },
+                { label: "Order Number", value: "--" },
+                { label: "IPND", value: "--" },
             ];
 
             fields.forEach((field) => {
@@ -103,13 +56,42 @@ document.addEventListener("DOMContentLoaded", (event) => {
         });
     });
 
-    // Add an event listener to the table body to handle clicks on input fields
-    detailsTableBody.addEventListener("click", (event) => {
-        if (event.target.tagName === "INPUT") {
-            event.target.focus();
-        }
+    // Handle save button click
+    document.getElementById("saveValue").addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const updatedData = {};
+        detailsTableBody.querySelectorAll("input").forEach(input => {
+            const label = input.getAttribute("data-label");
+            updatedData[label] = input.value;
+        });
+
+        // Log data before sending to server
+        console.log("Sending updated data:", updatedData);
+
+        // Send updated data to server
+        fetch('/update-account-service', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify(updatedData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Data saved successfully!");
+            } else {
+                alert("Failed to save data: " + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
     });
 });
+
+
+
 
 // {{--navigate notes->document  --}}
 document.addEventListener("DOMContentLoaded", function () {
