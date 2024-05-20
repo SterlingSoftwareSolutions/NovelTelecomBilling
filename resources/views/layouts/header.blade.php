@@ -320,7 +320,7 @@
                                     <button type="button"
                                         class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900 dropdown-item text-start w-[200px]"
                                         aria-expanded="false"
-                                          onclick="opennote()">
+                                          onclick="opennote_M()">
                                         Miscellaneous Charges
                                     </button>
 
@@ -333,12 +333,15 @@
                                 <div class="relative ">
                                     <button type="button"
                                         class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900 dropdown-item text-start w-[200px]"
-                                        aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                        aria-expanded="false"  onclick="opennote_D()">
                                         Discounting
                                     </button>
 
                                 </div>
                             </li>
+                            @include('Service.discount'):
+                        </li>
+
                             <li class="">
                                 <div class="relative ">
                                     <button type="button"

@@ -5,7 +5,7 @@ onclick="closeModale(event)">
 <!-- Prevent click inside from closing modal -->
 <div class="flex justify-between items-center">
  <h2 class="text-lg mb-4 ml-28">Miscellaneous Charges</h2>
- <button type="button" onclick="closeModale()"
+ <button type="button" onclick="closeModales()"
          class="text-gray-500 hover:text-gray-800">
    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -45,11 +45,11 @@ onclick="closeModale(event)">
 
 
  <script>
-     function opennote() {
+     function opennote_M() {
        document.getElementById('miscellaneous').classList.remove('hidden');
      }
 
-     function closeModale(event) {
+     function closeModales(event) {
        if (event) {
          event.stopPropagation();
        }
