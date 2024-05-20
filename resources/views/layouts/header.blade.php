@@ -65,21 +65,17 @@
 
 <body>
 
+
     <nav class="mx-6 flex  items-center justify-between p-6 lg:px-8  bg-slate-50 " aria-label="Global">
-
-        <div class="flex w-full  ">
-            <div class="lg:flex lg:gap-x-12 w-6/12 ">
-
-
-        {{-- home icon  --}}
-
         <form action="{{ url('/home') }}" method="GET">
             <button type="submit">
                 <img src="{{ asset('Images/note3.jpg') }}" alt="Login Image" class="w-16 h-full opacity-100">
             </button>
         </form>
+
+
         {{-- home icon  --}}
-                <div class="relative  w-10">
+                <div class="relative  w-10 " >
                     <button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
                         aria-expanded="false" onclick="toggleDropdown('fileDropdown')">
                         File
