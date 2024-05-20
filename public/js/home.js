@@ -83,8 +83,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 const row = document.createElement("tr");
                 const cellItem = document.createElement("td");
                 const cellValue = document.createElement("td");
+
                 cellItem.textContent = field.label;
-                cellValue.textContent = field.value;
+
+                // Create an input element for the value cell
+                const input = document.createElement("input");
+                input.type = "text";
+                input.value = field.value;
+                input.setAttribute("data-label", field.label);
+
+                cellValue.appendChild(input);
                 row.appendChild(cellItem);
                 row.appendChild(cellValue);
                 detailsTableBody.appendChild(row);
@@ -93,6 +101,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
             // Set search input value to phone number
             searchInput.value = accountService.phonenumber;
         });
+    });
+
+    // Add an event listener to the table body to handle clicks on input fields
+    detailsTableBody.addEventListener("click", (event) => {
+        if (event.target.tagName === "INPUT") {
+            event.target.focus();
+        }
     });
 });
 

@@ -822,13 +822,14 @@
 
                                     <!-- Table content for Notes -->
                                     @if ($account != null)
-                                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full ">
+                                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10  rounded-full ">
                                             <tr>
                                                 <th>Item</th>
                                                 <th>Value</th>
 
                                             </tr>
                                         </thead>
+
 
                                         <tbody id="details-table-body">
 
@@ -841,14 +842,10 @@
                                     @endif
 
                                 </table>
-
-
                             </div>
-
-
-
                         </div>
             </section>
+
 
             {{-- 4th div --}}
             <section class="  p-3 sm:p-5 w-6/12 border ">
