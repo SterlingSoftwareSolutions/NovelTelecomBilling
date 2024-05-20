@@ -10,7 +10,7 @@ class ServiceOption extends Model
     protected $fillable = [
         'servicecategory_id',
         'service_id',
-        'service_names',
+        'service_types',
     ];
 
     public function service()
