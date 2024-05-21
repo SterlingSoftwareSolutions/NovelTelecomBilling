@@ -633,11 +633,11 @@
 
 
                     {{-- Note Box ORange  --}}
-                            <div class="border-2 mt-5 w-7/12" style="border-color: #E8710F;">
-                            <h1>Please note the following surcharges for Direct Debit and Credit Card Payments</h1>
-                            <h1>2.6% for Visa & Mastercard Payments</h1>
-                            <h1>4.4% for AMEX and Diners Club Payments</h1>
-                        </div>
+                    <div class="border-2 mt-5 w-7/12" style="border-color: #E8710F;">
+                        <h1>Please note the following surcharges for Direct Debit and Credit Card Payments</h1>
+                        <h1>2.6% for Visa & Mastercard Payments</h1>
+                        <h1>4.4% for AMEX and Diners Club Payments</h1>
+                    </div>
 
                     {{-- End Note Box ORange  --}}
 
@@ -653,13 +653,14 @@
                             <div>
                                 <div>
                                     <img src="{{ asset('Images/bpay.png') }}" alt="Login Image"
-                                        class="w-20 rounded-md px-4 py-2" >
+                                        class="w-20 rounded-md px-4 py-2">
                                 </div>
 
                             </div>
 
-                            <div class="flex mt-3 gap-4 border mx-auto my-auto py-2 px-2" style="border-color: #01549A;" >
-                                <div class="" >
+                            <div class="flex mt-3 gap-4 border mx-auto my-auto py-2 px-2"
+                                style="border-color: #01549A;">
+                                <div class="">
                                     <h1 class="text-blue-900 font-bold">Biller Code:</h1>
                                     <h1 class="text-blue-900 font-bold">Ref:</h1>
                                 </div>
@@ -679,8 +680,9 @@
                     {{-- Bill Box Blue  --}}
 
 
-                    <div class="border h-40 bg-gray-100" >
-                        <p class="mt-5">If you have any questions or queries regarding your invoice or your services, please contact NOVEL Telecom on 1300 317 517</p>
+                    <div class="border h-40 bg-gray-100">
+                        <p class="mt-5">If you have any questions or queries regarding your invoice or your services,
+                            please contact NOVEL Telecom on 1300 317 517</p>
 
                     </div>
 
@@ -689,37 +691,95 @@
 
 
 
-                    <div class="border-2 border-black py-4 px-4">
+                <div class="border-2 border-black py-4 px-4">
 
-                        <h1 class="font-bold">INFORMATION ON PREMIUM SERVICE</h1>
-                        <p>Premium Services (PSMS) generally begin with a 19 number, used for the following, but not limited to; voting lines, ringtones,
-                            and sports scores. Charges for these services are higher than standard national SMS rates and can be billed in the following
-                            way:</p>
-                            <p class="mt-5">Flat Rate: Flat fixed fee for each SMS sent to and/or received from a premium number or a flat fee per phone call made to the
-                                premium service.</p>
-                                <p>- Subscription: Opt into an ongoing subscription with associated charges
-                                </p>
-                                <p>-Joining Fees: Charged an additional joining fee as part of an ongoing subscription</p>
-                                <p>-Timed Rate: Premium call is timed and charged at a per minute rate</p>
-                                <p>- Data Volume Charge: Charged according to how many kilobytes (KB) of data downloaded</p>
-                                <p>Should you need to raise a complaint about your Premium Service, please contact the content provided who supplied you with
-                                    the Premium Service in the first instance. If you require further assistance, please contact our Customer Service Team.
-                                    </p>
+                    <h1 class="font-bold">INFORMATION ON PREMIUM SERVICE</h1>
+                    <p>Premium Services (PSMS) generally begin with a 19 number, used for the following, but not limited
+                        to; voting lines, ringtones,
+                        and sports scores. Charges for these services are higher than standard national SMS rates and
+                        can be billed in the following
+                        way:</p>
+                    <p class="mt-5">Flat Rate: Flat fixed fee for each SMS sent to and/or received from a premium
+                        number or a flat fee per phone call made to the
+                        premium service.</p>
+                    <p>- Subscription: Opt into an ongoing subscription with associated charges
+                    </p>
+                    <p>-Joining Fees: Charged an additional joining fee as part of an ongoing subscription</p>
+                    <p>-Timed Rate: Premium call is timed and charged at a per minute rate</p>
+                    <p>- Data Volume Charge: Charged according to how many kilobytes (KB) of data downloaded</p>
+                    <p>Should you need to raise a complaint about your Premium Service, please contact the content
+                        provided who supplied you with
+                        the Premium Service in the first instance. If you require further assistance, please contact our
+                        Customer Service Team.
+                    </p>
 
 
 
-                        <h1 class="font-bold">COMPLAINTS</h1>
+                    <h1 class="font-bold">COMPLAINTS</h1>
 
-                        <p>If you need to make a formal complaint please contact NOVEL TELECOM on 1300 317 517. If you are not satisfied with the
-                            resolution of your complaint we can escalate your matter to the next level of management. If we are unable to resolve your
-                            complaint you can contact the Telecommunications Industry Ombudsman (TIO) www.tio.com.au. We ask that if you do have a
-                            complaint, please give NOVEL TELECOM a chance to resolve your issue before contacting TIO.</p>
+                    <p>If you need to make a formal complaint please contact NOVEL TELECOM on 1300 317 517. If you are
+                        not satisfied with the
+                        resolution of your complaint we can escalate your matter to the next level of management. If we
+                        are unable to resolve your
+                        complaint you can contact the Telecommunications Industry Ombudsman (TIO) www.tio.com.au. We ask
+                        that if you do have a
+                        complaint, please give NOVEL TELECOM a chance to resolve your issue before contacting TIO.</p>
+
+
+
+                </div>
+
+                {{-- PAYMENT Option Page END  --}}
+
+
+
+
+                {{-- SUMMARY OF CHARGES --}}
+
+
+<div class="border border-red-500">
+
+                    <div class="flex justify-between mt-5 mr-5 ">
+                        <div>
+                            <div>
+                                <img src="{{ asset('Images/logo.png') }}" alt="Login Image"
+                                    class="w-28 rounded-md px-4 py-2" style="background-color: #01549A">
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+
+                            <div class="font-bold">
+                                <h1>Account Number</h1>
+                                <h1>Issue Date</h1>
+                                <h1>Invoice Number</h1>
+                                <h1>Due Date</h1>
+                            </div>
+                            <div>
+                                <h1>40017498</h1>
+                                <h1>4 December 2024</h1>
+                                <h1>1778996</h1>
+                                <h1>18 April 2024</h1>
+                            </div>
+                        </div>
+
+
 
 
 
                     </div>
 
-                {{-- PAYMENT Option Page END  --}}
+
+                    <div>
+                        <h1>hello</h1>
+                    </div>
+
+
+
+</div>
+
+
+                {{-- END OF SUMMARY OF CHARGES --}}
 
 
 
