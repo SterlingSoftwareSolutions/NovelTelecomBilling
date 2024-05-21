@@ -15,9 +15,20 @@ class ManualNote extends Model
     ];
     public static function getNotesByAccountId($accId)
     {
-        // Query the notes based on the account ID
-        return self::where('creater', $accId)->get();
+        $notes = self::where('creater', $accId)->get();
+
+        // Iterate through each note and replace user_id with the user's name
+        $notes->transform(function ($note) {
+            $user = User::find($note->user_id); // Assuming User is the model for your users table
+            if ($user) {
+                $note->user_id = $user->name;
+            }
+            return $note;
+        });
+
+        return $notes;
     }
+
 
     //     public function showNotes()
     // {

@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/notestore', [ManualNoteController::class, 'store'])->name('note.store');
+    Route::post('/notestore/{noteText}/{account}', [ManualNoteController::class, 'store'])->name('note.store');
     Route::get('/notes', [ManualNoteController::class, 'index'])->name('note.index');
 });
 
@@ -72,5 +72,6 @@ Route::middleware(['auth'])->group(function () {
 
 //service route
 Route::middleware(['auth'])->group(function () {
-    Route::get('/service',[ServiceController::class, 'service_index'])->name('service_newservice');
+    Route::get('/service', [ServiceController::class, 'service_index'])->name('service_newservice');
+    Route::get('service/details/{phonenumber}/{accountId}', [ServiceController::class, 'getaservicedetails']);
 });
