@@ -59,10 +59,10 @@
                                             <li>
                                                 <a href="#" class="leading-6 pl-9 text-justify open-modal"
                                                     data-target="#formModal" data-service="{{ $service->id }}"
-                                                    data-service-name="{{ $serviceoption->service_names }}"
+                                                    data-service-name="{{ $serviceoption->service_types }}"
                                                     data-service-option="{{ $serviceoption->service_id }}"
                                                     onclick="updateServiceOption(this)">
-                                                    {{ $serviceoption->service_names }}
+                                                    {{ $serviceoption->service_types }}
                                                 </a>
                                             </li>
                                         @endforeach

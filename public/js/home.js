@@ -1,106 +1,245 @@
-// {{-- serchbox value pass and phonenumber value pass table --}}
-document.addEventListener("DOMContentLoaded", (event) => {
-    const detailsTableBody = document.getElementById("details-table-body");
-    const searchInput = document.querySelector('input[name="searchd"]');
+// Packege view Start
 
-    const formatDate = (date) => {
-        const d = new Date(date);
-        const year = d.getFullYear();
-        const month = ('0' + (d.getMonth() + 1)).slice(-2); // Adding 1 because getMonth returns zero-based month index
-        const day = ('0' + d.getDate()).slice(-2);
-        return `${year}-${month}-${day}`;
-    };
+function getaservicedetails(phonenumber, accountId) {
+    console.log(
+        "Clicked on phone number: " +
+            phonenumber +
+            " for account ID: " +
+            accountId
+    );
+    $.ajax({
+        url: "/service/details/" + phonenumber + "/" + accountId,
+        type: "GET",
+        success: function (response) {
+            console.log(response);
+            console.log(response.data[0].phonenumber);
 
-
-    document.querySelectorAll(".show-details").forEach((item) => {
-        item.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            // Get the account service data from the clicked element
-            const accountService = JSON.parse(item.getAttribute("data-accountservice"));
-
-            // Clear the existing table body content
-            detailsTableBody.innerHTML = "";
-
-            // Populate the table with account service details
+            // Process the response data and populate the table
+            const accountService = response.data[0]; // Assuming you're working with the first object in the array
             const fields = [
-                { label: "Phone Number", value: accountService.phonenumber},
-                { label: "Service Narrative", value: accountService.service_narrative },
-                { label: "Status", value: accountService.status },
-                { label: "Date Connected", value: formatDate(accountService.created_at)},
-                { label: "Password", value: accountService.password },
-                { label: "Package", value: accountService.service_id },
-                { label: "Charge Override", value: "--" },
-                { label: "Package Start", value: formatDate(accountService.created_at) },
-                { label: "Contract", value: accountService.contract },
-                { label: "Contract Start", value: "--" },
-                { label: "Contract End", value: "--" },
-                { label: "Service Owner", value: "--" },
-                { label: "Port Authority Date", value: "--" },
-                { label: "Order Number", value: "--" },
-                { label: "IPND", value: "--" },
+                { label: "Phone Number",value: accountService.phonenumber,action: "edit", },
+                { label: "Service Narrative",value: accountService.service_narrative,action: "view", },
+                { label: "Status",value: accountService.status,action: "add", },
+                { label: "Date Connected",value: accountService.created_at,action: "more", },
+                { label: "Password",value: accountService.password,action: "edit", },
+                { label: "Package",value: accountService.service_id,action: "view", },
+                { label: "Charge Override", value: "--", action: "add" },
+                { label: "Package Start",value: accountService.created_at,action: "more", },
+                { label: "Contract",value: accountService.contract, action: "edit", },
+                { label: "Contract Start", value: "--", action: "view" },
+                { label: "Contract End", value: "--", action: "add" },
+                { label: "Service Owner", value: "--", action: "more" },
+                { label: "Port Authority Date", value: "--", action: "edit" },
+                { label: "Order Number", value: "--", action: "view" },
+                { label: "IPND", value: "--", action: "add" },
             ];
+
+            const detailsTableBody =
+                document.getElementById("details-table-body");
+
+            // Clear existing table rows
+            detailsTableBody.innerHTML = "";
 
             fields.forEach((field) => {
                 const row = document.createElement("tr");
-                const cellItem = document.createElement("td");
+                const cellLabel = document.createElement("td");
                 const cellValue = document.createElement("td");
+                cellLabel.textContent = field.label;
+                cellValue.textContent = field.value;
 
-                cellItem.textContent = field.label;
+                // Add right-click event listener
+                cellValue.addEventListener("contextmenu", (event) => {
+                    event.preventDefault();
+                       // Assuming cellValue is an input element
+                       let value = cellValue.textContent; // For input elements
+                    
+                       // Alternatively, if cellValue is a non-input element, like a <div> or <span>
+                       // let value = cellValue.textContent;
+                   
+                       // For debugging or further use
+                    showContextMenu(event, field.action,value );
+                });
 
-                //Create an input element for the value cell
-                const input = document.createElement("input");
-                input.type = "text";
-                input.value = field.value;
-                input.setAttribute("data-label", field.label);
-
-                cellValue.appendChild(input);
-                row.appendChild(cellItem);
+                row.appendChild(cellLabel);
                 row.appendChild(cellValue);
                 detailsTableBody.appendChild(row);
             });
+        },
+        error: function (xhr, status, error) {
+            console.error(error); // Handle error
+        },
+    });
+}
 
-            // Set search input value to phone number
-            searchInput.value = accountService.phonenumber;
-        });
+const contextMenus = {
+    edit: [
+        { id: "edit-item", label: "Edit", value: "{value}", onclick: "edit('{value}')" },
+        { id: "edit-test01", label: "test01", value: "{value}", onclick: "edit('{value}')" },
+        { id: "edit-test02", label: "test02", value: "{value}", onclick: "edit('{value}')" },
+    ],
+    view: [
+        { id: "view-item", label: "View", value: "{value}", onclick: "view('{value}')" },
+        { id: "view-test01", label: "test01", value: "{value}", onclick: "view('{value}')" },
+    ],
+    add: [
+        { id: "add-item", label: "Add", value: "{value}", onclick: "add('{value}')" },
+        { id: "add-test05", label: "test05", value: "{value}", onclick: "add('{value}')" },
+    ],
+    more: [
+        { id: "more-item", label: "More", value: "{value}", onclick: "more('{value}')" },
+    ],
+};
+
+function showContextMenu(event, action, value) {
+    console.log("Value: ", value); 
+    const contextMenu = document.getElementById("context-menu");
+    const menuList = contextMenu.querySelector("ul");
+    menuList.innerHTML = "";
+
+    // Populate context menu based on action
+    contextMenus[action].forEach((menuItem) => {
+        console.log(menuItem);
+        const li = document.createElement("li");
+        li.id = menuItem.id;
+        li.textContent = menuItem.label.replace("{value}", value);
+        li.setAttribute("onclick", menuItem.onclick.replace("{value}", value));
+        li.classList.add("px-4", "py-2", "cursor-pointer", "hover:bg-gray-200");
+        menuList.appendChild(li);
     });
 
-    // Handle save button click
-    document.getElementById("saveValue").addEventListener("click", (event) => {
-        event.preventDefault();
+    // Calculate the correct position based on scroll position
+    const top = event.clientY + window.scrollY;
+    const left = event.clientX + window.scrollX;
 
-        const updatedData = {};
-        detailsTableBody.querySelectorAll("input").forEach(input => {
-            const label = input.getAttribute("data-label");
-            updatedData[label] = input.value;
-        });
+    contextMenu.style.top = `${top}px`;
+    contextMenu.style.left = `${left}px`;
+    contextMenu.classList.remove("hidden");
 
-        // Log data before sending to server
-        console.log("Sending updated data:", updatedData);
+    // Hide the context menu when clicking outside of it
+    document.addEventListener("click", hideContextMenu);
+    document.addEventListener("wheel", hideContextMenu);
+}
 
-        // Send updated data to server
-        fetch('/update-account-service', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify(updatedData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Data saved successfully!");
-            } else {
-                alert("Failed to save data: " + data.message);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+function hideContextMenu(event) {
+    const contextMenu = document.getElementById("context-menu");
+    contextMenu.classList.add("hidden");
+    document.removeEventListener("click", hideContextMenu);
+    document.removeEventListener("wheel", hideContextMenu);
+}
+
+// Define the edit function to show the popup
+function edit(value) {
+    console.log("Edit action triggered with value:", value);
+    const editPopup = document.getElementById("edit");
+    const editContent = document.getElementById("edit-content");
+    editContent.textContent = `edit popup content ${value}`;
+    editPopup.classList.remove("hidden");
+}
+
+// Define other functions like view, add, more as needed
+function view(value) {
+    console.log("View action triggered with value:", value);
+    // Implement view logic
+}
+
+function add(value) {
+    console.log("Add action triggered with value:", value);
+    // Implement add logic
+}
+
+function more(value) {
+    console.log("More action triggered with value:", value);
+    // Implement more logic
+}
+
+// Function to hide popup
+function hidePopupWithId(id) {
+    document.getElementById(id).classList.add("hidden");
+}
+
+function hideContextMenu() {
+    const contextMenu = document.getElementById("context-menu");
+    contextMenu.classList.add("hidden");
+    document.removeEventListener("click", hideContextMenu);
+}
+
+// Event listeners for context menu items
+document.addEventListener("click", (event) => {
+    if (event.target.id === "edit-item") {
+        console.log("Edit clicked");
+        // Add your edit logic here
+    } else if (event.target.id === "view-item") {
+        console.log("View clicked");
+        // Add your view logic here
+    } else if (event.target.id === "add-item") {
+        console.log("Add clicked");
+        // Add your add logic here
+    } else if (event.target.id === "more-item") {
+        console.log("More clicked");
+        // Add your more logic here
+    }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const phoneLinks = document.querySelectorAll(".phone-link");
+    let currentContextMenu = null; // To store the currently open context menu
 
+    // Function to hide the context menu
+    function hideContextMenuMain(contextMenu) {
+        contextMenu.classList.add("hidden");
+        currentContextMenu = null; // Reset the currently open context menu
+    }
 
+    phoneLinks.forEach((phoneLink) => {
+        const serviceId = phoneLink.id.split("-")[1];
+        const contextMenu = document.getElementById(`contextMenu-${serviceId}`);
+
+        phoneLink.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+
+            // Hide the previously opened context menu if there is one
+            if (currentContextMenu && currentContextMenu !== contextMenu) {
+                hideContextMenuMain(currentContextMenu);
+            }
+
+            const { clientX: mouseX, clientY: mouseY } = e;
+            contextMenu.style.top = `${mouseY + window.scrollY}px`;
+            contextMenu.style.left = `${mouseX + window.scrollX}px`;
+            contextMenu.classList.remove("hidden");
+
+            // Update the currently open context menu
+            currentContextMenu = contextMenu;
+        });
+
+        document.addEventListener("click", function (e) {
+            if (currentContextMenu && !currentContextMenu.contains(e.target) && e.target !== phoneLink) {
+                hideContextMenuMain(currentContextMenu);
+            }
+        });
+
+        contextMenu.querySelectorAll(".context-menu-item").forEach((item) => {
+            item.addEventListener("click", function () {
+                const value = this.getAttribute("value");
+                // Assuming you have a function named showPopupWithId() to display the popup view
+                showPopupWithId(value); // Pass the value as the ID to match the popup view
+                hideContextMenuMain(contextMenu);
+            });
+        });
+        
+        
+    });
+    function showPopupWithId(id) {
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function hidePopupWithId(id) {
+        document.getElementById(id).classList.add('hidden');
+    }
+});
+function hidePopupWithId(id) {
+        document.getElementById(id).classList.add('hidden');
+    }
+// Packege view E
 
 // {{--navigate notes->document  --}}
 document.addEventListener("DOMContentLoaded", function () {
@@ -322,3 +461,104 @@ accordionHeader.forEach((header) => {
         }
     });
 });
+
+// NOTE Start
+
+function updateNotesTable(notes) {
+    const tableBody = document.getElementById("notesTableBody");
+    tableBody.innerHTML = "";
+
+    notes.forEach((note) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+     <td>${note.id}</td>
+  <td>${note.note}</td>
+
+   <td>${note.created_at}</td>
+   <td>${note.user_id}</td>
+                    `;
+        tableBody.appendChild(row);
+    });
+
+    document.getElementById("notesTable").classList.remove("hidden");
+}
+
+function openModal(account) {
+    console.log(account);
+    document.getElementById("noteModal").classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // Disable scrolling on the background
+}
+
+function closeModal(event) {
+    if (!event || event.target === document.getElementById("noteModal")) {
+        document.getElementById("noteModal").classList.add("hidden");
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+    }
+}
+
+function saveNote() {
+    console.log("Entering saveNote function");
+    var noteText = document.getElementById("noteText").value.trim(); // Get the text and trim whitespace
+    var account = document.getElementById("account").value;
+
+    if (noteText == "") {
+        alert("Please write your note before saving."); // Alert if empty
+        return false; // Stop the function
+    }
+
+    console.log("Note Saved:", noteText);
+    console.log(account);
+
+    // Construct the URL with query parameters
+    var url =
+        "/notestore/" +
+        encodeURIComponent(noteText) +
+        "/" +
+        encodeURIComponent(account);
+
+    var csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        headers: {
+            "X-CSRF-TOKEN": csrfToken,
+        },
+        success: function (data) {
+            console.log("Note saved successfully:", data.creater);
+            var accId = data.creater;
+            console.log(accId);
+            getNotes(accId);
+            closeModal();
+
+            // Optionally: Do something with the response, like updating UI
+        },
+        error: function (xhr, status, error) {
+            console.error("Error saving note:", error);
+            // Optionally: Display an error message to the user
+        },
+    });
+}
+
+function getNotes(accId) {
+    console.log("hi");
+    $.ajax({
+        url: "/notes",
+        type: "GET",
+        data: {
+            accId: accId,
+        },
+        success: function (data) {
+            // Update UI with the received notes
+            updateNotesTable(data);
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching notes:", error);
+            // Optionally: Display an error message to the user
+        },
+    });
+}
+
+// NOTE End
