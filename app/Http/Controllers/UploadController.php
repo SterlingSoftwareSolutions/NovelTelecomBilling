@@ -8,21 +8,24 @@ use App\Imports\CustomersImport;
 use App\Imports\AccountsImport;
 use App\Imports\ChargesSummaryImport;
 use App\Imports\ServiceSummaryImport;
+use App\Imports\UsageSummaryimport;
 
 class UploadController extends Controller
 {
-    public function uploadFile(Request $request)
+    // public function uploadFile(Request $request)
+    // {
+    //     $request->validate([
+    //         'csv_file' => 'required|file|mimes:xlsx,csv',
+    //     ]);
+
+    //     Excel::import(new CustomersImport, request()->file('csv_file'));
+
+    //     return back()->with('success', 'Customers imported successfully.');
+    // }
+
+
+    public function excelupload(Request $request)
     {
-        $request->validate([
-            'csv_file' => 'required|file|mimes:xlsx,csv',
-        ]);
-
-        Excel::import(new CustomersImport, request()->file('csv_file'));
-
-        return back()->with('success', 'Customers imported successfully.');
-    }
-
-    public function excelupload(Request $request){
 
         $request->validate([
             'csv_file' => 'required|file|mimes:xlsx,csv',
@@ -30,10 +33,8 @@ class UploadController extends Controller
 
         Excel::import(new AccountsImport, request()->file('csv_file'));
 
-        return back()->with('success', 'Accounts imported successfully.');
-
+        return back()->with('success', 'Customers imported successfully.');
     }
-
     public function ServiceSummaryUpload(Request $request)
     {
         $request->validate([
@@ -63,4 +64,18 @@ class UploadController extends Controller
         return back()->with('success', 'Service Summary imported successfully.');
     }
 
+    
+    public function usagesummary(Request $request)
+    {
+        $request->validate([
+            'csv_file' => 'required|file|mimes:xlsx,csv',
+        ]);
+
+        Excel::import(new UsageSummaryimport, request()->file('csv_file'));
+
+        return back()->with('success', 'Usage Summary imported successfully.');
+    }
+
+
+  
 }
