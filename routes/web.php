@@ -35,6 +35,8 @@ Route::get('/upload', function () {
 Route::resource('customers', CustomerController::class)->except(['index']);
 Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::post('uploadfile', [UploadController::class, 'excelupload'])->name('file.upload');
+Route::post('uploadfiles', [UploadController::class, 'ServiceSummaryUpload'])->name('file.ServiceSummaryUpload');
+Route::post('uploadfiless', [UploadController::class, 'ChargesSummaryUpload'])->name('file.ChargesSummaryUpload');
 
 //auth routes
 // Authentication Routes
