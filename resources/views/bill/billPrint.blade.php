@@ -116,8 +116,8 @@
 
                     <div class="flex gap-5">
                         <div class="  w-6/12">
-                            <table class="w-full text-sm text-left rtl:text-right text-black border border-red-500">
-                                <thead class="text-lg text-white" style="background-color:#E8710F;">
+                            <table class="w-full text-sm text-left  text-black border border-red-500">
+                                <thead class="text-lg text-white " style="background-color:#E8710F;">
                                     <div>
 
                                         <tr>
@@ -737,7 +737,7 @@
                 {{-- SUMMARY OF CHARGES --}}
 
 
-<div class="border border-red-500">
+                <div class="border border-red-500">
 
                     <div class="flex justify-between mt-5 mr-5 ">
                         <div>
@@ -766,23 +766,113 @@
 
 
 
+                    </div>
+
+                    <div class="mt-4 border border-red-500">
+
+                        <div class="flex justify-around font-bold mx-2">
+                            <h1 class="w-6/12">Summary of Charges</h1>
+                            <h1 class="w-3/12">Units</h1>
+                            <h1 class="w-3/12">Amount</h1>
+                        </div>
+                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+
+                        <div class="flex justify-around  mx-2">
+                            <h1 class="w-6/12">Usage</h1>
+                            <h1 class="w-3/12"></h1>
+                            <h1 class="w-3/12"></h1>
+                        </div>
+
+                        <div class="flex justify-around  mx-2">
+                            <h1 class="w-6/12">Local Calls</h1>
+                            <h1 class="w-3/12">1</h1>
+                            <h1 class="w-3/12">$0.18</h1>
+                        </div>
+
+                        <div class="flex justify-around  mx-2">
+                            <h1 class="w-6/12">Mobile Calls</h1>
+                            <h1 class="w-3/12">1</h1>
+                            <h1 class="w-3/12">$0.55</h1>
+                        </div>
+
+                        <div class="flex justify-around  mx-2">
+                            <h1 class="w-6/12"></h1>
+                            <h1 class="w-3/12">SUBTOTAL</h1>
+                            <h1 class="w-3/12">$0.73</h1>
+                        </div>
+
+                        <div class="flex justify-around mx-2">
+                            <h1 class="w-6/12">SERVICE AND EQUIPMENT</h1>
+                            <h1 class="w-3/12"></h1>
+                            <h1 class="w-3/12"></h1>
+                        </div>
+
+
+                        <div class="flex justify-around mx-2">
+                            <h1 class="w-6/12">NBN BRONZE</h1>
+                            <h1 class="w-3/12">1</h1>
+                            <h1 class="w-3/12">$54.54</h1>
+                        </div>
+
+
+
+                        <div class="flex justify-around mx-2">
+                            <h1 class="w-6/12">Novel Tel Sip Basic Monthly Access</h1>
+                            <h1 class="w-3/12">1</h1>
+                            <h1 class="w-3/12">$9.08</h1>
+                        </div>
+
+
+                        <div class="flex justify-around mx-2">
+                            <h1 class="w-6/12"></h1>
+                            <h1 class="w-3/12">SUBTOTAL</h1>
+                            <h1 class="w-3/12">$63.62</h1>
+                        </div>
+
+                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+
+                        <div class="flex justify-around mx-2">
+                            <h1 class="w-6/12">Total</h1>
+                            <h1 class="w-3/12"></h1>
+                            <h1 class="w-3/12">$64.62</h1>
+                        </div>
+
+                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+
+
+                        <div class="flex justify-around mx-2">
+                            <h1 class="w-6/12">Payment Received</h1>
+                            <h1 class="w-3/12">Date</h1>
+                            <h1 class="w-3/12">Amount</h1>
+                        </div>
+
+                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+
+
+                        <div class="flex justify-around mx-2">
+                            <h1 class="w-6/12">Payment Received</h1>
+                            <h1 class="w-3/12">Date</h1>
+                            <h1 class="w-3/12">Amount</h1>
+                        </div>
+
+                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+
+                        <div class="flex justify-around mx-2">
+                            <h1 class="w-6/12">Total</h1>
+                            <h1 class="w-3/12"></h1>
+                            <h1 class="w-3/12">$64.62</h1>
+                        </div>
+
+                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+
 
                     </div>
 
 
-                    <div>
-                        <h1>hello</h1>
-                    </div>
-
-
-
-</div>
+                </div>
 
 
                 {{-- END OF SUMMARY OF CHARGES --}}
-
-
-
             </div>
         </div>
     </div>
