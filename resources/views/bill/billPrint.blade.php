@@ -5,719 +5,539 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./node_modules/apexcharts/dist/apexcharts.css">
-    {{-- <script src="./node_modules/lodash/lodash.min.js"></script>
-<script src="./node_modules/apexcharts/dist/apexcharts.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-<script src="https://preline.co/assets/js/hs-apexcharts-helpers.js"></script> --}}
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .half-width {
+            width: 50%;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table thead th {
+            background-color: #f3f3f3;
+        }
+
+        .total-row th,
+        .total-row td {
+            font-weight: bold;
+        }
+
+        hr.new4 {
+         border: 1px solid black;
+}
+
+
+        .barchart-Wrapper {
+      display: table;
+      position: relative;
+      margin: 20px 0;
+      height: 252px;
+      width: 600px;
+    }
+    .barChart-Container {
+      display: table-cell;
+      width: 100%;
+      height: 100%;
+      padding-left: 15px;
+    }
+    .barchart {
+     display: table;
+     table-layout: fixed;
+     height: 100%;
+     width: 100%;
+     border-bottom: 3px solid tomato;
+    }
+    .barchart-Col {
+      position: relative;
+      vertical-align: bottom;
+      display: table-cell;
+      height: 100%;
+    }
+    .barchart-Col + .barchart-Col {
+      border-left: 4px solid transparent;
+    }
+    .barchart-Bar {
+      position: relative;
+      height: 0;
+      transition: height 0.5s 2s;
+      width: 66px;
+      margin: auto;
+    }
+    .barchart-Bar:after {
+      content: attr(attr-height);
+      color: white;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+    }
+    .barchart-BarFooter {
+      position: absolute;
+      text-align: center;
+      height: 10%;
+      width: 100%;
+    }
+    .barchart-BarFooter h3 {
+      color: darkred;
+    }
+    .barchart-TimeCol {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .barchart-Time {
+      height: 25%;
+      vertical-align: middle;
+      position: relative;
+    }
+    .barchart-Time:after {
+      border-bottom: 3px solid black;
+      content: "";
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0em;
+    }
+    .barchart-TimeText {
+      position: absolute;
+      top: -8px;
+      z-index: 1;
+      background: white;
+      padding-right: 5px;
+      color: #4d4d4d;
+      font-size: 15px;
+      font-family: 'Avenir Medium';
+    }
+    .html-bar {
+      background-color: deepskyblue;
+    }
+    .css-bar {
+      background-color: greenyellow;
+    }
+    .js-bar {
+      background-color: peachpuff;
+    }
+    .python-bar {
+      background-color: darkolivegreen;
+    }
+    .java-bar {
+      background-color: cornflowerblue;
+    }
+    </style>
 </head>
 
-<body class="antialiased text-gray-900 leading-normal font-sans">
-    <div class="container mx-auto px-6 py-4 border border-red-500">
-        <div class="flex justify-center">
-            <div class="w-full max-w-5xl ">
-
-
-
-                <div class="flex flex-row justify-between ">
-
-                    <div class="w-6/12 border border-red-500 ">
-
-                        <div>
-                            <img src="{{ asset('Images/logo.png') }}" alt="Login Image"
-                                class="w-28 rounded-md px-4 py-2" style="background-color: #01549A">
-                        </div>
-
-                        <div class="mt-4">
-                            <p class="text-black font-bold">NOVEL TELECOM</p>
-                            <p class="text-black font-bold">ABN 76 616 058 130 </p>
-
-
-                        </div>
-
-
-                        <div class="mt-4">
-                            <p class="text-black font-bold">Text INVOICE FOR</p>
-
-
-                        </div>
-
-                        <div class="mt-4 ">
-                            <p class="text-black font-bold">Ms PRADEEPA MANORANGI JAYAMAH</p>
-                            <p class="text-black font-bold">106 C</p>
-                            <p class="text-black font-bold">HERBERT STREET</p>
-                            <p class="text-black font-bold">DANDENONG VIC 3175</p>
-
-
-                        </div>
-
-
-                    </div>
-
-                    <div class="border border-red-500 p-4 space-y-6">
-
-                        <div class="">
-                            <p class="text-black font-bold text-3xl">Your Account Details</p>
-                        </div>
-
-                        <div class="flex justify-between mt-3">
-                            <div class="space-y-2">
-                                <p class="text-black">Account Number</p>
-                                <p class="text-black">Billing Period</p>
-                                <p class="text-black">Issue Date</p>
-                                <p class="text-black">Invoice Number</p>
-                            </div>
-                            <div class=" w-40 space-y-2 text-start ">
-                                <p class="text-black">400174498</p>
-                                <p class="text-black">01-31 Mar 2024</p>
-                                <p class="text-black">4-Apr 2024</p>
-                                <p class="text-black">1778996</p>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-between mt-3">
-                            <div class="space-y-2">
-                                <p class="text-black font-bold">Amount Date</p>
-
-                            </div>
-                            <div class=" w-40 space-y-2 text-start">
-                                <p class="text-black">$70.78</p>
-
-                            </div>
-                        </div>
-
-                        <div class="flex justify-between mt-3">
-                            <div class="space-y-2">
-                                <p class="text-black font-bold">Due Date</p>
-
-                            </div>
-                            <div class=" w-40 space-y-2 text-start">
-                                <p class="text-black">18 Decmebere 2020</p>
-
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="w-8/12 mt-2">
-                            <p class="text-black">To avoid a late payment fee of $15.00, please pay by the due date</p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                {{-- Tables --}}
-
-                <div class="border border-red-500 mt-5">
-
-                    <div class="flex gap-5">
-                        <div class="  w-6/12">
-                            <table class="w-full text-sm text-left  text-black border border-red-500">
-                                <thead class="text-lg text-white " style="background-color:#E8710F;">
-                                    <div>
-
-                                        <tr>
-                                            <th scope="col" class="px-6 py-3 ">
-                                                Account Summary
-                                            </th>
-                                        </tr>
-                                </thead>
-                                <tbody class="">
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Previous Invoice
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $71.13
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Adjustment
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $0.00
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Payment Received
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $71.13
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Current Invoice
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $70.78
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Balance
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $00.00
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                                <tfoot>
-                                    <tr class="font-semibold text-gray-900 ">
-                                        <th scope="row" class="px-6 py-1 text-base">AMOUNT DUE</th>
-                                        <td class="px-6 py-1">$70.78</td>
-                                    </tr>
-                                </tfoot>
-
-                            </table>
-                        </div>
-
-                        <div class="  w-6/12">
-                            <table class="w-full text-sm text-left rtl:text-right text-black border border-red-500">
-                                <thead class="text-lg text-white" style="background-color:#E8710F;">
-                                    <div>
-
-                                        <tr>
-                                            <th scope="col" class="px-6 py-3 ">
-                                                Summary of Charges
-                                            </th>
-                                        </tr>
-                                </thead>
-                                <tbody class="">
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                NBN BRONZE
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $54.54
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Novel Tel Sip Basic Monthly Access
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $9.08
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Mobile Calls
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $0.55
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                GST
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $6.43
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Balance
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $00.00
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                                <tfoot>
-                                    <tr class="font-semibold text-gray-900 ">
-                                        <th scope="row" class="px-6 py-1 text-base">TOTAL NEW CHARGES</th>
-                                        <td class="px-6 py-1">$70.78</td>
-                                    </tr>
-                                </tfoot>
-
-                            </table>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-                {{-- END Tables --}}
-
-                {{-- Chart --}}
-
-                <div>
+<body>
+    <div class="container">
+        <div class="flex">
+            <div class="item half-width">
+                <img src="../images/logo01.png" alt="Logo" class="logo">
+                <p class="bold">NOVEL TELECOM</p>
+                <p class="bold">ABN 76 616 058 130</p>
+                <p class="bold mb-20">INVOICE FOR</p>
+                <p class="bold">Ms PRADEEPA MANORANGI JAYAMAH</p>
+                <p class="bold">106 C HERBERT STREET</p>
+                <p class="bold">DANDENONG VIC 3175</p>
+            </div>
+            <div class="item">
+                <p class="section-title">Your Account Details</p>
+                <div class="flex mb-20">
                     <div>
-                        <h1 class="font-bold mt-5">Your Recent Charges</h1>
+                        <p>Account Number</p>
+                        <p>Billing Period</p>
+                        <p>Issue Date</p>
+                        <p>Invoice Number</p>
                     </div>
-
-                    <div class="w-6/12 border border-red-500 mt-5">
-
-
-                        <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-
-                            <div class="pt-6 px-2 pb-0">
-                                <div id="bar-chart"></div>
-                            </div>
-                        </div>
+                    <div>
+                        <p>400174498</p>
+                        <p>01-31 Mar 2024</p>
+                        <p>4-Apr 2024</p>
+                        <p>1778996</p>
                     </div>
-
-                    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-                    <script>
-                        const chartConfig = {
-                            series: [{
-                                name: "Sales",
-                                data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-                            }, ],
-                            chart: {
-                                type: "bar",
-                                height: 240,
-                                toolbar: {
-                                    show: false,
-                                },
-                            },
-                            title: {
-                                show: "",
-                            },
-                            dataLabels: {
-                                enabled: false,
-                            },
-                            colors: ["#020617"],
-                            plotOptions: {
-                                bar: {
-                                    columnWidth: "40%",
-                                    borderRadius: 2,
-                                },
-                            },
-                            xaxis: {
-                                axisTicks: {
-                                    show: false,
-                                },
-                                axisBorder: {
-                                    show: false,
-                                },
-                                labels: {
-                                    style: {
-                                        colors: "#616161",
-                                        fontSize: "12px",
-                                        fontFamily: "inherit",
-                                        fontWeight: 400,
-                                    },
-                                },
-                                categories: [
-                                    "Apr",
-                                    "May",
-                                    "Jun",
-                                    "Jul",
-                                    "Aug",
-                                    "Sep",
-                                    "Oct",
-                                    "Nov",
-                                    "Dec",
-                                ],
-                            },
-                            yaxis: {
-                                labels: {
-                                    style: {
-                                        colors: "#616161",
-                                        fontSize: "12px",
-                                        fontFamily: "inherit",
-                                        fontWeight: 400,
-                                    },
-                                },
-                            },
-                            grid: {
-                                show: true,
-                                borderColor: "#dddddd",
-                                strokeDashArray: 5,
-                                xaxis: {
-                                    lines: {
-                                        show: true,
-                                    },
-                                },
-                                padding: {
-                                    top: 5,
-                                    right: 20,
-                                },
-                            },
-                            fill: {
-                                opacity: 0.8,
-                            },
-                            tooltip: {
-                                theme: "dark",
-                            },
-                        };
-
-                        const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
-
-                        chart.render();
-                    </script>
-
                 </div>
+                <p class="bold">Amount Due: $70.78</p>
+                <p class="bold">Due Date: 18 Dec 2020</p>
+                <p>To avoid a late payment fee of $15.00, please pay by the due date.</p>
+            </div>
+        </div>
+        <div class="item">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Account Summary</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Previous Invoice</td>
+                        <td>$71.13</td>
+                    </tr>
+                    <tr>
+                        <td>Adjustment</td>
+                        <td>$0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Received</td>
+                        <td>$71.13</td>
+                    </tr>
+                    <tr>
+                        <td>Current Invoice</td>
+                        <td>$70.78</td>
+                    </tr>
+                    <tr>
+                        <td>Balance</td>
+                        <td>$0.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <th>Total Due</th>
+                        <td>$70.78</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="item full-width">
+            <table class="table">
+                <thead style="background-color:#E8710F; color: white;">
+                    <tr>
+                        <th colspan="2">Summary of Charges</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>NBN BRONZE</th>
+                        <td>$54.54</td>
+                    </tr>
+                    <tr>
+                        <th>Novel Tel Sip Basic Monthly Access</th>
+                        <td>$9.08</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Calls</th>
+                        <td>$0.55</td>
+                    </tr>
+
+                    <th>GST</th>
+                    <td>$6.43</td>
+                    </tr>
+                    <tr>
+                        <th>Balance</th>
+                        <td>$0.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total New Charges</th>
+                        <td>$70.78</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
 
 
-                {{-- END Chart --}}
-
-
-                <div class="w-full border-b-2 border-black transform  origin-left mt-5 "></div>
-
-
-
-                {{-- PAYMENT SLIP PART --}}
-
-                <div class=" flex mt-5">
-
-
-                    <div class="flex gap-2 w-8/12">
-
-                        <div class="w-5/12">
-                            <div>
-                                <div>
-                                    <img src="{{ asset('Images/logo.png') }}" alt="Login Image"
-                                        class="w-28 rounded-md px-4 py-2" style="background-color: #01549A">
+                            {{-- Chart --}}
+                            <div class="barchart-Wrapper">
+                                <div class="barchart-TimeCol">
+                                 <div class="barchart-Time">
+                                   <span class="barchart-TimeText">125</span>
+                                 </div>
+                                 <div class="barchart-Time">
+                                   <span class="barchart-TimeText">100</span>
+                                 </div>
+                                 <div class="barchart-Time">
+                                   <span class="barchart-TimeText">75</span>
+                                 </div>
+                                 <div class="barchart-Time">
+                                   <span class="barchart-TimeText">50</span>
+                                 </div>
+                                 <div class="barchart-Time">
+                                   <span class="barchart-TimeText">25</span>
+                                 </div>
                                 </div>
-                            </div>
 
-                            <div class="mt-5">
-                                <h1 class="font-bold">NOVEL TELECOM</h1>
+                                <div class="barChart-Container">
+                                 <div class="barchart">
+                                  <div class="barchart-Col">
+                                   <div class="barchart-Bar html-bar" style="height: 75%;"></div>
+                                     <div class="barchart-BarFooter">
+                                       <h3>HTML</h3>
+                                     </div>
+                                 </div>
+                                 <div class="barchart-Col">
+                                  <div class="barchart-Bar css-bar" style="height: 75%;"></div>
+                                   <div class="barchart-BarFooter">
+                                    <h3>CSS</h3>
+                                   </div>
+                                 </div>
+                                 <div class="barchart-Col">
+                                  <div class="barchart-Bar js-bar" style="height: 75%;"></div>
+                                    <div class="barchart-BarFooter">
+                                      <h3>JS</h3>
+                                    </div>
+                                 </div>
+                                 <div class="barchart-Col">
+                                  <div class="barchart-Bar python-bar" style="height: 75%;"></div>
+                                   <div class="barchart-BarFooter">
+                                    <h3>PYTHON</h3>
+                                   </div>
+                                 </div>
+                                 <div class="barchart-Col">
+                                  <div class="barchart-Bar java-bar" style="height: 75%;"></div>
+                                   <div class="barchart-BarFooter">
+                                    <h3>JAVA</h3>
+                                   </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                            {{-- End Chart --}}
 
-                            </div>
-                            <div class="mt-2">
-                                <h1 class="font-bold">ABN 76 616 058 130</h1>
 
-                            </div>
-
-                        </div>
-
-
-                        <div>
-                            <div class="mt-5">
-                                <h1 class="font-bold">Payment SlIp</h1>
-                            </div>
-
-                            <div class="mt-5">
-                                <h1 class="font-bold">Remittance Advice</h1>
-                            </div>
-                            <div class="mt-5">
-                                <h1>Please detach this remittance advice and return to NOVEL Telecom
-                                    with your cheque or Money Order made payable to:
-                                </h1>
-                            </div>
-                            <div class="mt-5">
-                                <h1>NOVEL Telecom</h1>
-                                <h1>42 Ross Stree</h1>
-                                <h1>Dandenong</h1>
-                                <h1>VIC 3175</h1>
-                            </div>
-
-                            <div class="mt-5">
-                                <h1>Please see next page for additional payment methods</h1>
-
-                            </div>
-
-
-                        </div>
-                    </div>
+                            <hr style="margin-top: 80px" class="new4" >
 
 
 
-                    <div class="border border-red-500 ">
+ {{-- PAYMENT SLIP PART --}}
 
-                        <div class="mt-10">
-                            <table class="w-full text-sm text-left rtl:text-right text-black border border-red-500">
-                                <thead class="text-lg text-white" style="background-color:#E8710F;">
-                                    <div>
+ <!-- PAYMENT SLIP PART -->
 
-                                        <tr>
-                                            <th scope="col" class="px-6 py-3 ">
-                                                Account Details
-                                            </th>
-                                        </tr>
-                                </thead>
-                                <tbody class="">
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Account Number
+<!-- PAYMENT SLIP PART -->
 
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            400174498
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Invoice Number
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            1778996
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Issue Date
+<div class="flex" style="margin-top: 20px;">
 
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            4 April 2024
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Amount Due
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            $70.78
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white dark:bg-gray-800 ">
-                                        <th scope="row" class="ml-8 mt-5 font-medium text-gray-900 ">
-                                            <h2 class=" ml-5">
-                                                Due Date
-
-                                            </h2>
-                                        </th>
-                                        <td class="px-6 py-1">
-                                            18 April 2024
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                                <tfoot>
-                                    <tr class="font-semibold text-gray-900 ">
-                                        <th scope="row" class="px-6 py-1 text-base">AMOUNT DUE</th>
-                                        <td class="px-6 py-1">$70.78</td>
-                                    </tr>
-                                </tfoot>
-
-                            </table>
-                        </div>
-                        <div>
-                            <h1>If you are on Direct Debit your account will
-                                be debited on the due date</h1>
-                        </div>
-
-                    </div>
-
+    <div class="flex gap-2" style="width: 66.666667%;">
+        <div style="width: 41.666667%;">
+            <div>
+                <div>
+                    <img src="../images/logo01.png" alt="Logo" class="logo">
 
                 </div>
+            </div>
 
+            <div style="margin-top: 20px;">
+                <h1 style="font-size: 20px">NOVEL TELECOM</h1>
+            </div>
+            <div style="margin-top: 10px;">
+                <h1 style="font-size: 20px">ABN 76 616 058 130</h1>
+            </div>
+        </div>
 
+        <div>
+            <div style="margin-top: 20px;">
+                <h1 style="font-size: 20px">Payment Slip</h1>
+            </div>
 
-                {{-- PAYMENT SLIP PART END  --}}
-                <div class="w-full border-b-2 border-black transform  origin-left mt-5 "></div>
+            <div style="margin-top: 20px;">
+                <h1 style="font-size: 20px">Remittance Advice</h1>
+            </div>
+            <div style="margin-top: 20px;">
+                <h1 style="font-size: 20px">Please detach this remittance advice and return to NOVEL Telecom with your cheque or Money Order made payable to:</h1>
+            </div>
+            <div style="margin-top: 20px;">
+                <h1 style="font-size: 20px">NOVEL Telecom</h1>
+                <h1 style="font-size: 20px">42 Ross Street</h1>
+                <h1 style="font-size: 20px">Dandenong</h1>
+                <h1 style="font-size: 20px">VIC 3175</h1>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <h1 style="font-size: 20px">Please see next page for additional payment methods</h1>
+            </div>
+        </div>
+    </div>
+
+    <div style="flex: 1;">
+        <div style="margin-top: 20px;">
+            <table class="table">
+                <thead style="background-color:#E8710F; color: white;">
+                    <tr>
+                        <th colspan="2">Summary of Charges</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>NBN BRONZE</th>
+                        <td>$54.54</td>
+                    </tr>
+                    <tr>
+                        <th>Novel Tel Sip Basic Monthly Access</th>
+                        <td>$9.08</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Calls</th>
+                        <td>$0.55</td>
+                    </tr>
+
+                    <th>GST</th>
+                    <td>$6.43</td>
+                    </tr>
+                    <tr>
+                        <th>Balance</th>
+                        <td>$0.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total New Charges</th>
+                        <td>$70.78</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div style="margin-top: 20px;">
+            <h1 style="font-size: 20px">If you are on Direct Debit your account will be debited on the due date</h1>
+        </div>
+    </div>
+</div>
+{{-- PAYMENT SLIP PART END  --}}
+
 
                 {{-- PAYMENT Option Page --}}
-
-                <div class="border border-red-500">
-
-                    <div class="flex justify-between mt-5 mr-5">
+                <div style="">
+                    <div style="display: flex; justify-content: space-between; margin-top: 1.25rem; margin-right: 1.25rem;">
                         <div>
                             <div>
-                                <img src="{{ asset('Images/logo.png') }}" alt="Login Image"
-                                    class="w-28 rounded-md px-4 py-2" style="background-color: #01549A">
+                <img src="../images/logo01.png" alt="Logo" class="logo">
                             </div>
                         </div>
-
-                        <div class="flex gap-5">
-
-                            <div class="font-bold">
-                                <h1>Account Number</h1>
-                                <h1>Issue Date</h1>
-                                <h1>Invoice Number</h1>
-                                <h1>Due Date</h1>
+                        <div style="display: flex; gap: 1.25rem;">
+                            <div style="font-weight: bold;">
+                                <h1 style="font-size: 20px;">Account Number</h1>
+                                <h1 style="font-size: 20px;">Issue Date</h1>
+                                <h1 style="font-size: 20px;">Invoice Number</h1>
+                                <h1 style="font-size: 20px;">Due Date</h1>
                             </div>
                             <div>
-                                <h1>40017498</h1>
-                                <h1>4 December 2024</h1>
-                                <h1>1778996</h1>
-                                <h1>18 April 2024</h1>
+                                <h1 style="font-size: 20px;">40017498</h1>
+                                <h1 style="font-size: 20px;">4 December 2024</h1>
+                                <h1 style="font-size: 20px;">1778996</h1>
+                                <h1 style="font-size: 20px;">18 April 2024</h1>
                             </div>
                         </div>
-
-
                     </div>
-
-
                     <div>
-                        <h1 class="font-bold">Payment Options</h1>
+                        <h1 style="font-size: 20px; font-weight: bold;">Payment Options</h1>
                     </div>
-
-
-                    <div class="flex mt-4 justify-between gap-3">
-
-                        <div class="w-4/12">
-                            <h1 class="font-bold">Direct Debit</h1>
-                            <p>To set up automatic payments,
-                                please call 1300 317 517</p>
-
+                    <div style="display: flex; margin-top: 1.25rem; justify-content: space-between; gap: 1.25rem;">
+                        <div style="width: 33.33%;">
+                            <h1 style="font-size: 20px; font-weight: bold;">Direct Debit</h1>
+                            <p style="font-size: 20px;">To set up automatic payments, please call 1300 317 517</p>
                         </div>
-
-                        <div class="w-4/12">
-
-                            <h1 class="font-bold">Credit Card</h1>
-                            <p>To pay by Credit Card please call
-                                1300 317 517, or go to this link:
-                                www.noveltelecom.au/pay</p>
+                        <div style="width: 33.33%;">
+                            <h1 style="font-size: 20px; font-weight: bold;">Credit Card</h1>
+                            <p style="font-size: 20px;">To pay by Credit Card please call 1300 317 517, or go to this link: www.noveltelecom.au/pay</p>
                         </div>
-
-                        <div class="w-4/12">
-
+                        <div style="width: 33.33%;">
                             <div>
-                                <h1 class="font-bold">EFT</h1>
-
+                                <h1 style="font-size: 20px; font-weight: bold;">EFT</h1>
                             </div>
-
-                            <div class="flex">
-                                <div class="font-bold">
-                                    <h1>Bank</h1>
-                                    <h1>BSB</h1>
-                                    <h1>Account</h1>
+                            <div style="display: flex;">
+                                <div style="font-weight: bold;">
+                                    <h1 style="font-size: 20px;">Bank</h1>
+                                    <h1 style="font-size: 20px;">BSB</h1>
+                                    <h1 style="font-size: 20px;">Account</h1>
                                 </div>
-
                                 <div>
-                                    <h1>ANZ</h1>
-                                    <h1>013 030</h1>
-                                    <h1>2246 61713</h1>
+                                    <h1 style="font-size: 20px;">ANZ</h1>
+                                    <h1 style="font-size: 20px;">013 030</h1>
+                                    <h1 style="font-size: 20px;">2246 61713</h1>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
-
-
-
-                    {{-- Note Box ORange  --}}
-                    <div class="border-2 mt-5 w-7/12" style="border-color: #E8710F;">
-                        <h1>Please note the following surcharges for Direct Debit and Credit Card Payments</h1>
-                        <h1>2.6% for Visa & Mastercard Payments</h1>
-                        <h1>4.4% for AMEX and Diners Club Payments</h1>
+                    <div style="margin-top: 1.25rem; width: 58.33%;">
+                        <h1 style="font-size: 20px;">Please note the following surcharges for Direct Debit and Credit Card Payments</h1>
+                        <h1 style="font-size: 20px;">2.6% for Visa & Mastercard Payments</h1>
+                        <h1 style="font-size: 20px;">4.4% for AMEX and Diners Club Payments</h1>
                     </div>
-
-                    {{-- End Note Box ORange  --}}
-
-                    {{-- Bill Box Blue  --}}
-
-                    <div class="border-2 mt-5 w-5/12 flex" style="border-color: #01549A;">
-
-                        <div>
-
-                        </div>
-                        <div class="flex">
-
+                    <div style="border: 2px solid #01549A; margin-top: 1.25rem; display: flex; width: 41.67%;">
+                        <div></div>
+                        <div style="display: flex; margin-top: 0.9375rem; gap: 0.625rem; border: 2px solid #01549A; padding: 0.625rem;">
+                            <div style="font-weight: bold;">
+                                <h1 style="font-size: 20px; color: #00008b;">Biller Code:</h1>
+                                <h1 style="font-size: 20px; color: #00008b;">Ref:</h1>
+                            </div>
                             <div>
-                                <div>
-                                    <img src="{{ asset('Images/bpay.png') }}" alt="Login Image"
-                                        class="w-20 rounded-md px-4 py-2">
-                                </div>
-
+                                <h1 style="font-size: 20px; font-weight: bold;">267930</h1>
+                                <h1 style="font-size: 20px; font-weight: bold;">400174983</h1>
                             </div>
-
-                            <div class="flex mt-3 gap-4 border mx-auto my-auto py-2 px-2"
-                                style="border-color: #01549A;">
-                                <div class="">
-                                    <h1 class="text-blue-900 font-bold">Biller Code:</h1>
-                                    <h1 class="text-blue-900 font-bold">Ref:</h1>
-                                </div>
-                                <div>
-                                    <h1 class="font-bold">267930</h1>
-                                    <h1 class="font-bold">400174983</h1>
-                                </div>
-                            </div>
-
-
-
-
-
                         </div>
                     </div>
-
-                    {{-- Bill Box Blue  --}}
-
-
-                    <div class="border h-40 bg-gray-100">
-                        <p class="mt-5">If you have any questions or queries regarding your invoice or your services,
-                            please contact NOVEL Telecom on 1300 317 517</p>
-
+                    <div style="border: 1px solid; height: 10rem; background-color: #f3f4f6; margin-top: 1.25rem;">
+                        <p style="font-size: 20px; margin-top: 1.25rem;">If you have any questions or queries regarding your invoice or your services, please contact NOVEL Telecom on 1300 317 517</p>
                     </div>
-
                 </div>
+                <div style="border: 2px solid #000;">
+                    <h1 style="font-size: 20px; font-weight: bold;">INFORMATION ON PREMIUM SERVICE</h1>
+                    <p style="font-size: 20px;">Premium Services (PSMS) generally begin with a 19 number, used for the following, but not limited to; voting lines, ringtones, and sports scores. Charges for these services are higher than standard national SMS rates and can be billed in the following way:</p>
+                    <p style="font-size: 20px; margin-top: 1.25rem;">Flat Rate: Flat fixed fee for each SMS sent to and/or received from a premium number or a flat fee per phone call made to the premium service.</p>
+                    <p style="font-size: 20px;">- Subscription: Opt into an ongoing subscription with associated charges</p>
+                    <p style="font-size: 20px;">-Joining Fees: Charged an additional joining fee as part of an ongoing subscription</p>
+                    <p style="font-size: 20px;">-Timed Rate: Premium call is timed and charged at a per minute rate</p>
+                    <p style="font-size: 20px;">- Data Volume Charge: Charged according to how many kilobytes (KB) of data downloaded</p>
+                    <p style="font-size: 20px;">Should you need to raise a complaint about your Premium Service
 
 
-
-
-                <div class="border-2 border-black py-4 px-4">
-
-                    <h1 class="font-bold">INFORMATION ON PREMIUM SERVICE</h1>
-                    <p>Premium Services (PSMS) generally begin with a 19 number, used for the following, but not limited
-                        to; voting lines, ringtones,
-                        and sports scores. Charges for these services are higher than standard national SMS rates and
-                        can be billed in the following
-                        way:</p>
-                    <p class="mt-5">Flat Rate: Flat fixed fee for each SMS sent to and/or received from a premium
-                        number or a flat fee per phone call made to the
-                        premium service.</p>
-                    <p>- Subscription: Opt into an ongoing subscription with associated charges
-                    </p>
-                    <p>-Joining Fees: Charged an additional joining fee as part of an ongoing subscription</p>
-                    <p>-Timed Rate: Premium call is timed and charged at a per minute rate</p>
-                    <p>- Data Volume Charge: Charged according to how many kilobytes (KB) of data downloaded</p>
-                    <p>Should you need to raise a complaint about your Premium Service, please contact the content
-                        provided who supplied you with
-                        the Premium Service in the first instance. If you require further assistance, please contact our
-                        Customer Service Team.
-                    </p>
-
-
-
-                    <h1 class="font-bold">COMPLAINTS</h1>
-
-                    <p>If you need to make a formal complaint please contact NOVEL TELECOM on 1300 317 517. If you are
+                    <h1 style="font-size: 20px; font-weight: bold;">COMPLAINTS</h1>
+                    <p style="font-size: 20px;">If you need to make a formal complaint please contact NOVEL TELECOM on 1300 317 517. If you are
                         not satisfied with the
                         resolution of your complaint we can escalate your matter to the next level of management. If we
                         are unable to resolve your
@@ -727,154 +547,372 @@
 
 
 
-                </div>
-
-                {{-- PAYMENT Option Page END  --}}
+                {{-- PAYMENT Option Page --}}
 
 
 
 
-                {{-- SUMMARY OF CHARGES --}}
+<hr class="new4">
 
 
-                <div class="border border-red-500">
 
-                    <div class="flex justify-between mt-5 mr-5 ">
+
+
+
+                {{-- Bill Option  --}}
+
+                <div style="">
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 1.25rem; margin-right: 1.25rem;">
                         <div>
                             <div>
-                                <img src="{{ asset('Images/logo.png') }}" alt="Login Image"
-                                    class="w-28 rounded-md px-4 py-2" style="background-color: #01549A">
+                <img src="../images/logo01.png" alt="Logo" class="logo">
                             </div>
                         </div>
-
-                        <div class="flex gap-5">
-
-                            <div class="font-bold">
-                                <h1>Account Number</h1>
-                                <h1>Issue Date</h1>
-                                <h1>Invoice Number</h1>
-                                <h1>Due Date</h1>
+                        <div style="display: flex; gap: 1.25rem;">
+                            <div style="font-weight: bold;">
+                                <h1 style="font-size: 20px;">Account Number</h1>
+                                <h1 style="font-size: 20px;">Issue Date</h1>
+                                <h1 style="font-size: 20px;">Invoice Number</h1>
+                                <h1 style="font-size: 20px;">Due Date</h1>
                             </div>
                             <div>
-                                <h1>40017498</h1>
-                                <h1>4 December 2024</h1>
-                                <h1>1778996</h1>
-                                <h1>18 April 2024</h1>
+                                <h1 style="font-size: 20px;">40017498</h1>
+                                <h1 style="font-size: 20px;">4 December 2024</h1>
+                                <h1 style="font-size: 20px;">1778996</h1>
+                                <h1 style="font-size: 20px;">18 April 2024</h1>
                             </div>
                         </div>
-
-
-
-
                     </div>
 
-                    <div class="mt-4 border border-red-500">
+                    <div style="margin-top: 4px; ">
 
-                        <div class="flex justify-around font-bold mx-2">
-                            <h1 class="w-6/12">Summary of Charges</h1>
-                            <h1 class="w-3/12">Units</h1>
-                            <h1 class="w-3/12">Amount</h1>
+                        <div style="display: flex; justify-content: space-around; font-weight: bold; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Summary of Charges</h1>
+                            <h1 style="width: 25%; font-size: 20px;">Units</h1>
+                            <h1 style="width: 25%; font-size: 20px;">Amount</h1>
                         </div>
-                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
 
-                        <div class="flex justify-around  mx-2">
-                            <h1 class="w-6/12">Usage</h1>
-                            <h1 class="w-3/12"></h1>
-                            <h1 class="w-3/12"></h1>
-                        </div>
-
-                        <div class="flex justify-around  mx-2">
-                            <h1 class="w-6/12">Local Calls</h1>
-                            <h1 class="w-3/12">1</h1>
-                            <h1 class="w-3/12">$0.18</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Usage</h1>
+                            <h1 style="width: 25%; font-size: 20px;"></h1>
+                            <h1 style="width: 25%; font-size: 20px;"></h1>
                         </div>
 
-                        <div class="flex justify-around  mx-2">
-                            <h1 class="w-6/12">Mobile Calls</h1>
-                            <h1 class="w-3/12">1</h1>
-                            <h1 class="w-3/12">$0.55</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Local Calls</h1>
+                            <h1 style="width: 25%; font-size: 20px;">1</h1>
+                            <h1 style="width: 25%; font-size: 20px;">$0.18</h1>
                         </div>
 
-                        <div class="flex justify-around  mx-2">
-                            <h1 class="w-6/12"></h1>
-                            <h1 class="w-3/12">SUBTOTAL</h1>
-                            <h1 class="w-3/12">$0.73</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Mobile Calls</h1>
+                            <h1 style="width: 25%; font-size: 20px;">1</h1>
+                            <h1 style="width: 25%; font-size: 20px;">$0.55</h1>
                         </div>
 
-                        <div class="flex justify-around mx-2">
-                            <h1 class="w-6/12">SERVICE AND EQUIPMENT</h1>
-                            <h1 class="w-3/12"></h1>
-                            <h1 class="w-3/12"></h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;"></h1>
+                            <h1 style="width: 25%; font-size: 20px;">SUBTOTAL</h1>
+                            <h1 style="width: 25%; font-size: 20px;">$0.73</h1>
                         </div>
 
-
-                        <div class="flex justify-around mx-2">
-                            <h1 class="w-6/12">NBN BRONZE</h1>
-                            <h1 class="w-3/12">1</h1>
-                            <h1 class="w-3/12">$54.54</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">SERVICE AND EQUIPMENT</h1>
+                            <h1 style="width: 25%; font-size: 20px;"></h1>
+                            <h1 style="width: 25%; font-size: 20px;"></h1>
                         </div>
 
-
-
-                        <div class="flex justify-around mx-2">
-                            <h1 class="w-6/12">Novel Tel Sip Basic Monthly Access</h1>
-                            <h1 class="w-3/12">1</h1>
-                            <h1 class="w-3/12">$9.08</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">NBN BRONZE</h1>
+                            <h1 style="width: 25%; font-size: 20px;">1</h1>
+                            <h1 style="width: 25%; font-size: 20px;">$54.54</h1>
                         </div>
 
-
-                        <div class="flex justify-around mx-2">
-                            <h1 class="w-6/12"></h1>
-                            <h1 class="w-3/12">SUBTOTAL</h1>
-                            <h1 class="w-3/12">$63.62</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Novel Tel Sip Basic Monthly Access</h1>
+                            <h1 style="width: 25%; font-size: 20px;">1</h1>
+                            <h1 style="width: 25%; font-size: 20px;">$9.08</h1>
                         </div>
 
-                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
-
-                        <div class="flex justify-around mx-2">
-                            <h1 class="w-6/12">Total</h1>
-                            <h1 class="w-3/12"></h1>
-                            <h1 class="w-3/12">$64.62</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;"></h1>
+                            <h1 style="width: 25%; font-size: 20px;">SUBTOTAL</h1>
+                            <h1 style="width: 25%; font-size: 20px;">$63.62</h1>
                         </div>
 
-                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
 
-
-                        <div class="flex justify-around mx-2">
-                            <h1 class="w-6/12">Payment Received</h1>
-                            <h1 class="w-3/12">Date</h1>
-                            <h1 class="w-3/12">Amount</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Total</h1>
+                            <h1 style="width: 25%; font-size: 20px;"></h1>
+                            <h1 style="width: 25%; font-size: 20px;">$64.62</h1>
                         </div>
 
-                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
 
 
-                        <div class="flex justify-around mx-2">
-                            <h1 class="w-6/12">Payment Received</h1>
-                            <h1 class="w-3/12">Date</h1>
-                            <h1 class="w-3/12">Amount</h1>
+                        <div style="margin-top: 60px">
+
+
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Payment Received</h1>
+                            <h1 style="width: 25%; font-size: 20px;">Date</h1>
+                            <h1 style="width: 25%; font-size: 20px;">Amount</h1>
                         </div>
 
-                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
 
-                        <div class="flex justify-around mx-2">
-                            <h1 class="w-6/12">Total</h1>
-                            <h1 class="w-3/12"></h1>
-                            <h1 class="w-3/12">$64.62</h1>
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Receipt3122987 </h1>
+                            <h1 style="width: 25%; font-size: 20px;">18/03/2024 </h1>
+                            <h1 style="width: 25%; font-size: 20px;">-$71.13</h1>
                         </div>
 
-                        <div class="border-b-2 border-black w-12/12 mt-1 mx-2 "></div>
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
 
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">Total</h1>
+                            <h1 style="width: 25%; font-size: 20px;"></h1>
+                            <h1 style="width: 25%; font-size: 20px;">-$71.13
+                            </h1>
+                        </div>
+
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
+                    </div>
 
                     </div>
 
 
                 </div>
 
+                {{-- Bill Option  --}}
+                <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
 
-                {{-- END OF SUMMARY OF CHARGES --}}
-            </div>
-        </div>
+                {{-- Service Details --}}
+                <div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 1.25rem; margin-right: 1.25rem;">
+                        <div>
+                            <div>
+                <img src="../images/logo01.png" alt="Logo" class="logo">
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.25rem;">
+                            <div style="font-weight: bold;">
+                                <h1 style="font-size: 20px;">Account Number</h1>
+                                <h1 style="font-size: 20px;">Issue Date</h1>
+                                <h1 style="font-size: 20px;">Invoice Number</h1>
+                                <h1 style="font-size: 20px;">Due Date</h1>
+                            </div>
+                            <div>
+                                <h1 style="font-size: 20px;">40017498</h1>
+                                <h1 style="font-size: 20px;">4 December 2024</h1>
+                                <h1 style="font-size: 20px;">1778996</h1>
+                                <h1 style="font-size: 20px;">18 April 2024</h1>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <h1 style="font-size: 20px">Service Details</h1>
+                    </div>
+
+                      {{-- Service Table --}}
+
+
+                    <div>
+
+
+                    <div>
+                        <h1 style="font-size: 20px">Service Number: 03 9794 8429</h1>
+                        <h1 style="font-size: 20px">Service & Equipment</h1>
+                    </div>
+
+
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                        <h1 style="width: 50%; font-size: 20px;">DESCRIPTION</h1>
+                        <h1 style="width: 25%; font-size: 20px;">UNIT</h1>
+                        <h1 style="width: 25%; font-size: 20px;">$ AMOUNT (ex GST)</h1>
+                    </div>
+
+                    <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
+
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                        <h1 style="width: 50%; font-size: 20px;">Novel Tel Sip Basic Monthly Access</h1>
+                        <h1 style="width: 25%; font-size: 20px;">1</h1>
+                        <h1 style="width: 25%; font-size: 20px;">$9.08</h1>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                        <h1 style="width: 60%; font-size: 20px;"></h1>
+                        <h1 style="width: 15%; font-size: 20px;">Total Charges </h1>
+                        <h1 style="width: 25%; font-size: 20px;">$9.08</h1>
+                    </div>
+
+                    <div>
+                        <h1 style="font-size: 20px">Usage</h1>
+                    </div>
+
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                        <h1 style="width: 16.66%; font-size: 20px;">DATE</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">TIME</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">TYPE</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">DESTINATION Number</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">DURATION</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">$ AMOUNT</h1>
+                    </div>
+
+                    <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                        <h1 style="width: 16.66%; font-size: 20px;">Mar 13</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">12.53 pm</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">Call to Local</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">039795184</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">0:03:13</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">$0.18</h1>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                        <h1 style="width: 16.66%; font-size: 20px;">Mar 13</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">12.53 pm</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">Call to Local</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">039795184</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">0:03:13</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">$0.18</h1>
+                    </div>
+
+
+                    <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
+
+
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                        <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                        <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                        <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                        <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">Total Usage</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">$0.73</h1>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                        <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                        <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                        <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                        <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">Total for services 0397948429</h1>
+                        <h1 style="width: 16.66%; font-size: 20px;">$9.81</h1>
+                    </div>
+
+                </div>
+                      {{-- Service Table --}}
+
+                    <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
+
+
+
+                      {{-- Service Table --}}
+
+
+                      <div>
+
+
+                        <div>
+                            <h1 style="font-size: 20px">Service Number: 03 9794 8429</h1>
+                            <h1 style="font-size: 20px">Service & Equipment</h1>
+                        </div>
+
+
+
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">DESCRIPTION</h1>
+                            <h1 style="width: 25%; font-size: 20px;">UNIT</h1>
+                            <h1 style="width: 25%; font-size: 20px;">$ AMOUNT (ex GST)</h1>
+                        </div>
+
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
+
+
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 50%; font-size: 20px;">NBN Bronze</h1>
+                            <h1 style="width: 25%; font-size: 20px;">1</h1>
+                            <h1 style="width: 25%; font-size: 20px;">$54.54</h1>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 60%; font-size: 20px;"></h1>
+                            <h1 style="width: 15%; font-size: 20px;">Total Charges </h1>
+                            <h1 style="width: 25%; font-size: 20px;">$54.54</h1>
+                        </div>
+
+                        {{-- <div>
+                            <h1 style="font-size: 20px">Usage</h1>
+                        </div> --}}
+
+
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 16.66%; font-size: 20px;">DATE</h1>
+                            <h1 style="width: 16.66%; font-size: 20px;">TIME</h1>
+                            <h1 style="width: 16.66%; font-size: 20px;">TYPE</h1>
+                            <h1 style="width: 16.66%; font-size: 20px;">DESTINATION Number</h1>
+                            <h1 style="width: 16.66%; font-size: 20px;">DURATION</h1>
+                            <h1 style="width: 16.66%; font-size: 20px;">$ AMOUNT</h1>
+                        </div>
+
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
+
+
+
+                        <div>
+                            <h1 style="font-size: 20px">No Itemised Calls for 108016</h1>
+                        </div>
+
+
+
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                            <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                            <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                            <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                            <h1 style="width: 16.66%; font-size: 20px;">Total for services 108016</h1>
+                            <h1 style="width: 16.66%; font-size: 20px;">$9.81</h1>
+                        </div>
+
+
+                        <div style="border-bottom: 2px solid black; width: 100%; margin-top: 1px; margin: 0 2px;"></div>
+
+
+                        <div style="display: flex; justify-content: space-around; margin: 0 2px;">
+                            <h1 style="width: 16.66%; font-size: 20px;">TOTAL</h1>
+                            <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                            <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                            <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                            <h1 style="width: 16.66%; font-size: 20px;"></h1>
+                            <h1 style="width: 16.66%; font-size: 20px;">$64.35</h1>
+                        </div>
+
+
+
+
+                    </div>
+                          {{-- Service Table --}}
+
+
+
+                </div>
+
+                {{-- Service Details  --}}
+
+
+
     </div>
 </body>
 
