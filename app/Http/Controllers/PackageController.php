@@ -95,7 +95,7 @@ class PackageController extends Controller
             //     return response()->json(['error' => 'Account not found'], 404);
             // }
         } catch (\Exception $e) {
-            dd($e);
+
             Log::error('Error creating account service: ' . $e->getMessage());
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
