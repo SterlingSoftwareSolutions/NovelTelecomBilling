@@ -51,8 +51,16 @@ class UploadController extends Controller
             'csv_file' => 'required|file|mimes:xlsx,csv',
         ]);
 
-        Excel::import(new ChargesSummaryImport, request()->file('csv_file'));
+        $import = new ChargesSummaryImport();
+        Excel::import($import, $request->file('csv_file'));
+
+        $invalidRows = $import->getInvalidRows();
+
+        if (!empty($invalidRows)) {
+            return back()->with('error', 'Some rows have invalid date formats.')->with('invalidRows', $invalidRows);
+        }
 
         return back()->with('success', 'Service Summary imported successfully.');
     }
+
 }
