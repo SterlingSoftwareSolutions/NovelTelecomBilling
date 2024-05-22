@@ -371,9 +371,9 @@
                                         @foreach ($notes as $note)
                                             <tr>
                                                 <td>{{ $note->id }}</td>
-                                                <td>{{ $note->note  }}</td>
+                                                <td>{{ $note->note }}</td>
                                                 <td>{{ $note->created_at }}</td>
-                                                <td>{{ $note->user_id}}</td>
+                                                <td>{{ $note->user_id }}</td>
                                                 {{-- <td>Updated At: {{ $note->updated_at }}</td> --}}
                                             </tr>
                                         @endforeach
@@ -649,12 +649,55 @@
 
                                     <!-- Context Menu -->
                                     <ul id="contextMenu-{{ $service->service_id }}"
-                                        class="hidden absolute bg-white border border-gray-300 shadow-lg rounded-lg w-40">
-                                        <li class="context-menu-item px-4 py-2 hover:bg-gray-200 cursor-pointer">Item 1
+                                        class="hidden absolute bg-white border border-gray-300 shadow-lg rounded-lg w-50 mb-5 z-50">
+                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"
+                                            value="Package">Package Change
                                         </li>
-                                        <li class="context-menu-item px-4 py-2 hover:bg-gray-200 cursor-pointer">Item 2
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="New">
+                                            New Event
                                         </li>
-                                        <li class="context-menu-item px-4 py-2 hover:bg-gray-200 cursor-pointer">Item 3
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Note">
+                                            Note
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Bar">
+                                            Bar Service
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Miscellaneous">
+                                            Miscellaneous Charges
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Plan">
+                                            Plan Overrides
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Service">
+                                            Service Management
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Connect">
+                                            Connect service
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Disconnect">
+                                            Disconnect Service
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="History">
+                                            History
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Other">
+                                            Other
+                                        </li>
+                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
+                                            Copy All
+                                        </li>
+                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
+                                            Copy Item
                                         </li>
                                     </ul>
                                 </div>
@@ -667,6 +710,198 @@
                     <ul class="list-none p-0 m-0"></ul>
                 </div>
             </section>
+
+
+            {{-- Servise Right click popup View Stat --}}
+
+            <div id="Package"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2 ">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Package')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Package -->
+                    Package popup content
+                </div>
+            </div>
+
+            <div id="New"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('New')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for New -->
+                    New popup content
+                </div>
+            </div>
+            <div id="Note"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Note')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Note -->
+                    Note popup content
+                </div>
+            </div>
+            <div id="Bar"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Bar')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Bar -->
+                    Bar popup content
+                </div>
+            </div>
+            <div id="Miscellaneous"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Miscellaneous')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Miscellaneous -->
+                    Miscellaneous popup content
+                </div>
+            </div>
+            <div id="Plan"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Plan')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Plan -->
+                    Plan popup content
+                </div>
+            </div>
+            <div id="Service"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Service')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Service -->
+                    Service popup content
+                </div>
+            </div>
+            <div id="Connect"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Connect')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Connect -->
+                    Connect popup content
+                </div>
+            </div>
+            <div id="Disconnect"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Disconnect')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Disconnect -->
+                    Disconnect popup content
+                </div>
+            </div>
+            <div id="History"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('History')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for History -->
+                    History popup content
+                </div>
+            </div>
+            <div id="Other"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Other')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Other -->
+                    Other popup content
+                </div>
+            </div>
+
+            {{-- Servise Right click popup View End --}}
+
+            {{-- Servise Option Right click popup View Start --}}
+
+            <div id="edit"
+                class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('edit')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Other -->
+                    <div id="edit-content">edit popup content </div>
+                </div>
+            </div>
+
+            {{-- Servise Option Right click popup View End --}}
 
             {{-- service package details 3rd div --}}
             <section class="  p-3 sm:p-5 w-4/12 border ">
