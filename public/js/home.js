@@ -17,47 +17,15 @@ function getaservicedetails(phonenumber, accountId) {
             // Process the response data and populate the table
             const accountService = response.data[0]; // Assuming you're working with the first object in the array
             const fields = [
-                {
-                    label: "Phone Number",
-                    value: accountService.phonenumber,
-                    action: "edit",
-                },
-                {
-                    label: "Service Narrative",
-                    value: accountService.service_narrative,
-                    action: "view",
-                },
-                {
-                    label: "Status",
-                    value: accountService.status,
-                    action: "add",
-                },
-                {
-                    label: "Date Connected",
-                    value: accountService.created_at,
-                    action: "more",
-                },
-                {
-                    label: "Password",
-                    value: accountService.password,
-                    action: "edit",
-                },
-                {
-                    label: "Package",
-                    value: accountService.service_id,
-                    action: "view",
-                },
+                { label: "Phone Number",value: accountService.phonenumber,action: "edit", },
+                { label: "Service Narrative",value: accountService.service_narrative,action: "view", },
+                { label: "Status",value: accountService.status,action: "add", },
+                { label: "Date Connected",value: accountService.created_at,action: "more", },
+                { label: "Password",value: accountService.password,action: "edit", },
+                { label: "Package",value: accountService.service_id,action: "view", },
                 { label: "Charge Override", value: "--", action: "add" },
-                {
-                    label: "Package Start",
-                    value: accountService.created_at,
-                    action: "more",
-                },
-                {
-                    label: "Contract",
-                    value: accountService.contract,
-                    action: "edit",
-                },
+                { label: "Package Start",value: accountService.created_at,action: "more", },
+                { label: "Contract",value: accountService.contract, action: "edit", },
                 { label: "Contract Start", value: "--", action: "view" },
                 { label: "Contract End", value: "--", action: "add" },
                 { label: "Service Owner", value: "--", action: "more" },
@@ -82,7 +50,14 @@ function getaservicedetails(phonenumber, accountId) {
                 // Add right-click event listener
                 cellValue.addEventListener("contextmenu", (event) => {
                     event.preventDefault();
-                    showContextMenu(event, field.action);
+                       // Assuming cellValue is an input element
+                       let value = cellValue.textContent; // For input elements
+                    
+                       // Alternatively, if cellValue is a non-input element, like a <div> or <span>
+                       // let value = cellValue.textContent;
+                   
+                       // For debugging or further use
+                    showContextMenu(event, field.action,value );
                 });
 
                 row.appendChild(cellLabel);
@@ -98,31 +73,36 @@ function getaservicedetails(phonenumber, accountId) {
 
 const contextMenus = {
     edit: [
-        { id: "edit-item", label: "Edit" },
-        { id: "edit-test01", label: "test01" },
-        { id: "edit-test02", label: "test02" },
+        { id: "edit-item", label: "Edit", value: "{value}", onclick: "edit('{value}')" },
+        { id: "edit-test01", label: "test01", value: "{value}", onclick: "edit('{value}')" },
+        { id: "edit-test02", label: "test02", value: "{value}", onclick: "edit('{value}')" },
     ],
     view: [
-        { id: "view-item", label: "View" },
-        { id: "view-test01", label: "test01" },
+        { id: "view-item", label: "View", value: "{value}", onclick: "view('{value}')" },
+        { id: "view-test01", label: "test01", value: "{value}", onclick: "view('{value}')" },
     ],
     add: [
-        { id: "add-item", label: "Add" },
-        { id: "add-test05", label: "test05" },
+        { id: "add-item", label: "Add", value: "{value}", onclick: "add('{value}')" },
+        { id: "add-test05", label: "test05", value: "{value}", onclick: "add('{value}')" },
     ],
-    more: [{ id: "more-item", label: "More" }],
+    more: [
+        { id: "more-item", label: "More", value: "{value}", onclick: "more('{value}')" },
+    ],
 };
 
-function showContextMenu(event, action) {
+function showContextMenu(event, action, value) {
+    console.log("Value: ", value); 
     const contextMenu = document.getElementById("context-menu");
     const menuList = contextMenu.querySelector("ul");
     menuList.innerHTML = "";
 
     // Populate context menu based on action
     contextMenus[action].forEach((menuItem) => {
+        console.log(menuItem);
         const li = document.createElement("li");
         li.id = menuItem.id;
-        li.textContent = menuItem.label;
+        li.textContent = menuItem.label.replace("{value}", value);
+        li.setAttribute("onclick", menuItem.onclick.replace("{value}", value));
         li.classList.add("px-4", "py-2", "cursor-pointer", "hover:bg-gray-200");
         menuList.appendChild(li);
     });
@@ -137,6 +117,44 @@ function showContextMenu(event, action) {
 
     // Hide the context menu when clicking outside of it
     document.addEventListener("click", hideContextMenu);
+    document.addEventListener("wheel", hideContextMenu);
+}
+
+function hideContextMenu(event) {
+    const contextMenu = document.getElementById("context-menu");
+    contextMenu.classList.add("hidden");
+    document.removeEventListener("click", hideContextMenu);
+    document.removeEventListener("wheel", hideContextMenu);
+}
+
+// Define the edit function to show the popup
+function edit(value) {
+    console.log("Edit action triggered with value:", value);
+    const editPopup = document.getElementById("edit");
+    const editContent = document.getElementById("edit-content");
+    editContent.textContent = `edit popup content ${value}`;
+    editPopup.classList.remove("hidden");
+}
+
+// Define other functions like view, add, more as needed
+function view(value) {
+    console.log("View action triggered with value:", value);
+    // Implement view logic
+}
+
+function add(value) {
+    console.log("Add action triggered with value:", value);
+    // Implement add logic
+}
+
+function more(value) {
+    console.log("More action triggered with value:", value);
+    // Implement more logic
+}
+
+// Function to hide popup
+function hidePopupWithId(id) {
+    document.getElementById(id).classList.add("hidden");
 }
 
 function hideContextMenu() {
@@ -164,6 +182,13 @@ document.addEventListener("click", (event) => {
 
 document.addEventListener("DOMContentLoaded", function () {
     const phoneLinks = document.querySelectorAll(".phone-link");
+    let currentContextMenu = null; // To store the currently open context menu
+
+    // Function to hide the context menu
+    function hideContextMenuMain(contextMenu) {
+        contextMenu.classList.add("hidden");
+        currentContextMenu = null; // Reset the currently open context menu
+    }
 
     phoneLinks.forEach((phoneLink) => {
         const serviceId = phoneLink.id.split("-")[1];
@@ -171,26 +196,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
         phoneLink.addEventListener("contextmenu", function (e) {
             e.preventDefault();
+
+            // Hide the previously opened context menu if there is one
+            if (currentContextMenu && currentContextMenu !== contextMenu) {
+                hideContextMenuMain(currentContextMenu);
+            }
+
             const { clientX: mouseX, clientY: mouseY } = e;
             contextMenu.style.top = `${mouseY + window.scrollY}px`;
             contextMenu.style.left = `${mouseX + window.scrollX}px`;
             contextMenu.classList.remove("hidden");
+
+            // Update the currently open context menu
+            currentContextMenu = contextMenu;
         });
 
         document.addEventListener("click", function (e) {
-            if (!contextMenu.contains(e.target) && e.target !== phoneLink) {
-                contextMenu.classList.add("hidden");
+            if (currentContextMenu && !currentContextMenu.contains(e.target) && e.target !== phoneLink) {
+                hideContextMenuMain(currentContextMenu);
             }
         });
 
         contextMenu.querySelectorAll(".context-menu-item").forEach((item) => {
             item.addEventListener("click", function () {
-                alert(this.textContent + " clicked");
-                contextMenu.classList.add("hidden");
+                const value = this.getAttribute("value");
+                // Assuming you have a function named showPopupWithId() to display the popup view
+                showPopupWithId(value); // Pass the value as the ID to match the popup view
+                hideContextMenuMain(contextMenu);
             });
         });
+        
+        
     });
+    function showPopupWithId(id) {
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function hidePopupWithId(id) {
+        document.getElementById(id).classList.add('hidden');
+    }
 });
+function hidePopupWithId(id) {
+        document.getElementById(id).classList.add('hidden');
+    }
 // Packege view E
 
 // {{--navigate notes->document  --}}
