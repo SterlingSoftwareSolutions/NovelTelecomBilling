@@ -5,6 +5,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\AccountServiceController;
 use App\Http\Controllers\ManualNoteController;
 use App\Http\Controllers\PackageController;
@@ -55,6 +56,8 @@ Route::post('/', [AuthController::class, 'logout'])->name('logout');
 //user route
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'home'])->name('home');
+    Route::get('/billPrint', [BillController::class, 'index'])->name('bill');
+
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -77,6 +80,7 @@ Route::middleware(['auth'])->group(function () {
 
 //service route
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/service', [ServiceController::class, 'service_index'])->name('service_newservice');
     Route::get('service/details/{phonenumber}/{accountId}', [ServiceController::class, 'getaservicedetails']);
 });
