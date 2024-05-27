@@ -47,7 +47,7 @@
                     type="submit" value="Upload2">
                 {{-- @dump($errors->first()) --}}
             </form>
-            <form action="{{ route('file.upload') }}" method="post" enctype="multipart/form-data"
+            <form action="{{ route('file.UsageDetailsUpload') }}" method="post" enctype="multipart/form-data"
                 class="mb-4 w-full md:w-1/3 px-4">
                 @csrf
                 <h3 class="text-lg font-bold mt-2">5. Usage Details</h3>

@@ -40,6 +40,7 @@ Route::get('customers', [CustomerController::class, 'index'])->name('customers.i
 Route::post('uploadfile', [UploadController::class, 'excelupload'])->name('file.upload');
 Route::post('uploadfiles', [UploadController::class, 'ServiceSummaryUpload'])->name('file.ServiceSummaryUpload');
 Route::post('uploadfiless', [UploadController::class, 'ChargesSummaryUpload'])->name('file.ChargesSummaryUpload');
+Route::post('uploadfilesss', [UploadController::class, 'UsageDetailsUpload'])->name('file.UsageDetailsUpload');
 Route::post('usagesummary', [UploadController::class, 'usagesummary'])->name('usagefile.upload');
 
 
