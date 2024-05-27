@@ -17,7 +17,7 @@ class AccountsImport implements ToModel,WithHeadingRow
 
     public function model(array $row)
     {
-        // dd($row);
+     
         $existingAccount = Account::where('contact_code', $row['contact_code'])->exists();
         // dd($existingAccount);
         if(!$existingAccount){

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AccountService extends Model
 {
@@ -53,5 +54,11 @@ class AccountService extends Model
             }
         }
         return $accountServices;
+    }
+    public static function getdataview($phonenumber, $accountId){
+        return DB::table('account_services')
+                ->where('phonenumber', $phonenumber)
+                ->where('contact_code', $accountId)
+                ->get();
     }
 }

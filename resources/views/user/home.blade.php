@@ -7,15 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DataTables </title>
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
     <!--Replace with your tailwind.css once created-->
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--Regular Datatables CSS-->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <!--Responsive Extension Datatables CSS-->
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
 
     <style>
         /*Overrides for Tailwind CSS */
@@ -368,9 +372,9 @@
                                         @foreach ($notes as $note)
                                             <tr>
                                                 <td>{{ $note->id }}</td>
-                                                <td>{{ $note->creater }}</td>
                                                 <td>{{ $note->note }}</td>
                                                 <td>{{ $note->created_at }}</td>
+                                                <td>{{ $note->user_id }}</td>
                                                 {{-- <td>Updated At: {{ $note->updated_at }}</td> --}}
                                             </tr>
                                         @endforeach
@@ -390,36 +394,8 @@
 
                                         <h1 class="text-center">Add Note </h1>
                                     </button>
-
-
-
-
                                 @endif
                             </table>
-
-                            <script>
-                                function updateNotesTable(notes) {
-                                    const tableBody = document.getElementById('notesTableBody');
-                                    tableBody.innerHTML = '';
-
-                                    notes.forEach(note => {
-                                        const row = document.createElement('tr');
-                                        row.innerHTML = `
-                                     <td></td>
-                                  <td>${note.note}</td>
-
-                                   <td>${note.created_at}</td>
-                                   <td></td>
-                                                    `;
-                                        tableBody.appendChild(row);
-                                    });
-
-                                    document.getElementById('notesTable').classList.remove('hidden');
-                                }
-                            </script>
-
-
-
 
                             <!-- The Modal -->
                             <div id="noteModal"
@@ -460,95 +436,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <script>
-                                function openModal(account) {
-                                    console.log(account)
-                                    document.getElementById('noteModal').classList.remove('hidden');
-                                    document.body.style.overflow = 'hidden'; // Disable scrolling on the background
-                                }
-
-                                function closeModal(event) {
-                                    if (!event || event.target === document.getElementById('noteModal')) {
-                                        document.getElementById('noteModal').classList.add('hidden');
-                                        document.body.style.overflow = 'auto'; // Re-enable scrolling
-                                    }
-                                }
-
-                                function saveNote() {
-                                    console.log('Entering saveNote function');
-                                    var noteText = document.getElementById('noteText').value;
-                                    var account = document.getElementById('account').value;
-
-                                    console.log('Note Saved:', noteText);
-
-                                    var noteText = document.getElementById('noteText').value.trim(); // Get the text and trim whitespace
-                                    if (noteText === '') {
-                                        alert('Please write your note before saving.'); // Alert if empty
-                                        return false; // Stop the function
-                                    }
-
-
-                                    console.log(account);
-
-                                    fetch('/notestore', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token if using Laravel CSRF protection
-                                            },
-                                            body: JSON.stringify({
-                                                note: noteText,
-                                                accountId: account
-                                            }), // Send note text in JSON format
-                                        })
-                                        .then(response => {
-                                            // console.log('Response:', response);
-                                            if (!response.ok) {
-                                                throw new Error('Failed to save note');
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            console.log('Note saved successfully:', data.creater);
-                                            var accId = data.creater;
-                                            console.log(accId);
-                                            getNotes(accId);
-                                            closeModal();
-
-                                            // Optionally: Do something with the response, like updating UI
-                                        })
-                                        .catch(error => {
-                                            console.error('Error saving note:', error);
-                                            // Optionally: Display an error message to the user
-                                        });
-                                }
-
-
-                                function getNotes(accId) {
-                                    fetch('/notes?accId=' + accId, { // Pass the account ID as a query parameter
-                                            method: 'GET',
-                                        })
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Failed to fetch notes');
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            // Update UI with the received notes
-                                            updateNotesTable(data);
-                                        })
-                                        .catch(error => {
-                                            console.error('Error fetching notes:', error);
-                                            // Optionally: Display an error message to the user
-                                        });
-                                }
-
-
-
-                                // getNotes();
-                            </script>
 
                         </div>
 
@@ -724,16 +611,9 @@
                                 </tbody>
                             </table>
                         </div>
-
-
                     </div>
-
                 </div>
-
-
-
             </section>
-
         </div>
     </div>
 
@@ -741,6 +621,7 @@
 
         <div class="flex flex-wrap">
             {{-- side section expand --}}
+
             <section class=" -mt-16 border-1 border w-2/12 ">
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
                     rel="stylesheet" />
@@ -748,28 +629,280 @@
                 <div class="grid place-items-center">
                     @if ($account != null)
 
-                        @foreach ($accountservice as $accountservice)
+                        @foreach ($accountservice as $service)
                             <div class="border w-full">
                                 <div class="transition border border-1">
                                     <!-- Header -->
                                     <div
                                         class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
                                         <i class="fas fa-plus icon"></i>
-                                        <h3>{{ $accountservice->service_id }}</h3>
+                                        <h3>{{ $service->service_id }}</h3>
                                     </div>
-                                    <div class="accordion-content height px-5 pt-0 overflow-hidden max-h-0">
-                                        <a href="#" class="leading-6 font-light pl-9 text-justify show-details"
-                                            data-accountservice="{{ json_encode($accountservice) }}">
-                                            {{ $accountservice->phonenumber }}
+                                    <div class="accordion-content height px-5 pt-0 overflow-hidden max-h-0"
+                                        onclick="getaservicedetails('{{ $service->phonenumber }}', '{{ $account->id }}')">
+                                        <a href="#"
+                                            class="leading-6 font-light pl-9 text-justify show-details phone-link"
+                                            data-accountservice="{{ json_encode($service) }}"
+                                            id="phoneLink-{{ $service->service_id }}">
+                                            {{ $service->phonenumber }}
                                         </a>
                                     </div>
+
+                                    <!-- Context Menu -->
+                                    <ul id="contextMenu-{{ $service->service_id }}"
+                                        class="hidden absolute bg-white border border-gray-300 shadow-lg rounded-lg w-50 mb-5 z-50">
+                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"
+                                            value="Package">Package Change
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="New">
+                                            New Event
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Note">
+                                            Note
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Bar">
+                                            Bar Service
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Miscellaneous">
+                                            Miscellaneous Charges
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Plan">
+                                            Plan Overrides
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Service">
+                                            Service Management
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Connect">
+                                            Connect service
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Disconnect">
+                                            Disconnect Service
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="History">
+                                            History
+                                        </li>
+                                        <li
+                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Other">
+                                            Other
+                                        </li>
+                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
+                                            Copy All
+                                        </li>
+                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
+                                            Copy Item
+                                        </li>
+                                    </ul>
                                 </div>
-  </div>
+                            </div>
                         @endforeach
+
                     @endif
                 </div>
-
+                <div id="context-menu" class="hidden absolute bg-white shadow-lg z-50">
+                    <ul class="list-none p-0 m-0"></ul>
+                </div>
             </section>
+
+
+            {{-- Servise Right click popup View Stat --}}
+
+            <div id="Package"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2 ">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Package')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Package -->
+                    Package popup content
+                </div>
+            </div>
+
+            <div id="New"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('New')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for New -->
+                    New popup content
+                </div>
+            </div>
+            <div id="Note"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Note')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Note -->
+                    Note popup content
+                </div>
+            </div>
+            <div id="Bar"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Bar')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Bar -->
+                    Bar popup content
+                </div>
+            </div>
+            <div id="Miscellaneous"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Miscellaneous')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Miscellaneous -->
+                    Miscellaneous popup content
+                </div>
+            </div>
+            <div id="Plan"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Plan')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Plan -->
+                    Plan popup content
+                </div>
+            </div>
+            <div id="Service"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Service')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Service -->
+                    Service popup content
+                </div>
+            </div>
+            <div id="Connect"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Connect')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Connect -->
+                    Connect popup content
+                </div>
+            </div>
+            <div id="Disconnect"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Disconnect')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Disconnect -->
+                    Disconnect popup content
+                </div>
+            </div>
+            <div id="History"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('History')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for History -->
+                    History popup content
+                </div>
+            </div>
+            <div id="Other"
+                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('Other')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Other -->
+                    Other popup content
+                </div>
+            </div>
+
+            {{-- Servise Right click popup View End --}}
+
+            {{-- Servise Option Right click popup View Start --}}
+
+            <div id="edit"
+                class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('edit')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Other -->
+                    <div id="edit-content">edit popup content </div>
+                </div>
+            </div>
+
+            {{-- Servise Option Right click popup View End --}}
 
             {{-- service package details 3rd div --}}
             <section class="  p-3 sm:p-5 w-4/12 border ">
@@ -791,7 +924,7 @@
                                                 class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                                                 type="searchd" name="searchd" placeholder="Search">
                                             <button type="submit" class="">
-                                                <svg class="text-gray-600 h-4 w-4 fill-current"
+                                                <svg class="text-gray-600 ml-1 h-4 w-4 fill-current"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                                                     id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966"
@@ -801,7 +934,12 @@
                                                         d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
                                                 </svg>
                                             </button>
+                                            <button>
+                                                <img id="saveValue" src="{{ asset('Images/save.png') }}" alt="Login Image"  class=" ml-4 h-4 w-4 ">
+                                            </button>
+
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -822,7 +960,7 @@
 
                                     <!-- Table content for Notes -->
                                     @if ($account != null)
-                                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full ">
+                                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10  rounded-full ">
                                             <tr>
                                                 <th>Item</th>
                                                 <th>Value</th>
@@ -834,6 +972,9 @@
 
 
                                         </tbody>
+                                        <div id="dropdown" class="hidden absolute bg-white border shadow-md p-2">
+                                            <!-- Dropdown content will be dynamically added here -->
+                                        </div>
                                     @elseif(isset($errorMessage))
                                         <div class="flex justify-center items-center h-full max-h-full my-28">
                                             <div class="font-bold p-3">{{ $errorMessage }}</div>
@@ -841,14 +982,15 @@
                                     @endif
 
                                 </table>
-
-
                             </div>
 
 
 
                         </div>
+                    </div>
+                </div>
             </section>
+
 
             {{-- 4th div --}}
             <section class="  p-3 sm:p-5 w-6/12 border ">
@@ -1123,272 +1265,12 @@
                                 </tbody>
                             </table>
                         </div>
-
-
-
                     </div>
                 </div>
             </section>
         </div>
     </div>
 </body>
-
-{{-- navigate notes->document  --}}
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const notesButton = document.getElementById('notesButton');
-        const billsButton = document.getElementById('billsButton');
-        const correrpondenceButton = document.getElementById('correrpondenceButton')
-        const eventButton = document.getElementById('eventButton')
-        const financialButton = document.getElementById('financialButton')
-        const paymentButton = document.getElementById('paymentButton')
-        const documentButton = document.getElementById('documentButton')
-
-        const notesTable = document.getElementById('notesTable');
-        const billsTable = document.getElementById('billsTable');
-        const correrpondenceTable = document.getElementById('correrpondenceTable');
-        const eventTable = document.getElementById('eventTable');
-        const financialTable = document.getElementById('financialTable');
-        const paymentTable = document.getElementById('paymentTable');
-        const DocumentTable = document.getElementById('DocumentTable');
-
-        notesTable.classList.remove('hidden');
-        notesButton.addEventListener('click', function() {
-            hideAllTables();
-            notesTable.classList.remove('hidden');
-        });
-
-        billsButton.addEventListener('click', function() {
-            hideAllTables();
-            billsTable.classList.remove('hidden');
-        });
-
-        correrpondenceButton.addEventListener('click', function() {
-            hideAllTables();
-            correrpondenceTable.classList.remove('hidden');
-        });
-
-
-        eventButton.addEventListener('click', function() {
-            hideAllTables();
-            eventTable.classList.remove('hidden');
-        });
-
-
-        financialButton.addEventListener('click', function() {
-            hideAllTables();
-            financialTable.classList.remove('hidden');
-        });
-
-
-        paymentButton.addEventListener('click', function() {
-            hideAllTables();
-            paymentTable.classList.remove('hidden');
-        });
-
-        paymentButton.addEventListener('click', function() {
-            hideAllTables();
-            paymentTable.classList.remove('hidden');
-        });
-
-        documentButton.addEventListener('click', function() {
-            hideAllTables();
-            DocumentTable.classList.remove('hidden');
-        });
-
-
-
-        // Function to hide all tables
-        function hideAllTables() {
-            notesTable.classList.add('hidden');
-            billsTable.classList.add('hidden');
-            correrpondenceTable.classList.add('hidden')
-            eventTable.classList.add('hidden');
-            financialTable.classList.add('hidden');
-            paymentTable.classList.add('hidden');
-            DocumentTable.classList.add('hidden');
-        }
-    });
-</script> --}}
-
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const novelteleventButton = document.getElementById('novelteleventButton');
-        const noveltelesitesButton = document.getElementById('noveltelesitesButton')
-        const novelteleventTable = document.getElementById('novelteleventTable');
-        const noveltelesitesTable = document.getElementById('noveltelesitesTable')
-
-        novelteleventTable.classList.remove('hidden');
-
-        novelteleventButton.addEventListener('click', function() {
-            hideAllTables();
-            novelteleventTable.classList.remove('hidden');
-        });
-
-        noveltelesitesButton.addEventListener('click', function() {
-            hideAllTables();
-            noveltelesitesTable.classList.remove('hidden')
-        })
-
-
-        // function to hide all tables
-        function hideAllTables() {
-            novelteleventTable.classList.add('hidden');
-            noveltelesitesTable.classList.add('hidden')
-        }
-    });
-</script> --}}
-
-{{-- <script>
-    const accordionHeader = document.querySelectorAll(".accordion-header");
-    accordionHeader.forEach((header) => {
-        const accordionContent = header.parentElement.querySelector(
-            ".accordion-content"
-        );
-        const accordionHeadericon = header.querySelector(
-            ".fas"
-        );
-
-        console.log(accordionHeadericon)
-        window.addEventListener('resize', function() {
-            if (window.visualViewport.width < 768) {
-                accordionContent.style.maxHeight = '0';
-                header.querySelector(".fas").classList.add("hidden");
-            } else {
-                accordionHeadericon.style.display = 'none'
-                accordionContent.style.maxHeight = 'unset';
-            }
-        });
-
-        header.addEventListener("click", function() {
-            let accordionMaxHeight = accordionContent.style.maxHeight;
-
-            // Condition handling
-            if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
-                accordionContent.style.maxHeight = `${
-        accordionContent.scrollHeight + 32
-      }px`;
-                header.querySelector(".fas").classList.remove("fa-plus");
-                header.querySelector(".fas").classList.add("fa-minus");
-                header.parentElement.classList.add("");
-            } else {
-
-                accordionContent.style.maxHeight = `0px`;
-                header.querySelector(".fas").classList.add("fa-plus");
-                header.querySelector(".fas").classList.remove("fa-minus");
-                header.parentElement.classList.remove('bg-indigo-50');
-            }
-        });
-    });
-</script> --}}
-
-{{-- <script>
-    function selectTab(button) {
-        const buttons = document.querySelectorAll('.tab-button');
-        buttons.forEach(btn => {
-            btn.classList.remove('selected-tab');
-        });
-        button.classList.add('selected-tab');
-    }
-</script> --}}
-
-{{-- serchbox value pass and phonenumber value pass table --}}
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const detailsTableBody = document.getElementById('details-table-body');
-        const searchInput = document.querySelector('input[name="searchd"]');
-
-        document.querySelectorAll('.show-details').forEach(item => {
-            item.addEventListener('click', event => {
-                event.preventDefault();
-
-                // Get the account service data from the clicked element
-                const accountService = JSON.parse(item.getAttribute(''));
-
-                // Clear the existing table body content
-                detailsTableBody.innerHTML = '';
-
-                // Populate the table with account service details
-                const fields = [{
-                        label: 'Phone Number',
-                        value: accountService.phonenumber
-                    },
-                    {
-                        label: 'Service Narrative',
-                        value: accountService.service_narrative
-                    },
-                    {
-                        label: 'Status',
-                        value: accountService.status
-                    },
-                    {
-                        label: 'Date Connected',
-                        value: accountService.created_at
-                    },
-                    {
-                        label: 'Password',
-                        value: accountService.password
-                    },
-                    {
-                        label: 'Package',
-                        value: accountService.service_id
-                    },
-                    {
-                        label: 'Charge Override',
-                        value: '--'
-                    },
-                    {
-                        label: 'Package Start',
-                        value: accountService.created_at
-                    },
-                    {
-                        label: 'Contract',
-                        value: accountService.contract
-                    },
-                    {
-                        label: 'Contract Start',
-                        value: '--'
-                    },
-                    {
-                        label: 'Contract End',
-                        value: '--'
-                    },
-                    {
-                        label: 'Service Owner',
-                        value: '--'
-                    },
-                    {
-                        label: 'Port Authority Date',
-                        value: '--'
-                    },
-                    {
-                        label: 'Order Number',
-                        value: '--'
-                    },
-                    {
-                        label: 'IPND',
-                        value: '--'
-                    }
-                ];
-
-                fields.forEach(field => {
-                    const row = document.createElement('tr');
-                    const cellItem = document.createElement('td');
-                    const cellValue = document.createElement('td');
-                    cellItem.textContent = field.label;
-                    cellValue.textContent = field.value;
-                    row.appendChild(cellItem);
-                    row.appendChild(cellValue);
-                    detailsTableBody.appendChild(row);
-                });
-
-                // Set search input value to phone number
-                searchInput.value = accountService.phonenumber;
-            });
-        });
-    });
-</script> --}}
-
 <script src="{{ asset('../js/home.js') }}"></script>
 
 </html>

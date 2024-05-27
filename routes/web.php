@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\AccountServiceController;
 use App\Http\Controllers\ManualNoteController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ServiceController;
@@ -38,6 +39,10 @@ Route::get('/upload', function () {
 Route::resource('customers', CustomerController::class)->except(['index']);
 Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::post('uploadfile', [UploadController::class, 'excelupload'])->name('file.upload');
+Route::post('uploadfiles', [UploadController::class, 'ServiceSummaryUpload'])->name('file.ServiceSummaryUpload');
+Route::post('uploadfiless', [UploadController::class, 'ChargesSummaryUpload'])->name('file.ChargesSummaryUpload');
+Route::post('usagesummary', [UploadController::class, 'usagesummary'])->name('usagefile.upload');
+
 
 //auth routes
 // Authentication Routes
@@ -63,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/notestore', [ManualNoteController::class, 'store'])->name('note.store');
+    Route::post('/notestore/{noteText}/{account}', [ManualNoteController::class, 'store'])->name('note.store');
     Route::get('/notes', [ManualNoteController::class, 'index'])->name('note.index');
 });
 
@@ -75,5 +80,7 @@ Route::middleware(['auth'])->group(function () {
 
 //service route
 Route::middleware(['auth'])->group(function () {
-    Route::get('/service',[ServiceController::class, 'service_index'])->name('service_newservice');
+
+    Route::get('/service', [ServiceController::class, 'service_index'])->name('service_newservice');
+    Route::get('service/details/{phonenumber}/{accountId}', [ServiceController::class, 'getaservicedetails']);
 });
