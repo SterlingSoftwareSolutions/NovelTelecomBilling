@@ -8,7 +8,9 @@ use App\Imports\CustomersImport;
 use App\Imports\AccountsImport;
 use App\Imports\ChargesSummaryImport;
 use App\Imports\ServiceSummaryImport;
+use App\Imports\UsageDetailsImport;
 use App\Imports\UsageSummaryimport;
+use App\Models\UsageDetails;
 
 class UploadController extends Controller
 {
@@ -64,7 +66,7 @@ class UploadController extends Controller
         return back()->with('success', 'Service Summary imported successfully.');
     }
 
-    
+
     public function usagesummary(Request $request)
     {
         $request->validate([
@@ -76,6 +78,24 @@ class UploadController extends Controller
         return back()->with('success', 'Usage Summary imported successfully.');
     }
 
+    public function UsageDetailsUpload(Request $request)
+    {
+        $request->validate([
+            'csv_file' => 'required|file|mimes:xlsx,csv',
+        ]);
 
-  
+        $import = new UsageDetailsImport();
+        Excel::import($import, $request->file('csv_file'));
+
+        $invalidRows = $import->getInvalidRows();
+
+        if (!empty($invalidRows)) {
+            return back()->with('error', 'Some rows have invalid date or time formats.')->with('invalidRows', $invalidRows);
+        }
+
+        return back()->with('success', 'Usage Details imported successfully.');
+    }
+
+
+
 }
