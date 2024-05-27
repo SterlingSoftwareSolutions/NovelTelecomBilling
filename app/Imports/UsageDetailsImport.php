@@ -58,7 +58,7 @@ class UsageDetailsImport implements ToModel, WithHeadingRow
                 $fromDate = $this->transformDate($row['date']);
                 $fromTime = $this->transformTime($row['time']);
 
-                dd($row);
+                // dd($fromTime);
                 if ($fromDate === false || $fromTime === false) {
                     throw new Exception('Invalid date or time format');
                 }
