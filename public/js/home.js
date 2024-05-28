@@ -196,41 +196,29 @@ function showSubMenu(submenuId, buttonId) {
         button.classList.add('bg-gray-200');
     }
 }
-
-function copyItemFunction() {
-    // Get the text field
-    var copyText = document.getElementById("myInput");
-    console.log(copyText);
-    // Select the text field
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile devices
-
+function copyItemFunction(text) {
     // Copy the text inside the text field
-    navigator.clipboard.writeText("Phone number : " + copyText.value);
-
-    // Alert the copied text
-    alert("Copied the text: " + copyText.value);
+    navigator.clipboard.writeText("Phone number: " + text).then(function() {
+        // Alert the copied text
+        alert("Copied the text: " + text);
+    }).catch(function(error) {
+        console.error('Could not copy text: ', error);
+    });
 }
 
-function copyAllFunction() {
-    // Get the text field
-    var myService = document.getElementById("myService");
-    var copyText = document.getElementById("myInput");
-    console.log(copyText);
-    // Select the text field
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile devices
 
-    // Select the text field
-    myService.select();
-    myService.setSelectionRange(0, 99999); // For mobile devices
-
+function copyAllFunction(service, text) {
     // Copy the text inside the text field
-    navigator.clipboard.writeText("Phone number : " + copyText.value + " " + "\nService Name : " + myService.value);
-
-    // Alert the copied text
-    alert("Copied the text: " + copyText.value);
+    var copyText = "Phone number: " + service + "\nService Name: " + text;
+    
+    navigator.clipboard.writeText(copyText).then(function() {
+        // Alert the copied text
+        alert("Copied the text: " + copyText);
+    }).catch(function(error) {
+        console.error('Could not copy text: ', error);
+    });
 }
+
 
 // END  Service OPTION DROPDOWNS FUNCTIONS //
 
