@@ -1,4 +1,5 @@
 // Packege view Start
+let responseData = [];
 
 function getaservicedetails(phonenumber, accountId) {
     console.log(
@@ -11,27 +12,28 @@ function getaservicedetails(phonenumber, accountId) {
         url: "/service/details/" + phonenumber + "/" + accountId,
         type: "GET",
         success: function (response) {
-            console.log(response);
+            console.log('sdfdsfsdfs',response);
+            responseData = response.data;
             console.log(response.data[0].phonenumber);
 
             // Process the response data and populate the table
             const accountService = response.data[0]; // Assuming you're working with the first object in the array
             const fields = [
-                { label: "Phone Number",value: accountService.phonenumber,action: "edit", },
-                { label: "Service Narrative",value: accountService.service_narrative,action: "view", },
-                { label: "Status",value: accountService.status,action: "add", },
-                { label: "Date Connected",value: accountService.created_at,action: "more", },
-                { label: "Password",value: accountService.password,action: "edit", },
-                { label: "Package",value: accountService.service_id,action: "view", },
-                { label: "Charge Override", value: "--", action: "add" },
-                { label: "Package Start",value: accountService.created_at,action: "more", },
-                { label: "Contract",value: accountService.contract, action: "edit", },
-                { label: "Contract Start", value: "--", action: "view" },
-                { label: "Contract End", value: "--", action: "add" },
-                { label: "Service Owner", value: "--", action: "more" },
-                { label: "Port Authority Date", value: "--", action: "edit" },
-                { label: "Order Number", value: "--", action: "view" },
-                { label: "IPND", value: "--", action: "add" },
+                { label: "Phone Number",value: accountService.phonenumber,action: "zoom", },
+                { label: "Service Narrative",value: accountService.service_narrative,action: "service_narrative", },
+                { label: "Status",value: accountService.status,action: "status", },
+                { label: "Date Connected",value: accountService.created_at,action: "dateconnected", },
+                { label: "Password",value: accountService.password,action: "password", },
+                { label: "Package",value: accountService.service_id,action: "package", },
+                { label: "Charge Override", value: "--", action: "changeoverride" },
+                { label: "Package Start",value: accountService.created_at,action: "packagestart", },
+                { label: "Contract",value: accountService.contract, action: "contract", },
+                { label: "Contract Start", value: "--", action: "contractstart" },
+                { label: "Contract End", value: "--", action: "contractend" },
+                // { label: "Service Owner", value: "--", action: "more" },
+                // { label: "Port Authority Date", value: "--", action: "more" },
+                // { label: "Order Number", value: "--", action: "more" },
+                { label: "IPND", value: "--", action: "ipnd" },
             ];
 
             const detailsTableBody =
@@ -52,10 +54,8 @@ function getaservicedetails(phonenumber, accountId) {
                     event.preventDefault();
                        // Assuming cellValue is an input element
                        let value = cellValue.textContent; // For input elements
-                    
                        // Alternatively, if cellValue is a non-input element, like a <div> or <span>
                        // let value = cellValue.textContent;
-                   
                        // For debugging or further use
                     showContextMenu(event, field.action,value );
                 });
@@ -70,28 +70,111 @@ function getaservicedetails(phonenumber, accountId) {
         },
     });
 }
-
 const contextMenus = {
-    edit: [
-        { id: "edit-item", label: "Edit", value: "{value}", onclick: "edit('{value}')" },
-        { id: "edit-test01", label: "test01", value: "{value}", onclick: "edit('{value}')" },
-        { id: "edit-test02", label: "test02", value: "{value}", onclick: "edit('{value}')" },
+    zoom: [
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
     ],
-    view: [
-        { id: "view-item", label: "View", value: "{value}", onclick: "view('{value}')" },
-        { id: "view-test01", label: "test01", value: "{value}", onclick: "view('{value}')" },
+
+    service_narrative: [
+        { id: "service-narrative-item", label: "Change Service Narrative", value: "{value}", onclick: "" },
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
     ],
-    add: [
-        { id: "add-item", label: "Add", value: "{value}", onclick: "add('{value}')" },
-        { id: "add-test05", label: "test05", value: "{value}", onclick: "add('{value}')" },
+
+    status: [
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
     ],
+
+    dateconnected: [
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
+    password: [
+        { id: "password-change", label: "Password Change", value: "{value}", onclick: "" },
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
+    package: [
+        { id: "package-change", label: "Package Change", value: "{value}", onclick: "" },
+        { id: "package-change-details", label: "Package Details", value: "{value}", onclick: "" },
+        { id: "package-change-history", label: "Package Change History", value: "{value}", onclick: "" },
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
+    changeoverride:[
+        { id: "package-change-details", label: "Package Details", value: "{value}", onclick: "" },
+        { id: "package-change-history", label: "Package Change History", value: "{value}", onclick: "" },
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
+    packagestart: [
+        { id: "package-change-details", label: "Package Details", value: "{value}", onclick: "" },
+        { id: "package-change-history", label: "Package Change History", value: "{value}", onclick: "" },
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
+    contract: [
+        { id: "manage-contract", label: "Manage Contract", value: "{value}", onclick: "" },
+        { id: "package-change-history", label: "Package Change History", value: "{value}", onclick: "" },
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
+    contractstart: [
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
+    contractend: [
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
+    ipnd: [
+        { id: "ipnd", label: "IPND", value: "{value}", onclick: "" },
+        { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
+        { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
+        { id: "copy-item", label: "Copy Item", value: "{value}", onclick: "edit('{value}')" },
+    ],
+
     more: [
         { id: "more-item", label: "More", value: "{value}", onclick: "more('{value}')" },
     ],
+
+    // view: [
+    //     { id: "view-item", label: "View", value: "{value}", onclick: "view('{value}')" },
+    //     { id: "view-test01", label: "test01", value: "{value}", onclick: "view('{value}')" },
+    // ],
+    // add: [
+    //     { id: "add-item", label: "Add", value: "{value}", onclick: "add('{value}')" },
+    //     { id: "add-test05", label: "test05", value: "{value}", onclick: "add('{value}')" },
+    // ],
+
 };
 
+
+
+
 function showContextMenu(event, action, value) {
-    console.log("Value: ", value); 
+    console.log("Value: ", value);
     const contextMenu = document.getElementById("context-menu");
     const menuList = contextMenu.querySelector("ul");
     menuList.innerHTML = "";
@@ -128,13 +211,62 @@ function hideContextMenu(event) {
 }
 
 // Define the edit function to show the popup
-function edit(value) {
+// Function to show the popup
+function zoom(value) {
     console.log("Edit action triggered with value:", value);
-    const editPopup = document.getElementById("edit");
+
+    // Find the account service based on the value
+    const accountService = responseData.find(service =>
+        service.phonenumber === value || service.service_narrative === value ||
+        service.status === value || service.created_at === value ||
+        service.password === value || service.service_id === value ||
+        service.contract === value
+    );
+
+    const fields = [
+        { label: "Phone Number", value: accountService.phonenumber },
+        { label: "Service Narrative", value: accountService.service_narrative },
+        { label: "Status", value: accountService.status },
+        { label: "Date Connected", value: accountService.created_at },
+        { label: "Password", value: accountService.password },
+        { label: "Package", value: accountService.service_id },
+        { label: "Charge Override", value: "--" },
+        { label: "Package Start", value: accountService.created_at },
+        { label: "Contract", value: accountService.contract },
+        { label: "Contract Start", value: "--" },
+        { label: "Contract End", value: "--" },
+        { label: "Service Owner", value: "--" },
+        { label: "Port Authority Date", value: "--" },
+        { label: "Order Number", value: "--" },
+        { label: "IPND", value: "--" },
+    ];
+
+    const tableContent = fields.map(field => `
+        <tr>
+            <td>${field.label}</td>
+            <td>${field.value}</td>
+        </tr>
+    `).join('');
+
     const editContent = document.getElementById("edit-content");
-    editContent.textContent = `edit popup content ${value}`;
+    editContent.innerHTML = `
+        <table class="w-full text-sm text-left text-gray-500 border-separate">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-300 h-10 rounded-full">
+                <tr>
+                    <th>Item</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${tableContent}
+            </tbody>
+        </table>
+    `;
+
+    const editPopup = document.getElementById("edit");
     editPopup.classList.remove("hidden");
 }
+
 
 // Define other functions like view, add, more as needed
 function view(value) {
@@ -157,15 +289,21 @@ function hidePopupWithId(id) {
     document.getElementById(id).classList.add("hidden");
 }
 
+function showPopupWithId(id) {
+    document.getElementById(id).classList.remove('hidden');
+}
+
 function hideContextMenu() {
     const contextMenu = document.getElementById("context-menu");
     contextMenu.classList.add("hidden");
     document.removeEventListener("click", hideContextMenu);
 }
 
+
+
 // Event listeners for context menu items
 document.addEventListener("click", (event) => {
-    if (event.target.id === "edit-item") {
+    if (event.target.id === "zoom-item") {
         console.log("Edit clicked");
         // Add your edit logic here
     } else if (event.target.id === "view-item") {
@@ -225,20 +363,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 hideContextMenuMain(contextMenu);
             });
         });
-        
-        
-    });
-    function showPopupWithId(id) {
-        document.getElementById(id).classList.remove('hidden');
-    }
 
-    function hidePopupWithId(id) {
-        document.getElementById(id).classList.add('hidden');
-    }
+
+    });
 });
-function hidePopupWithId(id) {
-        document.getElementById(id).classList.add('hidden');
-    }
+
 // Packege view E
 
 // {{--navigate notes->document  --}}
