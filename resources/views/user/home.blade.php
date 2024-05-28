@@ -833,10 +833,10 @@
                                                 </div>
                                             </div>
                                         </li>
-  
+
                                         <li class="context-menu-item px-4 hover:bg-gray-200 cursor-pointer" value="">
                                             <button onclick="copyAllFunction('{{ $service->phonenumber }}', '{{ $service->service_id }}')">Copy All</button>
-                                        </li>                                        
+                                        </li>
                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
                                             <button onclick="copyItemFunction(' {{$service->phonenumber}} ')">Copy Item</button>
                                         </li>
@@ -886,21 +886,40 @@
                     New popup content
                 </div>
             </div>
-            <div id="Note"
-                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+            <div id="Note" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
                     <!-- Close button -->
-                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                        onclick="hidePopupWithId('Note')">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('Note')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                     <!-- Popup content for Note -->
-                    Note popup content
+                    {{-- <h2 class="text-lg font-semibold mb-4">Note</h2> --}}
+                    <table class="mt-4 border-collapse w-full bg-gray-300">
+                        <thead>
+                            <tr>
+                                <th class="border border-black px-4 py-2">Date & Time</th>
+                                <th class="border border-black px-4 py-2">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border border-black px-4 py-2">2024-05-30 09:00 AM</td>
+                                <td class="border border-black px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-black px-4 py-2">2024-06-01 02:30 PM</td>
+                                <td class="border border-black px-4 py-2">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Close button -->
+                    <button class="absolute bottom-4 right-4 px-4 py-2 bg-gray-400 hover:bg-gray-500  rounded text-white" onclick="hidePopupWithId('Note')">Close</button>
                 </div>
             </div>
+            
+            
             <div id="Bar"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
