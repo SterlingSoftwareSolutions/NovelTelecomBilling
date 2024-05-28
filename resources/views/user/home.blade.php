@@ -674,32 +674,235 @@
                                             class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Plan">
                                             Plan Overrides
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Service">
-                                            Service Management
+                                        <li>
+                                            <div class="relative  hover:bg-gray-200 main-button"id="management">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4  cursor-pointer"
+                                                    aria-expanded="false"
+                                                    onclick="showSubMenu('subManagement','management')">
+                                                    <span>Service Management</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subManagement"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Bar Service</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">UnBar Service</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Change
+                                                                Password</a></li>
+                                                        <li><a href="#" class="dropdown-item">Change Mailbox</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Discounting</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Manage
+                                                                Contract</a></li>
+                                                        <li><a href="#" class="dropdown-item">Sell-On
+                                                                Service</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Connect">
-                                            Connect service
+                                        <li>
+                                            <div class="relative  hover:bg-gray-200 main-button"id="connect">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
+                                                    aria-expanded="false"
+                                                    onclick="showSubMenu('subConnect','connect')">
+                                                    <span>Connect Service</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subConnect"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Initial
+                                                                Connection</a></li>
+                                                        <li><a href="#" class="dropdown-item">Close
+                                                                Uncoconnected Service</a></li>
+                                                        <li><a href="#" class="dropdown-item">Change Connection
+                                                                Date</a></li>
+                                                        <li><a href="#" class="dropdown-item">Bulk Child Service
+                                                                Creation</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Disconnect">
-                                            Disconnect Service
+                                        <li>
+                                            <div class="relative  hover:bg-gray-200 main-button"id="disconnect">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
+                                                    aria-expanded="false"
+                                                    onclick="showSubMenu('subDisconnect','disconnect')">
+                                                    <span>Disconnect Service</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subDisconnect"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Disconnect
+                                                                Service</a></li>
+                                                        <li><a href="#" class="dropdown-item">Close Service</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Change
+                                                                Disconnection Date</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="History">
-                                            History
+                                        <li>
+                                            <div class="relative  hover:bg-gray-200 main-button"id="history">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
+                                                    aria-expanded="false"
+                                                    onclick="showSubMenu('subHistory','history')">
+                                                    <span>History</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subHistory"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Usage History -
+                                                                All</a></li>
+                                                        <li><a href="#" class="dropdown-item">Usage History -
+                                                                Un-Invoiced</a></li>
+                                                        <li><a href="#" class="dropdown-item">Package Change
+                                                                History</a></li>
+                                                        <li><a href="#" class="dropdown-item">Sell-On
+                                                                History</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Other">
-                                            Other
+                                        <li>
+                                            <div class="relative hover:bg-gray-200 main-button"id="other">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4  cursor-pointer "
+                                                    aria-expanded="false" onclick="showSubMenu('subOther','other')">
+                                                    <span>Other</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subOther"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Set Parent</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Edit
+                                                                Attributes</a></li>
+                                                        <li><a href="#" class="dropdown-item">Manage Cost
+                                                                Centres</a></li>
+                                                        <li><a href="#" class="dropdown-item">Edit Order
+                                                                Number</a></li>
+                                                        <li><a href="#" class="dropdown-item">Sub
+                                                                Authorisation</a></li>
+                                                        <li><a href="#" class="dropdown-item">Change Servise
+                                                                Number</a></li>
+                                                        <li><a href="#" class="dropdown-item">Change Servise
+                                                                Type</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {{-- TODO move script -> home.js --}}
+                                        <script>
+                                            function showSubMenu(submenuId, buttonId) {
+                                                var submenus = document.querySelectorAll('.dropdown-content-account-details');
+                                                var buttons = document.querySelectorAll('.main-button');
+                                                // Hide all submenus and remove bg color from all buttons
+                                                submenus.forEach(function(submenu) {
+                                                    submenu.classList.add('hidden');
+                                                });
+
+                                                buttons.forEach(function(button) {
+                                                    button.classList.remove('bg-gray-200');
+                                                });
+
+                                                // Toggle the clicked submenu visibility
+                                                var submenu = document.getElementById(submenuId);
+                                                submenu.classList.toggle('hidden');
+
+                                                // Add bg color to the clicked button
+                                                var button = document.getElementById(buttonId);
+                                                if (!submenu.classList.contains('hidden')) {
+                                                    button.classList.add('bg-gray-200');
+                                                }
+                                            }
+
+                                            function copyItemFunction() {
+                                                // Get the text field
+                                                var copyText = document.getElementById("myInput");
+                                                console.log(copyText);
+                                                // Select the text field
+                                                copyText.select();
+                                                copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                                                // Copy the text inside the text field
+                                                navigator.clipboard.writeText("Phone number : " + copyText.value);
+
+                                                // Alert the copied text
+                                                alert("Copied the text: " + copyText.value);
+                                            }
+
+                                            function copyAllFunction() {
+                                                // Get the text field
+                                                var myService = document.getElementById("myService");
+                                                var copyText = document.getElementById("myInput");
+                                                console.log(copyText);
+                                                // Select the text field
+                                                copyText.select();
+                                                copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                                                // Select the text field
+                                                myService.select();
+                                                myService.setSelectionRange(0, 99999); // For mobile devices
+
+                                                // Copy the text inside the text field
+                                                navigator.clipboard.writeText("Phone number : " + copyText.value + " " + "\nService Name : " + myService.value);
+
+                                                // Alert the copied text
+                                                alert("Copied the text: " + copyText.value);
+                                            }
+                                        </script>
+                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
+                                            <button onclick="copyAllFunction()">Copy All</button>
                                         </li>
                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
-                                            Copy All
+                                            <button onclick="copyItemFunction()">Copy Item</button>
                                         </li>
-                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
-                                            Copy Item
-                                        </li>
+                                        <input type="text" value="{{ $service->service_id }}" id="myService"
+                                            hidden>
+                                        <input type="text" value="{{ $service->phonenumber }}" id="myInput"
+                                            hidden>
                                     </ul>
                                 </div>
                             </div>
@@ -898,7 +1101,8 @@
                         </svg>
                     </button>
                     <!-- Popup content for Other -->
-                    <div id="edit-content">edit popup content </div>
+                    <div id="edit-content"></div>
+
                 </div>
             </div>
 
@@ -934,9 +1138,9 @@
                                                         d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
                                                 </svg>
                                             </button>
-                                            <button>
+                                            {{-- <button>
                                                 <img id="saveValue" src="{{ asset('Images/save.png') }}" alt="Login Image"  class=" ml-4 h-4 w-4 ">
-                                            </button>
+                                            </button> --}}
 
                                         </div>
 
