@@ -833,66 +833,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        {{-- TODO move script -> home.js --}}
-                                        <script>
-                                            function showSubMenu(submenuId, buttonId) {
-                                                var submenus = document.querySelectorAll('.dropdown-content-account-details');
-                                                var buttons = document.querySelectorAll('.main-button');
-                                                // Hide all submenus and remove bg color from all buttons
-                                                submenus.forEach(function(submenu) {
-                                                    submenu.classList.add('hidden');
-                                                });
-
-                                                buttons.forEach(function(button) {
-                                                    button.classList.remove('bg-gray-200');
-                                                });
-
-                                                // Toggle the clicked submenu visibility
-                                                var submenu = document.getElementById(submenuId);
-                                                submenu.classList.toggle('hidden');
-
-                                                // Add bg color to the clicked button
-                                                var button = document.getElementById(buttonId);
-                                                if (!submenu.classList.contains('hidden')) {
-                                                    button.classList.add('bg-gray-200');
-                                                }
-                                            }
-
-                                            function copyItemFunction() {
-                                                // Get the text field
-                                                var copyText = document.getElementById("myInput");
-                                                console.log(copyText);
-                                                // Select the text field
-                                                copyText.select();
-                                                copyText.setSelectionRange(0, 99999); // For mobile devices
-
-                                                // Copy the text inside the text field
-                                                navigator.clipboard.writeText("Phone number : " + copyText.value);
-
-                                                // Alert the copied text
-                                                alert("Copied the text: " + copyText.value);
-                                            }
-
-                                            function copyAllFunction() {
-                                                // Get the text field
-                                                var myService = document.getElementById("myService");
-                                                var copyText = document.getElementById("myInput");
-                                                console.log(copyText);
-                                                // Select the text field
-                                                copyText.select();
-                                                copyText.setSelectionRange(0, 99999); // For mobile devices
-
-                                                // Select the text field
-                                                myService.select();
-                                                myService.setSelectionRange(0, 99999); // For mobile devices
-
-                                                // Copy the text inside the text field
-                                                navigator.clipboard.writeText("Phone number : " + copyText.value + " " + "\nService Name : " + myService.value);
-
-                                                // Alert the copied text
-                                                alert("Copied the text: " + copyText.value);
-                                            }
-                                        </script>
+  
                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
                                             <button onclick="copyAllFunction()">Copy All</button>
                                         </li>
