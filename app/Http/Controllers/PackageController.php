@@ -21,21 +21,21 @@ class PackageController extends Controller
     //     return view('Service.modal',compact('packages','packageoptions'));
 
     // }
-    public function getPackages()
-
+    public function getPackages($package_name, $service_id)
     {
-        // return response()->json($packages);
-        try {
-            // Retrieve packages from the database or any other data source
-            $packages = Package::all(); // Example query to retrieve all packages
-            //  TODO GET SUB PACKEGES
-            return response()->json($packages);
-        } catch (\Exception $e) {
-            // Log the error for further investigation
-            Log::error('Error fetching packages: ' . $e->getMessage());
-            // Return a 500 Internal Server Error response
-            return response()->json(['error' => 'Internal Server Error'], 500);
-        }
+        return 'hellow test';
+        // try {
+        //     // Retrieve packages from the database or any other data source
+        //     $data = Package::getPackageName($package_name, $service_id);
+        //     Log::info('Retrieved packages:', $data);
+
+        //     return response()->json($data);
+        // } catch (\Exception $e) {
+        //     // Log the error for further investigation
+        //     Log::error('Error fetching packages: ' . $e->getMessage());
+        //     // Return a 500 Internal Server Error response
+        //     return response()->json(['error' => 'Internal Server Error'], 500);
+        // }
     }
 
     public function getPackageOption(Request $request)
