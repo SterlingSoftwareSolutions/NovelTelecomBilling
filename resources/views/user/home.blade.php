@@ -715,21 +715,145 @@
 
             {{-- Servise Right click popup View Stat --}}
 
-            <div id="Package"
-                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2 ">
+            <div id="Package" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-4/5 overflow-y-auto">
                     <!-- Close button -->
-                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                        onclick="hidePopupWithId('Package')">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('Package')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                     <!-- Popup content for Package -->
-                    Package popup content
+                    <div class="container mx-auto">
+                        <div class="header mb-4 flex justify-between items-center">
+                            <h1 class="text-xl font-semibold">Package Change</h1>
+                            {{-- <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded">File</button> --}}
+                        </div>
+                        <div class="flex space-x-4">
+                            <div class="w-1/2">
+                                <label for="package" class="block text-sm font-medium text-gray-700 mb-1">Choose a Package</label>
+                                <select id="package" class="block w-full border border-gray-300 rounded px-2 py-4">
+                                    <option>Novel Tel NBN Data</option>
+                                    <option>NovelTel NBN Data</option>
+                                </select>
+                            </div>
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Options</label>
+                                <p rows="4" class="block w-full border border-gray-300 rounded px-2 py-1">Test1 <br> test2</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-4">
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Enter Notes (optional)</label>
+                                <textarea rows="4" class="block w-full border border-gray-300 rounded px-2 py-1"></textarea>
+                            </div>
+                            <div class="w-1/2 ">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                                <div class="border-2 border-gray-300 rounded-lg p-2">
+                                <div class="flex items-center mb-2">
+                                    <input type="radio" name="start_date" class="mr-2" checked> <span class="mr-4">This Date</span>
+                                    <input type="date" class="border border-gray-300 rounded px-2 py-1">
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" name="start_date" class="mr-2"> <span>Start of Next Bill Cycle (01/06/2024)</span>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-4">
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Also Apply to these Other Services:</label>
+                                <div class="grid grid-cols-2 gap-4 border-2 border-gray-300 p-4 rounded-lg">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>All</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Same Service Type</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Children</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Siblings</span>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="checkbox" class="mr-2"> <span>Close the Network event</span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" class="mr-2"> <span>Reprocess Usage Loaded on Previous Plan</span>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2 border-2 border-gray-300 p-2 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Scheduled Changes</label>
+                                <div class="flex flex-col space-y-2">
+                                    <textarea rows="4" class="block w-full border border-gray-300 rounded px-2 py-1"></textarea>
+                                    <button class="self-end bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group mb-4">
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Charge</label>
+                            <table class="w-full border-collapse border border-gray-300 bg-gray-100">
+                                <thead class="bg-gray-200">
+                                    <tr>
+                                        <th class="border border-gray-300 px-2 py-1">Charge</th>
+                                        <th class="border border-gray-300 px-2 py-1">GL Code</th>
+                                        <th class="border border-gray-300 px-2 py-1">Default (ex. Tax)</th>
+                                        <th class="border border-gray-300 px-2 py-1">Frequency</th>
+                                        <th class="border border-gray-300 px-2 py-1">Pro-rata</th>
+                                        <th class="border border-gray-300 px-2 py-1">Charge Type</th>
+                                        <th class="border border-gray-300 px-2 py-1">Selcomm Generated</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-gray-100">
+                                        <td class="border border-gray-300 px-2 py-1">Example Charge 1</td>
+                                        <td class="border border-gray-300 px-2 py-1">GL12345</td>
+                                        <td class="border border-gray-300 px-2 py-1">$100.00</td>
+                                        <td class="border border-gray-300 px-2 py-1">Monthly</td>
+                                        <td class="border border-gray-300 px-2 py-1">Yes</td>
+                                        <td class="border border-gray-300 px-2 py-1">Type 1</td>
+                                        <td class="border border-gray-300 px-2 py-1">Yes</td>
+                                    </tr>
+                                    <tr class="bg-gray-100">
+                                        <td class="border border-gray-300 px-2 py-1">Example Charge 2</td>
+                                        <td class="border border-gray-300 px-2 py-1">GL67890</td>
+                                        <td class="border border-gray-300 px-2 py-1">$200.00</td>
+                                        <td class="border border-gray-300 px-2 py-1">Quarterly</td>
+                                        <td class="border border-gray-300 px-2 py-1">No</td>
+                                        <td class="border border-gray-300 px-2 py-1">Type 2</td>
+                                        <td class="border border-gray-300 px-2 py-1">No</td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="checkbox" class="mr-2"> <span>Display the contract management form after changing the package (this service's contract expires on 12/09/2025).</span>
+                        </div>
+                        <div class="form-actions flex justify-between items-center">
+                            <button class="bg-gray-200 text-gray-700 px-4 py-1 rounded">Details</button>
+                            <div>
+                                <button class="bg-blue-500 text-white px-4 py-1 rounded mr-2">Save</button>
+                                <button class="bg-red-500 text-white px-4 py-1 rounded">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
 
             <div id="New"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
