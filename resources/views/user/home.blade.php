@@ -731,21 +731,306 @@
                 </div>
             </div>
 
-            <div id="New"
-                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+            <div id="New" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-3/4 overflow-auto">
                     <!-- Close button -->
-                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                        onclick="hidePopupWithId('New')">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('New')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <!-- Popup content for New -->
-                    New popup content
+                    <div class="text-white p-4 text-center rounded-t-lg">
+                        <button id="eventEntryButton" class="px-4 py-2 text-black rounded mx-2" onclick="showEventCategoryPage()">Event Entry</button>
+                        <button id="scheduleEventButton" class="px-4 py-2 text-black rounded mx-2" onclick="showScheduleEventPage()">Schedule Event</button>
+                        <button id="attributesButton" class="px-4 py-2 text-black rounded mx-2" onclick="showAttributesTable()">Attributes</button>
+                        <button id="bulkApplyButton" class="px-4 py-2 text-black rounded mx-2" onclick="showBulkApplyTable()">Bulk Apply</button>
+                    </div>
+                    <div id="eventCategoryPage" class="hidden">
+                        <!-- Content for Event Entry -->
+                        <div class="flex mt-4">
+                            <div class="w-full p-4 bg-gray-50 rounded-lg">
+                                <div class="flex mb-4">
+                                    <div class="w-1/2 bg-gray-300 p-4 mr-2 rounded-lg">
+                                        <h2 class="text-lg font-semibold mb-2">Event Category</h2>
+                                        <ul id="eventCategoryList" class="list-inside list-none">
+                                            <li class="cursor-pointer" onclick="showEvents('test')">Test</li>
+                                            <li class="cursor-pointer" onclick="showEvents('example')">Example</li>
+                                        </ul>
+                                    </div>
+                                    <div class="w-1/2 bg-gray-300 p-4 ml-2 rounded-lg">
+                                        <h2 class="text-lg font-semibold mb-2">Event</h2>
+                                        <ul id="eventList" class="list-inside list-none">
+                                            <!-- Event list will be populated here -->
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="flex mb-4">
+                                    <div class="w-1/2 bg-gray-100 p-4 mr-2 rounded-lg">
+                                        <h2 class="text-lg font-semibold mb-2">Event Reason</h2>
+                                        <div class="flex items-center">
+                                            <input type="text" class="w-full p-2 mb-2 border rounded" placeholder="Reason">
+                                            <!-- Small button -->
+                                            <button class="px-2 py-1 bg-green-600 hover:bg-blue-600 rounded text-white ml-2 text-xs">Button</button>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="alertEvent" class="mr-2">
+                                            <label for="alertEvent" class="text-gray-700">Mark as alert event</label>
+                                        </div>
+                                    </div>
+                                    <div class="w-1/2 bg-gray-100 p-4 ml-2 rounded-lg">
+                                        <h2 class="text-lg font-semibold mb-2">Notes</h2>
+                                        <textarea class="w-full p-2 mb-2 border rounded" placeholder="Notes"></textarea>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end">
+                                    <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                                    <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scheduleEventPage" class="hidden">
+                        <!-- Content for Schedule Event -->
+                        <div class="flex flex-col mt-4 p-4 bg-gray-50 rounded-lg">
+                            <div class="mb-4 flex items-center">
+                                <input type="checkbox" id="scheduleEvent" class="mr-2">
+                                <label for="scheduleEvent" class="text-gray-700">Schedule this event</label>
+                            </div>
+                            <div class="mb-4 flex">
+                                <div class="flex flex-col w-1/2 pr-2">
+                                    <label for="scheduledAction" class="text-gray-700 mb-2">Scheduled Action:</label>
+                                    <input type="text" id="scheduledAction" class="p-2 border rounded" placeholder="Scheduled Action">
+                                </div>
+                                <div class="flex flex-col w-1/2 pl-2">
+                                    <label for="scheduledDate" class="text-gray-700 mb-2">Scheduled Date:</label>
+                                    <input type="date" id="scheduledDate" class="p-2 border rounded">
+                                </div>
+                            </div>
+                            <div class="mb-4 flex">
+                                <div class="flex flex-col w-1/2 pr-2">
+                                    <label for="department" class="text-gray-700 mb-2">Department:</label>
+                                    <input type="text" id="department" class="p-2 border rounded py-8" placeholder="Department">
+                                </div>
+                                <div class="flex flex-col w-1/2 pl-2">
+                                    <div class="flex flex-col mb-2">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="chooseOperator" class="mr-2">
+                                            <label for="chooseOperator" class="text-gray-700 ">Choose Operator:</label>
+                                        </div>
+                                        <input type="text" id="operator" class="p-2 border rounded mt-2 py-8" placeholder="Operator">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                                <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div id="attributesPage" class="hidden bg-gray-50 rounded-lg p-4">
+                        <!-- Attributes table -->
+                        <h2 class="text-lg font-semibold mb-4">Attributes</h2>
+                        <table class="border border-gray-300 bg-gray-200 w-full">
+                            <thead>
+                                <tr>
+                                    <th class="border border-gray-300 px-4 py-2 bg-gray-200">Attribute</th>
+                                    <th class="border border-gray-300 px-4 py-2 bg-gray-200">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-300 px-4 py-2">Color</td>
+                                    <td class="border border-gray-300 px-4 py-2">Red</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 px-4 py-2">Size</td>
+                                    <td class="border border-gray-300 px-4 py-2">Large</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 px-4 py-2">Material</td>
+                                    <td class="border border-gray-300 px-4 py-2">Cotton</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end mt-4">
+                            <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                            <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                        </div>
+                    </div>
+
+
+                    <div id="bulkApplyPage" class="hidden">
+                        <!-- Bulk Apply table -->
+                        <div class="flex flex-col mt-4 p-4 bg-gray-50 rounded-lg">
+                            <h2 class="text-lg font-semibold mb-4">Bulk Apply</h2>
+                            <table class="border border-gray-300 bg-gray-200 w-full">
+                                <thead>
+                                    <tr>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Apply</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Service No</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Status</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Job Number</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Start</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">End</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-gray-300 px-4 py-2"><input type="checkbox"></td>
+                                        <td class="border border-gray-300 px-4 py-2">12345</td>
+                                        <td class="border border-gray-300 px-4 py-2">In Progress</td>
+                                        <td class="border border-gray-300 px-4 py-2">67890</td>
+                                        <td class="border border-gray-300 px-4 py-2">2024-06-01</td>
+                                        <td class="border border-gray-300 px-4 py-2">2024-06-10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-300 px-4 py-2"><input type="checkbox"></td>
+                                        <td class="border border-gray-300 px-4 py-2">54321</td>
+                                        <td class="border border-gray-300 px-4 py-2">Completed</td>
+                                        <td class="border border-gray-300 px-4 py-2">09876</td>
+                                        <td class="border border-gray-300 px-4 py-2">2024-05-15</td>
+                                        <td class="border border-gray-300 px-4 py-2">2024-05-25</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="flex justify-end mt-4">
+                                <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                                <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="helloWorldPage" class="hidden text-center">
+                        <!-- Hello World message -->
+                        <h2 id="helloWorldMessage" class="text-lg font-semibold mb-2"></h2>
+                    </div>
                 </div>
             </div>
+
+            <script>
+                function showEvents(category) {
+                    const eventList = document.getElementById('eventList');
+
+                    let events = [];
+
+                    if (category === 'test') {
+                        events = ['Test 01', 'Test 02'];
+                    } else if (category === 'example') {
+                        events = ['Example 01', 'Example 02'];
+                    }
+
+                    // Generate HTML for each event as clickable list items
+                    const eventHTML = events.map(event => `<li class="cursor-pointer" onclick="showEventDetails('${event}')">${event}</li>`).join('');
+
+                    // Update the event list with the generated HTML
+                    eventList.innerHTML = eventHTML;
+                }
+
+                function showEventDetails(event) {
+                    // Display the clicked event details, you can do whatever you want here
+                    alert(`You clicked on: ${event}`);
+                }
+
+                function showEventCategoryPage() {
+                    // Show the Event Entry page and hide the Hello World page
+                    document.getElementById('eventCategoryPage').classList.remove('hidden');
+                    document.getElementById('attributesPage').classList.add('hidden'); // Hide attributes page if shown
+                    document.getElementById('helloWorldPage').classList.add('hidden');
+                    document.getElementById('bulkApplyPage').classList.add('hidden'); // Hide bulk apply page if shown
+                    document.getElementById('scheduleEventPage').classList.add('hidden'); // Hide schedule event page if shown
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "3px solid #10B981";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "none";
+                    document.getElementById('attributesButton').style.borderBottom = "none";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "none";
+                }
+
+                function showAttributesTable() {
+                    // Show the Attributes table page and hide other pages
+                    document.getElementById('eventCategoryPage').classList.add('hidden');
+                    document.getElementById('attributesPage').classList.remove('hidden');
+                    document.getElementById('helloWorldPage').classList.add('hidden');
+                    document.getElementById('bulkApplyPage').classList.add('hidden'); // Hide bulk apply page if shown
+                    document.getElementById('scheduleEventPage').classList.add('hidden'); // Hide schedule event page if shown
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "none";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "none";
+                    document.getElementById('attributesButton').style.borderBottom = "3px solid #10B981";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "none";
+                }
+
+                function showScheduleEventPage() {
+                    // Show the Schedule Event page and hide other pages
+                    document.getElementById('eventCategoryPage').classList.add('hidden');
+                    document.getElementById('attributesPage').classList.add('hidden'); // Hide attributes page if shown
+                    document.getElementById('helloWorldPage').classList.add('hidden');
+                    document.getElementById('bulkApplyPage').classList.add('hidden'); // Hide bulk apply page if shown
+                    document.getElementById('scheduleEventPage').classList.remove('hidden'); // Show schedule event page
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "none";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "3px solid #10B981";
+                    document.getElementById('attributesButton').style.borderBottom = "none";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "none";
+                }
+
+                function showHelloWorld(message) {
+                    document.getElementById('eventCategoryPage').classList.add('hidden');
+                    document.getElementById('attributesPage').classList.add('hidden'); // Hide attributes page if shown
+                    document.getElementById('helloWorldPage').classList.remove('hidden');
+                    document.getElementById('bulkApplyPage').classList.add('hidden'); // Hide bulk apply page if shown
+                    document.getElementById('scheduleEventPage').classList.add('hidden'); // Hide schedule event page if shown
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "none";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "none";
+                    document.getElementById('attributesButton').style.borderBottom = "none";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "none";
+
+                    // Add underline to the clicked button
+                    if (message === 'Hello World 1') {
+                        document.getElementById('scheduleEventButton').style.borderBottom = "3px solid #10B981";
+                    } else if (message === 'Hello World 2') {
+                        document.getElementById('attributesButton').style.borderBottom = "3px solid #10B981";
+                    } else if (message === 'Hello World 3') {
+                        document.getElementById('bulkApplyButton').style.borderBottom = "3px solid #10B981";
+                    }
+                }
+
+                function showBulkApplyTable() {
+                    // Show the Bulk Apply page and hide other pages
+                    document.getElementById('eventCategoryPage').classList.add('hidden');
+                    document.getElementById('attributesPage').classList.add('hidden'); // Hide attributes page if shown
+                    document.getElementById('helloWorldPage').classList.add('hidden');
+                    document.getElementById('bulkApplyPage').classList.remove('hidden'); // Show bulk apply page
+                    document.getElementById('scheduleEventPage').classList.add('hidden'); // Hide schedule event page if shown
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "none";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "none";
+                    document.getElementById('attributesButton').style.borderBottom = "none";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "3px solid #10B981";
+                }
+
+                function hidePopupWithId(id) {
+                    // Hide the popup
+                    document.getElementById(id).classList.add('hidden');
+                }
+
+                // Show the popup for demonstration purposes
+                document.getElementById('New').classList.remove('hidden');
+            </script>
+
+
             <div id="Note"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
