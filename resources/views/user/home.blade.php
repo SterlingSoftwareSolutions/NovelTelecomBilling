@@ -833,10 +833,10 @@
                                                 </div>
                                             </div>
                                         </li>
-  
+
                                         <li class="context-menu-item px-4 hover:bg-gray-200 cursor-pointer" value="">
                                             <button onclick="copyAllFunction('{{ $service->phonenumber }}', '{{ $service->service_id }}')">Copy All</button>
-                                        </li>                                        
+                                        </li>
                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
                                             <button onclick="copyItemFunction(' {{$service->phonenumber}} ')">Copy Item</button>
                                         </li>
@@ -901,21 +901,83 @@
                     Note popup content
                 </div>
             </div>
-            <div id="Bar"
-                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+            <div id="Bar" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-[90%]">
                     <!-- Close button -->
-                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                        onclick="hidePopupWithId('Bar')">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('Bar')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                     <!-- Popup content for Bar -->
-                    Bar popup content
+                    <div class="mx-auto h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between mb-4">
+                                <div class="text-lg font-semibold">Bar service</div>
+                            </div>
+                            <div class="flex justify-between mb-4">
+                                <div class="w-1/2 pr-2">
+                                    <div class="mb-2"><strong>Bar Type</strong></div>
+                                    <div class="mb-4">
+                                        <select class="w-full h-10 border rounded-md">
+                                            <option>Administration Bar</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2"><strong>Date to Bar Service</strong></div>
+                                    <div class="mb-4">
+                                        <input type="date" class="w-full h-10 border rounded-md">
+                                    </div>
+                                    <div class="flex items-center mb-2">
+                                        <input type="checkbox" class="mr-2"> Automatically Unbar
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="date" class="w-full h-10 border rounded-md">
+                                    </div>
+                                    <div class="mb-2"><strong>Also Apply to these Other Services:</strong></div>
+                                    <div class="flex flex-wrap mb-2 border border-gray-300 rounded p-2">
+                                        <label class="flex items-center w-1/2 mb-2">
+                                            <input type="checkbox" class="mr-2"> All
+                                        </label>
+                                        <label class="flex items-center w-1/2 mb-2">
+                                            <input type="checkbox" class="mr-2"> Same Service Type
+                                        </label>
+                                        <label class="flex items-center w-1/2 mb-2">
+                                            <input type="checkbox" class="mr-2"> Children
+                                        </label>
+                                        <label class="flex items-center w-1/2 mb-2">
+                                            <input type="checkbox" class="mr-2"> Siblings
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center mb-4">
+                                        <input type="checkbox" class="mr-2"> Close the Network event
+                                    </div>
+                                </div>
+                                <div class="w-1/2 pl-2">
+                                    <div class="mb-2"><strong>Bar Reason</strong></div>
+                                    <div class="mb-4">
+                                        <select class="w-full h-10 border rounded-md">
+                                            <option>Credit Alert</option>
+                                            <option>Customer Request</option>
+                                            <option>Lost/stolen Phone</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2"><strong>Enter Notes (optional)</strong></div>
+                                    <div class="mb-4">
+                                        <textarea class="w-full h-32 border rounded-md"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                            <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
+
             <div id="Miscellaneous"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
