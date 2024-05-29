@@ -115,6 +115,11 @@
         .accordion-content {
             transition: max-height 0.3s ease-out, padding 0.3s ease;
         }
+
+        .scrollable {
+            max-height: 150px;
+            overflow-y: auto;
+        }
     </style>
 
     <style>
@@ -1386,23 +1391,308 @@
                 </div>
             </div>
 
+            <div id="Miscellaneous" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white shadow-lg rounded-lg p-4 w-full max-w-4xl max-h-4xl relative">
 
 
-            <div id="Miscellaneous"
-                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+
                     <!-- Close button -->
-                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                        onclick="hidePopupWithId('Miscellaneous')">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('Miscellaneous')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <!-- Popup content for Miscellaneous -->
-                    Miscellaneous popup content
+
+                    <div class="p-4">
+                        <div class="font-bold text-lg mb-4">Miscellaneous Charges</div>
+                        <div class="flex mb-4">
+                            <button id="chargesButton" class="px-4 py-2 border-b-2 border-gray-200 focus:outline-none" onclick="showTableView()">Charges</button>
+                            <button id="detailsButton" class="px-4 py-2 border-b-2 border-gray-200 focus:outline-none" onclick="showDetailsView()">Details</button>
+                        </div>
+                        <div class="border" id="tableViewContainer" style="max-height: 400px; overflow-y: auto;">
+                            <table class="w-full border-collapse" id="tableView">
+                                <!-- Table content -->
+                                <thead class="bg-gray-200">
+                                    <tr>
+                                        <th class="border p-2">Code</th>
+                                        <th class="border p-2">Description</th>
+                                        <th class="border p-2">Freq</th>
+                                        <th class="border p-2">Unit Price</th>
+                                        <th class="border p-2">Charge Start</th>
+                                        <th class="border p-2">Charge End</th>
+                                        <th class="border p-2">Charged To</th>
+                                        <th class="border p-2">Amount Default</th>
+                                        <th class="border p-2">Cost (ex. Tax)</th>
+                                        <th class="border p-2">Source</th>
+                                        <th class="border p-2">Package</th>
+                                        <th class="border p-2">Package Option</th>
+                                        <th class="border p-2">Pro-rata</th>
+                                        <th class="border p-2">Charge Type</th>
+                                        <th class="border p-2">Chargr ref</th>
+                                        <th class="border p-2">Override ID</th>
+                                        <th class="border p-2">Network Detail Ref</th>
+                                        <th class="border p-2">Discount</th>
+                                        <th class="border p-2">File Type</th>
+                                        <th class="border p-2">Created Time</th>
+                                        <th class="border p-2">Create By</th>
+                                        <th class="border p-2">Last Updated</th>
+                                        <th class="border p-2">Updated BY</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border p-2">D090</td>
+                                        <td class="border p-2">$9 Package Discount</td>
+                                        <td class="border p-2">Monthly</td>
+                                        <td class="border p-2">-8.1818182</td>
+                                        <td class="border p-2">13/09/2023</td>
+                                        <td class="border p-2">On-going</td>
+                                        <td class="border p-2">31/05/2024</td>
+                                        <td class="border p-2">-8.18</td>
+                                        <td class="border p-2">$0.00</td>
+                                        <td class="border p-2">Manual</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                        <td class="border p-2">Test 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border p-2">BN12</td>
+                                        <td class="border p-2">NBN 12/1 Mbps</td>
+                                        <td class="border p-2">Monthly</td>
+                                        <td class="border p-2">$69.0818182</td>
+                                        <td class="border p-2">13/09/2023</td>
+                                        <td class="border p-2">On-going</td>
+                                        <td class="border p-2">31/05/2024</td>
+                                        <td class="border p-2">$69.08</td>
+                                        <td class="border p-2">$0.00</td>
+                                        <td class="border p-2">Package</td>
+                                        <td class="border p-2">NOV-</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                        <td class="border p-2">Test 02</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="border" id="detailsView" style="display: none;">
+                            <div class="border mb-4">
+                                <div class="bg-gray-200 p-2">Invoiced charges</div>
+                                <div class="scrollable">
+                                    <table class="w-full border-collapse">
+                                        <thead class="bg-gray-200">
+                                            <tr>
+                                                <th class="border p-2 min-w-28 max-w-72">Period</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Charge From</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Charge To</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Description</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Price (ex. Tax) Non Disc.</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Price (ex. Tax) Discounted</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Price (inc. Tax) Non Disc.</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Price (inc. Tax) Discounted</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Override ID</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Package</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Option</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Freq</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Pro-rata</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Charge Type</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Code</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Invoice</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Network Cost(ex Tax)</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Account Num</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Account Name</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border p-2">202404</td>
+                                                <td class="border p-2">1/05/2024</td>
+                                                <td class="border p-2">31/05/2024 11:59:59 PM</td>
+                                                <td class="border p-2">\$9 Package Discount</td>
+                                                <td class="border p-2">-8.18</td>
+                                                <td class="border p-2">-8.18</td>
+                                                <td class="border p-2">\$9.00</td>
+                                                <td class="border p-2">\$9.00</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border p-2">202405</td>
+                                                <td class="border p-2">1/05/2024</td>
+                                                <td class="border p-2">31/05/2024 11:59:59 PM</td>
+                                                <td class="border p-2">NBN 12/1 Mbps</td>
+                                                <td class="border p-2">\$69.08</td>
+                                                <td class="border p-2">\$69.08</td>
+                                                <td class="border p-2">\$75.99</td>
+                                                <td class="border p-2">\$75.99</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">NOV-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                            </tr>
+                                            <!-- Add more rows as needed -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="border mb-4">
+                                <div class="bg-gray-200 p-2">Un-invoiced and future charges (for fifteen periods only)</div>
+                                <div class="scrollable">
+                                    <table class="w-full border-collapse">
+                                        <thead class="bg-gray-200">
+                                            <tr>
+                                                <th class="border p-2 min-w-28 max-w-72">Period</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Charge From</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Charge To</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Description</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Price (ex. Tax) Non Disc.</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Price (ex. Tax) Discounted</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Price (inc. Tax) Non Disc.</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Price (inc. Tax) Discounted</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Override ID</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Package</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Option</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Freq</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Pro-rata</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Charge Type</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Code</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Charge Start</th>
+                                                <th class="border p-2 min-w-28 max-w-72">Charge End</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border p-2">202405</td>
+                                                <td class="border p-2">1/06/2024</td>
+                                                <td class="border p-2">30/06/2024 11:59:59 PM</td>
+                                                <td class="border p-2">\$9 Package Discount</td>
+                                                <td class="border p-2">-8.18</td>
+                                                <td class="border p-2">-8.18</td>
+                                                <td class="border p-2">\$9.00</td>
+                                                <td class="border p-2">\$9.00</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border p-2">202406</td>
+                                                <td class="border p-2">1/07/2024</td>
+                                                <td class="border p-2">31/07/2024 11:59:59 PM</td>
+                                                <td class="border p-2">NBN 12/1 Mbps</td>
+                                                <td class="border p-2">\$69.08</td>
+                                                <td class="border p-2">\$69.08</td>
+                                                <td class="border p-2">\$75.99</td>
+                                                <td class="border p-2">\$75.99</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">NOV-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                                <td class="border p-2">-</td>
+                                            </tr>
+                                            <!-- Add more rows as needed -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                            <div class="flex justify-end mt-4">
+                                <button class="bg-gray-300 px-4 py-2">Close</button>
+                            </div>
+                        </div>
+
+                        <div id="checkboxclick" class="flex flex-col md:flex-row justify-between items-start md:items-center p-4">
+                            <div class="flex flex-col md:flex-row items-start md:items-center mb-4 md:mb-0">
+                                <label class="inline-flex items-center mb-2 md:mb-0 md:mr-4">
+                                    <input type="checkbox" class="mr-2"> Display times in the charge Start and End columns
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="mr-2"> Only Display Current or Future Charges
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="clickbutton" class="flex flex-col md:flex-row md:ml-auto">
+                            <button class="bg-gray-300 hover:bg-gray-400 px-4 py-2 mr-2" onclick="showTableView()">Details</button>
+                            <button class="bg-green-600 text-white hover:bg-gray-400 ml-96 px-4 py-2 mr-2">New</button>
+                            <button class="bg-gray-300 hover:bg-gray-400 px-4 py-2 mr-2">Update</button>
+                            <button class="bg-red-600 text-white hover:bg-gray-400 px-4 py-2 mr-2">Delete</button>
+                            <button class="bg-gray-300 hover:bg-gray-400 px-4 py-2" onclick="hidePopupWithId('Miscellaneous')">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <script>
+            function showTableView() {
+                document.getElementById("tableView").style.display = "block";
+                document.getElementById("detailsView").style.display = "none";
+                document.getElementById("clickbutton").style.display = "block"; // Show the buttons
+                document.getElementById("checkboxclick").style.display = "block"; // Show the checkboxes
+                document.getElementById("chargesButton").classList.add("border-b-2", "border-green-500");
+                document.getElementById("detailsButton").classList.remove("border-b-2", "border-green-500");
+            }
+
+            function showDetailsView() {
+                document.getElementById("tableView").style.display = "none";
+                document.getElementById("detailsView").style.display = "block";
+                document.getElementById("clickbutton").style.display = "none"; // Hide the buttons
+                document.getElementById("checkboxclick").style.display = "none"; // Hide the checkboxes
+                document.getElementById("chargesButton").classList.remove("border-b-2", "border-green-500");
+                document.getElementById("detailsButton").classList.add("border-b-2", "border-green-500");
+            }
+
+            function hidePopupWithId(id) {
+                document.getElementById(id).classList.add('hidden');
+            }
+            </script>
+
+
+
             <div id="Plan"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
