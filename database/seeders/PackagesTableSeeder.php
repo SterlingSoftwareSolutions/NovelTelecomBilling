@@ -60,3 +60,4 @@ class PackagesTableSeeder extends Seeder
         DB::table('packages')->insert($packages);
     }
 }
+}
