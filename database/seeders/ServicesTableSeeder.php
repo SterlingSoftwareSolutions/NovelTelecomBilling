@@ -15,15 +15,12 @@ class ServicesTableSeeder extends Seeder
     public function run()
     {
         // Define services data
-        $serviceNames = [
-            '1300/1800', 'Data', 'Hardware', 'Hosted PBX', 'Mobile', 'NBN', 'Professional Services', 'Voice', 'ZArchive'
-        ];
         $services = [];
 
-        // Loop through the service names and add them to the services array
-        foreach ($serviceNames as $name) {
+        // Add 20 services
+        for ($i = 1; $i <= 10; $i++) {
             $services[] = [
-                'service_name' => $name,
+                'service_name' => 'Service ' . $i,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

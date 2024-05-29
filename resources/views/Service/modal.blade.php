@@ -126,7 +126,7 @@
 
                     <div class="flex flex-row gap-4 md:gap-8 m-5" id="acnandabn">
                         <div class="flex flex-col w-6/12">
-                            <label for="">{{ $serviceoption->service_types }}</label>
+                            <label for="">Package</label>
                             <div id="packageNames">
                                 <select name="package_id" id="" onclick="togglenew();"
                                     class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
@@ -197,10 +197,6 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" id="service_id_input" name="service_id">
-
-            <!-- Use the label and set its value using JavaScript -->
-            <label id="service_id_label" for=""></label>
         </form>
 
     </div>

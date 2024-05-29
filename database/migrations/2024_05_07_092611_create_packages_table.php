@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('service_id');
+            $table->foreignId('service_id')->constrained('services');
             $table->string('package_name');
             $table->timestamps();
-            $table->foreign('service_id')->references('id')->on('service_options')->onDelete('cascade');
         });
     }
 

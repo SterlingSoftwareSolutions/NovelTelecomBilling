@@ -15,8 +15,8 @@ class PackagesTableSeeder extends Seeder
      */
     public function run()
     {
-        // Retrieve package IDs from the service_options table
-        $packageIds = DB::table('service_options')->pluck('id')->toArray();
+        // Fetch all services from the services table
+        $services = Service::all();
 
         // Ensure that packageIds array is not empty before proceeding
         if (!empty($packageIds)) {
@@ -56,8 +56,7 @@ class PackagesTableSeeder extends Seeder
                 }
             }
 
-            // Insert data into the packages table
-            DB::table('packages')->insert($packages);
-        }
+        // Insert data into the packages table
+        DB::table('packages')->insert($packages);
     }
 }

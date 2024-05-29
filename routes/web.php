@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/packages/{package_name}/{service_id}', [PackageController::class, 'getPackages']);
+    Route::get('/packages', [PackageController::class, 'getPackages']);
     Route::get('/package-option', [PackageController::class, 'getPackageOption']);
     Route::post('/save-account-service', [PackageController::class, 'storeAccountService']);
 });
