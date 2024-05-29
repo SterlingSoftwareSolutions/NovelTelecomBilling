@@ -16,7 +16,7 @@ class PackagesTableSeeder extends Seeder
     public function run()
     {
         // Fetch all services from the services table
-        $services = Service::all();
+        $packageIds = DB::table('service_options')->pluck('id')->toArray();
 
         // Ensure that packageIds array is not empty before proceeding
         if (!empty($packageIds)) {
