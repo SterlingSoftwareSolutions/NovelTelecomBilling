@@ -129,7 +129,7 @@ const contextMenus = {
     ],
 
     contract: [
-        { id: "manage-contract", label: "Manage Contract", value: "{value}", onclick: "" },
+        { id: "manage-contract", label: "Manage Contract", value: "{value}", onclick: "contract('{value}')" },
         { id: "package-change-history", label: "Package Change History", value: "{value}", onclick: "" },
         { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
         { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
@@ -331,6 +331,22 @@ function zoom(value) {
 }
 
 
+function contracthidePopupWithId(id) {
+    document.getElementById(id).classList.add("hidden");
+}
+
+
+
+
+function contract(value){
+
+    const editcontractPopup = document.getElementById("contract");
+    editcontractPopup.classList.remove("hidden");
+}
+
+
+
+
 // Define other functions like view, add, more as needed
 function view(value) {
     console.log("View action triggered with value:", value);
@@ -361,6 +377,9 @@ function hideContextMenu() {
     contextMenu.classList.add("hidden");
     document.removeEventListener("click", hideContextMenu);
 }
+
+
+
 
 
 

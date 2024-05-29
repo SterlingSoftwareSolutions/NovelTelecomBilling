@@ -833,7 +833,7 @@
                                                 </div>
                                             </div>
                                         </li>
-  
+
                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
                                             <button onclick="copyAllFunction()">Copy All</button>
                                         </li>
@@ -1046,6 +1046,68 @@
 
                 </div>
             </div>
+
+
+            <div id="contract"
+            class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden ">
+            <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-3/4">
+                <!-- Close button -->
+                <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="contracthidePopupWithId('contract')">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <!-- Popup content for Other -->
+                <div class=" p-4 rounded-lg border border-gray-500">
+                    <div>
+                        <h1 class="text-lg font-semibold mb-4">File</h1>
+                        <form action="" method="POST">
+                            <h1 class="text-md font-medium mb-2">Contact Details</h1>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Description</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="24 month">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Start Date</label>
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2024-05-12">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">End Date</label>
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2025-05-12">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Contract Number</label>
+                                    <input type="number" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="0776542424">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Salesperson</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="John Cart">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Created Date</label>
+                                    <input type="datetime-local" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2024-05-28T13:17">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Created By</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="admin">
+                                </div>
+                            </div>
+                            <div class="flex justify-end mt-4">
+                                <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700">REPLACE</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
 
             {{-- Servise Option Right click popup View End --}}
 
