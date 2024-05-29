@@ -675,11 +675,11 @@
                                             Plan Overrides
                                         </li>
                                         <li>
-                                            <div class="relative  hover:bg-gray-200 main-button"id="management">
+                                            <div class="relative  hover:bg-gray-200 main-button"id="management-{{ $service->service_id }}">
                                                 <button type="button"
                                                     class="context-menu-item flex items-center gap-x-1 px-4  cursor-pointer"
                                                     aria-expanded="false"
-                                                    onclick="showSubMenu('subManagement','management')">
+                                                    onclick="showSubMenu('subManagement-{{ $service->service_id }}','management-{{ $service->service_id }}')">
                                                     <span>Service Management</span>
                                                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
                                                         aria-hidden="true">
@@ -688,7 +688,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <div id="subManagement"
+                                                <div id="subManagement-{{ $service->service_id }}"
                                                     class="dropdown-content-account-details hidden absolute left-full top-0 ">
                                                     <!-- Sub-dropdown content for Profile -->
                                                     <ul class=" w-[200px] ">
@@ -711,11 +711,11 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="relative  hover:bg-gray-200 main-button"id="connect">
+                                            <div class="relative  hover:bg-gray-200 main-button"id="connect-{{ $service->service_id }}">
                                                 <button type="button"
                                                     class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
                                                     aria-expanded="false"
-                                                    onclick="showSubMenu('subConnect','connect')">
+                                                    onclick="showSubMenu('subConnect-{{ $service->service_id }}','connect-{{ $service->service_id }}')">
                                                     <span>Connect Service</span>
                                                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
                                                         aria-hidden="true">
@@ -724,7 +724,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <div id="subConnect"
+                                                <div id="subConnect-{{ $service->service_id }}"
                                                     class="dropdown-content-account-details hidden absolute left-full top-0 ">
                                                     <!-- Sub-dropdown content for Profile -->
                                                     <ul class=" w-[200px] ">
@@ -741,11 +741,11 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="relative  hover:bg-gray-200 main-button"id="disconnect">
+                                            <div class="relative  hover:bg-gray-200 main-button"id="disconnect-{{ $service->service_id }}">
                                                 <button type="button"
                                                     class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
                                                     aria-expanded="false"
-                                                    onclick="showSubMenu('subDisconnect','disconnect')">
+                                                    onclick="showSubMenu('subDisconnect-{{ $service->service_id }}','disconnect-{{ $service->service_id }}')">
                                                     <span>Disconnect Service</span>
                                                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
                                                         aria-hidden="true">
@@ -754,7 +754,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <div id="subDisconnect"
+                                                <div id="subDisconnect-{{ $service->service_id }}"
                                                     class="dropdown-content-account-details hidden absolute left-full top-0 ">
                                                     <!-- Sub-dropdown content for Profile -->
                                                     <ul class=" w-[200px] ">
@@ -769,11 +769,11 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="relative  hover:bg-gray-200 main-button"id="history">
+                                            <div class="relative  hover:bg-gray-200 main-button"id="history-{{ $service->service_id }}">
                                                 <button type="button"
                                                     class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
                                                     aria-expanded="false"
-                                                    onclick="showSubMenu('subHistory','history')">
+                                                    onclick="showSubMenu('subHistory-{{ $service->service_id }}','history-{{ $service->service_id }}')">
                                                     <span>History</span>
                                                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
                                                         aria-hidden="true">
@@ -782,7 +782,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <div id="subHistory"
+                                                <div id="subHistory-{{ $service->service_id }}"
                                                     class="dropdown-content-account-details hidden absolute left-full top-0 ">
                                                     <!-- Sub-dropdown content for Profile -->
                                                     <ul class=" w-[200px] ">
@@ -799,10 +799,10 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="relative hover:bg-gray-200 main-button"id="other">
+                                            <div class="relative hover:bg-gray-200 main-button"id="other-{{ $service->service_id }}">
                                                 <button type="button"
                                                     class="context-menu-item flex items-center gap-x-1 px-4  cursor-pointer "
-                                                    aria-expanded="false" onclick="showSubMenu('subOther','other')">
+                                                    aria-expanded="false" onclick="showSubMenu('subOther-{{ $service->service_id }}','other-{{ $service->service_id }}')">
                                                     <span>Other</span>
                                                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
                                                         aria-hidden="true">
@@ -811,7 +811,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <div id="subOther"
+                                                <div id="subOther-{{ $service->service_id }}"
                                                     class="dropdown-content-account-details hidden absolute left-full top-0 ">
                                                     <!-- Sub-dropdown content for Profile -->
                                                     <ul class=" w-[200px] ">
@@ -834,16 +834,13 @@
                                             </div>
                                         </li>
 
+  
+                                        <li class="context-menu-item px-4 hover:bg-gray-200 cursor-pointer" value="">
+                                            <button onclick="copyAllFunction('{{ $service->phonenumber }}', '{{ $service->service_id }}')">Copy All</button>
+                                        </li>                                        
                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
-                                            <button onclick="copyAllFunction()">Copy All</button>
+                                            <button onclick="copyItemFunction(' {{$service->phonenumber}} ')">Copy Item</button>
                                         </li>
-                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
-                                            <button onclick="copyItemFunction()">Copy Item</button>
-                                        </li>
-                                        <input type="text" value="{{ $service->service_id }}" id="myService"
-                                            hidden>
-                                        <input type="text" value="{{ $service->phonenumber }}" id="myInput"
-                                            hidden>
                                     </ul>
                                 </div>
                             </div>
