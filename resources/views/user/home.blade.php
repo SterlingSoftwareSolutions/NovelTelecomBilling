@@ -860,7 +860,7 @@
 
             {{-- Servise Right click popup View Stat --}}
 
-            <div id="Package" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+            <div id="Package" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50  items-center flex justify-center hidden">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-4/5 overflow-y-auto">
                     <!-- Close button -->
                     <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('Package')">
@@ -999,7 +999,7 @@
                 </div>
             </div>
 
-            <div id="New" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center">
+            <div id="New" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-3/4 overflow-auto">
 
                     <!-- Close button -->
@@ -1296,7 +1296,7 @@
                 }
 
                 // Show the popup for demonstration purposes
-                document.getElementById('New').classList.remove('hidden');
+                // document.getElementById('New').classList.remove('hidden');
             </script>
 
 
