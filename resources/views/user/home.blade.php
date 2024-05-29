@@ -839,6 +839,7 @@
                                             </div>
                                         </li>
 
+
                                         <li class="context-menu-item px-4 hover:bg-gray-200 cursor-pointer" value="">
                                             <button onclick="copyAllFunction('{{ $service->phonenumber }}', '{{ $service->service_id }}')">Copy All</button>
                                         </li>
@@ -860,37 +861,446 @@
 
             {{-- Servise Right click popup View Stat --}}
 
-            <div id="Package"
-                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2 ">
+            <div id="Package" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-4/5 overflow-y-auto">
                     <!-- Close button -->
-                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                        onclick="hidePopupWithId('Package')">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('Package')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                     <!-- Popup content for Package -->
-                    Package popup content
+                    <div class="container mx-auto">
+                        <div class="header mb-4 flex justify-between items-center">
+                            <h1 class="text-xl font-semibold">Package Change</h1>
+                            {{-- <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded">File</button> --}}
+                        </div>
+                        <div class="flex space-x-4">
+                            <div class="w-1/2">
+                                <label for="package" class="block text-sm font-medium text-gray-700 mb-1">Choose a Package</label>
+                                <select id="package" class="block w-full border border-gray-300 rounded px-2 py-4">
+                                    <option>Novel Tel NBN Data</option>
+                                    <option>NovelTel NBN Data</option>
+                                </select>
+                            </div>
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Options</label>
+                                <p rows="4" class="block w-full border border-gray-300 rounded px-2 py-1">Test1 <br> test2</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-4">
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Enter Notes (optional)</label>
+                                <textarea rows="4" class="block w-full border border-gray-300 rounded px-2 py-1"></textarea>
+                            </div>
+                            <div class="w-1/2 ">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                                <div class="border-2 border-gray-300 rounded-lg p-2">
+                                <div class="flex items-center mb-2">
+                                    <input type="radio" name="start_date" class="mr-2" checked> <span class="mr-4">This Date</span>
+                                    <input type="date" class="border border-gray-300 rounded px-2 py-1">
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" name="start_date" class="mr-2"> <span>Start of Next Bill Cycle (01/06/2024)</span>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-4">
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Also Apply to these Other Services:</label>
+                                <div class="grid grid-cols-2 gap-4 border-2 border-gray-300 p-4 rounded-lg">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>All</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Same Service Type</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Children</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Siblings</span>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="checkbox" class="mr-2"> <span>Close the Network event</span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" class="mr-2"> <span>Reprocess Usage Loaded on Previous Plan</span>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2 border-2 border-gray-300 p-2 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Scheduled Changes</label>
+                                <div class="flex flex-col space-y-2">
+                                    <textarea rows="4" class="block w-full border border-gray-300 rounded px-2 py-1"></textarea>
+                                    <button class="self-end bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group mb-4">
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Charge</label>
+                            <table class="w-full border-collapse border border-gray-300 bg-gray-100">
+                                <thead class="bg-gray-200">
+                                    <tr>
+                                        <th class="border border-gray-300 px-2 py-1">Charge</th>
+                                        <th class="border border-gray-300 px-2 py-1">GL Code</th>
+                                        <th class="border border-gray-300 px-2 py-1">Default (ex. Tax)</th>
+                                        <th class="border border-gray-300 px-2 py-1">Frequency</th>
+                                        <th class="border border-gray-300 px-2 py-1">Pro-rata</th>
+                                        <th class="border border-gray-300 px-2 py-1">Charge Type</th>
+                                        <th class="border border-gray-300 px-2 py-1">Selcomm Generated</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-gray-100">
+                                        <td class="border border-gray-300 px-2 py-1">Example Charge 1</td>
+                                        <td class="border border-gray-300 px-2 py-1">GL12345</td>
+                                        <td class="border border-gray-300 px-2 py-1">$100.00</td>
+                                        <td class="border border-gray-300 px-2 py-1">Monthly</td>
+                                        <td class="border border-gray-300 px-2 py-1">Yes</td>
+                                        <td class="border border-gray-300 px-2 py-1">Type 1</td>
+                                        <td class="border border-gray-300 px-2 py-1">Yes</td>
+                                    </tr>
+                                    <tr class="bg-gray-100">
+                                        <td class="border border-gray-300 px-2 py-1">Example Charge 2</td>
+                                        <td class="border border-gray-300 px-2 py-1">GL67890</td>
+                                        <td class="border border-gray-300 px-2 py-1">$200.00</td>
+                                        <td class="border border-gray-300 px-2 py-1">Quarterly</td>
+                                        <td class="border border-gray-300 px-2 py-1">No</td>
+                                        <td class="border border-gray-300 px-2 py-1">Type 2</td>
+                                        <td class="border border-gray-300 px-2 py-1">No</td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="checkbox" class="mr-2"> <span>Display the contract management form after changing the package (this service's contract expires on 12/09/2025).</span>
+                        </div>
+                        <div class="form-actions flex justify-between items-center">
+                            <button class="bg-gray-200 text-gray-700 px-4 py-1 rounded">Details</button>
+                            <div>
+                                <button class="bg-blue-500 text-white px-4 py-1 rounded mr-2">Save</button>
+                                <button class="bg-red-500 text-white px-4 py-1 rounded">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="New"
-                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+            <div id="New" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-3/4 overflow-auto">
+
                     <!-- Close button -->
-                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                        onclick="hidePopupWithId('New')">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('New')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <!-- Popup content for New -->
-                    New popup content
+                    <div class="text-white p-4 text-center rounded-t-lg">
+                        <button id="eventEntryButton" class="px-4 py-2 text-black rounded mx-2" onclick="showEventCategoryPage()">Event Entry</button>
+                        <button id="scheduleEventButton" class="px-4 py-2 text-black rounded mx-2" onclick="showScheduleEventPage()">Schedule Event</button>
+                        <button id="attributesButton" class="px-4 py-2 text-black rounded mx-2" onclick="showAttributesTable()">Attributes</button>
+                        <button id="bulkApplyButton" class="px-4 py-2 text-black rounded mx-2" onclick="showBulkApplyTable()">Bulk Apply</button>
+                    </div>
+                    <div id="eventCategoryPage" class="hidden">
+                        <!-- Content for Event Entry -->
+                        <div class="flex mt-4">
+                            <div class="w-full p-4 bg-gray-50 rounded-lg">
+                                <div class="flex mb-4">
+                                    <div class="w-1/2 bg-gray-300 p-4 mr-2 rounded-lg">
+                                        <h2 class="text-lg font-semibold mb-2">Event Category</h2>
+                                        <ul id="eventCategoryList" class="list-inside list-none">
+                                            <li class="cursor-pointer" onclick="showEvents('test')">Test</li>
+                                            <li class="cursor-pointer" onclick="showEvents('example')">Example</li>
+                                        </ul>
+                                    </div>
+                                    <div class="w-1/2 bg-gray-300 p-4 ml-2 rounded-lg">
+                                        <h2 class="text-lg font-semibold mb-2">Event</h2>
+                                        <ul id="eventList" class="list-inside list-none">
+                                            <!-- Event list will be populated here -->
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="flex mb-4">
+                                    <div class="w-1/2 bg-gray-100 p-4 mr-2 rounded-lg">
+                                        <h2 class="text-lg font-semibold mb-2">Event Reason</h2>
+                                        <div class="flex items-center">
+                                            <input type="text" class="w-full p-2 mb-2 border rounded" placeholder="Reason">
+                                            <!-- Small button -->
+                                            <button class="px-2 py-1 bg-green-600 hover:bg-blue-600 rounded text-white ml-2 text-xs">Button</button>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="alertEvent" class="mr-2">
+                                            <label for="alertEvent" class="text-gray-700">Mark as alert event</label>
+                                        </div>
+                                    </div>
+                                    <div class="w-1/2 bg-gray-100 p-4 ml-2 rounded-lg">
+                                        <h2 class="text-lg font-semibold mb-2">Notes</h2>
+                                        <textarea class="w-full p-2 mb-2 border rounded" placeholder="Notes"></textarea>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end">
+                                    <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                                    <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scheduleEventPage" class="hidden">
+                        <!-- Content for Schedule Event -->
+                        <div class="flex flex-col mt-4 p-4 bg-gray-50 rounded-lg">
+                            <div class="mb-4 flex items-center">
+                                <input type="checkbox" id="scheduleEvent" class="mr-2">
+                                <label for="scheduleEvent" class="text-gray-700">Schedule this event</label>
+                            </div>
+                            <div class="mb-4 flex">
+                                <div class="flex flex-col w-1/2 pr-2">
+                                    <label for="scheduledAction" class="text-gray-700 mb-2">Scheduled Action:</label>
+                                    <input type="text" id="scheduledAction" class="p-2 border rounded" placeholder="Scheduled Action">
+                                </div>
+                                <div class="flex flex-col w-1/2 pl-2">
+                                    <label for="scheduledDate" class="text-gray-700 mb-2">Scheduled Date:</label>
+                                    <input type="date" id="scheduledDate" class="p-2 border rounded">
+                                </div>
+                            </div>
+                            <div class="mb-4 flex">
+                                <div class="flex flex-col w-1/2 pr-2">
+                                    <label for="department" class="text-gray-700 mb-2">Department:</label>
+                                    <input type="text" id="department" class="p-2 border rounded py-8" placeholder="Department">
+                                </div>
+                                <div class="flex flex-col w-1/2 pl-2">
+                                    <div class="flex flex-col mb-2">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="chooseOperator" class="mr-2">
+                                            <label for="chooseOperator" class="text-gray-700 ">Choose Operator:</label>
+                                        </div>
+                                        <input type="text" id="operator" class="p-2 border rounded mt-2 py-8" placeholder="Operator">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                                <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div id="attributesPage" class="hidden bg-gray-50 rounded-lg p-4">
+                        <!-- Attributes table -->
+                        <h2 class="text-lg font-semibold mb-4">Attributes</h2>
+                        <table class="border border-gray-300 bg-gray-200 w-full">
+                            <thead>
+                                <tr>
+                                    <th class="border border-gray-300 px-4 py-2 bg-gray-200">Attribute</th>
+                                    <th class="border border-gray-300 px-4 py-2 bg-gray-200">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-300 px-4 py-2">Color</td>
+                                    <td class="border border-gray-300 px-4 py-2">Red</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 px-4 py-2">Size</td>
+                                    <td class="border border-gray-300 px-4 py-2">Large</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 px-4 py-2">Material</td>
+                                    <td class="border border-gray-300 px-4 py-2">Cotton</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end mt-4">
+                            <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                            <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                        </div>
+                    </div>
+
+
+                    <div id="bulkApplyPage" class="hidden">
+                        <!-- Bulk Apply table -->
+                        <div class="flex flex-col mt-4 p-4 bg-gray-50 rounded-lg">
+                            <h2 class="text-lg font-semibold mb-4">Bulk Apply</h2>
+                            <table class="border border-gray-300 bg-gray-200 w-full">
+                                <thead>
+                                    <tr>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Apply</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Service No</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Status</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Job Number</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">Start</th>
+                                        <th class="border border-gray-300 px-4 py-2 bg-gray-200">End</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-gray-300 px-4 py-2"><input type="checkbox"></td>
+                                        <td class="border border-gray-300 px-4 py-2">12345</td>
+                                        <td class="border border-gray-300 px-4 py-2">In Progress</td>
+                                        <td class="border border-gray-300 px-4 py-2">67890</td>
+                                        <td class="border border-gray-300 px-4 py-2">2024-06-01</td>
+                                        <td class="border border-gray-300 px-4 py-2">2024-06-10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-300 px-4 py-2"><input type="checkbox"></td>
+                                        <td class="border border-gray-300 px-4 py-2">54321</td>
+                                        <td class="border border-gray-300 px-4 py-2">Completed</td>
+                                        <td class="border border-gray-300 px-4 py-2">09876</td>
+                                        <td class="border border-gray-300 px-4 py-2">2024-05-15</td>
+                                        <td class="border border-gray-300 px-4 py-2">2024-05-25</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="flex justify-end mt-4">
+                                <button class="px-4 py-2 bg-green-600 hover:bg-blue-600 rounded text-white mx-2">Save</button>
+                                <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="helloWorldPage" class="hidden text-center">
+                        <!-- Hello World message -->
+                        <h2 id="helloWorldMessage" class="text-lg font-semibold mb-2"></h2>
+                    </div>
                 </div>
             </div>
+
+            <script>
+                function showEvents(category) {
+                    const eventList = document.getElementById('eventList');
+
+                    let events = [];
+
+                    if (category === 'test') {
+                        events = ['Test 01', 'Test 02'];
+                    } else if (category === 'example') {
+                        events = ['Example 01', 'Example 02'];
+                    }
+
+                    // Generate HTML for each event as clickable list items
+                    const eventHTML = events.map(event => `<li class="cursor-pointer" onclick="showEventDetails('${event}')">${event}</li>`).join('');
+
+                    // Update the event list with the generated HTML
+                    eventList.innerHTML = eventHTML;
+                }
+
+                function showEventDetails(event) {
+                    // Display the clicked event details, you can do whatever you want here
+                    alert(`You clicked on: ${event}`);
+                }
+
+                function showEventCategoryPage() {
+                    // Show the Event Entry page and hide the Hello World page
+                    document.getElementById('eventCategoryPage').classList.remove('hidden');
+                    document.getElementById('attributesPage').classList.add('hidden'); // Hide attributes page if shown
+                    document.getElementById('helloWorldPage').classList.add('hidden');
+                    document.getElementById('bulkApplyPage').classList.add('hidden'); // Hide bulk apply page if shown
+                    document.getElementById('scheduleEventPage').classList.add('hidden'); // Hide schedule event page if shown
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "3px solid #10B981";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "none";
+                    document.getElementById('attributesButton').style.borderBottom = "none";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "none";
+                }
+
+                function showAttributesTable() {
+                    // Show the Attributes table page and hide other pages
+                    document.getElementById('eventCategoryPage').classList.add('hidden');
+                    document.getElementById('attributesPage').classList.remove('hidden');
+                    document.getElementById('helloWorldPage').classList.add('hidden');
+                    document.getElementById('bulkApplyPage').classList.add('hidden'); // Hide bulk apply page if shown
+                    document.getElementById('scheduleEventPage').classList.add('hidden'); // Hide schedule event page if shown
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "none";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "none";
+                    document.getElementById('attributesButton').style.borderBottom = "3px solid #10B981";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "none";
+                }
+
+                function showScheduleEventPage() {
+                    // Show the Schedule Event page and hide other pages
+                    document.getElementById('eventCategoryPage').classList.add('hidden');
+                    document.getElementById('attributesPage').classList.add('hidden'); // Hide attributes page if shown
+                    document.getElementById('helloWorldPage').classList.add('hidden');
+                    document.getElementById('bulkApplyPage').classList.add('hidden'); // Hide bulk apply page if shown
+                    document.getElementById('scheduleEventPage').classList.remove('hidden'); // Show schedule event page
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "none";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "3px solid #10B981";
+                    document.getElementById('attributesButton').style.borderBottom = "none";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "none";
+                }
+
+                function showHelloWorld(message) {
+                    document.getElementById('eventCategoryPage').classList.add('hidden');
+                    document.getElementById('attributesPage').classList.add('hidden'); // Hide attributes page if shown
+                    document.getElementById('helloWorldPage').classList.remove('hidden');
+                    document.getElementById('bulkApplyPage').classList.add('hidden'); // Hide bulk apply page if shown
+                    document.getElementById('scheduleEventPage').classList.add('hidden'); // Hide schedule event page if shown
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "none";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "none";
+                    document.getElementById('attributesButton').style.borderBottom = "none";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "none";
+
+                    // Add underline to the clicked button
+                    if (message === 'Hello World 1') {
+                        document.getElementById('scheduleEventButton').style.borderBottom = "3px solid #10B981";
+                    } else if (message === 'Hello World 2') {
+                        document.getElementById('attributesButton').style.borderBottom = "3px solid #10B981";
+                    } else if (message === 'Hello World 3') {
+                        document.getElementById('bulkApplyButton').style.borderBottom = "3px solid #10B981";
+                    }
+                }
+
+                function showBulkApplyTable() {
+                    // Show the Bulk Apply page and hide other pages
+                    document.getElementById('eventCategoryPage').classList.add('hidden');
+                    document.getElementById('attributesPage').classList.add('hidden'); // Hide attributes page if shown
+                    document.getElementById('helloWorldPage').classList.add('hidden');
+                    document.getElementById('bulkApplyPage').classList.remove('hidden'); // Show bulk apply page
+                    document.getElementById('scheduleEventPage').classList.add('hidden'); // Hide schedule event page if shown
+
+                    // Remove underline from other buttons
+                    document.getElementById('eventEntryButton').style.borderBottom = "none";
+                    document.getElementById('scheduleEventButton').style.borderBottom = "none";
+                    document.getElementById('attributesButton').style.borderBottom = "none";
+                    document.getElementById('bulkApplyButton').style.borderBottom = "3px solid #10B981";
+                }
+
+                function hidePopupWithId(id) {
+                    // Hide the popup
+                    document.getElementById(id).classList.add('hidden');
+                }
+
+                // Show the popup for demonstration purposes
+                document.getElementById('New').classList.remove('hidden');
+            </script>
+
+
             <div id="Note"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
@@ -1332,6 +1742,68 @@
 
                 </div>
             </div>
+
+
+            <div id="contract"
+            class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden ">
+            <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-3/4">
+                <!-- Close button -->
+                <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="contracthidePopupWithId('contract')">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <!-- Popup content for Other -->
+                <div class=" p-4 rounded-lg border border-gray-500">
+                    <div>
+                        <h1 class="text-lg font-semibold mb-4">File</h1>
+                        <form action="" method="POST">
+                            <h1 class="text-md font-medium mb-2">Contact Details</h1>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Description</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="24 month">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Start Date</label>
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2024-05-12">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">End Date</label>
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2025-05-12">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Contract Number</label>
+                                    <input type="number" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="0776542424">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Salesperson</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="John Cart">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Created Date</label>
+                                    <input type="datetime-local" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2024-05-28T13:17">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Created By</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="admin">
+                                </div>
+                            </div>
+                            <div class="flex justify-end mt-4">
+                                <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700">REPLACE</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
 
             {{-- Servise Option Right click popup View End --}}
 
