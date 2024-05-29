@@ -1,87 +1,89 @@
-function togglenew() {
-    console.log("hello");
-    // Use AJAX to call the Laravel route
-    fetch('/packages')
-        .then(response => response.json())
-        .then(data => {
-            // Assign the data array to a variable
-            var dataArray = data;
-            console.log(dataArray); // Check the data in the console
+document.addEventListener("DOMContentLoaded", function() {
+    // Get all elements with the class 'open-modal'
+    var openModalButtons = document.querySelectorAll('.open-modal');
 
-            // Select the div element by its ID
-            var divContainer = document.getElementById('packageNames');
+    openModalButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default anchor behavior
 
-            // Clear the contents of the divContainer before appending new labels
-            divContainer.innerHTML = '';
+            var target = button.getAttribute('data-target');
+            var serviceType = button.getAttribute('data-service-type');
+            var serviceName = button.getAttribute('data-service-name');
+            var serviceid = button.getAttribute('data-service-id')
+            var modal = document.querySelector(target);
+            var typeSelect = document.getElementById('typeSelect')
+            var typeId = document.getElementById('typeId')
+            var serviceOptionId = document.getElementById('serviceOptionInput')
+            serviceOptionId.value=serviceid;
+            typeSelect.value = serviceName;
+            typeId.value = serviceType;
 
-            // Create a select element
-            var select = document.createElement('select');
-            select.setAttribute('name', 'package_id');
-            select.setAttribute('id', 'package_id');
-            select.classList.add('w-full', 'p-2', 'border', 'border-gray-800', 'rounded-lg',
-                            'opacity-60');
-            // Loop through the dataArray and create an <option> element for each package
-            dataArray.forEach(package => {
-                var option = document.createElement('option'); // Create an <option> element
-                option.textContent = package
-                    .package_name; // Set the text content of the option to the package name
-                option.value = package.id; // Set the value of the option to the package id
-                select.appendChild(option); // Append the <option> element to the <select> element
-            });
+            if (serviceType) {
+                $.ajax({
+                    url: "/getpackage/" + serviceType,
+                    type: "GET",
+                    success: function(response) {
+                        console.log(response);
 
-            // Append the <select> element to the div container
-            var divContainer = document.getElementById('packageNames');
-            divContainer.appendChild(select);
+                        var packageSelect = document.getElementById(
+                            'packageSelect');
+                        packageSelect.innerHTML =
+                            '<option value="" selected disabled>-- Select Package --</option>';
 
-            // Add event listener to the select element
-            select.addEventListener('change', function() {
-                var selectedPackageId = this.value; // Get the selected package ID
-                // Call a function passing the selected package ID
-                callRoute(selectedPackageId);
-            });
-
-            // Function to call route with the selected package ID
-            function callRoute(packageId) {
-                // Make an AJAX request to the route using the selected package ID
-                console.log(packageId);
-                fetch('/package-option?package_id=' + packageId)
-                    .then(response => response.json()) // Parse the JSON response
-                    .then(data => {
-                        var optionArray = data;
-                        console.log(optionArray); // Log the response data in the console
-
-                        var divContainer = document.getElementById('packageOption');
-
-                        // Clear the contents of the divContainer before appending new options
-                        divContainer.innerHTML = '';
-
-                        // Create a select element
-                        var select = document.createElement('select');
-                        select.setAttribute('name', 'packageoption_id');
-                        select.setAttribute('id', 'packageoption_id');
-                        select.classList.add('w-full', 'p-2', 'border', 'border-gray-800', 'rounded-lg',
-                            'opacity-60');
-
-                        optionArray.forEach(package => {
+                        // Populate the select dropdown with package names
+                        response.forEach(function(package) {
                             var option = document.createElement(
-                            'option'); // Create an <option> element
-                            option.textContent = package
-                            .package_options; // Set the text content of the option to the package option
+                                'option');
                             option.value = package
-                            .id; // Set the value of the option to the package id
-                            select.appendChild(
-                            option); // Append the <option> element to the <select> element
+                                .id; // Set option value to package ID or any other unique value
+                            option.textContent = package
+                                .package_name; // Set the display text to package name
+                            packageSelect.appendChild(option);
                         });
 
-                        // Append the <select> element to the div container
-                        divContainer.appendChild(select);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                        packageSelect.addEventListener('change', function() {
+                        var selectedPackageId = packageSelect.value;
+                        getpackageoption(selectedPackageId);
+                        });
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error); // Handle error
+                    },
+                });
             }
+        });
+    });
+});
 
-        })
-        .catch(error => console.error('Error:', error));
+function getpackageoption(id){
+    console.log(id);
+    $.ajax({
+        url: "/getpackageoptions/" + id,
+        type: "GET",
+        success: function(response) {
+            console.log(response);
+            var packageOptionSelect = document.getElementById('packageOptionSelect');
+            packageOptionSelect.innerHTML = '<option value="" selected disabled>-- Select Package Option --</option>';
 
+            // Populate the select dropdown with package options
+            response.forEach(function(option) {
+                var optionElement = document.createElement('option');
+                optionElement.value = option.id; // Set option value to package option ID
+                optionElement.textContent = option.package_options; // Set the display text to package option name
+                packageOptionSelect.appendChild(optionElement);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error(error); // Handle error
+        },
+    });
+}
+
+
+function hidePopupWithId(id) {
+    var modal = document.getElementById(id);
+    if (modal) {
+        modal.classList.add('hidden');
+    }
 }

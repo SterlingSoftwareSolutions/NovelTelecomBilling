@@ -57,11 +57,8 @@
                                     <ul>
                                         @foreach ($service->serviceoptions as $serviceoption)
                                             <li>
-                                                <a href="#" class="leading-6 pl-9 text-justify open-modal"
-                                                    data-target="#formModal" data-service="{{ $service->id }}"
-                                                    data-service-name="{{ $serviceoption->service_types }}"
-                                                    data-service-option="{{ $serviceoption->service_id }}"
-                                                    onclick="updateServiceOption(this)">
+                                                <a href="#" class="leading-6 pl-9 text-justify open-modal" data-target="#Package"
+                                                   data-service-type="{{ $serviceoption->id }}" data-service-name="{{ $serviceoption->service_types }} " data-service-id="{{ $service->id }} ">
                                                     {{ $serviceoption->service_types }}
                                                 </a>
                                             </li>
@@ -72,18 +69,7 @@
                         @endforeach
                     </div>
 
-                    <div class="w-7/12   justify-end">
-                        <div class=" flex col-2">
-                            <button type="submit"
-                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-green-600 mt-5">
-                                <span class="mx-auto border-1 bg-green-">Add</span>
-                            </button>
-                            <button type="submit"
-                                class="items-center p-2 bg-primaryColor flex justify-start md:w-[150px] ml-11 rounded-lg text-white text-center bg-red-900 mt-5">
-                                <span class="mx-auto border-1 ">Cancel</span>
-                            </button>
-                        </div>
-                    </div>
+
                 </section>
                 @include('Service.modal')
 

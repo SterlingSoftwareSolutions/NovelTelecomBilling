@@ -54,12 +54,8 @@ class PackageController extends Controller
 
     public function storeAccountService(Request $request)
     {
-        // Retrieve the session variable
-
-
         try {
             $accountNumber = session('account_number');
-            // dd($request);
             $validatedData = $request->validate([
                 'network' => 'required',
                 'service_id' => 'required',
@@ -76,30 +72,51 @@ class PackageController extends Controller
                 'dealer' => 'required'
             ]);
 
-            $data = AccountService::setData($accountNumber, $validatedData);
-            // dd($data);
+            // $data = AccountService::setData($accountNumber, $validatedData);
+            // dd($accountNumber);
 
+            $account = Account::where('id', $accountNumber)->first();
+            // dd($account);
+            if ($account) {
+                // $accountService = new AccountService();
+                // $accountService->fill($validatedData);
+                // $accountService->save();
+                $data = AccountService::setData($accountNumber, $validatedData);
 
-
-
-
-            // $account = Account::where('contact_code', $validatedData['contact_code'])->first();
-
-            // if ($account) {
-            //     $accountService = new AccountService();
-            //     $accountService->fill($validatedData);
-            //     $accountService->save();
-
-            //     return response()->json(['message' => 'Account service created successfully'], 201);
-            // } else {
-            //     return response()->json(['error' => 'Account not found'], 404);
-            // }
+                return redirect()->back();
+            } else {
+                return response()->json(['error' => 'Account not found'], 404);
+            }
         } catch (\Exception $e) {
 
             Log::error('Error creating account service: ' . $e->getMessage());
-            return response()->json(['error' => 'Internal Server Error'], 500);
+            return response()->json(['error' => $e], 500);
         }
         // Redirect to the service page with a success message
         return redirect()->route('service_newservice')->with('success', 'Service saved successfully!');
     }
+
+
+    public function getPackageDetails($serviceId)
+    {
+        // Fetch package details based on the service_id
+        $package = Package::where('service_id', $serviceId)->get();
+
+        if ($package) {
+            return response()->json($package);
+        } else {
+            return response()->json(['error' => 'Package options not found'], 404);
+        }
+    }
+    public function getPackageOptions($packageId)
+    {
+        $packageOptions = PackageOption::where('package_id', $packageId)->get();
+
+        if ($packageOptions->isEmpty()) {
+            return response()->json(['error' => 'Package options not found'], 404);
+        }
+
+        return response()->json($packageOptions);
+    }
+
 }
