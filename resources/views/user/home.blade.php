@@ -674,31 +674,172 @@
                                             class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Plan">
                                             Plan Overrides
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Service">
-                                            Service Management
+                                        <li>
+                                            <div class="relative  hover:bg-gray-200 main-button"id="management-{{ $service->service_id }}">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4  cursor-pointer"
+                                                    aria-expanded="false"
+                                                    onclick="showSubMenu('subManagement-{{ $service->service_id }}','management-{{ $service->service_id }}')">
+                                                    <span>Service Management</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subManagement-{{ $service->service_id }}"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Bar Service</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">UnBar Service</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Change
+                                                                Password</a></li>
+                                                        <li><a href="#" class="dropdown-item">Change Mailbox</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Discounting</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Manage
+                                                                Contract</a></li>
+                                                        <li><a href="#" class="dropdown-item">Sell-On
+                                                                Service</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Connect">
-                                            Connect service
+                                        <li>
+                                            <div class="relative  hover:bg-gray-200 main-button"id="connect-{{ $service->service_id }}">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
+                                                    aria-expanded="false"
+                                                    onclick="showSubMenu('subConnect-{{ $service->service_id }}','connect-{{ $service->service_id }}')">
+                                                    <span>Connect Service</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subConnect-{{ $service->service_id }}"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Initial
+                                                                Connection</a></li>
+                                                        <li><a href="#" class="dropdown-item">Close
+                                                                Uncoconnected Service</a></li>
+                                                        <li><a href="#" class="dropdown-item">Change Connection
+                                                                Date</a></li>
+                                                        <li><a href="#" class="dropdown-item">Bulk Child Service
+                                                                Creation</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Disconnect">
-                                            Disconnect Service
+                                        <li>
+                                            <div class="relative  hover:bg-gray-200 main-button"id="disconnect-{{ $service->service_id }}">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
+                                                    aria-expanded="false"
+                                                    onclick="showSubMenu('subDisconnect-{{ $service->service_id }}','disconnect-{{ $service->service_id }}')">
+                                                    <span>Disconnect Service</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subDisconnect-{{ $service->service_id }}"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Disconnect
+                                                                Service</a></li>
+                                                        <li><a href="#" class="dropdown-item">Close Service</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Change
+                                                                Disconnection Date</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="History">
-                                            History
+                                        <li>
+                                            <div class="relative  hover:bg-gray-200 main-button"id="history-{{ $service->service_id }}">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4 cursor-pointer"
+                                                    aria-expanded="false"
+                                                    onclick="showSubMenu('subHistory-{{ $service->service_id }}','history-{{ $service->service_id }}')">
+                                                    <span>History</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subHistory-{{ $service->service_id }}"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Usage History -
+                                                                All</a></li>
+                                                        <li><a href="#" class="dropdown-item">Usage History -
+                                                                Un-Invoiced</a></li>
+                                                        <li><a href="#" class="dropdown-item">Package Change
+                                                                History</a></li>
+                                                        <li><a href="#" class="dropdown-item">Sell-On
+                                                                History</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li
-                                            class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="Other">
-                                            Other
+                                        <li>
+                                            <div class="relative hover:bg-gray-200 main-button"id="other-{{ $service->service_id }}">
+                                                <button type="button"
+                                                    class="context-menu-item flex items-center gap-x-1 px-4  cursor-pointer "
+                                                    aria-expanded="false" onclick="showSubMenu('subOther-{{ $service->service_id }}','other-{{ $service->service_id }}')">
+                                                    <span>Other</span>
+                                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                <div id="subOther-{{ $service->service_id }}"
+                                                    class="dropdown-content-account-details hidden absolute left-full top-0 ">
+                                                    <!-- Sub-dropdown content for Profile -->
+                                                    <ul class=" w-[200px] ">
+                                                        <li><a href="#" class="dropdown-item ">Set Parent</a>
+                                                        </li>
+                                                        <li><a href="#" class="dropdown-item">Edit
+                                                                Attributes</a></li>
+                                                        <li><a href="#" class="dropdown-item">Manage Cost
+                                                                Centres</a></li>
+                                                        <li><a href="#" class="dropdown-item">Edit Order
+                                                                Number</a></li>
+                                                        <li><a href="#" class="dropdown-item">Sub
+                                                                Authorisation</a></li>
+                                                        <li><a href="#" class="dropdown-item">Change Servise
+                                                                Number</a></li>
+                                                        <li><a href="#" class="dropdown-item">Change Servise
+                                                                Type</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </li>
+
+  
+                                        <li class="context-menu-item px-4 hover:bg-gray-200 cursor-pointer" value="">
+                                            <button onclick="copyAllFunction('{{ $service->phonenumber }}', '{{ $service->service_id }}')">Copy All</button>
+                                        </li>                                        
                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
-                                            Copy All
-                                        </li>
-                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer"value="">
-                                            Copy Item
+                                            <button onclick="copyItemFunction(' {{$service->phonenumber}} ')">Copy Item</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -715,24 +856,148 @@
 
             {{-- Servise Right click popup View Stat --}}
 
-            <div id="Package"
-                class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2 ">
+            <div id="Package" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-4/5 overflow-y-auto">
                     <!-- Close button -->
-                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                        onclick="hidePopupWithId('Package')">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('Package')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                     <!-- Popup content for Package -->
-                    Package popup content
+                    <div class="container mx-auto">
+                        <div class="header mb-4 flex justify-between items-center">
+                            <h1 class="text-xl font-semibold">Package Change</h1>
+                            {{-- <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded">File</button> --}}
+                        </div>
+                        <div class="flex space-x-4">
+                            <div class="w-1/2">
+                                <label for="package" class="block text-sm font-medium text-gray-700 mb-1">Choose a Package</label>
+                                <select id="package" class="block w-full border border-gray-300 rounded px-2 py-4">
+                                    <option>Novel Tel NBN Data</option>
+                                    <option>NovelTel NBN Data</option>
+                                </select>
+                            </div>
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Options</label>
+                                <p rows="4" class="block w-full border border-gray-300 rounded px-2 py-1">Test1 <br> test2</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-4">
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Enter Notes (optional)</label>
+                                <textarea rows="4" class="block w-full border border-gray-300 rounded px-2 py-1"></textarea>
+                            </div>
+                            <div class="w-1/2 ">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                                <div class="border-2 border-gray-300 rounded-lg p-2">
+                                <div class="flex items-center mb-2">
+                                    <input type="radio" name="start_date" class="mr-2" checked> <span class="mr-4">This Date</span>
+                                    <input type="date" class="border border-gray-300 rounded px-2 py-1">
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" name="start_date" class="mr-2"> <span>Start of Next Bill Cycle (01/06/2024)</span>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-4">
+                            <div class="w-1/2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Also Apply to these Other Services:</label>
+                                <div class="grid grid-cols-2 gap-4 border-2 border-gray-300 p-4 rounded-lg">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>All</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Same Service Type</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Children</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Siblings</span>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="checkbox" class="mr-2"> <span>Close the Network event</span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" class="mr-2"> <span>Reprocess Usage Loaded on Previous Plan</span>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2 border-2 border-gray-300 p-2 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Scheduled Changes</label>
+                                <div class="flex flex-col space-y-2">
+                                    <textarea rows="4" class="block w-full border border-gray-300 rounded px-2 py-1"></textarea>
+                                    <button class="self-end bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group mb-4">
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Charge</label>
+                            <table class="w-full border-collapse border border-gray-300 bg-gray-100">
+                                <thead class="bg-gray-200">
+                                    <tr>
+                                        <th class="border border-gray-300 px-2 py-1">Charge</th>
+                                        <th class="border border-gray-300 px-2 py-1">GL Code</th>
+                                        <th class="border border-gray-300 px-2 py-1">Default (ex. Tax)</th>
+                                        <th class="border border-gray-300 px-2 py-1">Frequency</th>
+                                        <th class="border border-gray-300 px-2 py-1">Pro-rata</th>
+                                        <th class="border border-gray-300 px-2 py-1">Charge Type</th>
+                                        <th class="border border-gray-300 px-2 py-1">Selcomm Generated</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-gray-100">
+                                        <td class="border border-gray-300 px-2 py-1">Example Charge 1</td>
+                                        <td class="border border-gray-300 px-2 py-1">GL12345</td>
+                                        <td class="border border-gray-300 px-2 py-1">$100.00</td>
+                                        <td class="border border-gray-300 px-2 py-1">Monthly</td>
+                                        <td class="border border-gray-300 px-2 py-1">Yes</td>
+                                        <td class="border border-gray-300 px-2 py-1">Type 1</td>
+                                        <td class="border border-gray-300 px-2 py-1">Yes</td>
+                                    </tr>
+                                    <tr class="bg-gray-100">
+                                        <td class="border border-gray-300 px-2 py-1">Example Charge 2</td>
+                                        <td class="border border-gray-300 px-2 py-1">GL67890</td>
+                                        <td class="border border-gray-300 px-2 py-1">$200.00</td>
+                                        <td class="border border-gray-300 px-2 py-1">Quarterly</td>
+                                        <td class="border border-gray-300 px-2 py-1">No</td>
+                                        <td class="border border-gray-300 px-2 py-1">Type 2</td>
+                                        <td class="border border-gray-300 px-2 py-1">No</td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="checkbox" class="mr-2"> <span>Display the contract management form after changing the package (this service's contract expires on 12/09/2025).</span>
+                        </div>
+                        <div class="form-actions flex justify-between items-center">
+                            <button class="bg-gray-200 text-gray-700 px-4 py-1 rounded">Details</button>
+                            <div>
+                                <button class="bg-blue-500 text-white px-4 py-1 rounded mr-2">Save</button>
+                                <button class="bg-red-500 text-white px-4 py-1 rounded">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div id="New" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center">
                 <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-3/4 overflow-auto">
+
                     <!-- Close button -->
                     <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('New')">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1183,9 +1448,72 @@
                         </svg>
                     </button>
                     <!-- Popup content for Other -->
-                    <div id="edit-content">edit popup content </div>
+                    <div id="edit-content"></div>
+
                 </div>
             </div>
+
+
+            <div id="contract"
+            class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden ">
+            <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-3/4">
+                <!-- Close button -->
+                <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="contracthidePopupWithId('contract')">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <!-- Popup content for Other -->
+                <div class=" p-4 rounded-lg border border-gray-500">
+                    <div>
+                        <h1 class="text-lg font-semibold mb-4">File</h1>
+                        <form action="" method="POST">
+                            <h1 class="text-md font-medium mb-2">Contact Details</h1>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Description</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="24 month">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Start Date</label>
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2024-05-12">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">End Date</label>
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2025-05-12">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Contract Number</label>
+                                    <input type="number" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="0776542424">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Salesperson</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="John Cart">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Created Date</label>
+                                    <input type="datetime-local" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2024-05-28T13:17">
+                                </div>
+                                <div class="flex items-center">
+                                    <label class="block w-1/3 mb-2">Created By</label>
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="admin">
+                                </div>
+                            </div>
+                            <div class="flex justify-end mt-4">
+                                <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700">REPLACE</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
 
             {{-- Servise Option Right click popup View End --}}
 
@@ -1219,9 +1547,9 @@
                                                         d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
                                                 </svg>
                                             </button>
-                                            <button>
+                                            {{-- <button>
                                                 <img id="saveValue" src="{{ asset('Images/save.png') }}" alt="Login Image"  class=" ml-4 h-4 w-4 ">
-                                            </button>
+                                            </button> --}}
 
                                         </div>
 
