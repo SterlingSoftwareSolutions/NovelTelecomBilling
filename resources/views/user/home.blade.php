@@ -1714,7 +1714,7 @@
 
             <div id="Plan"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-1/2 h-1/2">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-3/4 h-max">
                     <!-- Close button -->
                     <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
                         onclick="hidePopupWithId('Plan')">
@@ -1723,8 +1723,121 @@
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <!-- Popup content for Plan -->
-                    Plan popup content
+                    <div class="border"  style="max-height: 400px; overflow-y: auto;">
+                        <table class="w-full border-collapse" >
+                            <!-- Table content -->
+                            <thead class="bg-gray-200">
+                                <tr>
+                                    <th class="border p-2">ID</th>
+                                    <th class="border p-2">Service</th>
+                                    <th class="border p-2">Type</th>
+                                    <th class="border p-2">Plan</th>
+                                    <th class="border p-2">Usage Type</th>
+                                    <th class="border p-2">Usage Description</th>
+                                    <th class="border p-2">Time Band</th>
+                                    <th class="border p-2">From</th>
+                                    <th class="border p-2">To</th>
+                                    <th class="border p-2">Markup Radio</th>
+                                    <th class="border p-2">Flag Fall</th>
+                                    <th class="border p-2">Band 1</th>
+                                    <th class="border p-2">Band 2</th>
+                                    <th class="border p-2">Band 3</th>
+                                    <th class="border p-2">Band 4</th>
+                                    <th class="border p-2">Use Final Band Rate for Entire Transaction </th>
+                                    <th class="border p-2">Min.Charge</th>
+                                    <th class="border p-2">Min.Quantity</th>
+                                    <th class="border p-2">Capping</th>
+                                    <th class="border p-2">Capping Type</th>
+                                    <th class="border p-2">Plan Code</th>
+                                    <th class="border p-2">Used</th>
+                                    <th class="border p-2">Created</th>
+                                    <th class="border p-2">Created By</th>
+                                    <th class="border p-2">Last Updated</th>
+                                    <th class="border p-2">Updated By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border p-2">D090</td>
+                                    <td class="border p-2">$9 Package Discount</td>
+                                    <td class="border p-2">Monthly</td>
+                                    <td class="border p-2">-8.1818182</td>
+                                    <td class="border p-2">13/09/2023</td>
+                                    <td class="border p-2">On-going</td>
+                                    <td class="border p-2">31/05/2024</td>
+                                    <td class="border p-2">-8.18</td>
+                                    <td class="border p-2">$0.00</td>
+                                    <td class="border p-2">Manual</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2">BN12</td>
+                                    <td class="border p-2">NBN 12/1 Mbps</td>
+                                    <td class="border p-2">Monthly</td>
+                                    <td class="border p-2">$69.0818182</td>
+                                    <td class="border p-2">13/09/2023</td>
+                                    <td class="border p-2">On-going</td>
+                                    <td class="border p-2">31/05/2024</td>
+                                    <td class="border p-2">$69.08</td>
+                                    <td class="border p-2">$0.00</td>
+                                    <td class="border p-2">Package</td>
+                                    <td class="border p-2">NOV-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                    <td class="border p-2">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="checkboxclick" class="flex flex-col md:flex-row justify-between items-start md:items-center p-4">
+                        <div class="flex flex-col md:flex-row items-start md:items-center mb-4 md:mb-0">
+                            <label lass="inline-flex items-center mb-2 md:mb-0 md:mr-4">Show: </label>
+                            <label class="inline-flex items-center mb-2 md:mb-0 md:mr-4">
+                                <input type="checkbox" class="mr-2 ml-2">Old Records
+                            </label>
+                            <label class="inline-flex items-center  mb-2 md:mb-0 md:mr-4">
+                                <input type="checkbox" class="mr-2"> Account Level Records
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="mr-2"> Unused Records
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="clickbutton" class="flex flex-col justify-end md:flex-row md:ml-auto">
+                        <button class="bg-green-600 text-white hover:bg-gray-400 px-4 py-2 mr-2" onclick="showTableView()">New</button>
+                        <button class="bg-gray-300  hover:bg-gray-400 px-4 py-2 mr-2">Update</button>
+                        <button class="bg-red-600  hover:bg-gray-400  text-white px-4 py-2 mr-2">End</button>
+                        <button class="bg-gray-300 hover:bg-gray-400 px-4 py-2 mr-2">Test</button>
+                        <button class="bg-gray-300 hover:bg-gray-400 px-4 py-2" onclick="hidePopupWithId('Miscellaneous')">Close</button>
+                    </div>
                 </div>
             </div>
             <div id="Service"
