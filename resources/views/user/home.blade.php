@@ -707,7 +707,7 @@
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changeMailbox">Change Mailbox</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="discounting">Discounting</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="manageContract">Manage Contract</li>
-                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Sell-On Service</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="sellOnService">Sell-On Service</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -2214,7 +2214,132 @@
 
             {{-- 6.Manage Contract Popup Ui Closed --}}
 
+            {{-- 7.Sell On Service Popup UI --}}
 
+            <div id="sellOnService" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white  shadow-lg rounded-lg p-4 relative max-w-2xl w-full h-3/4 overflow-auto">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('sellOnService')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Sell-On -->
+                    <div class=" p-4 max-w-lg mx-auto">
+                        <div class="flex justify-between mb-4">
+                            <div>Sell-On Service</div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="mb-2"><strong>Account Details</strong></div>
+                            <div class="border border-1 border-gray-500 p-4">
+                            <div class="flex mb-2">
+                                <div class="w-1/2 pr-1">
+                                    <label class="block">Account No.</label>
+                                    <input type="text" class="w-full border border-gray-300 p-1">
+                                </div>
+                                <div class="mt-6 w-1/2 pl-1 ">
+                                    <button class="bg-green-600 text-white px-2 py-1 mr-1">New</button>
+                                    <button class="bg-gray-300 text-black px-2 py-1 ">Search</button>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block">Name</label>
+                                <input type="text" class="w-full border border-gray-300 p-1">
+                            </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="mb-2 mt-2"><strong>Sell-On Details</strong></div>
+                                <div class="border border-1 border-gray-500 p-4">
+                                <div class="flex mb-2">
+                                    <div class="w-1/2 pr-1">
+                                        <label class="block">New Password</label>
+                                        <input type="text" class="w-full border border-gray-300 p-1" >
+                                    </div>
+                                    <div class="w-1/2 pl-1">
+                                        <label class="block">Sell-On Date</label>
+                                        <input type="text" class="w-full border border-gray-300 p-1" >
+                                    </div>
+                                </div>
+                                <div class="flex mb-2">
+                                    <div class="w-1/2 pr-1">
+                                        <label class="block">Sell-On Fee</label>
+                                        <input type="text" class="w-full border border-gray-300 p-1" >
+                                    </div>
+                                </div>
+                                <div class="flex  mb-2">
+                                    <div class="w-full pr-1">
+                                        <label class="block">Cost Centre</label>
+                                        <input type="text" class="w-full border border-gray-300 p-1">
+                                    </div>
+                                    <div class="flex  items-end">
+                                        <button class="bg-gray-300 px-2 py-1 mr-1">X</button>
+                                        <button class="bg-gray-300 px-2 py-1">...</button>
+                                    </div>
+                                </div>
+                                <div class="flex mb-2">
+                                    <div class="w-full pr-1">
+                                        <label class="block">Dealer</label>
+                                        <input type="text" class="w-full border border-gray-300 p-1">
+                                    </div>
+                                    <div class="flex  items-end">
+                                        <button class="bg-gray-300 px-2 py-1 mr-1">X</button>
+                                        <button class="bg-gray-300 px-2 py-1">...</button>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block">Parent Service</label>
+                                    <select class="w-full border border-gray-300 p-1">
+                                        <option>&lt;not selected&gt;</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="mb-2"><strong>Package</strong></div>
+                                <div class="border border-1 border-gray-500 p-4">
+                                <div class="mb-2">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="package" class="mr-2"> Current
+                                    </label>
+                                    <span>[NOVEL TEL NBN DATA] option (NBN 12/1 Mbps)</span>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="package" class="mr-2"> Select new package
+                                    </label>
+                                    <button class="bg-gray-300 px-2 py-1">...</button>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block"><strong> Enter note </strong> </label>
+                                <div class="border border-1 border-gray-500 p-4">
+                                <textarea class="w-full border border-gray-300 p-1 h-20"></textarea>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="inline-flex items-center mb-2">
+                                    <input type="checkbox" class="mr-2"> Close the Network Event
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="mr-2 ml-2"> Cancel all Open Events
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="mr-2"> Reprocess Usage Loaded after Sell-on Date
+                                </label>    
+                            </div>
+                        </div>
+                        <div class="flex justify-end mb-4">
+                            <button class="bg-green-600 text-white px-4 py-2 mr-2">Save</button>
+                            <button class="bg-red-600 text-white px-4 py-2" onclick="hidePopupWithId('sellOnService')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- 7.Sell On Service Popup UI Closed --}}
+
+            {{-- Service Management Dropdown Popup UI Closed --}}
 
             <div id="Connect"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
