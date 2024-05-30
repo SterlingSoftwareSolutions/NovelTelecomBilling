@@ -52,49 +52,53 @@ class PackageController extends Controller
 
 
 
-    public function storeAccountService(Request $request)
-    {
-        try {
-            $accountNumber = session('account_number');
-            $validatedData = $request->validate([
-                'network' => 'required',
-                'service_id' => 'required',
-                'phonenumber' => 'required',
-                'status' => 'required',
-                'dob' => 'required',
-                'service_narrative' => 'required',
-                'costcentre' => 'required',
-                'password' => 'required',
-                'parent' => 'required',
-                'package_id' => 'required',
-                'serviceoption_id'=>'required',
-                'packageoption_id' => 'required',
-                'dealer' => 'required'
-            ]);
+    // public function storeAccountService(Request $request)
+    // {
+    //     try {
+    //         $accountNumber = session('account_number');
+    //         $validatedData = $request->validate([
+    //             'network' => 'required',
+    //             'service_id' => 'required',
+    //             'phonenumber' => 'required',
+    //             'status' => 'required',
+    //             'dob' => 'required',
+    //             'service_narrative' => 'required',
+    //             'costcentre' => 'required',
+    //             'password' => 'required',
+    //             'parent' => 'required',
+    //             'package_id' => 'required',
+    //             'serviceoption_id'=>'required',
+    //             'packageoption_id' => 'required',
+    //             'dealer' => 'required'
+    //         ]);
 
-            // $data = AccountService::setData($accountNumber, $validatedData);
-            // dd($accountNumber);
+    //         // $data = AccountService::setData($accountNumber, $validatedData);
+    //         // dd($accountNumber);
 
-            $account = Account::where('id', $accountNumber)->first();
-            // dd($account);
-            if ($account) {
-                // $accountService = new AccountService();
-                // $accountService->fill($validatedData);
-                // $accountService->save();
-                $data = AccountService::setData($accountNumber, $validatedData);
+    //         $account = Account::where('id', $accountNumber)->first();
+    //         // dd($account);
+    //         if ($account) {
+    //             // $accountService = new AccountService();
+    //             // $accountService->fill($validatedData);
+    //             // $accountService->save();
+    //             $data = AccountService::setData($accountNumber, $validatedData);
 
-                return redirect()->back();
-            } else {
-                return response()->json(['error' => 'Account not found'], 404);
-            }
-        } catch (\Exception $e) {
+    //             return redirect()->back();
+    //         } else {
+    //             return response()->json(['error' => 'Account not found'], 404);
+    //         }
+    //     } catch (\Exception $e) {
 
-            Log::error('Error creating account service: ' . $e->getMessage());
-            return response()->json(['error' => $e], 500);
-        }
-        // Redirect to the service page with a success message
-        return redirect()->route('service_newservice')->with('success', 'Service saved successfully!');
-    }
+    //         Log::error('Error creating account service: ' . $e->getMessage());
+    //         return response()->json(['error' => $e], 500);
+    //     }
+    //     // Redirect to the service page with a success message
+    //     return redirect()->route('service_newservice')->with('success', 'Service saved successfully!');
+    // }
+
+
+
+
 
 
     public function getPackageDetails($serviceId)
