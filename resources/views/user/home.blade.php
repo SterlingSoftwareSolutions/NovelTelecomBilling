@@ -704,7 +704,7 @@
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Bar Service</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">UnBar Service</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changePassword">Change Password</li>
-                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Change Mailbox</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changeMailbox">Change Mailbox</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Discounting</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Manage Contract</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Sell-On Service</li>
@@ -2016,6 +2016,46 @@
                     </div>
                 </div>
             </div>
+
+            {{-- 3..Change Password Popup UI CLosee --}}
+
+            {{-- 4.Change Mailbox Popup UI --}}
+
+            <div id="changeMailbox" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative w-full max-w-lg ">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('changeMailbox')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Connect -->
+                    <div class="container max-w-md p-4 bg-white">
+                        <div class="header flex justify-between items-center border-b border-gray-300 pb-2 mb-4">
+                            <div>Change Mailbox Number</div>
+                        </div>
+                        <div class="section mb-4">
+                            <label class="block mb-2">
+                                <input type="radio" name="status" value="not-active" class="mr-2" checked> Not Active
+                            </label>
+                            <label class="block mb-2">
+                                <input type="radio" name="status" value="mailbox-number" class="mr-2"> Mailbox Number
+                                <input type="text" name="mailbox-number" class="border border-gray-300 p-1 ml-2">
+                            </label>
+                        </div>
+                        <div class="section mb-4">
+                            <label for="notes" class="block mb-2">Enter Notes (optional)</label>
+                            <textarea id="notes" name="notes" class="w-full h-24 border border-gray-300 p-2"></textarea>
+                        </div>
+                        <div class="buttons flex justify-end gap-2">
+                            <button class="bg-green-600 text-white px-4 py-2 rounded">Save</button>
+                            <button class="bg-gray-300 px-4 py-2 rounded" onclick="hidePopupWithId('changeMailbox')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- 4.Change Mailbox Popup UI closed --}}
 
 
             <div id="Connect"
