@@ -641,13 +641,14 @@
                                     <div
                                         class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
                                         <i class="fas fa-plus icon"></i>
-                                        <h3>{{ $service->service_id }}</h3>
+                                        <h3 >{{ $service->service_id }}</h3>
                                     </div>
                                     <div class="accordion-content height px-5 pt-0 overflow-hidden max-h-0"
                                         onclick="getaservicedetails('{{ $service->phonenumber }}', '{{ $account->id }}')">
                                         <a href="#"
                                             class="leading-6 font-light pl-9 text-justify show-details phone-link"
                                             data-accountservice="{{ json_encode($service) }}"
+                                            data-accountserviceId="{{ $service->serviceoption_id }}"
                                             id="phoneLink-{{ $service->service_id }}">
                                             {{ $service->phonenumber }}
                                         </a>
@@ -866,23 +867,31 @@
                         </svg>
                     </button>
                     <!-- Popup content for Package -->
-                    <div class="container mx-auto">
+                    <form class="container mx-auto" action="/update-account-service" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="header mb-4 flex justify-between items-center">
-                            <h1 class="text-xl font-semibold">Package Change</h1>
+                            <h1 class="text-xl font-semibold" id="head">Package Change</h1>
                             {{-- <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded">File</button> --}}
                         </div>
                         <div class="flex space-x-4">
                             <div class="w-1/2">
                                 <label for="package" class="block text-sm font-medium text-gray-700 mb-1">Choose a Package</label>
-                                <select id="package" class="block w-full border border-gray-300 rounded px-2 py-4">
-                                    <option>Novel Tel NBN Data</option>
-                                    <option>NovelTel NBN Data</option>
+                                <select id="packageSelect" name="packageSelect" class="block w-full border border-gray-300 rounded px-2 py-4">
                                 </select>
                             </div>
                             <div class="w-1/2">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Options</label>
-                                <p rows="4" class="block w-full border border-gray-300 rounded px-2 py-1">Test1 <br> test2</p>
+                                <label for="">Package option</label>
+                            <div id="packageOption">
+                                <select name="packageoption_id" id="packageOptionSelect"
+                                        class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                    <option value="" selected disabled>-- Select Package Option --</option>
+                                </select>
                             </div>
+                            </div>
+
+                            {{-- Send Account Service Id  --}}
+                            <input type="text" id="accounServiceId" name="accounServiceId">
+
                         </div>
                         <div class="flex space-x-4 mt-4">
                             <div class="w-1/2">
@@ -935,7 +944,7 @@
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Scheduled Changes</label>
                                 <div class="flex flex-col space-y-2">
                                     <textarea rows="4" class="block w-full border border-gray-300 rounded px-2 py-1"></textarea>
-                                    <button class="self-end bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</button>
+                                    <a class="self-end bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</a>
                                 </div>
                             </div>
 
@@ -986,13 +995,13 @@
                             <input type="checkbox" class="mr-2"> <span>Display the contract management form after changing the package (this service's contract expires on 12/09/2025).</span>
                         </div>
                         <div class="form-actions flex justify-between items-center">
-                            <button class="bg-gray-200 text-gray-700 px-4 py-1 rounded">Details</button>
+                            <a class="bg-gray-200 text-gray-700 px-4 py-1 rounded">Details</a>
                             <div>
                                 <button class="bg-blue-500 text-white px-4 py-1 rounded mr-2">Save</button>
-                                <button class="bg-red-500 text-white px-4 py-1 rounded">Close</button>
+                                <a class="bg-red-500 text-white px-4 py-1 rounded" onclick="hidePopupWithId('Package')">Close</a>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 

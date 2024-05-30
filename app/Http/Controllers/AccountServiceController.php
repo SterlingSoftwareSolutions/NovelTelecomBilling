@@ -62,4 +62,30 @@ class AccountServiceController extends Controller
             return response()->json(['success' => false, 'message' => 'An error occurred while updating the data.'], 500);
         }
     }
+
+    public function updateAccountService(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'accounServiceId' => 'required|integer|exists:account_services,id',
+            'packageSelect' => 'required|integer',
+            'packageoption_id' => 'required|integer',
+        ]);
+
+        // Find the account service by its ID
+        $accountService = AccountService::find($validatedData['accounServiceId']);
+
+        if ($accountService) {
+            // Update the account service with the new package and package option
+            $accountService->package_id = $validatedData['packageSelect'];
+            $accountService->packageoption_id = $validatedData['packageoption_id'];
+            $accountService->save();
+
+            // Return a success response, e.g., redirect back with a success message
+            return redirect()->back()->with('success', 'Account service updated successfully.');
+        } else {
+            // Return an error response if the account service was not found
+            return redirect()->back()->with('error', 'Account service not found.');
+        }
+    }
 }

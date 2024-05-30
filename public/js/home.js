@@ -405,6 +405,12 @@ document.addEventListener("DOMContentLoaded", function () {
         phoneLink.addEventListener("contextmenu", function (e) {
             e.preventDefault();
 
+            // Log the right-click event details
+            serviceDataId = this.getAttribute('data-accountserviceId');
+            serviceData = JSON.parse(this.getAttribute('data-accountservice'));
+            console.log('Right-clicked account service Id:', serviceDataId);
+            console.log(`Context menu ID: contextMenu-${serviceId}`);
+
             // Hide the previously opened context menu if there is one
             if (currentContextMenu && currentContextMenu !== contextMenu) {
                 hideContextMenuMain(currentContextMenu);
@@ -428,15 +434,70 @@ document.addEventListener("DOMContentLoaded", function () {
         contextMenu.querySelectorAll(".context-menu-item").forEach((item) => {
             item.addEventListener("click", function () {
                 const value = this.getAttribute("value");
-                // Assuming you have a function named showPopupWithId() to display the popup view
+                console.log(serviceDataId)
+                $.ajax({
+                    url : "/getpackage/"+serviceDataId,
+                    type: "GET",
+                    success : function (response){
+                        console.log(response);
+
+                        var packageSelect = document.getElementById(
+                            'packageSelect');
+                        packageSelect.innerHTML =
+                            '<option value="" selected disabled>-- Select Package --</option>';
+
+                        // Populate the select dropdown with package names
+                        response.forEach(function(package) {
+                            var option = document.createElement(
+                                'option');
+                            option.value = package
+                                .id; // Set option value to package ID or any other unique value
+                            option.textContent = package
+                                .package_name; // Set the display text to package name
+                            packageSelect.appendChild(option);
+                        });
+
+                        packageSelect.addEventListener('change', function() {
+                        var selectedPackageId = packageSelect.value;
+                        getpackageoption(selectedPackageId);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error); // Handle error
+                    },
+                })
+                // // Assuming you have a function named showPopupWithId() to display the popup view
+                const head = document.getElementById('accounServiceId');
+                head.value = serviceData.id; // Set the phone number in the <h1> element
                 showPopupWithId(value); // Pass the value as the ID to match the popup view
                 hideContextMenuMain(contextMenu);
             });
         });
-
-
     });
 });
+function getpackageoption(id){
+    console.log(id);
+    $.ajax({
+        url: "/getpackageoptions/" + id,
+        type: "GET",
+        success: function(response) {
+            console.log(response);
+            var packageOptionSelect = document.getElementById('packageOptionSelect');
+            packageOptionSelect.innerHTML = '<option value="" selected disabled>-- Select Package Option --</option>';
+
+            // Populate the select dropdown with package options
+            response.forEach(function(option) {
+                var optionElement = document.createElement('option');
+                optionElement.value = option.id; // Set option value to package option ID
+                optionElement.textContent = option.package_options; // Set the display text to package option name
+                packageOptionSelect.appendChild(optionElement);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error(error); // Handle error
+        },
+    });
+}
 
 // Packege view E
 

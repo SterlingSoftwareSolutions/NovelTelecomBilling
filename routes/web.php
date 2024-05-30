@@ -79,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/save-account-service', [PackageController::class, 'storeAccountService']);
     Route::get('/getpackage/{serviceType}', [PackageController::class, 'getPackageDetails']);
     Route::get('/getpackageoptions/{packageId}', [PackageController::class, 'getPackageOptions']);
+    Route::get('/service-option/{id}', [PackageController::class, 'getServiceOption']);
 
 });
 
@@ -87,4 +88,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/service', [ServiceController::class, 'service_index'])->name('service_newservice');
     Route::get('service/details/{phonenumber}/{accountId}', [ServiceController::class, 'getaservicedetails']);
+});
+
+// AccountServiceController route
+Route::middleware(['auth'])->group(function () {
+    Route::post('/update-account-service', [AccountServiceController::class, 'updateAccountService'])->name('update-account-service');
 });
