@@ -704,10 +704,10 @@
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Bar Service</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">UnBar Service</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changePassword">Change Password</li>
-                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changeMailbox">Change Mailbox</li>
-                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="discounting">Discounting</li>
-                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="manageContract">Manage Contract</li>
-                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="sell_On_Service">Sell-On Service</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Change Mailbox</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Discounting</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Manage Contract</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Sell-On Service</li>
                                                     </ul>
                                                 </div>
                                             </div>
