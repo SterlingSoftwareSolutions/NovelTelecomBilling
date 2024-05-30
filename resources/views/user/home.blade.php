@@ -731,14 +731,10 @@
                                                     class="dropdown-content-account-details hidden absolute left-full top-0 ">
                                                     <!-- Sub-dropdown content for Profile -->
                                                     <ul class=" w-[200px] ">
-                                                        <li><a href="#" class="dropdown-item ">Initial
-                                                                Connection</a></li>
-                                                        <li><a href="#" class="dropdown-item">Close
-                                                                Uncoconnected Service</a></li>
-                                                        <li><a href="#" class="dropdown-item">Change Connection
-                                                                Date</a></li>
-                                                        <li><a href="#" class="dropdown-item">Bulk Child Service
-                                                                Creation</a></li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Initial Connection</a></li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Close Uncoconnected Service</a></li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changeConnectionDate">Change Connection Date</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Bulk Child Service Creation</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -2349,6 +2345,56 @@
             {{-- 7.Sell On Service Popup UI Closed --}}
 
             {{-- Service Management Dropdown Popup UI Closed --}}
+
+     {{------------------------------------------------------------------}}
+
+            {{-- Connection Service Dropdown Popup UI  --}}
+
+            {{-- 3.Change Connection Date Popup UI --}}
+
+            <div id="changeConnectionDate" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-6 relative max-w-lg w-full h-auto">
+                    <!-- Close button -->
+                    <button class="absolute top-4 right-4 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('changeConnectionDate')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Connect -->
+                    <div class="flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex justify-between mb-6">
+                                <div class="text-xl font-semibold">Change Connection Date</div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="mb-4">
+                                    <label class="block font-medium mb-2">Current Connection Date</label>
+                                    <input type="text" class="w-full h-10 border rounded-md px-2" readonly>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block font-medium mb-2">New Connection Date</label>
+                                    <input type="date" class="w-full h-10 border rounded-md px-2">
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input type="checkbox" class="mr-2"> <span>Back Date Charges</span>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block font-medium mb-2">Enter Notes (optional)</label>
+                                    <textarea class="w-full h-32 border rounded-md px-2 py-2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <button class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded text-white mx-2">Save</button>
+                            <button class="px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded text-white mx-2" onclick="hidePopupWithId('changeConnectionDate')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+
+            {{-- 3.Change Connection Date Popup UI Closed --}}
 
             <div id="Connect"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
