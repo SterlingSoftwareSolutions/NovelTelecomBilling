@@ -15,10 +15,10 @@ class PackageOptionsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Retrieve package IDs from the packages table
-        $packageOptionIds = DB::table('packages')->pluck('id')->toArray();
+        // Retrieve all packages with their IDs and names from the packages table
+        $packages = DB::table('packages')->get(['id', 'package_name']);
 
-        if (!empty($packageOptionIds)) {
+        if ($packages->isNotEmpty()) {
             $packageOptions = [];
 
             // Define package options for each package
@@ -73,11 +73,11 @@ class PackageOptionsTableSeeder extends Seeder
                 // Add more package options here if necessary
             ];
 
-            foreach ($packageOptionIds as $packageId) {
-                foreach ($allPackageOptions as $packageName => $options) {
-                    foreach ($options as $option) {
+            foreach ($packages as $package) {
+                if (isset($allPackageOptions[$package->package_name])) {
+                    foreach ($allPackageOptions[$package->package_name] as $option) {
                         $packageOptions[] = [
-                            'package_id' => $packageId,
+                            'package_id' => $package->id,
                             'package_options' => $option,
                             'created_at' => now(),
                             'updated_at' => now(),
