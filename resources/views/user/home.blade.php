@@ -705,7 +705,7 @@
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">UnBar Service</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changePassword">Change Password</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changeMailbox">Change Mailbox</li>
-                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Discounting</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="discounting">Discounting</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Manage Contract</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Sell-On Service</li>
                                                     </ul>
@@ -2057,6 +2057,72 @@
 
             {{-- 4.Change Mailbox Popup UI closed --}}
 
+            {{-- 5.Discounting Popup UI  --}}
+
+            <div id="discounting" class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative max-w-fit max-h-fit">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                        onclick="hidePopupWithId('discounting')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Connect -->
+                    <div class="border mt-4"  tyle="max-height: 400px; overflow-y: auto;">
+                        <table class="w-full border-collapse" >
+                            <!-- Table content -->
+                            <thead class="bg-gray-200">
+                                <tr>
+                                    <th class="border p-2">Discount</th>
+                                    <th class="border p-2">From</th>
+                                    <th class="border p-2">To</th>
+                                    <th class="border p-2">Source</th>
+                                    <th class="border p-2">Package</th>
+                                    <th class="border p-2">Status</th>
+                                    <th class="border p-2">Terminal Discounting</th>
+                                    <th class="border p-2">Last Updated</th>
+                                    <th class="border p-2">Updated By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border p-2">D090</td>
+                                    <td class="border p-2">$9 Package Discount</td>
+                                    <td class="border p-2">Monthly</td>
+                                    <td class="border p-2">-8.1818182</td>
+                                    <td class="border p-2">13/09/2023</td>
+                                    <td class="border p-2">On-going</td>
+                                    <td class="border p-2">31/05/2024</td>
+                                    <td class="border p-2">-8.18</td>
+                                    <td class="border p-2">$0.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2">BN12</td>
+                                    <td class="border p-2">NBN 12/1 Mbps</td>
+                                    <td class="border p-2">Monthly</td>
+                                    <td class="border p-2">$69.0818182</td>
+                                    <td class="border p-2">13/09/2023</td>
+                                    <td class="border p-2">On-going</td>
+                                    <td class="border p-2">31/05/2024</td>
+                                    <td class="border p-2">$69.08</td>
+                                    <td class="border p-2">$0.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="flex flex-col justify-end md:flex-row md:ml-auto mt-4">
+                        <button class="bg-green-600 text-white hover:bg-gray-400 px-4 py-2 mr-2" onclick="showTableView()">New</button>
+                        <button class="bg-red-600  hover:bg-gray-400 text-white px-4 py-2 mr-2">Delete</button>
+                        <button class="bg-gray-300 hover:bg-gray-400 px-4 py-2 mr-2">Edit</button>
+                        <button class="bg-gray-300 hover:bg-gray-400 px-4 py-2" onclick="hidePopupWithId('discounting')">Close</button>
+                    </div>
+                </div>
+            </div>
+
+            {{-- 5.Discounting Popup UI closed --}}
 
             <div id="Connect"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
