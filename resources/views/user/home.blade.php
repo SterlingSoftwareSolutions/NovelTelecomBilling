@@ -706,7 +706,7 @@
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changePassword">Change Password</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="changeMailbox">Change Mailbox</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="discounting">Discounting</li>
-                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Manage Contract</li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="manageContract">Manage Contract</li>
                                                         <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer">Sell-On Service</li>
                                                     </ul>
                                                 </div>
@@ -2123,6 +2123,98 @@
             </div>
 
             {{-- 5.Discounting Popup UI closed --}}
+
+            {{-- 6.Manage Contract Popup UI --}}
+
+            <div id="manageContract" class="popup-container fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 relative max-w-2xl w-full h-3/4 overflow-auto">
+                    <!-- Close button -->
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" onclick="hidePopupWithId('manageContract')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <!-- Popup content for Contract Management -->
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-4 border-b pb-2">
+                            <div>Contract Management</div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="mb-2 font-semibold">Contract Details</div>
+                            <div class="border border-1 border-gray-500 p-4">
+                            <div class="mb-2">
+                                <label class="block">Description</label>
+                                <input type="text" class="w-full border border-gray-300 p-1" value="24 Month Contract">
+                            </div>
+                            <div class="flex mb-2 gap-2 ">
+                                <div class="w-1/2">
+                                    <label class="block">Start Date</label>
+                                    <input type="text" class="w-full border border-gray-300 p-1" value="13/09/2023">
+                                </div>
+                                <div class="w-1/2">
+                                    <label class="block">End Date</label>
+                                    <input type="text" class="w-full border border-gray-300 p-1" value="12/09/2025 11:59:59 PM">
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label class="block">Contract No.</label>
+                                <input type="text" class="w-full border border-gray-300 p-1">
+                            </div>
+                            <div class="mb-2">
+                                <label class="block">Salesperson</label>
+                                <input type="text" class="w-full border border-gray-300 p-1">
+                            </div>
+                            <div class="flex mb-2 gap-2">
+                                <div class="w-1/2">
+                                    <label class="block">Created Date</label>
+                                    <input type="text" class="w-full border border-gray-300 p-1" value="3/10/2023 5:58:38 PM">
+                                </div>
+                                <div class="w-1/2">
+                                    <label class="block">Created By</label>
+                                    <input type="text" class="w-full border border-gray-300 p-1" value="bupereri">
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <button class="bg-gray-300 px-4 py-2 rounded">Replace</button>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="mb-4 ">
+                            <div class="mb-2 font-semibold">Contract Extensions</div>
+                            <div class="border border-1 border-gray-500 p-4">
+                            <div class="border mb-2 h-24 overflow-y-auto">
+                                <table class="w-full border-collapse">
+                                    <thead class="bg-gray-200">
+                                        <tr>
+                                            <th class="border p-2">Start Date</th>
+                                            <th class="border p-2">End Date</th>
+                                            <th class="border p-2">Sales Person</th>
+                                            <th class="border p-2">Description</th>
+                                            <th class="border p-2">Created Date</th>
+                                            <th class="border p-2">Created By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Add rows here as needed -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="flex justify-end gap-2">
+                                <button class="bg-green-600 text-white px-4 py-2 rounded">New</button>
+                                <button class="bg-red-600 text-white px-4 py-2 rounded">Delete</button>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-2">
+                            <button class="bg-gray-300 px-4 py-2 rounded" onclick="hidePopupWithId('manageContract')">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- 6.Manage Contract Popup Ui Closed --}}
+
+
 
             <div id="Connect"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
