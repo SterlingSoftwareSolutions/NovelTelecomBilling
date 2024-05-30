@@ -5,11 +5,85 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Account;
 use App\Models\AccountService;
+use App\Models\Contract;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class AccountServiceController extends Controller
 {
+
+
+    ///
+
+
+
+    public function storeAccountService(Request $request)
+    {
+
+        try {
+            $accountNumber = session('account_number');
+            $validatedData = $request->validate([
+                'network' => 'required',
+                'service_id' => 'required',
+                'phonenumber' => 'required',
+                'status' => 'required',
+                'dob' => 'required',
+                'service_narrative' => 'required',
+                'costcentre' => 'required',
+                'password' => 'required',
+                'parent' => 'required',
+                'package_id' => 'required',
+                'serviceoption_id'=>'required',
+                'packageoption_id' => 'required',
+                'dealer' => 'required'
+            ]);
+
+            // $data = AccountService::setData($accountNumber, $validatedData);
+            // dd($accountNumber);
+
+            $account = Account::where('id', $accountNumber)->first();
+            //dd($account);
+            if ($account) {
+
+                // $accountService = new AccountService();
+                // $accountService->fill($validatedData);
+                // $accountService->save();
+                $data = AccountService::setData($accountNumber, $validatedData);
+
+                 // Retrieve the last account service ID
+                 $lastAccountServiceId = AccountService::getLastAccountId();
+                // dd($lastAccountServiceId);
+                $user =  Auth::user();
+                //dd($user);
+                $contractData = [
+                    'account_service_id' => $lastAccountServiceId,
+                    'contract' => $request->contract,
+                    'contract_start_date' => $request->contract_start_date,
+                    'contract_end_date' => $request->contract_end_date,
+                    'created_by' => $user->name,
+                    'status' => $request->contract_status,
+                ];
+               
+
+                $contract = Contract::create($contractData);
+
+                return redirect()->back();
+            } else {
+                return response()->json(['error' => 'Account not found'], 404);
+            }
+        } catch (\Exception $e) {
+
+            Log::error('Error creating account service: ' . $e->getMessage());
+            return response()->json(['error' => $e], 500);
+        }
+        // Redirect to the service page with a success message
+        return redirect()->route('service_newservice')->with('success', 'Service saved successfully!');
+    }
+
+
+
+    ///
     public function update(Request $request)
     {
         try {
@@ -34,6 +108,7 @@ class AccountServiceController extends Controller
                 // Add validation rules for other fields as needed
             ]);
 
+
             // Find the account service by phone number
             $accountService = AccountService::where('phonenumber', $validatedData['Phone Number'])->firstOrFail();
 
@@ -53,6 +128,29 @@ class AccountServiceController extends Controller
 
                 // Update other fields similarly
             ]);
+
+
+             ///
+
+             // Update the contract details
+            //    $contractData = [
+            //     'contract' => $request->input('Contract'),
+            //     'contract_start_date' => $request->input('Contract Start'),
+            //     'contract_end_date' => $request->input('Contract End'),
+            //     'contract_status' => $request->input('Contract Status'),
+            // ];
+
+            // $contract = $accountService->contract;
+            // if ($contract) {
+            //     $contract->update($contractData);
+            // } else {
+            //     $contract = new Contract($contractData);
+            //     $contract->account_service_id = $accountService->id;
+            //     $contract->save();
+            // }
+
+
+             //ENd Update the contract details
 
             return response()->json(['success' => true, 'message' => 'Data updated successfully.']);
         } catch (AccountService $e) {
