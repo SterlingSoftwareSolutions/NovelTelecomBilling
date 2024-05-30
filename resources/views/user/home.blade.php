@@ -897,7 +897,7 @@
                             </div>
 
                             {{-- Send Account Service Id  --}}
-                            <input type="text" id="accounServiceId" name="accounServiceId">
+                            <input type="hidden" id="accounServiceId" name="accounServiceId">
 
                         </div>
                         <div class="flex space-x-4 mt-4">
