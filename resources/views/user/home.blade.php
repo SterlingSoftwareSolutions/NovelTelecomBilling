@@ -2331,7 +2331,7 @@
                                 </label>
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" class="mr-2"> Reprocess Usage Loaded after Sell-on Date
-                                </label>    
+                                </label>
                             </div>
                         </div>
                         <div class="flex justify-end mb-4">
@@ -2391,8 +2391,8 @@
                     </div>
                 </div>
             </div>
-            
-        
+
+
 
             {{-- 3.Change Connection Date Popup UI Closed --}}
 
@@ -2498,31 +2498,31 @@
                             <div class="space-y-4">
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Description</label>
-                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="24 month">
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="description" >
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Start Date</label>
-                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2024-05-12">
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="contract_start_date" >
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">End Date</label>
-                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2025-05-12">
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="contract_end_date">
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Contract Number</label>
-                                    <input type="number" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="0776542424">
+                                    <input type="number" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="contract_number" >
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Salesperson</label>
-                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="John Cart">
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="salesperson">
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Created Date</label>
-                                    <input type="datetime-local" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="2024-05-28T13:17">
+                                    <input type="datetime-local" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="createddate">
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Created By</label>
-                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="admin">
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="admin" id="createdby">
                                 </div>
                             </div>
                             <div class="flex justify-end mt-4">

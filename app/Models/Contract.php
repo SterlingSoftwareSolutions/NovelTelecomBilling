@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Contract extends Model
 {
@@ -21,5 +22,15 @@ class Contract extends Model
     public function accountService()
     {
         return $this->belongsTo(AccountService::class);
+    }
+
+
+    public static function getcontractdata($id)
+    {
+        return DB::table('contracts')
+        ->where('account_service_id',$id)
+        ->get();
+
+
     }
 }
