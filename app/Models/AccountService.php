@@ -65,7 +65,7 @@ class AccountService extends Model
     }
     public static function getdataview($phonenumber, $accountId){
         return DB::table('account_services')
-                ->where('phonenumber', $phonenumber)
+                ->where('phonenumber', $phonenumber)          
                 ->where('contact_code', $accountId)
                 ->get();
     }
@@ -73,7 +73,7 @@ class AccountService extends Model
     public static function getLastAccountId()
     {
         $lastAccount = self::orderBy('id', 'desc')->first();
-        dd($lastAccount);
+        // dd($lastAccount);
         return $lastAccount ? $lastAccount->id : null;
     }
 }
