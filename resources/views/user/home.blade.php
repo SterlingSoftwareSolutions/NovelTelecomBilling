@@ -2424,12 +2424,11 @@
             {{-- 1.Disconnect Service Popup UI --}}
 
 
-
-            <div id="disconnectService" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
-                <div class="popup-container bg-white border border-gray-300 shadow-lg rounded-lg p-4 w-1/2 h-1/2 overflow-hidden">
-                    <div class="modal-content bg-white mx-auto rounded shadow-lg z-50 w-2/3 relative my-auto h-full">
-                        <div class="sticky top-0 flex justify-end items-center border-b pb-2 mb-4 border border-orange-600 bg-white z-50">
-                            <button class="text-gray-600 hover:text-gray-800 p-2 rounded-lg bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            <div id="disconnectService" class="fixed inset-0 bg-gray-800 bg-opacity-75 z-50 flex items-center justify-center hidden">
+                <div class="popup-container bg-white border border-gray-300 shadow-lg rounded-lg p-4 w-3/4 md:w-1/2 h-3/4 md:h-2/3 overflow-hidden">
+                    <div class="modal-content bg-white mx-auto rounded-lg shadow-lg z-50 w-full h-full relative">
+                        <div class="sticky top-0 flex justify-end items-center border-b pb-2 mb-4 bg-white z-50">
+                            <button class="text-black hover:text-black p-2 rounded-lg bg-white focus:outline-none"
                                     onclick="hidePopupWithId('disconnectService')">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -2437,22 +2436,23 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="modal-content bg-white mx-auto rounded shadow-lg z-50 overflow-y-auto w relative h-4/5 my-auto">
-                            <div class="section mb-4">
-                                <div class="overflow-y-auto" style="max-height: 100px;">
-                                    <div>This service is under contract until 12/09/2025 11:59:59 (471 more days).</div>
-                                    <button class="mt-2 text-blue-500">Detail</button>
+                        <div class="modal-content bg-white mx-auto rounded shadow-lg z-50 overflow-y-auto w-full h-full p-4">
+                            <div class="section mb-6">
+                                <div class="overflow-y-auto flex" style="max-height: 100px;">
+                                    <p>This service is under contract until 12/09/2025 11:59:59 (471 more days).</p>
+                                    <button class="mt-2 bg-gray-600 text-white py-1 px-2 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ml-auto">Detail</button>
                                 </div>
                             </div>
-                            <div class="section flex justify-between mb-4">
-                                <div class="w-1/2 pr-2">
-                                    <label for="disconnection-date" class="block mb-1">Disconnection Date</label>
+                            <div><strong>General</strong></div>
+                            <div class="section flex flex-col md:flex-row justify-between mb-6 border border-black p-2">
+                                <div class="w-full md:w-1/2 pr-0 md:pr-4">
+                                    <label for="disconnection-date" class="block mb-2 font-medium">Disconnection Date</label>
                                     <input type="date" id="disconnection-date" value="2024-05-30" class="border border-gray-300 p-2 rounded w-full mb-4">
-                                    <label class="block mb-4">
-                                        <input type="radio" name="disconnection-time" value="now" checked class="mr-1"> Now
-                                        <input type="radio" name="disconnection-time" value="end-of-day" class="mr-1 ml-4"> End of Day
-                                    </label>
-                                    <label for="disconnection-reason" class="block mb-1">Disconnection Reason</label>
+                                    <div class="flex items-center mb-4">
+                                        <input type="radio" name="disconnection-time" value="now" checked class="mr-2"> Now
+                                        <input type="radio" name="disconnection-time" value="end-of-day" class="mr-2 ml-4"> End of Day
+                                    </div>
+                                    <label for="disconnection-reason" class="block mb-2 font-medium">Disconnection Reason</label>
                                     <select id="disconnection-reason" class="border border-gray-300 p-2 rounded w-full mb-4">
                                         <option>Bad Debt</option>
                                         <option>Bankrupt</option>
@@ -2464,8 +2464,8 @@
                                         <option>Lost/stolen Phone</option>
                                     </select>
                                 </div>
-                                <div class="w-1/2 pl-2">
-                                    <label for="notes" class="block mb-1">Notes (optional)</label>
+                                <div class="w-full md:w-1/2 pl-0 md:pl-4">
+                                    <label for="notes" class="block mb-2 font-medium">Notes (optional)</label>
                                     <textarea id="notes" class="border border-gray-300 p-2 rounded w-full mb-4"></textarea>
                                     <div class="space-y-2">
                                         <label class="flex items-center">
@@ -2475,54 +2475,66 @@
                                             <input type="checkbox" name="cancel-open-events" class="mr-2"> Cancel All Open Events
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" name="credit-back-charges" checked class="mr-2"> Credit Back Future Charges
+                                            <input type="checkbox" name="credit-back-charges"  class="mr-2"> Credit Back Future Charges
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" name="bill-future-charges" disabled class="mr-2"> Bill Future Charges Immediately
+                                            <input type="checkbox" name="bill-future-charges"  class="mr-2"> Bill Future Charges Immediately
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" name="unload-future-usage" disabled class="mr-2"> Unload Future Usage
+                                            <input type="checkbox" name="unload-future-usage"  class="mr-2"> Unload Future Usage
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="section mb-4">
-                                <label class="flex items-center mb-2">
-                                    <input type="radio" name="payout-option" value="current" checked class="mr-2"> Use current package/option for calculating payout
-                                </label>
-                                <label class="flex items-center mb-2">
-                                    <input type="radio" name="payout-option" value="new" class="mr-2"> Use this package/option for calculating payout
-                                    <input type="text" class="border border-gray-300 p-2 rounded flex-1 ml-2">
-                                    <button class="text-blue-500 ml-2">...</button>
-                                </label>
-                            </div>
-                            <div class="section mb-4">
-                                <label for="calculated-payout" class="block mb-1">Calculated payout $0.00</label>
-                                <div>Note: Service currently has $0.00 of unbilled usage.</div>
-                                <button class="mt-2 text-blue-500">Detail</button>
-                            </div>
-                            <div class="section mb-4">
-                                <label class="block mb-2">Also Apply to these Other Services:</label>
-                                <div class="space-y-2">
-                                    <label class="flex items-center">
-                                        <input type="radio" name="apply-to-services" value="all" class="mr-2"> All
+                            <div><strong>Payout Details</strong></div>
+                            <div class="border border-black p-2">
+                                <div class="section mb-6">
+                                    <label class="flex items-center mb-2">
+                                        <input type="radio" name="payout-option" value="current" checked class="mr-2"> Use current package/option for calculating payout
                                     </label>
-                                    <label class="flex items-center">
-                                        <input type="radio" name="apply-to-services" value="children" class="mr-2"> Children
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="radio" name="apply-to-services" value="same-type" class="mr-2"> Same Service Type
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="radio" name="apply-to-services" value="siblings" class="mr-2"> Siblings
-                                    </label>
+                                    <div class="flex items-center mb-2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="payout-option" value="new" class="mr-2"> Use this package/option for calculating payout
+                                        </label>
+                                        <button class="border border-black text-black hover:underline px-2 py-1 rounded ml-auto">...</button>
+                                    </div>
+                                </div>
+                                <div class="section mb-6 flex">
+                                    <label for="calculated-payout" class="block mb-2 font-medium">Calculated payout $0.00</label>
+                                    <p>Note: Service currently has $0.00 of unbilled usage.</p>
+                                    <button class="mt-2 mt-2 bg-gray-600 text-white py-1 px-2 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ml-auto">Detail</button>
                                 </div>
                             </div>
-                            <div class="buttons flex justify-end gap-4 mb-4">
-                                <button class="bg-blue-500 text-white py-2 px-4 rounded">Save</button>
-                                <button class="bg-gray-500 text-white py-2 px-4 rounded">Cancel</button>
+                            <div class="section mt-4 mb-6">
+                                <label class="block mb-2 font-medium">Also Apply to these Other Services:</label>
+                                <div class="flex flex-wrap space-y-2 border border-black p-2">
+                                    <div class="w-full md:w-1/2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="apply-to-services" value="all" class="mr-2"> All
+                                        </label>
+                                    </div>
+                                    <div class="w-full md:w-1/2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="apply-to-services" value="children" class="mr-2"> Children
+                                        </label>
+                                    </div>
+                                    <div class="w-full md:w-1/2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="apply-to-services" value="same-type" class="mr-2"> Same Service Type
+                                        </label>
+                                    </div>
+                                    <div class="w-full md:w-1/2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="apply-to-services" value="siblings" class="mr-2"> Siblings
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="footer flex justify-between items-center border-t border-gray-300 pt-2 mt-4 text-sm text-gray-600">
+                            <div class="buttons flex justify-end gap-4 mb-6">
+                                <button class="bg-green-600 text-white py-2 px-4 rounded hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Save</button>
+                                <button class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onclick="hidePopupWithId('disconnectService')">Cancel</button>
+                            </div>
+                            <div class="footer flex justify-between items-center border-t border-gray-300 pt-4 text-sm text-gray-600">
                                 <span>Close Network Event</span>
                                 <span>buddhism</span>
                                 <span>OLD - DONOTUSE</span>
@@ -2533,9 +2545,7 @@
                     </div>
                 </div>
             </div>
-
-
-
+            
 
             {{-- 1.Disconnect Service Popup UI Closed --}}
 
