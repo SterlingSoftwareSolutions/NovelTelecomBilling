@@ -14,6 +14,13 @@ class AccountService extends Model
         'status', 'dob', 'password', 'parent', 'dealer', 'costcentre', 'serviceoption_id', 'contract'
     ];
 
+
+    public function contract()
+    {
+        return $this->hasOne(Contract::class);
+    }
+
+
     public static function setData($accountNumber, $validatedData)
     {
         // dd($validatedData);
@@ -26,6 +33,7 @@ class AccountService extends Model
 
         return $accountService;
     }
+
 
 
     public  function serviceoption()
@@ -57,8 +65,15 @@ class AccountService extends Model
     }
     public static function getdataview($phonenumber, $accountId){
         return DB::table('account_services')
-                ->where('phonenumber', $phonenumber)
+                ->where('phonenumber', $phonenumber)          
                 ->where('contact_code', $accountId)
                 ->get();
+    }
+
+    public static function getLastAccountId()
+    {
+        $lastAccount = self::orderBy('id', 'desc')->first();
+        // dd($lastAccount);
+        return $lastAccount ? $lastAccount->id : null;
     }
 }

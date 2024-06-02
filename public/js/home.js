@@ -1,5 +1,6 @@
 // Packege view Start
 let responseData = [];
+let responseContract = []
 
 function getaservicedetails(phonenumber, accountId) {
     console.log(
@@ -14,6 +15,12 @@ function getaservicedetails(phonenumber, accountId) {
         success: function (response) {
             console.log('sdfdsfsdfs',response);
             responseData = response.data;
+            responseContract = response.new;
+            console.log("Response Contract",responseContract);
+
+            // responseContractData = response.contract;
+            // console.log(responseContractData);
+
             console.log(response.data[0].phonenumber);
 
             // Process the response data and populate the table
@@ -27,9 +34,9 @@ function getaservicedetails(phonenumber, accountId) {
                 { label: "Package",value: accountService.service_id,action: "package", },
                 { label: "Charge Override", value: "--", action: "changeoverride" },
                 { label: "Package Start",value: accountService.created_at,action: "packagestart", },
-                { label: "Contract",value: accountService.contract, action: "contract", },
-                { label: "Contract Start", value: "--", action: "contractstart" },
-                { label: "Contract End", value: "--", action: "contractend" },
+                { label: "Contract",value: responseContract.contract, action: "contract", },
+                { label: "Contract Start", value: responseContract.contract_start_date, action: "contractstart" },
+                { label: "Contract End", value: responseContract.contract_end_date, action: "contractend" },
                 // { label: "Service Owner", value: "--", action: "more" },
                 // { label: "Port Authority Date", value: "--", action: "more" },
                 // { label: "Order Number", value: "--", action: "more" },
@@ -70,6 +77,11 @@ function getaservicedetails(phonenumber, accountId) {
         },
     });
 }
+
+
+
+
+
 const contextMenus = {
     zoom: [
         { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
@@ -129,7 +141,7 @@ const contextMenus = {
     ],
 
     contract: [
-        { id: "manage-contract", label: "Manage Contract", value: "{value}", onclick: "contract('{value}')" },
+        { id: "manage-contract", label: "Manage Contract", value: "{value}", onclick: `contract(responseContract)` },
         { id: "package-change-history", label: "Package Change History", value: "{value}", onclick: "" },
         { id: "zoom-item", label: "Zoom", value: "{value}", onclick: "zoom('{value}')" },
         { id: "copy-all", label: "Copy All", value: "{value}", onclick: "edit('{value}')" },
@@ -210,7 +222,7 @@ function copyItemFunction(text) {
 function copyAllFunction(service, text) {
     // Copy the text inside the text field
     var copyText = "Phone number: " + service + "\nService Name: " + text;
-    
+
     navigator.clipboard.writeText(copyText).then(function() {
         // Alert the copied text
         alert("Copied the text: " + copyText);
@@ -270,8 +282,7 @@ function zoom(value) {
     const accountService = responseData.find(service =>
         service.phonenumber === value || service.service_narrative === value ||
         service.status === value || service.created_at === value ||
-        service.password === value || service.service_id === value ||
-        service.contract === value
+        service.password === value || service.service_id === value
     );
 
     const fields = [
@@ -283,9 +294,9 @@ function zoom(value) {
         { label: "Package", value: accountService.service_id },
         { label: "Charge Override", value: "--" },
         { label: "Package Start", value: accountService.created_at },
-        { label: "Contract", value: accountService.contract },
-        { label: "Contract Start", value: "--" },
-        { label: "Contract End", value: "--" },
+        { label: "Contract", value: responseContract.contract },
+        { label: "Contract Start", value: responseContract.contract_start_date },
+        { label: "Contract End", value: responseContract.contract_end_date },
         { label: "Service Owner", value: "--" },
         { label: "Port Authority Date", value: "--" },
         { label: "Order Number", value: "--" },
@@ -326,12 +337,34 @@ function contracthidePopupWithId(id) {
 
 
 
-function contract(value){
-
+function contract(value) {
+    console.log("ddd", value);
+    // Parsing the JSON string back to an object
     const editcontractPopup = document.getElementById("contract");
+
+    //values passig to id
+
+    const description = document.getElementById("description");
+    description.value = value.contract;
+
+    const startdate = document.getElementById("contract_start_date");
+    startdate.value =value.contract_start_date;
+
+    const enddate = document.getElementById("contract_end_date");
+    enddate.value =value.contract_end_date;
+
+    const createdat = document.getElementById("createddate");
+    createdat.value = value.created_at
+
+    const created_by = document.getElementById("createdby");
+    created_by.value = value.created_by
+
+
+
+
+    // responseContract
     editcontractPopup.classList.remove("hidden");
 }
-
 
 
 
