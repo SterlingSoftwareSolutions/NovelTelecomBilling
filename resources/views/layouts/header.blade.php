@@ -311,7 +311,7 @@
                                             <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="invoice" onclick="OpenInvoice()">invoice</a></li>
                                             <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="refund" onclick="Refund()">Refund</a></li>
                                             <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="debitAdjustment" onclick="DebitAdjustment()">Debit Adjustment</a></li>
-                                            <li><a href="#" class="dropdown-item">Allocate Transactions</a></li>
+                                            <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="allocateTransection" onclick="AllocateTransection()">Allocate Transactions</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -896,7 +896,84 @@
 
                 {{-- 5.Debit Adjustment Popup UI Closed --}}
 
+                {{-- 6.Allocate Transection Popup UI Opened --}}
 
+                <div id="allocateTransection" class="fixed inset-0 bg-gray-800 bg-opacity-75 z-50 flex items-center justify-center hidden">
+                    <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-6 w-full max-w-lg h-auto md:h-3/4 overflow-auto">
+                        <div class="sticky top-0 flex justify-end items-center border-b pb-2 mb-4 bg-white z-50">
+                            <button class="text-black hover:text-black p-2 rounded-lg focus:outline-none"
+                                    aria-label="Close" onclick="hidePopupWithId('allocateTransection')">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="container bg-white p-5">
+                            <div class="mb-5">
+                                <label class="block font-bold mb-2">Automatically Allocate Transactions for</label>
+                                <div class="mb-2">
+                                    <input type="radio" name="allocation" id="this-account" checked class="mr-2">
+                                    <label for="this-account">This Account: 40015000 Only</label>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="radio" name="allocation" id="zero-balance" class="mr-2">
+                                    <label for="zero-balance">All Accounts with Zero Balance</label>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="radio" name="allocation" id="all-accounts" class="mr-2">
+                                    <label for="all-accounts">All Accounts</label>
+                                </div>
+                            </div>
+                            <div class="mb-5">
+                                <label class="block font-bold mb-2">Options</label>
+                                <div class="mb-2">
+                                    <input type="checkbox" id="delete-allocations" class="mr-2">
+                                    <label for="delete-allocations">Delete all Existing Allocations</label>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="checkbox" id="use-date" class="mr-2">
+                                    <label for="use-date">Use the Transaction Date for New Allocations</label>
+                                </div>
+                            </div>
+                            <div><strong> Note </strong> </div>
+                            <div class="mb-5 border border-gray-300 p-3 rounded-md">
+                                <div class="mb-2">
+                                    <input type="checkbox" id="create-event" class="mr-2">
+                                    <label for="create-event">Create Event</label>
+                                </div>
+                                <label for="reason" class="block font-bold mb-2">Reason</label>
+                                <select id="reason" class="w-full mb-3 p-2 border border-gray-300 rounded-md">
+                                    <option>&lt;none&gt;</option>
+                                    <!-- Add other options here -->
+                                </select>
+                                <label for="note" class="block font-bold mb-2">Note</label>
+                                <textarea id="note" rows="4" class="w-full p-2 border border-gray-300 rounded-md"></textarea>
+                            </div>
+                            <div class="flex justify-end space-x-4">
+                                <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none">OK</button>
+                                <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none" onclick="hidePopupWithId('allocateTransection')">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+                    function AllocateTransection() {
+                        document.getElementById('allocateTransection').classList.remove('hidden');
+                    }
+
+                    function closeAllocateTransection(event) {
+                        if (event) {
+                            event.stopPropagation();
+                        }
+                        document.getElementById('allocateTransection').classList.add('hidden');
+                    }
+                </script>
+
+
+                {{-- 6.Allocate Transection Popup UI Closed --}}
 
                 <!-- Repeat the same pattern for other dropdowns -->
                 <!-- Service Dropdown -->
