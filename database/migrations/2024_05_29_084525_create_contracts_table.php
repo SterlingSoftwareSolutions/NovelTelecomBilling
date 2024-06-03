@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('contract');
             $table->date('contract_start_date');
             $table->date('contract_end_date');
+            $table->string('contact__number')->nullable();
+            $table->string('sales_person')->nullable();
             $table->enum('status', ['active', 'inactive']);
             $table->string('created_by');
             $table->timestamps();
