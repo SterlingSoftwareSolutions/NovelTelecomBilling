@@ -55,6 +55,30 @@
             /*bg-indigo-100*/
         }
 
+        /* .close-button-container {
+                position: fixed;
+                top: 16px; /*adjust as needed*/
+                /*right: 16px; *//*adjust as needed*/
+                /*z-index: 1000; *//* ensure it stays on top */
+          /*  } */
+
+            .sticky {
+                position: -webkit-sticky; /* For Safari */
+                position: sticky;
+                top: 0;
+                background-color: white; /* Ensure background color matches the modal */
+                z-index: 1000; /* Ensure it stays on top of other content */
+                padding-top: 8px;
+                padding-right: 8px;
+            }
+
+            .section-scrollable {
+                max-height: 100px; /* Set a fixed height for the scrollable area */
+                overflow-y: auto; /* Enable vertical scrolling */
+            }
+
+
+
         /*Pagination Buttons*/
         .dataTables_wrapper .dataTables_paginate .paginate_button {
             font-weight: 700;
@@ -757,12 +781,9 @@
                                                     class="dropdown-content-account-details hidden absolute left-full top-0 ">
                                                     <!-- Sub-dropdown content for Profile -->
                                                     <ul class=" w-[200px] ">
-                                                        <li><a href="#" class="dropdown-item ">Disconnect
-                                                                Service</a></li>
-                                                        <li><a href="#" class="dropdown-item">Close Service</a>
-                                                        </li>
-                                                        <li><a href="#" class="dropdown-item">Change
-                                                                Disconnection Date</a></li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" value="disconnectService">Disconnect Service</a></li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" >Close Service </a></li>
+                                                        <li class="context-menu-item px-4  hover:bg-gray-200 cursor-pointer" >Change Disconnection Date</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -2393,8 +2414,142 @@
             </div>
 
 
-
             {{-- 3.Change Connection Date Popup UI Closed --}}
+
+
+            {{-- Connect Service Dropdown Popup UI closed --}}
+
+
+            {{-- Disconnect Service Dropdown Popup UI  --}}
+
+            {{-- 1.Disconnect Service Popup UI --}}
+
+
+            <div id="disconnectService" class="fixed inset-0 bg-gray-800 bg-opacity-75 z-50 flex items-center justify-center hidden">
+                <div class="popup-container bg-white border border-gray-300 shadow-lg rounded-lg p-4 w-3/4 md:w-1/2 h-3/4 md:h-2/3 overflow-hidden">
+                    <div class="modal-content bg-white mx-auto rounded-lg shadow-lg z-50 w-full h-full relative">
+                        <div class="sticky top-0 flex justify-end items-center border-b pb-2 mb-4 bg-white z-50">
+                            <button class="text-black hover:text-black p-2 rounded-lg bg-white focus:outline-none"
+                                    onclick="hidePopupWithId('disconnectService')">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-content bg-white mx-auto rounded shadow-lg z-50 overflow-y-auto w-full h-full p-4">
+                            <div class="section mb-6">
+                                <div class="overflow-y-auto flex" style="max-height: 100px;">
+                                    <p>This service is under contract until 12/09/2025 11:59:59 (471 more days).</p>
+                                    <button class="mt-2 bg-gray-600 text-white py-1 px-2 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ml-auto">Detail</button>
+                                </div>
+                            </div>
+                            <div><strong>General</strong></div>
+                            <div class="section flex flex-col md:flex-row justify-between mb-6 border border-black p-2">
+                                <div class="w-full md:w-1/2 pr-0 md:pr-4">
+                                    <label for="disconnection-date" class="block mb-2 font-medium">Disconnection Date</label>
+                                    <input type="date" id="disconnection-date" value="2024-05-30" class="border border-gray-300 p-2 rounded w-full mb-4">
+                                    <div class="flex items-center mb-4">
+                                        <input type="radio" name="disconnection-time" value="now" checked class="mr-2"> Now
+                                        <input type="radio" name="disconnection-time" value="end-of-day" class="mr-2 ml-4"> End of Day
+                                    </div>
+                                    <label for="disconnection-reason" class="block mb-2 font-medium">Disconnection Reason</label>
+                                    <select id="disconnection-reason" class="border border-gray-300 p-2 rounded w-full mb-4">
+                                        <option>Bad Debt</option>
+                                        <option>Bankrupt</option>
+                                        <option>Credit Alert</option>
+                                        <option>Customer Request</option>
+                                        <option>Deceased</option>
+                                        <option>Fraud</option>
+                                        <option>Loss</option>
+                                        <option>Lost/stolen Phone</option>
+                                    </select>
+                                </div>
+                                <div class="w-full md:w-1/2 pl-0 md:pl-4">
+                                    <label for="notes" class="block mb-2 font-medium">Notes (optional)</label>
+                                    <textarea id="notes" class="border border-gray-300 p-2 rounded w-full mb-4"></textarea>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="close-network-event" class="mr-2"> Close Network Event
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="cancel-open-events" class="mr-2"> Cancel All Open Events
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="credit-back-charges"  class="mr-2"> Credit Back Future Charges
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="bill-future-charges"  class="mr-2"> Bill Future Charges Immediately
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="unload-future-usage"  class="mr-2"> Unload Future Usage
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div><strong>Payout Details</strong></div>
+                            <div class="border border-black p-2">
+                                <div class="section mb-6">
+                                    <label class="flex items-center mb-2">
+                                        <input type="radio" name="payout-option" value="current" checked class="mr-2"> Use current package/option for calculating payout
+                                    </label>
+                                    <div class="flex items-center mb-2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="payout-option" value="new" class="mr-2"> Use this package/option for calculating payout
+                                        </label>
+                                        <button class="border border-black text-black hover:underline px-2 py-1 rounded ml-auto">...</button>
+                                    </div>
+                                </div>
+                                <div class="section mb-6 flex">
+                                    <label for="calculated-payout" class="block mb-2 font-medium">Calculated payout $0.00</label>
+                                    <p>Note: Service currently has $0.00 of unbilled usage.</p>
+                                    <button class="mt-2 mt-2 bg-gray-600 text-white py-1 px-2 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ml-auto">Detail</button>
+                                </div>
+                            </div>
+                            <div class="section mt-4 mb-6">
+                                <label class="block mb-2 font-medium">Also Apply to these Other Services:</label>
+                                <div class="flex flex-wrap space-y-2 border border-black p-2">
+                                    <div class="w-full md:w-1/2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="apply-to-services" value="all" class="mr-2"> All
+                                        </label>
+                                    </div>
+                                    <div class="w-full md:w-1/2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="apply-to-services" value="children" class="mr-2"> Children
+                                        </label>
+                                    </div>
+                                    <div class="w-full md:w-1/2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="apply-to-services" value="same-type" class="mr-2"> Same Service Type
+                                        </label>
+                                    </div>
+                                    <div class="w-full md:w-1/2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="apply-to-services" value="siblings" class="mr-2"> Siblings
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons flex justify-end gap-4 mb-6">
+                                <button class="bg-green-600 text-white py-2 px-4 rounded hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Save</button>
+                                <button class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onclick="hidePopupWithId('disconnectService')">Cancel</button>
+                            </div>
+                            <div class="footer flex justify-between items-center border-t border-gray-300 pt-4 text-sm text-gray-600">
+                                <span>Close Network Event</span>
+                                <span>buddhism</span>
+                                <span>OLD - DONOTUSE</span>
+                                <span>2:40 PM</span>
+                                <span>30/05/2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            {{-- 1.Disconnect Service Popup UI Closed --}}
+
 
             <div id="Connect"
                 class="popup-container  fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center hidden">
