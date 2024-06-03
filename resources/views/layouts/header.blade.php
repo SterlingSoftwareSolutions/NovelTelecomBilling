@@ -281,11 +281,13 @@
                                 <div class="relative ">
                                     <button type="button"
                                         class="flex items-center gap-x-1 text-sm  leading-6 text-gray-900 dropdown-item text-start w-[200px]"
-                                        aria-expanded="false" onclick="toggleSubDropdown('findaccount')">
+                                        aria-expanded="false" onclick="opennote_R()">
                                         Receipt
                                     </button>
 
                                 </div>
+                            </li>
+                            @include('Service.receipt')
                             </li>
                             <li>
                                 <div class="relative ">
@@ -324,7 +326,7 @@
                                 </div>
                             </li>
 
-                               @include('Service.miscellaneous');
+                               @include('Service.miscellaneous')
                             </li>
                             <li class="">
                                 <div class="relative ">
@@ -336,7 +338,7 @@
 
                                 </div>
                             </li>
-                            @include('Service.discount'):
+                            @include('Service.discount')
                         </li>
 
                             <li class="">
