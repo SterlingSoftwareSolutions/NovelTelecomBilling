@@ -16,7 +16,9 @@ class Contract extends Model
         'contract_start_date',
         'contract_end_date',
         'status',
-        'created_by'
+        'created_by',
+        'contact__number',
+        'sales_person'
     ];
 
     public function accountService()

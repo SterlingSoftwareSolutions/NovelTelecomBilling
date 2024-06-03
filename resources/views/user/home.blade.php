@@ -2546,7 +2546,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
             {{-- 1.Disconnect Service Popup UI Closed --}}
 
@@ -2648,36 +2648,38 @@
                 <div class=" p-4 rounded-lg border border-gray-500">
                     <div>
                         <h1 class="text-lg font-semibold mb-4">File</h1>
-                        <form action="" method="POST">
+                        <form action="{{ route('contracts.update') }}" method="POST">
+                            @csrf
                             <h1 class="text-md font-medium mb-2">Contact Details</h1>
+                            <input type="text" id="id" name="id"   class="hidden">
                             <div class="space-y-4">
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Description</label>
-                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="description" >
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" name="contract" id="description" >
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Start Date</label>
-                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="contract_start_date" >
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" name="contract_start_date" id="contract_start_date" >
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">End Date</label>
-                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="contract_end_date">
+                                    <input type="date" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" name="contract_end_date" id="contract_end_date">
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Contract Number</label>
-                                    <input type="number" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="contract_number" >
+                                    <input type="number" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" name="contract_number" id="contract_number" >
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Salesperson</label>
-                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="salesperson">
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" name="salesperson" id="salesperson">
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Created Date</label>
-                                    <input type="datetime-local" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" id="createddate">
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" name="createddate" id="createddate">
                                 </div>
                                 <div class="flex items-center">
                                     <label class="block w-1/3 mb-2">Created By</label>
-                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="admin" id="createdby">
+                                    <input type="text" class="block w-2/3 mb-2 border border-gray-300 rounded p-2" value="admin" name="createdby" id="createdby">
                                 </div>
                             </div>
                             <div class="flex justify-end mt-4">

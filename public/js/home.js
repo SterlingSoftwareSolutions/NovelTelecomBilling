@@ -360,7 +360,16 @@ function contract(value) {
     created_by.value = value.created_by
 
 
+    const id = document.getElementById("id");
+    id.value = value.id
 
+    const contract_number = document.getElementById("contract_number");
+    contract_number.value = value.contact__number
+
+
+    const salesperson = document.getElementById("salesperson");
+    salesperson.value = value.sales_person
+    console.log("hellllllll",value);
 
     // responseContract
     editcontractPopup.classList.remove("hidden");

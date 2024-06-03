@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\AccountServiceController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ManualNoteController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ServiceController;
@@ -93,4 +94,7 @@ Route::middleware(['auth'])->group(function () {
 // AccountServiceController route
 Route::middleware(['auth'])->group(function () {
     Route::post('/update-account-service', [AccountServiceController::class, 'updateAccountService'])->name('update-account-service');
+
+
+    Route::post('/contracts/update', [ContractController::class, 'updateContract'])->name('contracts.update');
 });
