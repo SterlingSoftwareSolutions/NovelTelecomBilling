@@ -146,7 +146,7 @@ class AccountController extends Controller
             }
 
             // Create the Contact record
-            for ($i = 0; $i <= count($request->contact_types); $i++) {
+            for ($i = 0; $i < count($request->contact_types); $i++) {
                 $contactData = [
                     'contact_code' => $request->contact_code,
                     'contact_code2s' => $request->contact_code2s[$i],
