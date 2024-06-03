@@ -105,12 +105,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/account-save', [AccountController::class, 'store'])->name('account.store');
-
-
-    
     Route::post('/update-account-service', [AccountServiceController::class, 'updateAccountService'])->name('update-account-service');
-
-
     Route::post('/contracts/update', [ContractController::class, 'updateContract'])->name('contracts.update');
 
 });

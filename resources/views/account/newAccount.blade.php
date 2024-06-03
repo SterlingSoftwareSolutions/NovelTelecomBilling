@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="flex flex-row gap-4 md:gap-8  m-5  " id="tradingname">
-                                <div class="w-7/12">
+                                <div class="w-6/12">
                                     <label for=""> Trading Name</label>
                                     <input type="text" name="trading_name"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
@@ -178,7 +178,7 @@
                             </div>
 
                             <div class="flex flex-row gap-4 md:gap-8  m-5  " id="answers">
-                                <div class="w-7/12">
+                                <div class="w-6/12">
                                     <label for="">Answer</label>
                                     <input type="text" name="answer"
                                         class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
