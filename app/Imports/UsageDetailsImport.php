@@ -76,13 +76,14 @@ class UsageDetailsImport implements ToModel, WithHeadingRow
     
         // Check if contact_code exists for the service_number
         if ($accountService && $accountService->contact_code) {
+            // dd($accountService->contact_code);
             try {
                 $fromDate = $this->transformDate($row['date']);
                 $fromTime = $this->transformTime($row['time']);
     
-                if ($fromDate === false || $fromTime === false) {
+               if ($fromDate === false || $fromTime === false) {
                     throw new Exception('Invalid date or time format');
-                }
+                } 
     
                 $quantity = $this->transformQuantity($row['quantity']); 
                 $nonDiscountedPrice = $this->transformCustomToGeneral($row['non_discounted_price_ex_tax']);
