@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('time');
             $table->string('number_called');
-            $table->decimal('quantity');
+            $table->time('quantity');
             $table->string('quantity_type');
             $table->string('rate_period');
             $table->decimal('non_discounted_price_(ex_tax)');
