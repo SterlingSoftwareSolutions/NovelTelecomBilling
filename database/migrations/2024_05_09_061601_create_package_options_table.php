@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('package_id');
             $table->string('package_options');
+            $table->decimal('price', 8, 2); // Assuming price is a decimal value
             $table->timestamps();
             
             // Define foreign key constraint

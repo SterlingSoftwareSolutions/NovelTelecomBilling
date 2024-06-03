@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('servicesummarys', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('contact_code');
             $table->string('cost_centre');
             $table->string('service_number');
             $table->string('service_narrative')->nullable();
             $table->string('service_type');
-            $table->decimal('total_charges');
-            $table->integer('total_usage');
-            $table->decimal('total');
-            $table->unsignedBigInteger('contact_code');
+            $table->string('total_charges');
+            $table->string('total_usage');
+            $table->string('total');
+        
             $table->timestamps();
 
             // Foreign key constraint
@@ -35,4 +36,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('servicesummarys');
     }
+    
 };

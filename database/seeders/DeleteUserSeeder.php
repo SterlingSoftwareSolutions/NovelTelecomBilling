@@ -13,6 +13,7 @@ class DeleteUserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('packages')->delete();
+        // DB::table('packages')->delete();
+        DB::table('package_options')->delete();
     }
 }
