@@ -2536,11 +2536,6 @@
                                 <button class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onclick="hidePopupWithId('disconnectService')">Cancel</button>
                             </div>
                             <div class="footer flex justify-between items-center border-t border-gray-300 pt-4 text-sm text-gray-600">
-                                <span>Close Network Event</span>
-                                <span>buddhism</span>
-                                <span>OLD - DONOTUSE</span>
-                                <span>2:40 PM</span>
-                                <span>30/05/2024</span>
                             </div>
                         </div>
                     </div>

@@ -31,6 +31,11 @@ Route::get('/error', function () {
 Route::get('/', function () {
     return redirect()->route('login');
 });
+// routes/web.php
+Route::get('/error/401', function () {
+    return view('error.401');
+})->name('error.401');
+
 Route::get('/upload', function () {
     return view ('welcome');
 });
@@ -63,7 +68,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/account-save', [AccountController::class, 'store'])->name('account.store');
     Route::post('/search', [AccountController::class, 'search'])->name('account.search');
     Route::get('/search', [AccountController::class, 'search'])->name('account.search');
     Route::get('/account',[AccountController::class, 'account_index'])->name('account.newaccount');
@@ -93,8 +97,20 @@ Route::middleware(['auth'])->group(function () {
 
 // AccountServiceController route
 Route::middleware(['auth'])->group(function () {
+});
+
+
+
+// Admin Route
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::post('/account-save', [AccountController::class, 'store'])->name('account.store');
+
+
+    
     Route::post('/update-account-service', [AccountServiceController::class, 'updateAccountService'])->name('update-account-service');
 
 
     Route::post('/contracts/update', [ContractController::class, 'updateContract'])->name('contracts.update');
+
 });
